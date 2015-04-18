@@ -5,63 +5,63 @@
     </welcome-file-list>
     <servlet>
         <servlet-name>ViewUsers</servlet-name>
-        <servlet-class>controller.msp.ViewUsers</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.msp.ViewUsers</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewComments</servlet-name>
-        <servlet-class>controller.msp.ViewComments</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.msp.ViewComments</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewRatings</servlet-name>
-        <servlet-class>controller.msp.ViewRatings</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.msp.ViewRatings</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AllMsps</servlet-name>
-        <servlet-class>controller.msp.AllMsps</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.msp.AllMsps</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MyMsp</servlet-name>
-        <servlet-class>controller.msp.MyMsp</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.msp.MyMsp</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginControler</servlet-name>
-        <servlet-class>controller.account.LoginControler</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.account.LoginControler</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutControler</servlet-name>
-        <servlet-class>controller.account.LogoutControler</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.account.LogoutControler</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AllPlans</servlet-name>
-        <servlet-class>controller.plan.AllPlans</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.plan.AllPlans</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditPlan</servlet-name>
-        <servlet-class>controller.plan.EditPlan</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.plan.EditPlan</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeletePlan</servlet-name>
-        <servlet-class>controller.plan.DeletePlan</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.plan.DeletePlan</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GetPlanDetails</servlet-name>
-        <servlet-class>controller.plan.GetPlanDetails</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.plan.GetPlanDetails</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdatePlan</servlet-name>
-        <servlet-class>controller.plan.UpdatePlan</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.plan.UpdatePlan</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddPlan</servlet-name>
-        <servlet-class>controller.plan.AddPlan</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.plan.AddPlan</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ShowMspFromPlan</servlet-name>
-        <servlet-class>controller.plan.ShowMspFromPlan</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.plan.ShowMspFromPlan</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RemoveMspFromPlan</servlet-name>
-        <servlet-class>controller.plan.RemoveMspFromPlan</servlet-class>
+        <servlet-class>com.tabeebkServer.controller.plan.RemoveMspFromPlan</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>

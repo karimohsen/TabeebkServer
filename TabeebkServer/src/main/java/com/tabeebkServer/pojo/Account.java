@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 7, 2015 6:46:58 PM by Hibernate Tools 4.3.1
+// Generated Apr 19, 2015 2:31:24 PM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.AttributeOverride;
@@ -28,15 +28,17 @@ public class Account  implements java.io.Serializable {
      private Accounttype accounttype;
      private String username;
      private String password;
+     private String displayName;
 
     public Account() {
     }
 
-    public Account(AccountId id, Accounttype accounttype, String username, String password) {
+    public Account(AccountId id, Accounttype accounttype, String username, String password, String displayName) {
        this.id = id;
        this.accounttype = accounttype;
        this.username = username;
        this.password = password;
+       this.displayName = displayName;
     }
    
      @EmbeddedId
@@ -81,6 +83,16 @@ public class Account  implements java.io.Serializable {
     
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    
+    @Column(name="display_name", nullable=false, length=45)
+    public String getDisplayName() {
+        return this.displayName;
+    }
+    
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
 

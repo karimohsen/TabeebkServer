@@ -1,6 +1,5 @@
-<%@page import="java.util.Enumeration"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>      
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,10 +28,44 @@
         <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <!--Table-->
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
-        <link href="//cdn.datatables.net/plug-ins/1.10.6/integration/jqueryui/dataTables.jqueryui.css" rel="stylesheet"/>
         <script src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
         <link href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css" rel="stylesheet"/>
         <script src="${pageContext.request.contextPath}/js/ADS_Script.js"></script>
+        <script>
+            var req_aj = null;
+            function checkValues() {
+                pw1 = document.getElementById("pwd1").value;
+                pw2 = document.getElementById("pwd2").value;
+                spn = document.getElementById("sp1");
+                spn2 = document.getElementById("sp2");
+                if (pw1 != pw2) {
+                    spn.innerHTML = "The Two Passwords are not the same";
+                    spn2.innerHTML = "The Two Passwords are not the same";
+                }
+                else {
+                    spn.textContent = "";
+                    spn2.textContent = "";
+                    ajaxfunction(pw1);
+                }
+            }
+            function ajaxfunction(pass) {
+                if (window.XMLHttpRequest)
+                    req_aj = new XMLHttpRequest();
+                else if (window.ActiveXObject)
+                    req_aj = new ActiveXObject("Microsoft.XMLHTTP");
+
+                req_aj.onreadystatechange = handleReqaj;
+
+                req_aj.open("POST", "${pageContext.request.contextPath}/ChangePwdController?intervaltime=" + new Date().getTime(), true);
+                req_aj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                req_aj.send("passwd=" + pass);
+            }
+            function handleReqaj() {
+                if (req_aj.readyState == 4) {
+                    window.location.href = "Home.jsp";
+                }
+            }
+        </script>
     </head>
 
     <body>
@@ -53,68 +86,13 @@
                 </div>
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                        <ul class="dropdown-menu message-dropdown">
-                            <li class="message-preview">
-                                <a href="#">
-                                    <div class="media">
-                                        <span class="pull-left">
-                                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                        </span>
-                                        <div class="media-body">
-                                            <h5 class="media-heading">
-                                                <strong>${account.getDisplayName()}</strong>
-                                            </h5>
-                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <div class="media">
-                                        <span class="pull-left">
-                                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                        </span>
-                                        <div class="media-body">
-                                            <h5 class="media-heading">
-                                                <strong>${account.getDisplayName()}</strong>
-                                            </h5>
-                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <div class="media">
-                                        <span class="pull-left">
-                                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                        </span>
-                                        <div class="media-body">
-                                            <h5 class="media-heading">
-                                                <strong>${account.getDisplayName()}</strong>
-                                            </h5>
-                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="message-footer">
-                                <a href="#">Read All New Messages</a>
-                            </li>
-                        </ul>
-                    </li>
+
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${account.getDisplayName()} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="${pageContext.request.contextPath}/MSP/Profile.jsp"><i class="fa fa-fw fa-user"></i> Profile</a>
+                                <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -125,7 +103,7 @@
                 </ul>
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
-                   <ul class="nav navbar-nav side-nav">
+                    <ul class="nav navbar-nav side-nav">
                         <li class="active">
                             <a href="${pageContext.request.contextPath}/MSP/Home.jsp"><i class="fa fa-fw fa-home"></i> Home</a>
                         </li>
@@ -178,7 +156,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
-                                Edit Plan
+                                View Users
 
                             </h1>
                             <ol class="breadcrumb">
@@ -186,36 +164,35 @@
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/MSP/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-edit"></i> Edit Plan
+                                    <i class="fa fa-user"></i> Profile                                   
                                 </li>
                             </ol>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h2>Change Password</h2>
+                                    <div class="table-responsive">
+                                        <form action="JavaScript:checkValues()">
+                                            <table class="table table-hover table-striped">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="password" placeholder="Your New Password" required="true" style="width: 100%" id="pwd1"><span id="sp1"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="password" placeholder="Confirm Your Password" required="true" style="width: 100%" id="pwd2"><span id="sp2"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="submit" value="Change Password" class="btn btn-default" style="float: right"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- /.row -->
-                    <div class="row">
-                        <table id="example" class="display" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>Plan Name</th>
-                                    <th>Plan Description</th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
 
-                            <tbody>
-                                <c:forEach var="plan" items="${requestScope.plans}">
-                                    <tr>
-                                        <td><c:out value="${plan.getPlanName()}"/></td>
-                                        <td><c:out value="${plan.getPlanDescription()}"/></td>
-                                        <td><button type="button" class="btn btn-success" onclick="EditPlan('GetPlanDetails',${plan.getPlanId()})">Edit</button></td>
-                                        <td><button type="button" class="btn btn-danger" onclick="EditPlan('ShowMspFromPlan',${plan.getPlanId()})">Delete</button></td>
-                                    </tr>
-                                </c:forEach>	
-                            </tbody>
-                        </table>
-
-                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -226,7 +203,6 @@
         <!-- /#wrapper -->
         <!-- Bootstrap Core JavaScript -->
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
     </body>
 
 </html>

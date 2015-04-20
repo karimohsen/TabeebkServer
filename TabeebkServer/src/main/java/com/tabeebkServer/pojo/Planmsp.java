@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 7, 2015 6:46:58 PM by Hibernate Tools 4.3.1
+// Generated Apr 19, 2015 2:31:24 PM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.AttributeOverride;

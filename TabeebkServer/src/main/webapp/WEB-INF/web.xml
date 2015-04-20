@@ -63,6 +63,10 @@
         <servlet-name>RemoveMspFromPlan</servlet-name>
         <servlet-class>com.tabeebkServer.controller.plan.RemoveMspFromPlan</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangePwdController</servlet-name>
+        <servlet-class>com.tabeebkServer.controller.account.ChangePwdController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -122,6 +126,10 @@
     <servlet-mapping>
         <servlet-name>RemoveMspFromPlan</servlet-name>
         <url-pattern>/RemoveMspFromPlan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePwdController</servlet-name>
+        <url-pattern>/ChangePwdController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

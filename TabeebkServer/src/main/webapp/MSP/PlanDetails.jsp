@@ -67,7 +67,7 @@
                                         </span>
                                         <div class="media-body">
                                             <h5 class="media-heading">
-                                                <strong>John Smith</strong>
+                                                <strong>${account.getDisplayName()}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -83,7 +83,7 @@
                                         </span>
                                         <div class="media-body">
                                             <h5 class="media-heading">
-                                                <strong>John Smith</strong>
+                                                <strong>${account.getDisplayName()}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -99,7 +99,7 @@
                                         </span>
                                         <div class="media-body">
                                             <h5 class="media-heading">
-                                                <strong>John Smith</strong>
+                                                <strong>${account.getDisplayName()}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -114,10 +114,10 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${account.getDisplayName()} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                                <a href="${pageContext.request.contextPath}/MSP/Profile.jsp"><i class="fa fa-fw fa-user"></i> Profile</a>
                             </li>
                             <li class="divider"></li>
                             <li>

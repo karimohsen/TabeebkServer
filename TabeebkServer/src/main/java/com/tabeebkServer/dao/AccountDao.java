@@ -11,7 +11,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import com.tabeebkServer.pojo.Account;
-import com.tabeebkServer.pojo.User;
 
 /**
  *
@@ -23,11 +22,12 @@ public class AccountDao {
     static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
     static Session session = fact.openSession();
 
-    public static Account checkLogin(Account account) {
+    public Account checkLogin(Account account) {
+        session.beginTransaction();
         Query q = session.createQuery("from Account a where a.username = :accName and a.password = :pass")
-                .setString("accName", account.getUsername()).setString("pass", account.getPassword());
+                .setParameter("accName", account.getUsername()).setParameter("pass", account.getPassword());
         List result = q.list();
-        
+        session.getTransaction().commit();
         if (result.isEmpty()) {
             return null;
         } else {
@@ -35,19 +35,12 @@ public class AccountDao {
             return account;
         }
     }
-    public static void main(String[] args) {
-        //========validate login================
-//        Account a=new Account();
-//        a.setUsername("alico570");
-//        a.setPassword("123");
-//        a=checkLogin(a);
-//        if(a!=null){
-//            System.out.println("Login sucessfuly");
-//            System.out.println("Account id: "+a.getId().getAccountId());
-//            System.out.println("Account type: "+a.getId().getAccountTypeId());
-//            System.out.println("Account Type String: "+a.getAccounttype().getAccountTypeName());
-//        }
-//        else
-//            System.out.println("Faillllllllllllllled");
+
+    public void changePassword(String pass, Account acc) {
+        acc.setPassword(pass);
+        session.beginTransaction();
+        session.update(acc);
+        session.getTransaction().commit();
+
     }
 }

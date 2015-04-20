@@ -43,13 +43,14 @@ public class LoginControler extends HttpServlet {
         currentUser.setPassword(password);
 
         //================= Hatem =====================       
-        currentUser = AccountDao.checkLogin(currentUser);
+        currentUser = new AccountDao().checkLogin(currentUser);
 
         //Scucessful login
         if (currentUser != null) {
              HttpSession session = request.getSession(true);
             //if user is admin user
             session.setAttribute("Accountid", currentUser.getId().getAccountId());
+            session.setAttribute("account", currentUser);
             session.setAttribute("type", currentUser.getId().getAccountTypeId());
 
             //if Account is MSP Account

@@ -92,7 +92,6 @@ public class PlanMspDao {
     }
 
     public static List<GenericMSP> allMspsNotInMyPlan(int micId, int planId) {
-        System.out.println("Methodddddddddddd: ");
         //my all msp
         List<GenericMSP> finalResult1 = MICDao.viewMyMSPs(micId);
         //msp at certain paln

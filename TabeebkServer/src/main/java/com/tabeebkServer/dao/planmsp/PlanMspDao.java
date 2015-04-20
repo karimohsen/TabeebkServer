@@ -5,6 +5,7 @@
  */
 package com.tabeebkServer.dao.planmsp;
 
+import com.tabeebkServer.dao.MICDao;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
@@ -50,66 +51,62 @@ public class PlanMspDao {
             Doctor d = new Doctor();
             Lab l = new Lab();
             GenericMSP gmsp = new GenericMSP();
-            switch (planmsp.getMsptype().getTypeId()) {
-                case 1:
-                    h = (Hospital) session.get(Hospital.class, planmsp.getId().getTypeId());
-                    gmsp.setMspId(planmsp.getId().getTypeId());
-                    gmsp.setMspname(h.getHospitalName());
-                    gmsp.setMsptypeId(planmsp.getMsptype().getTypeId());
-                    gmsp.setMsptypename(planmsp.getMsptype().getTypeName());
-                    finalResult.add(gmsp);
-                    break;
-                case 2:
-                    c = (Clinic) session.get(Clinic.class, planmsp.getId().getTypeId());
-                    gmsp.setMspId(planmsp.getId().getTypeId());
-                    gmsp.setMspname(c.getClinicName());
-                    gmsp.setMsptypeId(planmsp.getMsptype().getTypeId());
-                    gmsp.setMsptypename(planmsp.getMsptype().getTypeName());
-                    finalResult.add(gmsp);
-                    break;
-                case 3:
-                    d = (Doctor) session.get(Doctor.class, planmsp.getId().getTypeId());
-                    gmsp.setMspId(planmsp.getId().getTypeId());
-                    gmsp.setMspname(d.getDoctorName());
-                    gmsp.setMsptypeId(planmsp.getMsptype().getTypeId());
-                    gmsp.setMsptypename(planmsp.getMsptype().getTypeName());
-                    finalResult.add(gmsp);
-                    break;
-                case 4:
-                    l = (Lab) session.get(Lab.class, planmsp.getId().getTypeId());
-                    gmsp.setMspId(planmsp.getId().getTypeId());
-                    gmsp.setMspname(l.getLabName());
-                    gmsp.setMsptypeId(planmsp.getMsptype().getTypeId());
-                    gmsp.setMsptypename(planmsp.getMsptype().getTypeName());
-                    finalResult.add(gmsp);
-                    break;
+            if (planmsp.getMsptype().getTypeId() != null) {
+                switch (planmsp.getMsptype().getTypeId()) {
+                    case 1:
+                        h = (Hospital) session.get(Hospital.class, planmsp.getId().getTypeId());
+                        gmsp.setMspId(planmsp.getId().getTypeId());
+                        gmsp.setMspname(h.getHospitalName());
+                        gmsp.setMsptypeId(planmsp.getMsptype().getTypeId());
+                        gmsp.setMsptypename(planmsp.getMsptype().getTypeName());
+                        finalResult.add(gmsp);
+                        break;
+                    case 2:
+                        c = (Clinic) session.get(Clinic.class, planmsp.getId().getTypeId());
+                        gmsp.setMspId(planmsp.getId().getTypeId());
+                        gmsp.setMspname(c.getClinicName());
+                        gmsp.setMsptypeId(planmsp.getMsptype().getTypeId());
+                        gmsp.setMsptypename(planmsp.getMsptype().getTypeName());
+                        finalResult.add(gmsp);
+                        break;
+                    case 3:
+                        d = (Doctor) session.get(Doctor.class, planmsp.getId().getTypeId());
+                        gmsp.setMspId(planmsp.getId().getTypeId());
+                        gmsp.setMspname(d.getDoctorName());
+                        gmsp.setMsptypeId(planmsp.getMsptype().getTypeId());
+                        gmsp.setMsptypename(planmsp.getMsptype().getTypeName());
+                        finalResult.add(gmsp);
+                        break;
+                    case 4:
+                        l = (Lab) session.get(Lab.class, planmsp.getId().getTypeId());
+                        gmsp.setMspId(planmsp.getId().getTypeId());
+                        gmsp.setMspname(l.getLabName());
+                        gmsp.setMsptypeId(planmsp.getMsptype().getTypeId());
+                        gmsp.setMsptypename(planmsp.getMsptype().getTypeName());
+                        finalResult.add(gmsp);
+                        break;
+                }
             }
         }
         return finalResult;
     }
 
-    public List<Planmsp> allMspsNotInMyPlan(int planId) {
-        Plan p = (Plan) session.get(Plan.class, planId);
-        List<Planmsp> result = session.createQuery("From Planmsp pm where pm.plan = ? and pm.deleted = 0").setParameter(0, p).list();
-//        List<Msp> msps=session.createQuery("from Msp m where planmsp.msptype != ? and planmsp.typeId != ?")
-//                .setParameter(null, p).setParameter(null, p).list();
-        List<Msp> msps = session.createQuery("from Msp").list();
-//        for (Msp msp : msps) {
-//            
-//        }
-
-        for (int j = 0; j < result.size(); j++) {
-            for (int i = 0; i < msps.size(); i++) {
-                if ((result.get(j).getMsptype().getTypeId() == msps.get(i).getTypeId()) && (result.get(j).getId().getMsptypeTypeId() == msps.get(i).getMspId())) {
-                    msps.remove(msps.get(i));
-                    //Systeplanmsp.out.println(msps.get(i).getMsptype().getTypeName());
+    public static List<GenericMSP> allMspsNotInMyPlan(int micId, int planId) {
+        System.out.println("Methodddddddddddd: ");
+        //my all msp
+        List<GenericMSP> finalResult1 = MICDao.viewMyMSPs(micId);
+        //msp at certain paln
+        List<GenericMSP> finalResult2 = PlanMspDao.allMspsInMyPlan(1);
+        finalResult1.removeAll(finalResult2);
+        for (int j = 0; j < finalResult1.size(); j++) {
+            for (int i = 0; i < finalResult2.size(); i++) {
+                if (finalResult2.get(i).equals(finalResult1.get(j))) {
+//                    System.out.println("Remove: "+finalResult2.get(i).getMspname() + "\t" + finalResult1.get(j).getMspname());
+                    finalResult1.remove(j);
                 }
             }
-
         }
-        //Systeplanmsp.out.println("size : " + msps.size());
-//        msps.remove(result);
-        return result;
+        return finalResult1;
     }
 
     public void deleteMspFromPlan(List<Planmsp> list) {
@@ -122,17 +119,40 @@ public class PlanMspDao {
     }
 
     public static void deleteMspFromPlan(Planmsp obj) {
+//        obj=(Planmsp) session.get(Planmsp.class, obj);
+        session.beginTransaction();
+        session.update(obj);
+        session.getTransaction().commit();
+    }
+
+    public static void addMspToPlan(Planmsp obj) {
         session.beginTransaction();
         session.saveOrUpdate(obj);
         session.getTransaction().commit();
     }
 
     public static void main(String[] args) {
-        //new PlanMspDao().allMspsNotInMyPlan(1);
+        //=================== Test msp not in plan =================
+//        System.out.println(PlanMspDao.allMspsNotInMyPlan(1).size());
         //================ allMspsInMyPlan =========================
 //        List<GenericMSP> list = new PlanMspDao().allMspsInMyPlan(1);
 //        for (GenericMSP list1 : list) {
 //            System.out.println(list1.getMspname() + " " + list1.getMspId());
 //        }
+        //================ Test Add And delete MspFromPlan ======================
+        int planid = 1;
+        int mspid = 1;
+        Planmsp planmsp = new Planmsp();
+        PlanmspId planmspId = new PlanmspId();
+        planmspId.setPlanId(planid);
+        planmspId.setTypeId(mspid);
+        planmspId.setMsptypeTypeId(1);
+        planmsp.setId(planmspId);
+        planmsp.setDeleted(1);
+        //================ deleteMspFromPlan ======================
+        PlanMspDao.deleteMspFromPlan(planmsp);
+        planmsp.setDeleted(0);
+        //================ addMspToPlan =========================
+        PlanMspDao.addMspToPlan(planmsp);
     }
 }

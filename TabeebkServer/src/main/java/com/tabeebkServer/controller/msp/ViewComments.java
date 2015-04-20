@@ -37,17 +37,13 @@ public class ViewComments extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         RequestDispatcher rd = request.getRequestDispatcher("MSP/ViewComments.jsp");
-
-//        out.println("View labsss Servlet");
-//        System.out.println("View Coursesssssssssssssss");
         // Get this id from session
         HttpSession session = request.getSession(false);
+        if (session.getAttribute("Accountid") != null) {
         int micId = (Integer) session.getAttribute("Accountid");
-        if (micId > 0) {
             //get from request
             int userId = Integer.parseInt(request.getParameter("id"));
             List<Micratting> userRats = UserDao.viewMicRatting(userId, micId);
-//        System.out.println("Courses size: "+courses.size());
             request.setAttribute("userRats", userRats);
             rd.forward(request, response);
         }

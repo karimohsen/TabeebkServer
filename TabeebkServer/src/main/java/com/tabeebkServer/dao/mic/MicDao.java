@@ -20,6 +20,18 @@ public class MicDao {
     static Session session = factory.openSession();
     public Mic getMicDetails(int id){
         return (Mic)session.get(Mic.class, id);
-    } 
+    }
+    public static boolean addMIC(Mic newMic){
+        try {
+            session.beginTransaction();
+            session.save(newMic);
+            session.getTransaction().commit();
+            return true;
+        } catch (RuntimeException e) {
+            session.getTransaction().rollback();
+//            throw e;
+            return false;
+        }
+    }
 
 }

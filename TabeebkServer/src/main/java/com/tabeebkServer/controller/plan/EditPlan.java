@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.tabeebkServer.controller.plan;
 
 import com.tabeebkServer.dao.plan.PlanDao;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.tabeebkServer.pojo.Plan;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,14 +34,18 @@ public class EditPlan extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*HttpSession session = request.getSession(false);
-        int id=(Integer)session.getAttribute("micId");*/
-        int id = 1;
-        PlanDao daoPlan = new PlanDao();
-        List<Plan> list = daoPlan.allMspPlans(id);
-        request.setAttribute("plans",list);
-        RequestDispatcher rd=request.getRequestDispatcher("/MSP/EditPlan.jsp");
-        rd.forward(request, response);
+        //Get this id from session
+        HttpSession session = request.getSession(false);
+        if (session.getAttribute("Accountid") != null) {
+            int micId = (Integer) session.getAttribute("Accountid");
+            PlanDao daoPlan = new PlanDao();
+            List<Plan> list = daoPlan.allMspPlans(micId);
+            request.setAttribute("plans", list);
+            RequestDispatcher rd = request.getRequestDispatcher("/MSP/EditPlan.jsp");
+            rd.forward(request, response);
+        } else {
+            response.sendRedirect("Login.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

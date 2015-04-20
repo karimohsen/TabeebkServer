@@ -37,13 +37,15 @@ public class LoginControler extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        System.out.println(username+"  "+password);
+        
         Account currentUser = new Account();
         currentUser.setUsername(username);
         currentUser.setPassword(password);
 
+
         //================= Hatem =====================       
         currentUser = new AccountDao().checkLogin(currentUser);
+        //================= Start =====================       
 
         //Scucessful login
         if (currentUser != null) {
@@ -59,12 +61,10 @@ public class LoginControler extends HttpServlet {
             }
             //if Account is MIC Account
             if (currentUser.getId().getAccountTypeId() == 2) {
-
                 response.sendRedirect("MSP/Home.jsp");
-
             }
         } //Failed login
-        else {System.out.println("Servlet Else");
+        else {
             response.sendRedirect("Login.jsp");
         }
 }

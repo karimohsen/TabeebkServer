@@ -32,7 +32,6 @@ public class DeletePlan extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        System.out.println("Herrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
         int id = Integer.parseInt(request.getParameter("id"));
         PlanDao dao = new PlanDao();
         dao.removePlan(id);

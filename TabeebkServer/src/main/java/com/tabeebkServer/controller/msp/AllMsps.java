@@ -6,10 +6,7 @@
 package com.tabeebkServer.controller.msp;
 
 import com.tabeebkServer.dao.MICDao;
-import com.tabeebkServer.dao.MSPDao;
-import com.tabeebkServer.dao.UserDao;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,8 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.tabeebkServer.pojo.Micratting;
-import com.tabeebkServer.pojo.Msp;
 import com.tabeebkServer.utilty.GenericMSP;
 
 /**
@@ -42,14 +37,13 @@ public class AllMsps extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("MSP/AllMsps.jsp");
         //Get From Session
         HttpSession session = request.getSession(false);
-        int micId = (Integer) session.getAttribute("Accountid");
-        if (micId >0) {
+        if (session.getAttribute("Accountid") != null) {
+            int micId = (Integer) session.getAttribute("Accountid");
             List<GenericMSP> allMSPs = MICDao.viewOtherMSPs(micId);
             request.setAttribute("allMSPs", allMSPs);
-            
+
             rd.forward(request, response);
-        }
-        else{
+        } else {
             response.sendRedirect("Login.jsp");
         }
     }

@@ -7,12 +7,10 @@ package com.tabeebkServer.controller.plan;
 
 import com.tabeebkServer.dao.planmsp.PlanMspDao;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.tabeebkServer.pojo.Msptype;
 import com.tabeebkServer.pojo.Planmsp;
 import com.tabeebkServer.pojo.PlanmspId;
 
@@ -34,16 +32,25 @@ public class RemoveMspFromPlan extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (request.getParameter("planid") != null && request.getParameter("planid") != null) {
-            int planid = Integer.parseInt(request.getParameter("planid"));
-            int mspid = Integer.parseInt(request.getParameter("mspid"));
+        response.setContentType("text/html;charset=UTF-8");
+        if (request.getParameter("planid") != null && request.getParameter("msptypeid") != null && request.getParameter("mspid") != null) {
+            int planId = Integer.parseInt(request.getParameter("planid"));
+            int mspTypeId = Integer.parseInt(request.getParameter("msptypeid"));
+            int typeId = Integer.parseInt(request.getParameter("mspid"));
+            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
             Planmsp planmsp = new Planmsp();
             PlanmspId planmspId = new PlanmspId();
-            planmspId.setPlanId(planid);
-            planmspId.setTypeId(mspid);
+            planmspId.setPlanId(planId);
+            planmspId.setTypeId(typeId);
+            planmspId.setMsptypeTypeId(mspTypeId);
             planmsp.setId(planmspId);
-            PlanMspDao.deleteMspFromPlan(planmsp);            
+            planmsp.setDeleted(1);
+            PlanMspDao.deleteMspFromPlan(planmsp);
+//            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
+            response.sendRedirect("MSP/Home.jsp");
+        }
+        else {
+            response.sendRedirect("Login.jsp");
         }
     }
 

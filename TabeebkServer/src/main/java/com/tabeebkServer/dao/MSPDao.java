@@ -5,7 +5,6 @@
  */
 package com.tabeebkServer.dao;
 
-import static com.tabeebkServer.dao.MICDao.session;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -28,7 +27,6 @@ import com.tabeebkServer.utilty.GenericMSP;
 public class MSPDao {
 
     //===== session per dao
-
     static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
     static Session session = fact.openSession();
 
@@ -38,11 +36,11 @@ public class MSPDao {
         List<Msp> result = q.list();
         
         for (Msp m : result) {
-            Hospital h = new Hospital();
-            Clinic c = new Clinic();
-            Doctor d = new Doctor();
-            Lab l = new Lab();
-            GenericMSP gmsp = new GenericMSP();
+        Hospital h = new Hospital();
+        Clinic c = new Clinic();
+        Doctor d = new Doctor();
+        Lab l = new Lab();
+        GenericMSP gmsp = new GenericMSP();
             switch (m.getMsptype().getTypeId()) {
                 case 1:
                     h = (Hospital) session.get(Hospital.class, m.getTypeId());
@@ -95,7 +93,7 @@ public class MSPDao {
     public static void main(String[] args) {
         //================== viewMSPs ===============================
 //        System.out.println(viewMSPs().size());
-        
+
         //================== viewMspRatting ===============================
 //        System.out.println(viewMspRatting(1).size());
     }

@@ -5,7 +5,6 @@
  */
 package com.tabeebkServer.dao;
 
-import static com.tabeebkServer.dao.UserDao.session;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -18,7 +17,6 @@ import com.tabeebkServer.pojo.Hospital;
 import com.tabeebkServer.pojo.Lab;
 import com.tabeebkServer.pojo.Mic;
 import com.tabeebkServer.pojo.Micuser;
-import com.tabeebkServer.pojo.MicuserId;
 import com.tabeebkServer.pojo.Msp;
 import com.tabeebkServer.pojo.User;
 import com.tabeebkServer.utilty.GenericMSP;
@@ -91,13 +89,13 @@ public class MICDao {
         Query q = session.createQuery("from Msp m where :myMic not member of mics")
                 .setParameter("myMic", myMic);
         List<Msp> result = q.list();
-
+        
         for (Msp m : result) {
-            Hospital h = new Hospital();
-            Clinic c = new Clinic();
-            Doctor d = new Doctor();
-            Lab l = new Lab();
-            GenericMSP gmsp = new GenericMSP();
+        Hospital h = new Hospital();
+        Clinic c = new Clinic();
+        Doctor d = new Doctor();
+        Lab l = new Lab();
+        GenericMSP gmsp = new GenericMSP();
             switch (m.getMsptype().getTypeId()) {
                 case 1:
                     h = (Hospital) session.get(Hospital.class, m.getTypeId());

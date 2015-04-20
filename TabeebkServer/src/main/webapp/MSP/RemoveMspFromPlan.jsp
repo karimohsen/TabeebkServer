@@ -187,7 +187,7 @@
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/MSP/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-edit"></i> <a href="${pageContext.request.contextPath}/MSP/EditPlan.jsp">Edit Plan</a>
+                                    <i class="fa fa-edit"></i> <a href="${pageContext.request.contextPath}/EditPlan">Edit Plan</a>
                                 </li>
                                 <li class="active">
                                     <i class="fa fa-group"></i> Remove Msp
@@ -216,7 +216,7 @@
                                         <td>
                                             <c:out value="${planMsp.getMsptypename()}"/>
                                         </td>
-                                        <td><button type="button" class="btn btn-danger" onclick="RemovePlan('RemoveMspFromPlan',${requestScope.planId},${planMsp.getMspId()})">Remove</button></td>
+                                        <td><button type="button" class="btn btn-danger" onclick="AddMspToPlan('RemoveMspFromPlan',${requestScope.planId},${planMsp.getMsptypeId()},${planMsp.getMspId()})">Remove</button></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

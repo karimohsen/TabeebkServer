@@ -8,7 +8,6 @@ package com.tabeebkServer.controller.plan;
 
 import com.tabeebkServer.dao.plan.PlanDao;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +33,7 @@ public class GetPlanDetails extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher rd=request.getRequestDispatcher("MSP/PlanDetails.jsp");
+        //get from request
         int id = Integer.parseInt(request.getParameter("id"));
         PlanDao dao = new PlanDao();
         request.setAttribute("plan", dao.getPlanDetails(id));

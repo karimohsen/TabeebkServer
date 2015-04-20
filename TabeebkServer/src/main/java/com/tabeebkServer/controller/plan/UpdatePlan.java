@@ -8,8 +8,6 @@ package com.tabeebkServer.controller.plan;
 
 import com.tabeebkServer.dao.plan.PlanDao;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +50,7 @@ public class UpdatePlan extends HttpServlet {
         currentPlan.setPlanDescriptionAr(plandescar);
         currentPlan.setVersion(version);
         planDao.updatePlan(currentPlan);
-        response.sendRedirect("MSP/Home.jsp");
+        response.sendRedirect("AllPlans");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

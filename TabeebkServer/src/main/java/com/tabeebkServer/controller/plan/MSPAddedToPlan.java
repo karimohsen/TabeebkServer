@@ -3,24 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tabeebkServer.controller.msp;
+package com.tabeebkServer.controller.plan;
 
-import com.tabeebkServer.dao.MICDao;
+import com.tabeebkServer.dao.planmsp.PlanMspDao;
 import java.io.IOException;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import com.tabeebkServer.utilty.GenericMSP;
+import com.tabeebkServer.pojo.Planmsp;
+import com.tabeebkServer.pojo.PlanmspId;
 
 /**
  *
  * @author HMA
  */
-public class MyMsp extends HttpServlet {
+public class MSPAddedToPlan extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +32,24 @@ public class MyMsp extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher rd = request.getRequestDispatcher("MSP/MyMsp.jsp");
-        //GET from session
-        HttpSession session = request.getSession(false);
-        if (session.getAttribute("Accountid") != null) {
-            int micId = (Integer) session.getAttribute("Accountid");
-            List<GenericMSP> myMSPs = MICDao.viewMyMSPs(micId);
-            request.setAttribute("myMSPs", myMSPs);
-            rd.forward(request, response);
-        } else {
+        System.out.println("Herrrrrr Adddddddddddddderererer");
+        if (request.getParameter("planid") != null && request.getParameter("msptypeid") != null && request.getParameter("mspid") != null) {
+            int planId = Integer.parseInt(request.getParameter("planid"));
+            int mspTypeId = Integer.parseInt(request.getParameter("msptypeid"));
+            int typeId = Integer.parseInt(request.getParameter("mspid"));
+            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
+            Planmsp planmsp = new Planmsp();
+            PlanmspId planmspId = new PlanmspId();
+            planmspId.setPlanId(planId);
+            planmspId.setTypeId(typeId);
+            planmspId.setMsptypeTypeId(mspTypeId);
+            planmsp.setId(planmspId);
+            planmsp.setDeleted(0);
+            PlanMspDao.addMspToPlan(planmsp);
+            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
+            response.sendRedirect("MSP/Home.jsp");
+        }
+        else {
             response.sendRedirect("Login.jsp");
         }
     }

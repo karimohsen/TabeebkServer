@@ -63,6 +63,14 @@
         <servlet-name>RemoveMspFromPlan</servlet-name>
         <servlet-class>com.tabeebkServer.controller.plan.RemoveMspFromPlan</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddMspToPlan</servlet-name>
+        <servlet-class>com.tabeebkServer.controller.plan.AddMspToPlan</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MSPAddedToPlan</servlet-name>
+        <servlet-class>com.tabeebkServer.controller.plan.MSPAddedToPlan</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -122,6 +130,14 @@
     <servlet-mapping>
         <servlet-name>RemoveMspFromPlan</servlet-name>
         <url-pattern>/RemoveMspFromPlan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddMspToPlan</servlet-name>
+        <url-pattern>/AddMspToPlan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MSPAddedToPlan</servlet-name>
+        <url-pattern>/MSPAddedToPlan</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

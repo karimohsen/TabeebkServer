@@ -34,11 +34,8 @@ public class AllPlans extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*HttpSession session = request.getSession(false);
-         int id=(Integer)session.getAttribute("micId");*/
         //GET from session
-        HttpSession session = request.getSession(false);
-        
+        HttpSession session = request.getSession(false);        
         if (session.getAttribute("Accountid") != null) {
             int micId = (Integer) session.getAttribute("Accountid");
             PlanDao daoPlan = new PlanDao();

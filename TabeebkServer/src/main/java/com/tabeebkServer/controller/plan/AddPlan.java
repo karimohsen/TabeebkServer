@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.tabeebkServer.controller.plan;
 
 import com.tabeebkServer.dao.mic.MicDao;
@@ -39,34 +38,29 @@ public class AddPlan extends HttpServlet {
         String planeName = request.getParameter("planname");
         String planeNameAr = request.getParameter("plannamear");
         String planDesc = request.getParameter("plandesc");
-        String planDescAr = request.getParameter("plandescar");        
+        String planDescAr = request.getParameter("plandescar");
         //GET from session
         HttpSession session = request.getSession(false);
-        int micId = (Integer) session.getAttribute("Accountid");
-        if (micId > 0) {
-        Plan plan = new Plan();
-        plan.setPlanDescription(planDesc);
-        System.out.println(planDesc);
-        System.out.println(planDescAr);
-        plan.setPlanDescriptionAr(planDescAr);
-        plan.setPlanInsertDate(new Date());
-        System.out.println(planeName);
-        plan.setPlanName(planeName);
-        plan.setPlanNameAr(planeNameAr);
-        System.out.println(planeNameAr);
-        plan.setPlanUpdatedDate(new Date());
-        plan.setVersion(1);
-        plan.setDeleted(0);
-        PlanDao dao = new PlanDao();
-        MicDao micDo = new MicDao();
-        Mic mic = micDo.getMicDetails(micId);
-        plan.setMic(mic);
-        dao.addPlan(plan);
-        RequestDispatcher rd=request.getRequestDispatcher("/MSP/AddPlan.jsp");
-        rd.forward(request, response);
-        }
-        else{
-            response.sendRedirect("MSP/Login.jsp");
+        if (session.getAttribute("Accountid") != null) {
+            int micId = (Integer) session.getAttribute("Accountid");
+            Plan plan = new Plan();
+            plan.setPlanDescription(planDesc);
+            plan.setPlanDescriptionAr(planDescAr);
+            plan.setPlanInsertDate(new Date());
+            plan.setPlanName(planeName);
+            plan.setPlanNameAr(planeNameAr);
+            plan.setPlanUpdatedDate(new Date());
+            plan.setVersion(1);
+            plan.setDeleted(0);
+            PlanDao dao = new PlanDao();
+            MicDao micDo = new MicDao();
+            Mic mic = micDo.getMicDetails(micId);
+            plan.setMic(mic);
+            dao.addPlan(plan);
+            RequestDispatcher rd = request.getRequestDispatcher("/MSP/AddPlan.jsp");
+            rd.forward(request, response);
+        } else {
+            response.sendRedirect("Login.jsp");
         }
     }
 

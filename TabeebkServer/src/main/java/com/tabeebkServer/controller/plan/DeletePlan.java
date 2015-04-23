@@ -35,7 +35,7 @@ public class DeletePlan extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         PlanDao dao = new PlanDao();
         dao.removePlan(id);
-        response.sendRedirect("/Msp/AllPlans.jsp");
+        response.sendRedirect("AllPlans");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

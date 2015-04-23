@@ -2,17 +2,17 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>      
 <!DOCTYPE html>
-
+<%@page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="en">
     <head>
-        <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1256"> or
-        <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-6">
-        <META HTTP-EQUIV="Content-language" CONTENT="ar">
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <!--<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1256">-->
+        <!--<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-6">-->
+        <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+        <!--<META HTTP-EQUIV="Content-language" CONTENT="ar">-->
+        <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+        <!--<meta name="description" content="">-->
+        <!--<meta name="author" content="">-->
 
         <title>SB Admin - Bootstrap Admin Template</title>
 

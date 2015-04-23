@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.tabeebkServer.controller.plan;
 
 import com.tabeebkServer.dao.plan.PlanDao;
@@ -27,20 +26,21 @@ public class UpdatePlan extends HttpServlet {
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     * Plan currentPlan=dao.getPlanDetails(id);
-        currentPlan.setPlanDescription(null);
+     * @throws IOException if an I/O error occurs Plan
+     * currentPlan=dao.getPlanDetails(id); currentPlan.setPlanDescription(null);
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         int id = Integer.parseInt(request.getParameter("planid"));
-        String planname=request.getParameter("planname");
-        String plannamear=request.getParameter("plannamear");
-        String plandesc=request.getParameter("plandesc");
-        String plandescar=request.getParameter("plandescar");
-        int version=Integer.parseInt(request.getParameter("version"));
-        
+        String planname = request.getParameter("planname");
+        String plannamear = request.getParameter("plannamear");
+        String plandesc = request.getParameter("plandesc");
+        String plandescar = request.getParameter("plandescar");
+        System.out.println("Arabic: " + plannamear + "\t" + plandescar);
+        int version=Integer.parseInt(request.getParameter("version"));//        
 //        Plan currentPlan=new Plan(id,planname, plannamear, plandesc, plandescar, version);
         PlanDao planDao=new PlanDao();
         Plan currentPlan = planDao.getPlanDetails(id);

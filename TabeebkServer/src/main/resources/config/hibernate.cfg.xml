@@ -7,6 +7,9 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/graduationprojecttabeebakdb?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">tabeebk</property>
     <property name="hibernate.connection.password">tabeebk</property>
+    <property name="hibernate.connection.useUnicode">true</property>
+    <property name="hibernate.connection.characterEncoding">UTF-8</property>
+    <!--<property name="hibernate.current_session_context_class">thread</property>-->
     <mapping class="com.tabeebkServer.pojo.PlanmspId"/>
     <mapping class="com.tabeebkServer.pojo.Planmsp"/>
     <mapping class="com.tabeebkServer.pojo.Gender"/>

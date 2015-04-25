@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 25, 2015 12:56:11 PM by Hibernate Tools 4.3.1
+// Generated Apr 25, 2015 2:02:55 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -27,19 +27,22 @@ public class Pharamacy  implements java.io.Serializable {
      private String pharamacyName;
      private String pharamacyNameAr;
      private String pharamacyImagepath;
+     private int deleted;
 
     public Pharamacy() {
     }
 
 	
-    public Pharamacy(String pharamacyName) {
+    public Pharamacy(String pharamacyName, int deleted) {
         this.pharamacyName = pharamacyName;
+        this.deleted = deleted;
     }
-    public Pharamacy(Hospital hospital, String pharamacyName, String pharamacyNameAr, String pharamacyImagepath) {
+    public Pharamacy(Hospital hospital, String pharamacyName, String pharamacyNameAr, String pharamacyImagepath, int deleted) {
        this.hospital = hospital;
        this.pharamacyName = pharamacyName;
        this.pharamacyNameAr = pharamacyNameAr;
        this.pharamacyImagepath = pharamacyImagepath;
+       this.deleted = deleted;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -92,6 +95,16 @@ public class Pharamacy  implements java.io.Serializable {
     
     public void setPharamacyImagepath(String pharamacyImagepath) {
         this.pharamacyImagepath = pharamacyImagepath;
+    }
+
+    
+    @Column(name="deleted", nullable=false)
+    public int getDeleted() {
+        return this.deleted;
+    }
+    
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 
 

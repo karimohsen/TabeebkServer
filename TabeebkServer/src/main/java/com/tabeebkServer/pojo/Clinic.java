@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 25, 2015 12:56:11 PM by Hibernate Tools 4.3.1
+// Generated Apr 25, 2015 2:02:55 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -27,15 +27,21 @@ public class Clinic  implements java.io.Serializable {
      private String clinicName;
      private String clinicNameAr;
      private String clinicImagepath;
+     private int deleted;
      private Set<Doctor> doctors = new HashSet<Doctor>(0);
 
     public Clinic() {
     }
 
-    public Clinic(String clinicName, String clinicNameAr, String clinicImagepath, Set<Doctor> doctors) {
+	
+    public Clinic(int deleted) {
+        this.deleted = deleted;
+    }
+    public Clinic(String clinicName, String clinicNameAr, String clinicImagepath, int deleted, Set<Doctor> doctors) {
        this.clinicName = clinicName;
        this.clinicNameAr = clinicNameAr;
        this.clinicImagepath = clinicImagepath;
+       this.deleted = deleted;
        this.doctors = doctors;
     }
    
@@ -79,6 +85,16 @@ public class Clinic  implements java.io.Serializable {
     
     public void setClinicImagepath(String clinicImagepath) {
         this.clinicImagepath = clinicImagepath;
+    }
+
+    
+    @Column(name="deleted", nullable=false)
+    public int getDeleted() {
+        return this.deleted;
+    }
+    
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 
 @ManyToMany(fetch=FetchType.LAZY, mappedBy="clinics")

@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 25, 2015 12:56:11 PM by Hibernate Tools 4.3.1
+// Generated Apr 25, 2015 2:02:55 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -34,12 +34,17 @@ public class Doctor  implements java.io.Serializable {
      private String doctorDegreeAr;
      private Integer genderId;
      private String doctorImagepath;
+     private int deleted;
      private Set<Clinic> clinics = new HashSet<Clinic>(0);
 
     public Doctor() {
     }
 
-    public Doctor(Doctorspeciality doctorspeciality, String doctorName, String doctorNameAr, String doctorDegree, String doctorDegreeAr, Integer genderId, String doctorImagepath, Set<Clinic> clinics) {
+	
+    public Doctor(int deleted) {
+        this.deleted = deleted;
+    }
+    public Doctor(Doctorspeciality doctorspeciality, String doctorName, String doctorNameAr, String doctorDegree, String doctorDegreeAr, Integer genderId, String doctorImagepath, int deleted, Set<Clinic> clinics) {
        this.doctorspeciality = doctorspeciality;
        this.doctorName = doctorName;
        this.doctorNameAr = doctorNameAr;
@@ -47,6 +52,7 @@ public class Doctor  implements java.io.Serializable {
        this.doctorDegreeAr = doctorDegreeAr;
        this.genderId = genderId;
        this.doctorImagepath = doctorImagepath;
+       this.deleted = deleted;
        this.clinics = clinics;
     }
    
@@ -130,6 +136,16 @@ public class Doctor  implements java.io.Serializable {
     
     public void setDoctorImagepath(String doctorImagepath) {
         this.doctorImagepath = doctorImagepath;
+    }
+
+    
+    @Column(name="deleted", nullable=false)
+    public int getDeleted() {
+        return this.deleted;
+    }
+    
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 
 @ManyToMany(fetch=FetchType.LAZY)

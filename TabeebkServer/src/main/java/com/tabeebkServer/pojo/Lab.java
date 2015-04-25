@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 25, 2015 12:56:11 PM by Hibernate Tools 4.3.1
+// Generated Apr 25, 2015 2:02:55 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -27,15 +27,21 @@ public class Lab  implements java.io.Serializable {
      private String labName;
      private String labNameAr;
      private String labImagepath;
+     private int deleted;
 
     public Lab() {
     }
 
-    public Lab(Hospital hospital, String labName, String labNameAr, String labImagepath) {
+	
+    public Lab(int deleted) {
+        this.deleted = deleted;
+    }
+    public Lab(Hospital hospital, String labName, String labNameAr, String labImagepath, int deleted) {
        this.hospital = hospital;
        this.labName = labName;
        this.labNameAr = labNameAr;
        this.labImagepath = labImagepath;
+       this.deleted = deleted;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -88,6 +94,16 @@ public class Lab  implements java.io.Serializable {
     
     public void setLabImagepath(String labImagepath) {
         this.labImagepath = labImagepath;
+    }
+
+    
+    @Column(name="deleted", nullable=false)
+    public int getDeleted() {
+        return this.deleted;
+    }
+    
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 
 

@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 25, 2015 12:56:11 PM by Hibernate Tools 4.3.1
+// Generated Apr 25, 2015 2:02:55 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -32,6 +32,7 @@ public class Mic  implements java.io.Serializable {
      private String micUrl;
      private String micEmail;
      private String micImageurl;
+     private int deleted;
      private Set<Micuser> micusers = new HashSet<Micuser>(0);
      private Set<Plan> plans = new HashSet<Plan>(0);
      private Set<Msp> msps = new HashSet<Msp>(0);
@@ -40,7 +41,11 @@ public class Mic  implements java.io.Serializable {
     public Mic() {
     }
 
-    public Mic(String micName, String micNameAr, String micDescription, String micDescriptionAr, String micUrl, String micEmail, String micImageurl, Set<Micuser> micusers, Set<Plan> plans, Set<Msp> msps, Set<Micratting> micrattings) {
+	
+    public Mic(int deleted) {
+        this.deleted = deleted;
+    }
+    public Mic(String micName, String micNameAr, String micDescription, String micDescriptionAr, String micUrl, String micEmail, String micImageurl, int deleted, Set<Micuser> micusers, Set<Plan> plans, Set<Msp> msps, Set<Micratting> micrattings) {
        this.micName = micName;
        this.micNameAr = micNameAr;
        this.micDescription = micDescription;
@@ -48,6 +53,7 @@ public class Mic  implements java.io.Serializable {
        this.micUrl = micUrl;
        this.micEmail = micEmail;
        this.micImageurl = micImageurl;
+       this.deleted = deleted;
        this.micusers = micusers;
        this.plans = plans;
        this.msps = msps;
@@ -134,6 +140,16 @@ public class Mic  implements java.io.Serializable {
     
     public void setMicImageurl(String micImageurl) {
         this.micImageurl = micImageurl;
+    }
+
+    
+    @Column(name="deleted", nullable=false)
+    public int getDeleted() {
+        return this.deleted;
+    }
+    
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="mic")

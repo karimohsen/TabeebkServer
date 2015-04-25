@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 25, 2015 12:37:48 PM by Hibernate Tools 4.3.1
+// Generated Apr 25, 2015 12:56:11 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -40,6 +40,7 @@ public class User  implements java.io.Serializable {
      private String userTelephone;
      private String userToken;
      private Date userDateofbirth;
+     private int blocked;
      private Set<Micratting> micrattings = new HashSet<Micratting>(0);
      private Set<Ratting> rattings = new HashSet<Ratting>(0);
      private Set<Micuser> micusers = new HashSet<Micuser>(0);
@@ -48,11 +49,12 @@ public class User  implements java.io.Serializable {
     }
 
 	
-    public User(Socialnetwork socialnetwork, String userEmail) {
+    public User(Socialnetwork socialnetwork, String userEmail, int blocked) {
         this.socialnetwork = socialnetwork;
         this.userEmail = userEmail;
+        this.blocked = blocked;
     }
-    public User(Gender gender, Socialnetwork socialnetwork, String userName, String userNameAr, String userEmail, String userImage, String userTelephone, String userToken, Date userDateofbirth, Set<Micratting> micrattings, Set<Ratting> rattings, Set<Micuser> micusers) {
+    public User(Gender gender, Socialnetwork socialnetwork, String userName, String userNameAr, String userEmail, String userImage, String userTelephone, String userToken, Date userDateofbirth, int blocked, Set<Micratting> micrattings, Set<Ratting> rattings, Set<Micuser> micusers) {
        this.gender = gender;
        this.socialnetwork = socialnetwork;
        this.userName = userName;
@@ -62,6 +64,7 @@ public class User  implements java.io.Serializable {
        this.userTelephone = userTelephone;
        this.userToken = userToken;
        this.userDateofbirth = userDateofbirth;
+       this.blocked = blocked;
        this.micrattings = micrattings;
        this.rattings = rattings;
        this.micusers = micusers;
@@ -167,6 +170,16 @@ public class User  implements java.io.Serializable {
     
     public void setUserDateofbirth(Date userDateofbirth) {
         this.userDateofbirth = userDateofbirth;
+    }
+
+    
+    @Column(name="blocked", nullable=false)
+    public int getBlocked() {
+        return this.blocked;
+    }
+    
+    public void setBlocked(int blocked) {
+        this.blocked = blocked;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="user")

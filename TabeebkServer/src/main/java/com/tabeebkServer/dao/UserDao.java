@@ -25,9 +25,18 @@ public class UserDao {
     static Session session = fact.openSession();
 
     public static List<User> viewUsers() {
-        Query q = session.createQuery("from User");
+        session.clear();
+        Query q = session.createQuery("from User where blocked=0");
         List<User> result = q.list();
         return result;
+    }
+
+    public static void blockUser(int userId) {
+        User u = (User) session.get(User.class, userId);
+        u.setBlocked(1);
+        session.beginTransaction();
+        session.saveOrUpdate(u);
+        session.getTransaction().commit();
     }
 
     public static List<Micratting> viewMicRatting(int userId, int micId) {
@@ -43,7 +52,7 @@ public class UserDao {
 
     public static void main(String[] args) {
         //================== viewUsers ================================
-//        System.out.println("viewUsers: "+viewUsers().get(0).getUserEmail());
+//        System.out.println("viewUsers: "+viewUsers().size());
 //        //================== viewMicRatting ===============================                
 //        System.out.println("Rating value: "+UserDao.viewMicRatting(1, 1).get(0).getRatingValue());
 //        System.out.println("Rating comments: "+UserDao.viewMicRatting(1, 1).get(0).getRatingComment());

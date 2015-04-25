@@ -75,6 +75,14 @@
         <servlet-name>MSPAddedToPlan</servlet-name>
         <servlet-class>com.tabeebkServer.controller.plan.MSPAddedToPlan</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AllUsers</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AllUsers</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BlockUser</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.BlockUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -146,6 +154,14 @@
     <servlet-mapping>
         <servlet-name>MSPAddedToPlan</servlet-name>
         <url-pattern>/MSPAddedToPlan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllUsers</servlet-name>
+        <url-pattern>/AllUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlockUser</servlet-name>
+        <url-pattern>/BlockUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

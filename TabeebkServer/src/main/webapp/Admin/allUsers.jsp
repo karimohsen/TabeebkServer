@@ -206,7 +206,7 @@
                         <div class="col-lg-12">
                             <h1 class="page-header">
                                 ALL Users
-                                
+
                             </h1>
                             <ol class="breadcrumb">
                                 <li>
@@ -219,7 +219,32 @@
                         </div>
                     </div>
                     <!-- /.row -->
+                    <div class="row">
+                        <table id="example" class="display" cellspacing="0" align="center" style="width:60%" onclick="addRowHandlers('ViewRatings')">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Name Arabic</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
 
+                            <tbody>
+                                <c:forEach var="user" items="${requestScope.allUsers}">
+                                    <tr>
+                                        <td>
+                                            <c:out value="${user.getUserName()}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${user.getUserNameAr()}"/>
+                                        </td>
+                                        <td><button type="button" class="btn btn-danger" onclick="EditPlan('BlockUser',${user.getUserId()})">Block</button></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.row -->
                 </div>
                 <!-- /.container-fluid -->
 
@@ -227,14 +252,14 @@
             <!-- /#page-wrapper -->
 
         </div>
-            <!-- /#page-wrapper -->
+        <!-- /#page-wrapper -->
 
-        </div>
-        <!-- /#wrapper -->
+    </div>
+    <!-- /#wrapper -->
 
-        <!-- jQuery -->
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-    </body>
+</body>
 
 </html>

@@ -190,7 +190,7 @@
                             <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp"><i class="fa fa-fw fa-hospital-o"></i>Add Clinic</a>
                         </li>
                         <li >
-                            <a href="${pageContext.request.contextPath}/Admin/allUsers.jsp"><i class="fa fa-fw fa-users"></i>All Users</a>
+                            <a href="${pageContext.request.contextPath}/AllUsers"><i class="fa fa-fw fa-users"></i>All Users</a>
                         </li>
                     </ul>
                 </div>

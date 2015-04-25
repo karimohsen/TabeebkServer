@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 19, 2015 2:31:24 PM by Hibernate Tools 3.6.0
+// Generated Apr 25, 2015 12:37:48 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,8 +26,8 @@ public class Micratting  implements java.io.Serializable {
 
 
      private Integer ratingId;
-     private User user;
      private Mic mic;
+     private User user;
      private Date ratingDate;
      private String ratingComment;
      private Integer ratingValue;
@@ -36,13 +36,13 @@ public class Micratting  implements java.io.Serializable {
     }
 
 	
-    public Micratting(User user, Mic mic) {
-        this.user = user;
+    public Micratting(Mic mic, User user) {
         this.mic = mic;
+        this.user = user;
     }
-    public Micratting(User user, Mic mic, Date ratingDate, String ratingComment, Integer ratingValue) {
-       this.user = user;
+    public Micratting(Mic mic, User user, Date ratingDate, String ratingComment, Integer ratingValue) {
        this.mic = mic;
+       this.user = user;
        this.ratingDate = ratingDate;
        this.ratingComment = ratingComment;
        this.ratingValue = ratingValue;
@@ -61,16 +61,6 @@ public class Micratting  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_id", nullable=false)
-    public User getUser() {
-        return this.user;
-    }
-    
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="mic_id", nullable=false)
     public Mic getMic() {
         return this.mic;
@@ -78,6 +68,16 @@ public class Micratting  implements java.io.Serializable {
     
     public void setMic(Mic mic) {
         this.mic = mic;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="user_id", nullable=false)
+    public User getUser() {
+        return this.user;
+    }
+    
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

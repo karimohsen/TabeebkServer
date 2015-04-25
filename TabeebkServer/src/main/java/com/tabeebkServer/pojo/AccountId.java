@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 19, 2015 2:31:24 PM by Hibernate Tools 3.6.0
+// Generated Apr 25, 2015 12:37:48 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -12,27 +12,17 @@ import javax.persistence.Embeddable;
 public class AccountId  implements java.io.Serializable {
 
 
-     private int accountTypeId;
      private int accountId;
+     private int accountTypeId;
 
     public AccountId() {
     }
 
-    public AccountId(int accountTypeId, int accountId) {
-       this.accountTypeId = accountTypeId;
+    public AccountId(int accountId, int accountTypeId) {
        this.accountId = accountId;
+       this.accountTypeId = accountTypeId;
     }
    
-
-
-    @Column(name="accountType_id", nullable=false)
-    public int getAccountTypeId() {
-        return this.accountTypeId;
-    }
-    
-    public void setAccountTypeId(int accountTypeId) {
-        this.accountTypeId = accountTypeId;
-    }
 
 
     @Column(name="account_id", nullable=false)
@@ -45,21 +35,31 @@ public class AccountId  implements java.io.Serializable {
     }
 
 
+    @Column(name="accountType_id", nullable=false)
+    public int getAccountTypeId() {
+        return this.accountTypeId;
+    }
+    
+    public void setAccountTypeId(int accountTypeId) {
+        this.accountTypeId = accountTypeId;
+    }
+
+
    public boolean equals(Object other) {
          if ( (this == other ) ) return true;
 		 if ( (other == null ) ) return false;
 		 if ( !(other instanceof AccountId) ) return false;
 		 AccountId castOther = ( AccountId ) other; 
          
-		 return (this.getAccountTypeId()==castOther.getAccountTypeId())
- && (this.getAccountId()==castOther.getAccountId());
+		 return (this.getAccountId()==castOther.getAccountId())
+ && (this.getAccountTypeId()==castOther.getAccountTypeId());
    }
    
    public int hashCode() {
          int result = 17;
          
-         result = 37 * result + this.getAccountTypeId();
          result = 37 * result + this.getAccountId();
+         result = 37 * result + this.getAccountTypeId();
          return result;
    }   
 

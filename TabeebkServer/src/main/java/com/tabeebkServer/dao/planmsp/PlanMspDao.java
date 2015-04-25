@@ -61,7 +61,9 @@ public class PlanMspDao {
                         gmsp.setMspname(h.getHospitalName());
                         gmsp.setMsptypeId(planmsp.getMsptype().getTypeId());
                         gmsp.setMsptypename(planmsp.getMsptype().getTypeName());
-                        finalResult.add(gmsp);
+                        if (h.getDeleted() == 0) {
+                            finalResult.add(gmsp);
+                        }
                         break;
                     case 2:
                         c = (Clinic) session.get(Clinic.class, planmsp.getId().getTypeId());
@@ -69,7 +71,9 @@ public class PlanMspDao {
                         gmsp.setMspname(c.getClinicName());
                         gmsp.setMsptypeId(planmsp.getMsptype().getTypeId());
                         gmsp.setMsptypename(planmsp.getMsptype().getTypeName());
-                        finalResult.add(gmsp);
+                        if (c.getDeleted() == 0) {
+                            finalResult.add(gmsp);
+                        }
                         break;
                     case 3:
                         d = (Doctor) session.get(Doctor.class, planmsp.getId().getTypeId());
@@ -77,7 +81,9 @@ public class PlanMspDao {
                         gmsp.setMspname(d.getDoctorName());
                         gmsp.setMsptypeId(planmsp.getMsptype().getTypeId());
                         gmsp.setMsptypename(planmsp.getMsptype().getTypeName());
-                        finalResult.add(gmsp);
+                        if (d.getDeleted() == 0) {
+                            finalResult.add(gmsp);
+                        }
                         break;
                     case 4:
                         l = (Lab) session.get(Lab.class, planmsp.getId().getTypeId());
@@ -85,12 +91,14 @@ public class PlanMspDao {
                         gmsp.setMspname(l.getLabName());
                         gmsp.setMsptypeId(planmsp.getMsptype().getTypeId());
                         gmsp.setMsptypename(planmsp.getMsptype().getTypeName());
-                        finalResult.add(gmsp);
+                        if (l.getDeleted() == 0) {
+                            finalResult.add(gmsp);
+                        }
                         break;
                 }
             }
         }
-        
+
         return finalResult;
     }
 
@@ -167,7 +175,7 @@ public class PlanMspDao {
 //        planmsp.setId(planmspId);
 //        planmsp.setDeleted(1);
         //================ deleteMspFromPlan ======================
-        PlanMspDao.deleteMspFromPlan(1,3,1);
+        PlanMspDao.deleteMspFromPlan(1, 3, 1);
 //        planmsp.setDeleted(0);
         //================ addMspToPlan =========================
 //        PlanMspDao.addMspToPlan(planmsp);

@@ -34,6 +34,8 @@ public class LoginControler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setDateHeader("Expires", -1); // Proxies.
         PrintWriter out = response.getWriter();
 
         String username = request.getParameter("username");
@@ -55,6 +57,7 @@ public class LoginControler extends HttpServlet {
             session.setAttribute("Accountid", currentUser.getId().getAccountId());
             session.setAttribute("account", currentUser);
             session.setAttribute("type", currentUser.getId().getAccountTypeId());
+            session.setAttribute("authenticated", "true");
 
             //if Account is MSP Account
             if (currentUser.getId().getAccountTypeId() == 1) {

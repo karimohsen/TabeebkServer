@@ -35,11 +35,11 @@ public class MSPDao {
         Query q = session.createQuery("from Msp");
         List<Msp> result = q.list();
         for (Msp m : result) {
-        Hospital h = new Hospital();
-        Clinic c = new Clinic();
-        Doctor d = new Doctor();
-        Lab l = new Lab();
-        GenericMSP gmsp = new GenericMSP();
+            Hospital h = new Hospital();
+            Clinic c = new Clinic();
+            Doctor d = new Doctor();
+            Lab l = new Lab();
+            GenericMSP gmsp = new GenericMSP();
             switch (m.getMsptype().getTypeId()) {
                 case 1:
                     h = (Hospital) session.get(Hospital.class, m.getTypeId());
@@ -47,7 +47,9 @@ public class MSPDao {
                     gmsp.setMspname(h.getHospitalName());
                     gmsp.setMsptypeId(m.getMsptype().getTypeId());
                     gmsp.setMsptypename(m.getMsptype().getTypeName());
-                    finalResult.add(gmsp);
+                    if (h.getDeleted() == 0) {
+                        finalResult.add(gmsp);
+                    }
                     break;
                 case 2:
                     c = (Clinic) session.get(Clinic.class, m.getTypeId());
@@ -55,7 +57,9 @@ public class MSPDao {
                     gmsp.setMspname(c.getClinicName());
                     gmsp.setMsptypeId(m.getMsptype().getTypeId());
                     gmsp.setMsptypename(m.getMsptype().getTypeName());
-                    finalResult.add(gmsp);
+                    if (c.getDeleted() == 0) {
+                        finalResult.add(gmsp);
+                    }
                     break;
                 case 3:
                     d = (Doctor) session.get(Doctor.class, m.getTypeId());
@@ -63,7 +67,9 @@ public class MSPDao {
                     gmsp.setMspname(d.getDoctorName());
                     gmsp.setMsptypeId(m.getMsptype().getTypeId());
                     gmsp.setMsptypename(m.getMsptype().getTypeName());
-                    finalResult.add(gmsp);
+                    if (d.getDeleted() == 0) {
+                        finalResult.add(gmsp);
+                    }
                     break;
                 case 4:
                     l = (Lab) session.get(Lab.class, m.getTypeId());
@@ -71,7 +77,9 @@ public class MSPDao {
                     gmsp.setMspname(l.getLabName());
                     gmsp.setMsptypeId(m.getMsptype().getTypeId());
                     gmsp.setMsptypename(m.getMsptype().getTypeName());
-                    finalResult.add(gmsp);
+                    if (l.getDeleted() == 0) {
+                        finalResult.add(gmsp);
+                    }
                     break;
             }
         }

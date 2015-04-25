@@ -32,7 +32,7 @@ public class MSPAddedToPlan extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        System.out.println("Herrrrrr Adddddddddddddderererer");
+//        System.out.println("Herrrrrr Adddddddddddddderererer");
         if (request.getParameter("planid") != null && request.getParameter("msptypeid") != null && request.getParameter("mspid") != null) {
             int planId = Integer.parseInt(request.getParameter("planid"));
             int mspTypeId = Integer.parseInt(request.getParameter("msptypeid"));

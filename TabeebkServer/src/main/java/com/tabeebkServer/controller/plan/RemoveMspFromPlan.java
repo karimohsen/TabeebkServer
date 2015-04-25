@@ -38,15 +38,16 @@ public class RemoveMspFromPlan extends HttpServlet {
             int mspTypeId = Integer.parseInt(request.getParameter("msptypeid"));
             int typeId = Integer.parseInt(request.getParameter("mspid"));
             System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
-            Planmsp planmsp = new Planmsp();
-            PlanmspId planmspId = new PlanmspId();
-            planmspId.setPlanId(planId);
-            planmspId.setTypeId(typeId);
-            planmspId.setMsptypeTypeId(mspTypeId);
-            planmsp.setId(planmspId);
-            planmsp.setDeleted(1);
-            PlanMspDao.deleteMspFromPlan(planmsp);
-//            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
+//            Planmsp planmsp = new Planmsp();
+//            PlanmspId planmspId = new PlanmspId();
+//            planmspId.setPlanId(planId);
+//            planmspId.setTypeId(typeId);
+//            planmspId.setMsptypeTypeId(mspTypeId);
+//            planmsp.setId(planmspId);
+//            planmsp.setDeleted(1);
+//            System.out.println("herrr: " + planmsp.getDeleted() + "\t" + planmspId.getPlanId() + "\t" 
+//                    + planmspId.getTypeId()+"\t"+planmspId.getMsptypeTypeId());
+            PlanMspDao.deleteMspFromPlan(planId,mspTypeId,typeId);            
             response.sendRedirect("MSP/Home.jsp");
         }
         else {

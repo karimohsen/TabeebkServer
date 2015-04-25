@@ -46,5 +46,8 @@ public class GenericMSP {
     public void setMspname(String mspname) {
         this.mspname = mspname;
     }
-    
+    @Override
+    public String toString(){
+        return  msptypeId+" "+msptypename+" "+mspId+" "+mspname;
+    }
 }

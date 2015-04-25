@@ -39,8 +39,11 @@ public class AddMspToPlan extends HttpServlet {
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {
             int micId = (Integer) session.getAttribute("Accountid");
-            int planId=Integer.parseInt(request.getParameter("id"));
+            int planId = Integer.parseInt(request.getParameter("id"));
             List<GenericMSP> mspsNotInPlan = PlanMspDao.allMspsNotInMyPlan(micId, planId);
+//            for (int i = 0; i < mspsNotInPlan.size(); i++) {
+//                System.out.println("Returned: " + mspsNotInPlan.get(i).getMspname());
+//            }
             request.setAttribute("mspsNotInPlan", mspsNotInPlan);
             request.setAttribute("planId", planId);
             rd.forward(request, response);

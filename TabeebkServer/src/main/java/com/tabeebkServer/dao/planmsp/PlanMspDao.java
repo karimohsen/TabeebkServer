@@ -21,6 +21,7 @@ import com.tabeebkServer.pojo.Planmsp;
 import com.tabeebkServer.pojo.PlanmspId;
 import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import com.tabeebkServer.utilty.GenericMSP;
+import org.hibernate.Query;
 
 /**
  *
@@ -51,7 +52,7 @@ public class PlanMspDao {
             Doctor d = new Doctor();
             Lab l = new Lab();
             GenericMSP gmsp = new GenericMSP();
-            if (planmsp.getMsptype().getTypeId() != null) {
+            if (planmsp.getMsptype() != null) {
                 switch (planmsp.getMsptype().getTypeId()) {
                     case 1:
                         h = (Hospital) session.get(Hospital.class, planmsp.getId().getTypeId());
@@ -95,16 +96,19 @@ public class PlanMspDao {
         //my all msp
         List<GenericMSP> finalResult1 = MICDao.viewMyMSPs(micId);
         //msp at certain paln
-        List<GenericMSP> finalResult2 = PlanMspDao.allMspsInMyPlan(1);
-        finalResult1.removeAll(finalResult2);
+        List<GenericMSP> finalResult2 = PlanMspDao.allMspsInMyPlan(planId);
         for (int j = 0; j < finalResult1.size(); j++) {
             for (int i = 0; i < finalResult2.size(); i++) {
-                if (finalResult2.get(i).equals(finalResult1.get(j))) {
+                if (finalResult2.get(i).toString().compareToIgnoreCase(finalResult1.get(j).toString()) == 0) {
+//                    System.out.println("Equalllllllllllllllllll");
 //                    System.out.println("Remove: "+finalResult2.get(i).getMspname() + "\t" + finalResult1.get(j).getMspname());
                     finalResult1.remove(j);
                 }
             }
         }
+//        for (int i = 0; i < finalResult1.size(); i++) {
+//            System.out.println("Returned: "+finalResult1.get(i).getMspname());
+//        }
         return finalResult1;
     }
 
@@ -116,12 +120,24 @@ public class PlanMspDao {
             session.getTransaction().commit();
         }
     }
+//Planmsp obj
 
-    public static void deleteMspFromPlan(Planmsp obj) {
-//        obj=(Planmsp) session.get(Planmsp.class, obj);
+    public static void deleteMspFromPlan(int planId, int mspTypeId, int typeId) {
+        PlanmspId planMsp = new PlanmspId(planId, mspTypeId, typeId);
+
         session.beginTransaction();
-        session.update(obj);
+        session.createQuery("UPDATE Planmsp pm SET pm.deleted = 1 where pm.id = :myid")
+                .setParameter("myid", planMsp)
+                .executeUpdate();
         session.getTransaction().commit();
+//        obj=(Planmsp) session.get(Planmsp.class, obj);
+//        System.out.println("PlanMSP Data: "+obj.getId().getMsptypeTypeId()+"\t"
+//                            +obj.getId().getTypeId()+"\t"
+//                            +obj.getPlan().getPlanId()+"\t"
+//                            +obj.getDeleted());
+//        session.beginTransaction();
+//        session.update(obj);
+//        session.getTransaction().commit();
     }
 
     public static void addMspToPlan(Planmsp obj) {
@@ -132,26 +148,26 @@ public class PlanMspDao {
 
     public static void main(String[] args) {
         //=================== Test msp not in plan =================
-//        System.out.println(PlanMspDao.allMspsNotInMyPlan(1).size());
+//        PlanMspDao.allMspsNotInMyPlan(1, 1).size();
         //================ allMspsInMyPlan =========================
 //        List<GenericMSP> list = new PlanMspDao().allMspsInMyPlan(1);
-//        for (GenericMSP list1 : list) {
+//        for (GenericMSP list1 : list) { 
 //            System.out.println(list1.getMspname() + " " + list1.getMspId());
 //        }
         //================ Test Add And delete MspFromPlan ======================
-        int planid = 1;
-        int mspid = 1;
-        Planmsp planmsp = new Planmsp();
-        PlanmspId planmspId = new PlanmspId();
-        planmspId.setPlanId(planid);
-        planmspId.setTypeId(mspid);
-        planmspId.setMsptypeTypeId(1);
-        planmsp.setId(planmspId);
-        planmsp.setDeleted(1);
+//        int planid = 1;
+//        int mspid = 1;
+//        Planmsp planmsp = new Planmsp();
+//        PlanmspId planmspId = new PlanmspId();
+//        planmspId.setPlanId(planid);
+//        planmspId.setTypeId(mspid);
+//        planmspId.setMsptypeTypeId(1);
+//        planmsp.setId(planmspId);
+//        planmsp.setDeleted(1);
         //================ deleteMspFromPlan ======================
-        PlanMspDao.deleteMspFromPlan(planmsp);
-        planmsp.setDeleted(0);
+        PlanMspDao.deleteMspFromPlan(1,3,1);
+//        planmsp.setDeleted(0);
         //================ addMspToPlan =========================
-        PlanMspDao.addMspToPlan(planmsp);
+//        PlanMspDao.addMspToPlan(planmsp);
     }
 }

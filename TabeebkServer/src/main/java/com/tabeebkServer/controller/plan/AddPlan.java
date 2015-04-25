@@ -35,10 +35,14 @@ public class AddPlan extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String planeName = request.getParameter("planname");
         String planeNameAr = request.getParameter("plannamear");
         String planDesc = request.getParameter("plandesc");
         String planDescAr = request.getParameter("plandescar");
+        System.out.println("=>Plane name  = " + planeNameAr + " Description = " + planDescAr);
         //GET from session
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {

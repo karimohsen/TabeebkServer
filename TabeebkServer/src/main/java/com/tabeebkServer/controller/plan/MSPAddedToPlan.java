@@ -37,7 +37,7 @@ public class MSPAddedToPlan extends HttpServlet {
             int planId = Integer.parseInt(request.getParameter("planid"));
             int mspTypeId = Integer.parseInt(request.getParameter("msptypeid"));
             int typeId = Integer.parseInt(request.getParameter("mspid"));
-            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
+//            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
             Planmsp planmsp = new Planmsp();
             PlanmspId planmspId = new PlanmspId();
             planmspId.setPlanId(planId);
@@ -46,7 +46,7 @@ public class MSPAddedToPlan extends HttpServlet {
             planmsp.setId(planmspId);
             planmsp.setDeleted(0);
             PlanMspDao.addMspToPlan(planmsp);
-            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
+//            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
             response.sendRedirect("MSP/Home.jsp");
         }
         else {

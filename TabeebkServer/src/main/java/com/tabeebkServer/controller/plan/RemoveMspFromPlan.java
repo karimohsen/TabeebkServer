@@ -37,7 +37,7 @@ public class RemoveMspFromPlan extends HttpServlet {
             int planId = Integer.parseInt(request.getParameter("planid"));
             int mspTypeId = Integer.parseInt(request.getParameter("msptypeid"));
             int typeId = Integer.parseInt(request.getParameter("mspid"));
-            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
+//            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
 //            Planmsp planmsp = new Planmsp();
 //            PlanmspId planmspId = new PlanmspId();
 //            planmspId.setPlanId(planId);

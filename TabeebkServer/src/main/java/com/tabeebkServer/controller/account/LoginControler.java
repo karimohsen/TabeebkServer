@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.tabeebkServer.pojo.Account;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -33,6 +34,8 @@ public class LoginControler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setDateHeader("Expires", -1); // Proxies.
         PrintWriter out = response.getWriter();
 
         String username = request.getParameter("username");
@@ -43,7 +46,7 @@ public class LoginControler extends HttpServlet {
         currentUser.setPassword(password);
 
 
-        //================= Hatem =====================       
+        //================= Check Account Data =====================       
         currentUser = new AccountDao().checkLogin(currentUser);
         //================= Start =====================       
 
@@ -54,6 +57,7 @@ public class LoginControler extends HttpServlet {
             session.setAttribute("Accountid", currentUser.getId().getAccountId());
             session.setAttribute("account", currentUser);
             session.setAttribute("type", currentUser.getId().getAccountTypeId());
+            session.setAttribute("authenticated", "true");
 
             //if Account is MSP Account
             if (currentUser.getId().getAccountTypeId() == 1) {
@@ -65,7 +69,9 @@ public class LoginControler extends HttpServlet {
             }
         } //Failed login
         else {
-            response.sendRedirect("Login.jsp");
+            RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
+            request.setAttribute("ErrorMessage", "You Try To Login with Wrong Username or Password ... Try Again");
+            rd.forward(request, response);
         }
 }
 

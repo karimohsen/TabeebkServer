@@ -34,7 +34,41 @@
         <script src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
         <link href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css" rel="stylesheet"/>
         <script src="${pageContext.request.contextPath}/js/ADS_Script.js"></script>
+                <script>
+            var req_aj = null;
+            function checkValues() {
+                pw1 = document.getElementById("pwd1").value;
+                pw2 = document.getElementById("pwd2").value;
+                spn = document.getElementById("sp1");
+                spn2 = document.getElementById("sp2");
+                if (pw1 != pw2) {
+                    spn.innerHTML = "The Two Passwords are not the same";
+                    spn2.innerHTML = "The Two Passwords are not the same";
+                }
+                else {
+                    spn.textContent = "";
+                    spn2.textContent = "";
+                    ajaxfunction(pw1);
+                }
+            }
+            function ajaxfunction(pass) {
+                if (window.XMLHttpRequest)
+                    req_aj = new XMLHttpRequest();
+                else if (window.ActiveXObject)
+                    req_aj = new ActiveXObject("Microsoft.XMLHTTP");
 
+                req_aj.onreadystatechange = handleReqaj;
+
+                req_aj.open("POST", "${pageContext.request.contextPath}/ChangePwdController?intervaltime=" + new Date().getTime(), true);
+                req_aj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                req_aj.send("passwd=" + pass);
+            }
+            function handleReqaj() {
+                if (req_aj.readyState == 4) {
+                    window.location.href = "Home.jsp";
+                }
+            }
+        </script>
 
     </head>
 
@@ -66,7 +100,7 @@
                                             <img class="media-object" src="http://placehold.it/50x50" alt="">
                                         </span>
                                         <div class="media-body">
-                                            <h5 class="media-heading"><strong>John Smith</strong>
+                                            <h5 class="media-heading"><strong>${account.getDisplayName()}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -81,7 +115,7 @@
                                             <img class="media-object" src="http://placehold.it/50x50" alt="">
                                         </span>
                                         <div class="media-body">
-                                            <h5 class="media-heading"><strong>John Smith</strong>
+                                            <h5 class="media-heading"><strong>${account.getDisplayName()}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -96,7 +130,7 @@
                                             <img class="media-object" src="http://placehold.it/50x50" alt="">
                                         </span>
                                         <div class="media-body">
-                                            <h5 class="media-heading"><strong>John Smith</strong>
+                                            <h5 class="media-heading"><strong>${account.getDisplayName()}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -137,7 +171,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${account.getDisplayName()} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="${pageContext.request.contextPath}/Admin/profile.jsp"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -210,7 +244,7 @@
                             </h1>
                             <ol class="breadcrumb">
                                 <li>
-                                    <i class="fa fa-home"></i>  <a href="Home.html">Home</a>
+                                    <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/Admin/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
                                     <i class="fa fa-user"></i> Profile
@@ -219,7 +253,28 @@
                         </div>
                     </div>
                     <!-- /.row -->
-
+                    <div class="row">
+                                <div class="col-lg-6">
+                                    <h2>Change Password</h2>
+                                    <div class="table-responsive">
+                                        <form action="JavaScript:checkValues()">
+                                            <table class="table table-hover table-striped">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><input type="password" placeholder="Your New Password" required="true" style="width: 100%" id="pwd1"><span id="sp1"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="password" placeholder="Confirm Your Password" required="true" style="width: 100%" id="pwd2"><span id="sp2"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><input type="submit" value="Change Password" class="btn btn-default" style="float: right"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                 </div>
                 <!-- /.container-fluid -->
 

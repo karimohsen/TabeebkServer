@@ -66,7 +66,7 @@
                                             <img class="media-object" src="http://placehold.it/50x50" alt="">
                                         </span>
                                         <div class="media-body">
-                                            <h5 class="media-heading"><strong>John Smith</strong>
+                                            <h5 class="media-heading"><strong>${account.getDisplayName()}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -81,7 +81,7 @@
                                             <img class="media-object" src="http://placehold.it/50x50" alt="">
                                         </span>
                                         <div class="media-body">
-                                            <h5 class="media-heading"><strong>John Smith</strong>
+                                            <h5 class="media-heading"><strong>${account.getDisplayName()}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -96,7 +96,7 @@
                                             <img class="media-object" src="http://placehold.it/50x50" alt="">
                                         </span>
                                         <div class="media-body">
-                                            <h5 class="media-heading"><strong>John Smith</strong>
+                                            <h5 class="media-heading"><strong>${account.getDisplayName()}</strong>
                                             </h5>
                                             <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                             <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -137,7 +137,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${account.getDisplayName()} <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="${pageContext.request.contextPath}/Admin/profile.jsp"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -152,13 +152,13 @@
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li class="active">
+                        <li >
                             <a href="${pageContext.request.contextPath}/Admin/Home.jsp"><i class="fa fa-fw fa-home"></i> Home</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="javascript:;" data-toggle="collapse" data-target="#Msp"><i class="fa fa-fw fa-ambulance"></i> MSP <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="Msp" class="collapse">
-                                <li>
+                                <li >
                                     <a href="${pageContext.request.contextPath}/Admin/AllMSPS.jsp">All MSPS</a>
                                 </li>
                                 <li>
@@ -210,7 +210,7 @@
                             </h1>
                             <ol class="breadcrumb">
                                 <li>
-                                    <i class="fa fa-home"></i>  <a href="Home.html">Home</a>
+                                    <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/Admin/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
                                     <i class="fa fa-ambulance"></i> ALL MSPS

@@ -17,6 +17,13 @@
             <form class="form-4" action="LoginControler" method="POST">                    
                 <h1>Login</h1>
                 <table width="300px" cellspacing="0">
+                     <tr>
+                        <td>
+                            <p style="color: red">
+                                ${ErrorMessage}
+                            </p>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <p>
@@ -31,7 +38,7 @@
                                 <input type="password" name='password' placeholder="Password" required> 
                             </p>
                         </td>
-                    </tr>
+                    </tr>                   
                     <tr>
                         <td>
                             <p>

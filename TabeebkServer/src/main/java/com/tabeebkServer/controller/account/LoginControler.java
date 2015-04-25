@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.tabeebkServer.pojo.Account;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -43,7 +44,7 @@ public class LoginControler extends HttpServlet {
         currentUser.setPassword(password);
 
 
-        //================= Hatem =====================       
+        //================= Check Account Data =====================       
         currentUser = new AccountDao().checkLogin(currentUser);
         //================= Start =====================       
 
@@ -65,7 +66,9 @@ public class LoginControler extends HttpServlet {
             }
         } //Failed login
         else {
-            response.sendRedirect("Login.jsp");
+            RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
+            request.setAttribute("ErrorMessage", "You Try To Login with Wrong Username or Password ... Try Again");
+            rd.forward(request, response);
         }
 }
 

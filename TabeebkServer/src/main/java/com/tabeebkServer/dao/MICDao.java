@@ -34,7 +34,8 @@ public class MICDao {
     public static List<GenericMSP> viewMyMSPs(int micId) {
         //Generic result
         List<GenericMSP> finalResult = new ArrayList<GenericMSP>();
-
+        //refresh session
+        session.clear();
         Mic myMic = (Mic) session.get(Mic.class, micId);
         Query q = session.createQuery("from Msp m where :myMic member of mics")
                 .setParameter("myMic", myMic);

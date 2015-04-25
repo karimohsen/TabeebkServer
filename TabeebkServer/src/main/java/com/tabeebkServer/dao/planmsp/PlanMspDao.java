@@ -42,6 +42,8 @@ public class PlanMspDao {
     }
 
     public static List<GenericMSP> allMspsInMyPlan(int planId) {
+        //refresh session
+        session.clear();
         Plan p = (Plan) session.get(Plan.class, planId);
         List<Planmsp> list = session.createQuery("From Planmsp pm where pm.plan = ? and pm.deleted = 0").setParameter(0, p).list();
         List<GenericMSP> finalResult = new ArrayList<GenericMSP>();

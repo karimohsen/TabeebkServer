@@ -67,6 +67,10 @@ public class LoginControler extends HttpServlet {
             if (currentUser.getId().getAccountTypeId() == 2) {
                 response.sendRedirect("MSP/Home.jsp");
             }
+             //if Account is MIC Account
+            if (currentUser.getId().getAccountTypeId() == 7) {
+                response.sendRedirect("Admin/Home.jsp");
+            }
         } //Failed login
         else {
             RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");

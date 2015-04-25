@@ -14,7 +14,6 @@ import com.tabeebkServer.pojo.Clinic;
 import com.tabeebkServer.pojo.Doctor;
 import com.tabeebkServer.pojo.Hospital;
 import com.tabeebkServer.pojo.Lab;
-import com.tabeebkServer.pojo.Msp;
 import com.tabeebkServer.pojo.Msptype;
 import com.tabeebkServer.pojo.Plan;
 import com.tabeebkServer.pojo.Planmsp;
@@ -88,6 +87,7 @@ public class PlanMspDao {
                 }
             }
         }
+        
         return finalResult;
     }
 
@@ -110,8 +110,8 @@ public class PlanMspDao {
 
     public void deleteMspFromPlan(List<Planmsp> list) {
         for (int i = 0; i < list.size(); i++) {
-            list.get(i).setDeleted(1);
             session.beginTransaction();
+            list.get(i).setDeleted(1);
             session.saveOrUpdate(list.get(i));
             session.getTransaction().commit();
         }

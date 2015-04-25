@@ -34,7 +34,6 @@ public class MSPDao {
         List<GenericMSP> finalResult = new ArrayList<GenericMSP>();
         Query q = session.createQuery("from Msp");
         List<Msp> result = q.list();
-        
         for (Msp m : result) {
         Hospital h = new Hospital();
         Clinic c = new Clinic();
@@ -80,7 +79,6 @@ public class MSPDao {
     }
 
     public static List<Ratting> viewMspRatting(int mspId) {
-
         Msp msp = (Msp) session.get(Msp.class, mspId);
         Msptype msptype = msp.getMsptype();
         Query q = session.createQuery("from Ratting where msptype= :mspt and typeId= :tid")

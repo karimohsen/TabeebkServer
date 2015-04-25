@@ -1,6 +1,7 @@
 <%@page import="java.util.Enumeration"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>      
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>     
+<%@page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,8 +34,6 @@
         <link href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css" rel="stylesheet"/>
         <script src="${pageContext.request.contextPath}/js/ADS_Script.js"></script>
         <!--pop up--> 
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/popupreset.css"> <!-- CSS reset -->
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/popupstyle.css"> <!-- Resource style -->
         <script src="${pageContext.request.contextPath}/js/modernizr.js"></script> <!-- Modernizr -->
         <script src="${pageContext.request.contextPath}/js/main.js"></script> <!-- Resource jQuery -->
     </head>
@@ -213,21 +212,8 @@
                                         <td><c:out value="${plan.getPlanName()}"/></td>
                                         <td><c:out value="${plan.getPlanDescription()}"/></td>
                                         <td><button type="button" class="btn btn-success" onclick="EditPlan('GetPlanDetails',${plan.getPlanId()})">Edit</button></td>
-                                        <!--<td><button type="button" class="btn btn-danger" onclick="EditPlan('DeletePlan',${plan.getPlanId()})">Delete</button></td>-->
-                                        <td>
-                                            <!-- /.container-fluid -->
-                                            <a href="#0" class="btn cd-popup-trigger">View Pop-up</a>
-                                            <div class="cd-popup" role="alert">
-                                                <div class="cd-popup-container">
-                                                    <p>Are you sure you want to delete this element?</p>
-                                                    <ul class="cd-buttons">
-                                                        <li><a href="javascript:EditPlan('DeletePlan',${plan.getPlanId()});">Yes</a></li>
-                                                        <li><a href="">No</a></li>
-                                                    </ul>
-                                                    <a href="#0" class="cd-popup-close img-replace">Close</a>
-                                                </div> <!-- cd-popup-container -->
-                                            </div> <!-- cd-popup -->
-                                        </td>
+                                        <td><button type="button" class="btn btn-danger" onclick="EditPlan('DeletePlan',${plan.getPlanId()})">Delete</button></td>
+
                                     </tr>
                                 </c:forEach>	
                             </tbody>

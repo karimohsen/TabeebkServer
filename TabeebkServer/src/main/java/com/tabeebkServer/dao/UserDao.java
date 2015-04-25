@@ -19,25 +19,28 @@ import com.tabeebkServer.pojo.User;
  * @author HMA
  */
 public class UserDao {
+
     //===== session per dao
     static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
     static Session session = fact.openSession();
-    
-    public static List<User> viewUsers(){
+
+    public static List<User> viewUsers() {
         Query q = session.createQuery("from User");
         List<User> result = q.list();
         return result;
     }
-    
-    public static List<Micratting> viewMicRatting(int userId,int micId){
-        User u=(User)session.get(User.class, userId);
-        Mic mic=(Mic)session.get(Mic.class, micId);
+
+    public static List<Micratting> viewMicRatting(int userId, int micId) {
+
+        User u = (User) session.get(User.class, userId);
+        Mic mic = (Mic) session.get(Mic.class, micId);
         Query q = session.createQuery("from Micratting where user= :user and mic= :mic")
                 .setParameter("user", u)
                 .setParameter("mic", mic);
         List<Micratting> result = q.list();
         return result;
     }
+
     public static void main(String[] args) {
         //================== viewUsers ================================
 //        System.out.println("viewUsers: "+viewUsers().get(0).getUserEmail());

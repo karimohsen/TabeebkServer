@@ -34,6 +34,7 @@ public class MICDao {
     public static List<GenericMSP> viewMyMSPs(int micId) {
         //Generic result
         List<GenericMSP> finalResult = new ArrayList<GenericMSP>();
+
         Mic myMic = (Mic) session.get(Mic.class, micId);
         Query q = session.createQuery("from Msp m where :myMic member of mics")
                 .setParameter("myMic", myMic);
@@ -89,13 +90,12 @@ public class MICDao {
         Query q = session.createQuery("from Msp m where :myMic not member of mics")
                 .setParameter("myMic", myMic);
         List<Msp> result = q.list();
-        
         for (Msp m : result) {
-        Hospital h = new Hospital();
-        Clinic c = new Clinic();
-        Doctor d = new Doctor();
-        Lab l = new Lab();
-        GenericMSP gmsp = new GenericMSP();
+            Hospital h = new Hospital();
+            Clinic c = new Clinic();
+            Doctor d = new Doctor();
+            Lab l = new Lab();
+            GenericMSP gmsp = new GenericMSP();
             switch (m.getMsptype().getTypeId()) {
                 case 1:
                     h = (Hospital) session.get(Hospital.class, m.getTypeId());

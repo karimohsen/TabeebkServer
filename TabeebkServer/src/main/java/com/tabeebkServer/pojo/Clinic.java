@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 25, 2015 12:37:48 PM by Hibernate Tools 4.3.1
+// Generated Apr 25, 2015 12:56:11 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;

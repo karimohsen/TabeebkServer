@@ -83,6 +83,14 @@
         <servlet-name>BlockUser</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.BlockUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminAllMsps</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AdminAllMsps</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAllMICS</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AdminAllMICS</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -162,6 +170,14 @@
     <servlet-mapping>
         <servlet-name>BlockUser</servlet-name>
         <url-pattern>/BlockUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAllMsps</servlet-name>
+        <url-pattern>/AdminAllMsps</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAllMICS</servlet-name>
+        <url-pattern>/AdminAllMICS</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -159,7 +159,7 @@
                             <a href="javascript:;" data-toggle="collapse" data-target="#Msp"><i class="fa fa-fw fa-ambulance"></i> MSP <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="Msp" class="collapse">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/AllMSPS.jsp">All MSPS</a>
+                                    <a href="${pageContext.request.contextPath}/AdminAllMsps">All MSPS</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/AddMSP.jsp">Add MSP</a>
@@ -170,7 +170,7 @@
                             <a href="javascript:;" data-toggle="collapse" data-target="#mic_id"><i class="fa fa-fw fa-university"></i> MIC <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="mic_id" class="collapse">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/AllMICS.jsp">ALL MICS</a>
+                                    <a href="${pageContext.request.contextPath}/AdminAllMICS">ALL MICS</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/AddMIC.jsp">Add MIC</a>

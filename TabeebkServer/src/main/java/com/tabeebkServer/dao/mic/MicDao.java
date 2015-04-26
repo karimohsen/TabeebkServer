@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import com.tabeebkServer.pojo.Mic;
 import com.tabeebkServer.session.factory.HibernateUtilFactory;
+import java.util.List;
 
 /**
  *
@@ -18,9 +19,13 @@ import com.tabeebkServer.session.factory.HibernateUtilFactory;
 public class MicDao {
     static SessionFactory factory = HibernateUtilFactory.getSessionFactory();
     static Session session = factory.openSession();
+    public static List<Mic> viewAllMIC(){
+        return session.createQuery("from Mic where deleted=0").list();
+    }
     public Mic getMicDetails(int id){
         return (Mic)session.get(Mic.class, id);
     }
+    
     public static boolean addMIC(Mic newMic){
         try {
             session.beginTransaction();

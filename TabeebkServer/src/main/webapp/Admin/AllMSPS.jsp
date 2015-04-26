@@ -159,7 +159,7 @@
                             <a href="javascript:;" data-toggle="collapse" data-target="#Msp"><i class="fa fa-fw fa-ambulance"></i> MSP <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="Msp" class="collapse">
                                 <li >
-                                    <a href="${pageContext.request.contextPath}/Admin/AllMSPS.jsp">All MSPS</a>
+                                    <a href="${pageContext.request.contextPath}/AdminAllMsps">All MSPS</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/AddMSP.jsp">Add MSP</a>
@@ -170,7 +170,7 @@
                             <a href="javascript:;" data-toggle="collapse" data-target="#mic_id"><i class="fa fa-fw fa-university"></i> MIC <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="mic_id" class="collapse">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/AllMICS.jsp">ALL MICS</a>
+                                    <a href="${pageContext.request.contextPath}/AdminAllMICS">ALL MICS</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/AddMIC.jsp">Add MIC</a>
@@ -190,7 +190,7 @@
                             <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp"><i class="fa fa-fw fa-hospital-o"></i>Add Clinic</a>
                         </li>
                         <li >
-                            <a href="${pageContext.request.contextPath}/Admin/allUsers.jsp"><i class="fa fa-fw fa-users"></i>All Users</a>
+                            <a href="${pageContext.request.contextPath}/AllUsers"><i class="fa fa-fw fa-users"></i>All Users</a>
                         </li>
                     </ul>
                 </div>
@@ -206,7 +206,7 @@
                         <div class="col-lg-12">
                             <h1 class="page-header">
                                 ALL MSPS
-                                
+
                             </h1>
                             <ol class="breadcrumb">
                                 <li>
@@ -219,7 +219,33 @@
                         </div>
                     </div>
                     <!-- /.row -->
+                    <div class="row">
+                        <table id="example" class="display" cellspacing="0" align="center" style="width:60%" onclick="addRowHandlers('ViewRatings')">
+                            <thead>
+                                <tr>
+                                    <th>MSP Name</th>
+                                    <th>MSP Type</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
 
+                            <tbody>
+                                <c:forEach var="msp" items="${requestScope.adminAllMSPs}">
+                                    <tr>
+                                        <td>
+                                            <c:out value="${msp.getMspname()}"/>
+                                        </td>
+                                        <td>
+                                            <c:out value="${msp.getMsptypename()}"/>
+                                        </td>
+                                        <td><button type="button" class="btn btn-success" onclick="">Edit</button></td>
+                                        <td><button type="button" class="btn btn-danger" onclick="">Delete</button></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -227,14 +253,14 @@
             <!-- /#page-wrapper -->
 
         </div>
-            <!-- /#page-wrapper -->
+        <!-- /#page-wrapper -->
 
-        </div>
-        <!-- /#wrapper -->
+    </div>
+    <!-- /#wrapper -->
 
-        <!-- jQuery -->
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-    </body>
+</body>
 
 </html>

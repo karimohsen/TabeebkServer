@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 25, 2015 2:02:55 PM by Hibernate Tools 4.3.1
+// Generated Apr 28, 2015 12:25:04 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -26,17 +26,17 @@ public class Micuser  implements java.io.Serializable {
 
 
      private MicuserId id;
-     private Mic mic;
      private User user;
+     private Mic mic;
      private Date joinDate;
 
     public Micuser() {
     }
 
-    public Micuser(MicuserId id, Mic mic, User user, Date joinDate) {
+    public Micuser(MicuserId id, User user, Mic mic, Date joinDate) {
        this.id = id;
-       this.mic = mic;
        this.user = user;
+       this.mic = mic;
        this.joinDate = joinDate;
     }
    
@@ -55,16 +55,6 @@ public class Micuser  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="mic_id", nullable=false, insertable=false, updatable=false)
-    public Mic getMic() {
-        return this.mic;
-    }
-    
-    public void setMic(Mic mic) {
-        this.mic = mic;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id", nullable=false, insertable=false, updatable=false)
     public User getUser() {
         return this.user;
@@ -72,6 +62,16 @@ public class Micuser  implements java.io.Serializable {
     
     public void setUser(User user) {
         this.user = user;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="mic_id", nullable=false, insertable=false, updatable=false)
+    public Mic getMic() {
+        return this.mic;
+    }
+    
+    public void setMic(Mic mic) {
+        this.mic = mic;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 25, 2015 2:02:55 PM by Hibernate Tools 4.3.1
+// Generated Apr 28, 2015 12:25:04 PM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.Column;
@@ -23,10 +23,10 @@ public class Branche  implements java.io.Serializable {
 
 
      private Integer brancheId;
-     private City city;
-     private Country country;
-     private Mspimage mspimage;
      private Msptype msptype;
+     private City city;
+     private Mspimage mspimage;
+     private Country country;
      private String brancheName;
      private String brancheNameAr;
      private String brancheAddress;
@@ -44,11 +44,11 @@ public class Branche  implements java.io.Serializable {
     public Branche(String brancheName) {
         this.brancheName = brancheName;
     }
-    public Branche(City city, Country country, Mspimage mspimage, Msptype msptype, String brancheName, String brancheNameAr, String brancheAddress, String brancheAddressAr, String brancheLongtitude, String brancheLatatitude, Integer typeId, String brancheStreet, String brancheStreetAr) {
-       this.city = city;
-       this.country = country;
-       this.mspimage = mspimage;
+    public Branche(Msptype msptype, City city, Mspimage mspimage, Country country, String brancheName, String brancheNameAr, String brancheAddress, String brancheAddressAr, String brancheLongtitude, String brancheLatatitude, Integer typeId, String brancheStreet, String brancheStreetAr) {
        this.msptype = msptype;
+       this.city = city;
+       this.mspimage = mspimage;
+       this.country = country;
        this.brancheName = brancheName;
        this.brancheNameAr = brancheNameAr;
        this.brancheAddress = brancheAddress;
@@ -73,6 +73,16 @@ public class Branche  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="msptype_type_id")
+    public Msptype getMsptype() {
+        return this.msptype;
+    }
+    
+    public void setMsptype(Msptype msptype) {
+        this.msptype = msptype;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="city_id")
     public City getCity() {
         return this.city;
@@ -80,16 +90,6 @@ public class Branche  implements java.io.Serializable {
     
     public void setCity(City city) {
         this.city = city;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="country_id")
-    public Country getCountry() {
-        return this.country;
-    }
-    
-    public void setCountry(Country country) {
-        this.country = country;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
@@ -103,13 +103,13 @@ public class Branche  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="msptype_type_id")
-    public Msptype getMsptype() {
-        return this.msptype;
+    @JoinColumn(name="country_id")
+    public Country getCountry() {
+        return this.country;
     }
     
-    public void setMsptype(Msptype msptype) {
-        this.msptype = msptype;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     

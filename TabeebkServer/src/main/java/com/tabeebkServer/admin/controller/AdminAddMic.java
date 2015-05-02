@@ -54,20 +54,15 @@ public class AdminAddMic extends HttpServlet {
             factory.setRepository(repository);
             factory.setSizeThreshold(1024 * 1024 * 3);
             // sets temporary location to store files
-
             ServletFileUpload upload = new ServletFileUpload(factory);
-
             // sets maximum size of upload file
             upload.setFileSizeMax(1024 * 1024 * 40);
-
             // sets maximum size of request (include file + form data)
             upload.setSizeMax(1024 * 1024 * 50);
-
-// Parse the request
+            // Parse the request
             List<FileItem> items;
             try {
                 items = upload.parseRequest(request);
-
                 Iterator<FileItem> iter = items.iterator();
                 while (iter.hasNext()) {
                     FileItem item = iter.next();
@@ -75,11 +70,11 @@ public class AdminAddMic extends HttpServlet {
                         if (item.getFieldName().equals("micname")) {
                             mic.setMicName(item.getString());
                         } else if (item.getFieldName().equals("micnamear")) {
-                            mic.setMicNameAr(item.getString());
+                            mic.setMicNameAr(item.getString("UTF-8").trim());
                         } else if (item.getFieldName().equals("micdesc")) {
                             mic.setMicDescription(item.getString());
                         } else if (item.getFieldName().equals("micdescar")) {
-                            mic.setMicDescriptionAr(item.getString());
+                            mic.setMicDescriptionAr(item.getString("UTF-8").trim());
                         } else if (item.getFieldName().equals("micurl")) {
                             mic.setMicUrl(item.getString());
                         } else if (item.getFieldName().equals("mail")) {
@@ -88,13 +83,6 @@ public class AdminAddMic extends HttpServlet {
                     } else {
                         String Name = item.getName();
                         if (!Name.equals("") && Name != null) {
-//                            String uploadFolder = "C:\\Users\\Karim\\Downloads\\fileupload\\";
-//                            String fName = new File(item.getName()).getName();
-//                            String filePath = uploadFolder + File.separator + fName;
-//                            System.out.println("filePath : "+filePath);
-//                            System.out.println(System.getProperty("user.home"));
-//                            File f = new File(filePath);
-//                            item.write(f);
                             String uploadFolder = System.getProperty("user.home");
                             String fName = new File(item.getName()).getName();
                             File file = new File(uploadFolder + "\\uploads");

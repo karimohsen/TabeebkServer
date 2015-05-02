@@ -22,6 +22,8 @@ public class MicDao {
     
     //==============Admin Create MIC===============================
     public static void createMIC(Mic mic){
+        System.out.println("====> "+mic.getMicDescription());
+        if(!session.getTransaction().isActive())
         session.beginTransaction();
         session.save(mic);
         session.getTransaction().commit();

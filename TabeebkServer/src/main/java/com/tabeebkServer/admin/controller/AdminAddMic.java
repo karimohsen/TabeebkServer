@@ -67,7 +67,7 @@ public class AdminAddMic extends HttpServlet {
             List<FileItem> items;
             try {
                 items = upload.parseRequest(request);
-                
+
                 Iterator<FileItem> iter = items.iterator();
                 while (iter.hasNext()) {
                     FileItem item = iter.next();
@@ -82,7 +82,7 @@ public class AdminAddMic extends HttpServlet {
                             mic.setMicDescriptionAr(item.getString());
                         } else if (item.getFieldName().equals("micurl")) {
                             mic.setMicUrl(item.getString());
-                        } else if (item.getFieldName().equals("micurl")) {
+                        } else if (item.getFieldName().equals("mail")) {
                             mic.setMicEmail(item.getString());
                         }
                     } else {
@@ -109,15 +109,16 @@ public class AdminAddMic extends HttpServlet {
                         }
                     }
                 }
+                MicDao.createMIC(mic);
+                response.sendRedirect("Admin/Home.jsp");
             } catch (FileUploadException ex) {
                 ex.printStackTrace();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-            MicDao.createMIC(mic);
-            response.sendRedirect("Admin/Home.jsp");
+
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

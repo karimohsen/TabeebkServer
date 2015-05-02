@@ -113,7 +113,7 @@ public class Mic  implements java.io.Serializable {
     }
 
     
-    @Column(name="mic_url", length=45)
+    @Column(name="mic_url", length=200)
     public String getMicUrl() {
         return this.micUrl;
     }

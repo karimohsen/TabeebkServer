@@ -111,6 +111,10 @@
         <servlet-name>AdminDeleteMsp</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.AdminDeleteMsp</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminAddMic</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AdminAddMic</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -218,6 +222,10 @@
     <servlet-mapping>
         <servlet-name>AdminDeleteMsp</servlet-name>
         <url-pattern>/AdminDeleteMsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddMic</servlet-name>
+        <url-pattern>/AdminAddMic</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

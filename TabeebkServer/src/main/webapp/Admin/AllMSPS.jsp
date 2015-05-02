@@ -244,20 +244,20 @@
                                             <c:choose>
                                                 <c:when test="${msp.getDeleted() == 1}">
                                                 <td>
-                                                    <button type="button" class="btn btn-warning" onclick="AdminMsp('AdminRestoreMsp',${msp.getMspId()},${msp.getMsptypeId()})">Restore</button>
+                                                    <button type="button" class="btn btn-warning" onclick="AdminMsp('AdminRestoreMsp',${msp.getMsptypeId()},${msp.getMspId()})">Restore</button>
                                                 </td>
                                             </c:when>
 
                                             <c:when test="${msp.getDeleted() == 0}">
                                                 <td>
-                                                    <button type="button" class="btn btn-danger" onclick="AdminMsp('AdminDeleteMsp',${msp.getMspId()},${msp.getMsptypeId()})">Delete</button>
+                                                    <button type="button" class="btn btn-danger" onclick="AdminMsp('AdminDeleteMsp',${msp.getMsptypeId()},${msp.getMspId()})">Delete</button>
                                                 </td>
                                             </c:when>
                                         </c:choose>
-                                                </td>
-                                
-                                </tr>
-                            </c:forEach>
+                                        </td>
+
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>

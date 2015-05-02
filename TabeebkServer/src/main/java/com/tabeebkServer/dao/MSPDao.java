@@ -29,7 +29,7 @@ public class MSPDao {
     //===== session per dao
     static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
     static Session session = fact.openSession();
-    
+
     //=====================Admin get all MSPS==============================
     public static List<GenericMSP> viewAllMSPs() {
         session.clear();
@@ -58,7 +58,7 @@ public class MSPDao {
                     gmsp.setMspname(c.getClinicName());
                     gmsp.setMsptypeId(m.getMsptype().getTypeId());
                     gmsp.setMsptypename(m.getMsptype().getTypeName());
-                    gmsp.setDeleted(c.getDeleted()); 
+                    gmsp.setDeleted(c.getDeleted());
                     finalResult.add(gmsp);
                     break;
                 case 3:
@@ -67,7 +67,7 @@ public class MSPDao {
                     gmsp.setMspname(d.getDoctorName());
                     gmsp.setMsptypeId(m.getMsptype().getTypeId());
                     gmsp.setMsptypename(m.getMsptype().getTypeName());
-                    gmsp.setDeleted(d.getDeleted()); 
+                    gmsp.setDeleted(d.getDeleted());
                     finalResult.add(gmsp);
                     break;
                 case 4:
@@ -76,13 +76,14 @@ public class MSPDao {
                     gmsp.setMspname(l.getLabName());
                     gmsp.setMsptypeId(m.getMsptype().getTypeId());
                     gmsp.setMsptypename(m.getMsptype().getTypeName());
-                    gmsp.setDeleted(l.getDeleted()); 
+                    gmsp.setDeleted(l.getDeleted());
                     finalResult.add(gmsp);
                     break;
             }
         }
         return finalResult;
     }
+
     //=====================================================================
     //=================View only not deleted MSPS==========================
     public static List<GenericMSP> viewMSPs() {
@@ -140,23 +141,65 @@ public class MSPDao {
         }
         return finalResult;
     }
+
     //===================Admin Delete MSP===================
-    public static void DeleteMSP(int id,int typeid){
-        Msptype type = (Msptype)session.get(Msptype.class,id);
-        if(!session.getTransaction().isActive())
-        session.beginTransaction();
+    public static void DeleteMSP(int id, int typeid) {
+        Msptype type = (Msptype) session.get(Msptype.class, id);
+
+        switch (type.getTypeId()) {
+            case 1:
+                Hospital h = (Hospital) session.get(Hospital.class, typeid);
+                h.setDeleted(1);
+                break;
+            case 2:
+                Clinic c = (Clinic) session.get(Clinic.class, typeid);
+                c.setDeleted(1);
+                break;
+            case 3:
+                Doctor d = (Doctor) session.get(Doctor.class, typeid);
+                d.setDeleted(1);
+                break;
+            case 4:
+                Lab l = (Lab) session.get(Lab.class, typeid);
+                l.setDeleted(1);
+                break;
+        }
+        if (!session.getTransaction().isActive()) {
+            session.beginTransaction();
+        }
         session.createQuery("update Msp msp set msp.deleted = 1 where msp.msptype=:id and msp.typeId=:typeid ").setParameter("id", type).setParameter("typeid", typeid).executeUpdate();
         session.getTransaction().commit();
     }
+
     //======================================================
     //=============Admin Recover MSP========================
-    public static void RecoverMSP(int id,int typeid){
-        Msptype type = (Msptype)session.get(Msptype.class,id);
-        if(!session.getTransaction().isActive())
-        session.beginTransaction();
+    public static void RecoverMSP(int id, int typeid) {
+        Msptype type = (Msptype) session.get(Msptype.class, id);
+        switch (type.getTypeId()) {
+            case 1:
+                Hospital h = (Hospital) session.get(Hospital.class, typeid);
+                h.setDeleted(0);
+                break;
+            case 2:
+                Clinic c = (Clinic) session.get(Clinic.class, typeid);
+                c.setDeleted(0);
+                break;
+            case 3:
+                Doctor d = (Doctor) session.get(Doctor.class, typeid);
+                d.setDeleted(0);
+                break;
+            case 4:
+                Lab l = (Lab) session.get(Lab.class, typeid);
+                l.setDeleted(0);
+                break;
+        }
+        if (!session.getTransaction().isActive()) {
+            session.beginTransaction();
+        }
         session.createQuery("update Msp msp set msp.deleted = 0 where msp.msptype=:id and msp.typeId=:typeid ").setParameter("id", type).setParameter("typeid", typeid).executeUpdate();
         session.getTransaction().commit();
     }
+
     //=====================================================
     public static List<Ratting> viewMspRatting(int mspId) {
         Msp msp = (Msp) session.get(Msp.class, mspId);
@@ -174,6 +217,6 @@ public class MSPDao {
 
         //================== viewMspRatting ===============================
 //        System.out.println(viewMspRatting(1).size());
-  //      RecoverMSP(3,1);
+        //      RecoverMSP(3,1);
     }
 }

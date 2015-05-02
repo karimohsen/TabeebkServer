@@ -35,17 +35,26 @@
         <script>
             var req_aj = null;
             function checkValues() {
+                oldpw = document.getElementById("oldpwd").value;
                 pw1 = document.getElementById("pwd1").value;
                 pw2 = document.getElementById("pwd2").value;
                 spn = document.getElementById("sp1");
                 spn2 = document.getElementById("sp2");
+                spn0 = document.getElementById("sp0");
                 if (pw1 != pw2) {
                     spn.innerHTML = "The Two Passwords are not the same";
                     spn2.innerHTML = "The Two Passwords are not the same";
+                    spno.textContent = "";
                 }
-                else {
+                else if (oldpw != ${account.getPassword()}) {
+                    spn.textContent = "";
+                    spn.textContent = "";
+                    spn0.innerHTML = "The Old Password is not the same";
+                }
+                else if (pw1 == pw2 && oldpw == ${account.getPassword()}) {
                     spn.textContent = "";
                     spn2.textContent = "";
+                    spn0.textContent = "";
                     ajaxfunction(pw1);
                 }
             }
@@ -175,6 +184,9 @@
                                         <form action="JavaScript:checkValues()">
                                             <table class="table table-hover table-striped">
                                                 <tbody>
+                                                    <tr>
+                                                        <td><input type="password" placeholder="Write Your Old Password" required="true" style="width: 100%" id="oldpwd"><span id="sp0"/></td>
+                                                    </tr>
                                                     <tr>
                                                         <td><input type="password" placeholder="Your New Password" required="true" style="width: 100%" id="pwd1"><span id="sp1"/></td>
                                                     </tr>

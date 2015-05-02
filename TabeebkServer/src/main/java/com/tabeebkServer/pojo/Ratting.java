@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 25, 2015 2:02:55 PM by Hibernate Tools 4.3.1
+// Generated May 2, 2015 11:08:35 AM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -26,8 +26,8 @@ public class Ratting  implements java.io.Serializable {
 
 
      private Integer ratingId;
-     private Msptype msptype;
      private User user;
+     private Msptype msptype;
      private Date ratingDate;
      private String ratingComment;
      private int typeId;
@@ -37,14 +37,14 @@ public class Ratting  implements java.io.Serializable {
     }
 
 	
-    public Ratting(Msptype msptype, User user, int typeId) {
-        this.msptype = msptype;
+    public Ratting(User user, Msptype msptype, int typeId) {
         this.user = user;
+        this.msptype = msptype;
         this.typeId = typeId;
     }
-    public Ratting(Msptype msptype, User user, Date ratingDate, String ratingComment, int typeId, Integer ratingValue) {
-       this.msptype = msptype;
+    public Ratting(User user, Msptype msptype, Date ratingDate, String ratingComment, int typeId, Integer ratingValue) {
        this.user = user;
+       this.msptype = msptype;
        this.ratingDate = ratingDate;
        this.ratingComment = ratingComment;
        this.typeId = typeId;
@@ -64,16 +64,6 @@ public class Ratting  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="msptype_type_id", nullable=false)
-    public Msptype getMsptype() {
-        return this.msptype;
-    }
-    
-    public void setMsptype(Msptype msptype) {
-        this.msptype = msptype;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id", nullable=false)
     public User getUser() {
         return this.user;
@@ -81,6 +71,16 @@ public class Ratting  implements java.io.Serializable {
     
     public void setUser(User user) {
         this.user = user;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="msptype_type_id", nullable=false)
+    public Msptype getMsptype() {
+        return this.msptype;
+    }
+    
+    public void setMsptype(Msptype msptype) {
+        this.msptype = msptype;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

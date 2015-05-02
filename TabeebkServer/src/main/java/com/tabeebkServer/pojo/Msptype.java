@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 25, 2015 2:02:55 PM by Hibernate Tools 4.3.1
+// Generated May 2, 2015 11:08:35 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -31,12 +31,13 @@ public class Msptype  implements java.io.Serializable {
      private Set<Ratting> rattings = new HashSet<Ratting>(0);
      private Set<Schedule> schedules = new HashSet<Schedule>(0);
      private Set<Planmsp> planmsps = new HashSet<Planmsp>(0);
+     private Set<Msprecommendations> msprecommendationses = new HashSet<Msprecommendations>(0);
      private Set<Telephone> telephones = new HashSet<Telephone>(0);
 
     public Msptype() {
     }
 
-    public Msptype(String typeName, Set<Msp> msps, Set<Speciality> specialities, Set<Branche> branches, Set<Ratting> rattings, Set<Schedule> schedules, Set<Planmsp> planmsps, Set<Telephone> telephones) {
+    public Msptype(String typeName, Set<Msp> msps, Set<Speciality> specialities, Set<Branche> branches, Set<Ratting> rattings, Set<Schedule> schedules, Set<Planmsp> planmsps, Set<Msprecommendations> msprecommendationses, Set<Telephone> telephones) {
        this.typeName = typeName;
        this.msps = msps;
        this.specialities = specialities;
@@ -44,6 +45,7 @@ public class Msptype  implements java.io.Serializable {
        this.rattings = rattings;
        this.schedules = schedules;
        this.planmsps = planmsps;
+       this.msprecommendationses = msprecommendationses;
        this.telephones = telephones;
     }
    
@@ -121,6 +123,15 @@ public class Msptype  implements java.io.Serializable {
     
     public void setPlanmsps(Set<Planmsp> planmsps) {
         this.planmsps = planmsps;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="msptype")
+    public Set<Msprecommendations> getMsprecommendationses() {
+        return this.msprecommendationses;
+    }
+    
+    public void setMsprecommendationses(Set<Msprecommendations> msprecommendationses) {
+        this.msprecommendationses = msprecommendationses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="msptype")

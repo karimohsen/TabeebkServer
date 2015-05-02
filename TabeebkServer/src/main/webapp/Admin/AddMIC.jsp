@@ -6,7 +6,7 @@
 <html lang="en">
 
     <head>
-
+        <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,7 @@
         <meta name="author" content="">
 
         <title>Tabeebak</title>
-
+        
         <!-- Bootstrap Core CSS -->
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
@@ -206,20 +206,84 @@
                         <div class="col-lg-12">
                             <h1 class="page-header">
                                 Add MIC
-                                
+
                             </h1>
                             <ol class="breadcrumb">
                                 <li>
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/Admin/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-university"></i> Add MICS
+                                    <i class="fa fa-university"></i> Add MIC
                                 </li>
                             </ol>
                         </div>
                     </div>
                     <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form action="${pageContext.request.contextPath}/AdminAddMic" method="post" enctype="multipart/form-data">
+                                <table>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">MIC Name</label></p></td>
 
+                                        <td>
+                                            <input id="micname" name="micname" required="true" tabindex="1" type="text"/>                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">MIC Name Arabic</label></p></td>
+
+                                        <td>
+                                            <input id="micnamear" name="micnamear"  required="true" tabindex="2" type="text">                      
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><p class="contact"><label for="name">MIC Description</label></p></td>
+
+                                        <td>
+                                            <input id="micdesc" name="micdesc" required="true" tabindex="3" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">MIC Description Arabic</label></p></td>
+
+                                        <td>
+                                            <input id="micdescar" name="micdescar" required="true" tabindex="4" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">MIC Site</label></p></td>
+
+                                        <td>
+                                            <input id="micurl" name="micurl" required="true" tabindex="5" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">MIC Email</label></p></td>
+
+                                        <td>
+                                            <input id="mail" name="mail" required="true" tabindex="6" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Select a image to upload</label></p></td>
+
+                                        <td>
+                                            <input type="file" name="file" accept="image/x-png, image/gif, image/jpeg, image/jpg" tabindex="7"/>                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px;" align="right" colspan="2" >
+                                            <input class="btn btn-primary" name="submit" id="submit" tabindex="8" value="Create" type="submit"> 	 
+                                            <input class="btn btn-warning" id="cancel_button" tabindex="9" value="reset" type="reset">
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -227,14 +291,14 @@
             <!-- /#page-wrapper -->
 
         </div>
-            <!-- /#page-wrapper -->
+        <!-- /#page-wrapper -->
 
-        </div>
-        <!-- /#wrapper -->
+    </div>
+    <!-- /#wrapper -->
 
-        <!-- jQuery -->
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-    </body>
+</body>
 
 </html>

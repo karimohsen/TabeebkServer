@@ -5,11 +5,9 @@
  */
 package com.tabeebkServer.admin.controller;
 
-import com.tabeebkServer.dao.MICDao;
 import com.tabeebkServer.dao.MSPDao;
 import com.tabeebkServer.utilty.GenericMSP;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,9 +38,8 @@ public class AdminAllMsps extends HttpServlet {
         //Get From Session
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {            
-            List<GenericMSP> allMSPs = MSPDao.viewMSPs();
+            List<GenericMSP> allMSPs = MSPDao.viewAllMSPs();
             request.setAttribute("adminAllMSPs", allMSPs);
-
             rd.forward(request, response);
         } else {
             response.sendRedirect("Login.jsp");

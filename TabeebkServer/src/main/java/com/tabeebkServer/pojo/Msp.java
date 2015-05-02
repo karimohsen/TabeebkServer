@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 25, 2015 2:02:55 PM by Hibernate Tools 4.3.1
+// Generated May 2, 2015 11:08:35 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -29,14 +29,20 @@ public class Msp  implements java.io.Serializable {
      private Integer mspId;
      private Msptype msptype;
      private Integer typeId;
+     private int deleted;
      private Set<Mic> mics = new HashSet<Mic>(0);
 
     public Msp() {
     }
 
-    public Msp(Msptype msptype, Integer typeId, Set<Mic> mics) {
+	
+    public Msp(int deleted) {
+        this.deleted = deleted;
+    }
+    public Msp(Msptype msptype, Integer typeId, int deleted, Set<Mic> mics) {
        this.msptype = msptype;
        this.typeId = typeId;
+       this.deleted = deleted;
        this.mics = mics;
     }
    
@@ -70,6 +76,16 @@ public class Msp  implements java.io.Serializable {
     
     public void setTypeId(Integer typeId) {
         this.typeId = typeId;
+    }
+
+    
+    @Column(name="deleted", nullable=false)
+    public int getDeleted() {
+        return this.deleted;
+    }
+    
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 
 @ManyToMany(fetch=FetchType.LAZY)

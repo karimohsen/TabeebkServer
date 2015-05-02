@@ -5,10 +5,8 @@
  */
 package com.tabeebkServer.admin.controller;
 
-import com.tabeebkServer.dao.UserDao;
-import com.tabeebkServer.pojo.User;
+import com.tabeebkServer.dao.mic.MicDao;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,9 +16,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author HMA
+ * @author Karim
  */
-public class AllUsers extends HttpServlet {
+public class DeleteMIC extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,14 +32,14 @@ public class AllUsers extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher rd = request.getRequestDispatcher("Admin/allUsers.jsp");
-        //Get this id from session
+        RequestDispatcher rd = request.getRequestDispatcher("AdminAllMICS");
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {
-            List<User> users = UserDao.viewAllUsers();
-            request.setAttribute("allUsers", users);
+            int id = Integer.parseInt(request.getParameter("id"));
+            MicDao.DeletedMIC(id);
             rd.forward(request, response);
-        } else {
+        } 
+        else {
             response.sendRedirect("Login.jsp");
         }
     }

@@ -238,7 +238,21 @@
                                         <td>
                                             <c:out value="${user.getUserNameAr()}"/>
                                         </td>
-                                        <td><button type="button" class="btn btn-danger" onclick="EditPlan('BlockUser',${user.getUserId()})">Block</button></td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${user.getBlocked() == 1}">
+                                                <td>
+                                                    <button type="button" class="btn btn-warning" onclick="EditPlan('UnBlockUser',${user.getUserId()})">Un Block</button>
+                                                </td>
+                                            </c:when>
+
+                                            <c:when test="${user.getBlocked() == 0}">
+                                                <td>
+                                                    <button type="button" class="btn btn-danger" onclick="EditPlan('BlockUser',${user.getUserId()})">Block</button>
+                                                </td>
+                                            </c:when>
+                                        </c:choose>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

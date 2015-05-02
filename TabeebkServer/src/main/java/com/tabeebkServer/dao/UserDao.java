@@ -30,7 +30,25 @@ public class UserDao {
         List<User> result = q.list();
         return result;
     }
-
+    //=======================admin view all users=====================
+    public static List<User> viewAllUsers() {
+        session.clear();
+        Query q = session.createQuery("from User");
+        List<User> result = q.list();
+        return result;
+    }
+    //================================================================
+    
+    //============admin un block users=====================
+    public static void unBlockUser(int userId) {
+        User u = (User) session.get(User.class, userId);
+        u.setBlocked(0);
+        session.beginTransaction();
+        session.saveOrUpdate(u);
+        session.getTransaction().commit();
+    }
+    //====================================================
+    //============admin block users=====================
     public static void blockUser(int userId) {
         User u = (User) session.get(User.class, userId);
         u.setBlocked(1);
@@ -38,7 +56,7 @@ public class UserDao {
         session.saveOrUpdate(u);
         session.getTransaction().commit();
     }
-
+    //====================================================
     public static List<Micratting> viewMicRatting(int userId, int micId) {
 
         User u = (User) session.get(User.class, userId);

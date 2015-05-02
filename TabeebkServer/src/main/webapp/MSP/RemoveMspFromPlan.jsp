@@ -160,7 +160,7 @@
                             <a href="javascript:;" data-toggle="collapse" data-target="#mspid"><i class="fa fa-fw fa-medkit"></i> MSP <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="mspid" class="collapse">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/MSP/AllMsps.jsp">All Medical Service Providers</a>
+                                    <a href="${pageContext.request.contextPath}/AllMsps">All Medical Service Providers</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/MSP/MyMsp.jsp">My Medical Service Providers</a>

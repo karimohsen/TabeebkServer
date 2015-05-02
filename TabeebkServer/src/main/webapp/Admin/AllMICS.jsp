@@ -240,7 +240,23 @@
                                             <c:out value="${mic.getMicDescription()}"/>
                                         </td>
                                         <td><button type="button" class="btn btn-success" onclick="">Edit</button></td>
-                                        <td><button type="button" class="btn btn-danger" onclick="">Delete</button></td>
+                                        
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${mic.getDeleted() == 1}">
+                                                <td>
+                                                    <button type="button" class="btn btn-warning" onclick="EditPlan('RecoverMIC',${mic.getMicId()})">Restore</button>
+                                                </td>
+                                            </c:when>
+
+                                            <c:when test="${mic.getDeleted() == 0}">
+                                                <td>
+                                                    <button type="button" class="btn btn-danger" onclick="EditPlan('DeleteMIC',${mic.getMicId()})">Delete</button>
+                                                </td>
+                                            </c:when>
+                                        </c:choose>
+                                        </td>
+                                        
                                     </tr>
                                 </c:forEach>
                             </tbody>

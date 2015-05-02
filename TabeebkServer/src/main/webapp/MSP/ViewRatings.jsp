@@ -192,7 +192,7 @@
                                 </li>
                             </ol>
                             <div class="row">
-                                <table id="example" class="display" cellspacing="0" align="center" style="width:60%" onclick="addRowHandlers('ViewRatings')">
+                                <table id="example" class="display" cellspacing="0" align="center" style="width:60%">
                                     <thead>
                                         <tr>
                                             <th>User Comment</th>

@@ -1,6 +1,6 @@
 <%@page import="java.util.Enumeration"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <%@page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,26 @@
         <meta name="author" content="">
 
         <title>SB Admin - Bootstrap Admin Template</title>
+        <!--
+                 Bootstrap Core CSS 
+                <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+        
+                 Custom CSS 
+                <link href="${pageContext.request.contextPath}/css/sb-admin.css" rel="stylesheet">
+        
+                 Custom Fonts 
+                <link href="${pageContext.request.contextPath}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        
+                <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+                <script src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>
+                <script src="//cdn.datatables.net/plug-ins/1.10.6/integration/jqueryui/dataTables.jqueryui.js"></script>
+                <link href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+                <link href="//cdn.datatables.net/plug-ins/1.10.6/integration/jqueryui/dataTables.jqueryui.css" rel="stylesheet"/>
+                <script src="${pageContext.request.contextPath}/js/script.js"></script>
+                <script src="${pageContext.request.contextPath}/js/plugins/morris/morris-data.js"></script>
+                <script src="${pageContext.request.contextPath}/js/plugins/morris/morris.min.js"></script>
+                <script src="${pageContext.request.contextPath}/js/plugins/morris/raphael.min.js"></script>-->
+
         <!-- Bootstrap Core CSS -->
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
@@ -34,7 +54,6 @@
         <script src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
         <link href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css" rel="stylesheet"/>
         <script src="${pageContext.request.contextPath}/js/ADS_Script.js"></script>
-
     </head>
 
     <body>
@@ -128,14 +147,14 @@
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li >
+                        <li class="active">
                             <a href="${pageContext.request.contextPath}/MSP/Home.jsp"><i class="fa fa-fw fa-home"></i> Home</a>
                         </li>
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-group"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="demo" class="collapse">
-                                <li class="active">
-                                    <a href="${pageContext.request.contextPath}/MSP/ViewUsers.jsp">View Users</a>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/ViewUsers">View Users</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/MSP/ViewTopSearch.jsp">View Top Search</a>
@@ -146,7 +165,7 @@
                             <a href="javascript:;" data-toggle="collapse" data-target="#plansid"><i class="fa fa-fw fa-edit"></i> Plans <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="plansid" class="collapse">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/AllPlans">ALL Plans</a>
+                                    <a href="AllPlans">ALL Plans</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/MSP/AddPlan.jsp">Add Plan</a>
@@ -160,7 +179,7 @@
                             <a href="javascript:;" data-toggle="collapse" data-target="#mspid"><i class="fa fa-fw fa-medkit"></i> MSP <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="mspid" class="collapse">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/MSP/AllMsps.jsp">All Medical Service Providers</a>
+                                    <a href="${pageContext.request.contextPath}/AllMsps">All Medical Service Providers</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/MyMsp">My Medical Service Providers</a>
@@ -180,7 +199,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
-                                Remove Msp
+                                All Plans
 
                             </h1>
                             <ol class="breadcrumb">
@@ -188,42 +207,35 @@
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/MSP/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-edit"></i> <a href="${pageContext.request.contextPath}/EditPlan">Edit Plan</a>
-                                </li>
-                                <li class="active">
-                                    <i class="fa fa-group"></i> Remove Msp
+                                    <i class="fa fa-edit"></i> <a href="MyMsp">My MSP</a>
                                 </li>
                             </ol>
                         </div>
                     </div>
                     <!-- /.row -->
                     <div class="row">
-                        <table id="example" class="display" cellspacing="0" width="100%">
+                        <table width="50%" align="center">
                             <thead>
                                 <tr>
-                                    <th>MSP Name</th>
-                                    <th>MSP Name</th>
-                                    <th></th>
+                                    <th>Plan Name</th>
                                 </tr>
                             </thead>
-
                             <tbody>
-                                
-                                <c:forEach var="planMsp" items="${requestScope.mspsNotInPlan}">
-                                    <tr id="${planMsp.getMspId()}">
-                                        <td>
-                                            <c:out value="${planMsp.getMspname()}"/>
-                                        </td>
-                                        <td>
-                                            <c:out value="${planMsp.getMsptypename()}"/>
-                                        </td>
-                                        <td><button type="button" class="btn btn-success" onclick="AddMspToPlan('MSPAddedToPlan',${requestScope.planId},${planMsp.getMsptypeId()},${planMsp.getMspId()})">ADD</button></td>
+                                <form name="MSPPlans" method="post" action="MSPAddedToPlans">
+                                    <input type="hidden" name="msptypeid" value="${requestScope.msptypeid}"/>
+                                    <input type="hidden" name="mspid" value="${requestScope.mspid}"/>
+                                <c:forEach var="plan" items="${requestScope.mspToPlans}">
+                                    <tr>
+                                        <td><input TYPE="checkbox" name="MSPPlans" VALUE="${plan.getPlanId()}"><c:out value="${plan.getPlanName()}"/></td>
                                     </tr>
                                 </c:forEach>
+                                <tr>
+                                    <td><button type="submit" class="btn btn-success" style="float: left">Assign To Plans</button></td>
+                                </tr>
+                            </form>
                             </tbody>
                         </table>
-                    </div>
-
+                    </div>   
                 </div>
                 <!-- /.container-fluid -->
 

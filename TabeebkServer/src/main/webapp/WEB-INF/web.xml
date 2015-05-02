@@ -91,6 +91,14 @@
         <servlet-name>AdminAllMICS</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.AdminAllMICS</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddMSPToPlans</servlet-name>
+        <servlet-class>com.tabeebkServer.controller.plan.AddMSPToPlans</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MSPAddedToPlans</servlet-name>
+        <servlet-class>com.tabeebkServer.controller.plan.MSPAddedToPlans</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -178,6 +186,14 @@
     <servlet-mapping>
         <servlet-name>AdminAllMICS</servlet-name>
         <url-pattern>/AdminAllMICS</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddMSPToPlans</servlet-name>
+        <url-pattern>/AddMSPToPlans</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MSPAddedToPlans</servlet-name>
+        <url-pattern>/MSPAddedToPlans</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

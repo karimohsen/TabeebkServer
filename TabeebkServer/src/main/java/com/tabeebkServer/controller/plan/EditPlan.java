@@ -39,7 +39,7 @@ public class EditPlan extends HttpServlet {
         if (session.getAttribute("Accountid") != null) {
             int micId = (Integer) session.getAttribute("Accountid");
             PlanDao daoPlan = new PlanDao();
-            List<Plan> list = daoPlan.allMspPlans(micId);
+            List<Plan> list = daoPlan.allMICPlans(micId);
             request.setAttribute("plans", list);
             RequestDispatcher rd = request.getRequestDispatcher("/MSP/EditPlan.jsp");
             rd.forward(request, response);

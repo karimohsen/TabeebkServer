@@ -6,7 +6,9 @@
 package com.tabeebkServer.controller.plan;
 
 import com.tabeebkServer.dao.plan.PlanDao;
+import com.tabeebkServer.pojo.Plan;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,13 +16,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.tabeebkServer.pojo.Plan;
 
 /**
  *
- * @author Karim
+ * @author HMA
  */
-public class AllPlans extends HttpServlet {
+public class AddMSPToPlans extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,14 +35,18 @@ public class AllPlans extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //GET from session
-        HttpSession session = request.getSession(false);        
+         HttpSession session = request.getSession(false);        
         if (session.getAttribute("Accountid") != null) {
+            // get from session
             int micId = (Integer) session.getAttribute("Accountid");
-            PlanDao daoPlan = new PlanDao();
-            List<Plan> list = daoPlan.allMICPlans(micId);
-            request.setAttribute("plans", list);
-            RequestDispatcher rd = request.getRequestDispatcher("/MSP/AllPlans.jsp");
+            //get from request
+            int msptypeid=Integer.parseInt(request.getParameter("msptypeid"));
+            int mspid=Integer.parseInt(request.getParameter("mspid"));
+            List<Plan> list = PlanDao.allMICPlansMsp(micId, msptypeid, mspid);
+            request.setAttribute("msptypeid", msptypeid);
+            request.setAttribute("mspid", mspid);
+            request.setAttribute("mspToPlans", list);
+            RequestDispatcher rd = request.getRequestDispatcher("/MSP/AddMSPToPlans.jsp");
             rd.forward(request, response);
         } else {
             response.sendRedirect("Login.jsp");

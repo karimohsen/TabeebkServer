@@ -163,7 +163,7 @@
                                     <a href="${pageContext.request.contextPath}/AllMsps">All Medical Service Providers</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/MSP/MyMsp.jsp">My Medical Service Providers</a>
+                                    <a href="${pageContext.request.contextPath}/MyMsp">My Medical Service Providers</a>
                                 </li>
                             </ul>
                         </li>

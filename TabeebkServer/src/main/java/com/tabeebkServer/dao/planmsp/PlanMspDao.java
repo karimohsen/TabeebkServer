@@ -20,7 +20,6 @@ import com.tabeebkServer.pojo.Planmsp;
 import com.tabeebkServer.pojo.PlanmspId;
 import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import com.tabeebkServer.utilty.GenericMSP;
-import org.hibernate.Query;
 
 /**
  *
@@ -30,16 +29,6 @@ public class PlanMspDao {
 
     static SessionFactory factory = HibernateUtilFactory.getSessionFactory();
     static Session session = factory.openSession();
-
-    public void addMspToPlan(int mspId, int mspTypeId, int planid) {
-        PlanmspId planMspId = new PlanmspId(planid, mspTypeId, mspId);
-        Plan p = (Plan) session.get(Plan.class, planid);
-        Msptype mspType = (Msptype) session.get(Msptype.class, mspTypeId);
-        Planmsp planMsp = new Planmsp(planMspId, mspType, p, 0);
-        session.beginTransaction();
-        session.save(planMsp);
-        session.getTransaction().commit();
-    }
 
     public static List<GenericMSP> allMspsInMyPlan(int planId) {
         //refresh session
@@ -110,17 +99,13 @@ public class PlanMspDao {
         for (int j = 0; j < finalResult1.size(); j++) {
             for (int i = 0; i < finalResult2.size(); i++) {
                 if (finalResult2.get(i).toString().compareToIgnoreCase(finalResult1.get(j).toString()) == 0) {
-//                    System.out.println("Equalllllllllllllllllll");
-//                    System.out.println("Remove: "+finalResult2.get(i).getMspname() + "\t" + finalResult1.get(j).getMspname());
                     finalResult1.remove(j);
                 }
             }
         }
-//        for (int i = 0; i < finalResult1.size(); i++) {
-//            System.out.println("Returned: "+finalResult1.get(i).getMspname());
-//        }
         return finalResult1;
     }
+// not useddddddddd
 
     public void deleteMspFromPlan(List<Planmsp> list) {
         for (int i = 0; i < list.size(); i++) {
@@ -130,7 +115,6 @@ public class PlanMspDao {
             session.getTransaction().commit();
         }
     }
-//Planmsp obj
 
     public static void deleteMspFromPlan(int planId, int mspTypeId, int typeId) {
         PlanmspId planMsp = new PlanmspId(planId, mspTypeId, typeId);
@@ -140,19 +124,31 @@ public class PlanMspDao {
                 .setParameter("myid", planMsp)
                 .executeUpdate();
         session.getTransaction().commit();
-//        obj=(Planmsp) session.get(Planmsp.class, obj);
-//        System.out.println("PlanMSP Data: "+obj.getId().getMsptypeTypeId()+"\t"
-//                            +obj.getId().getTypeId()+"\t"
-//                            +obj.getPlan().getPlanId()+"\t"
-//                            +obj.getDeleted());
-//        session.beginTransaction();
-//        session.update(obj);
-//        session.getTransaction().commit();
     }
 
     public static void addMspToPlan(Planmsp obj) {
         session.beginTransaction();
         session.saveOrUpdate(obj);
+        session.getTransaction().commit();
+    }
+
+    public static void addMspToPlan(List<Planmsp> objs) {
+        for (Planmsp obj : objs) {
+            session.beginTransaction();
+            session.saveOrUpdate(obj);
+            session.getTransaction().commit();
+        }
+    }
+
+    //not used
+
+    public void addMspToPlan(int mspId, int mspTypeId, int planid) {
+        PlanmspId planMspId = new PlanmspId(planid, mspTypeId, mspId);
+        Plan p = (Plan) session.get(Plan.class, planid);
+        Msptype mspType = (Msptype) session.get(Msptype.class, mspTypeId);
+        Planmsp planMsp = new Planmsp(planMspId, mspType, p, 0);
+        session.beginTransaction();
+        session.save(planMsp);
         session.getTransaction().commit();
     }
 
@@ -175,7 +171,7 @@ public class PlanMspDao {
 //        planmsp.setId(planmspId);
 //        planmsp.setDeleted(1);
         //================ deleteMspFromPlan ======================
-        PlanMspDao.deleteMspFromPlan(1, 3, 1);
+//        PlanMspDao.deleteMspFromPlan(1, 3, 1);
 //        planmsp.setDeleted(0);
         //================ addMspToPlan =========================
 //        PlanMspDao.addMspToPlan(planmsp);

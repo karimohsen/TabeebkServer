@@ -190,12 +190,13 @@
                                     <i class="fa fa-medkit"></i> My Msps
                                 </li>
                             </ol>
-                            <div class="row">
+                            <div class="row">Double click to view Ratting
                                 <table id="example" class="display" cellspacing="0" align="center" style="width:60%" onclick="addRowHandlers('ViewRatings')">
                                 <thead>
                                     <tr>
                                         <th>MSP Name</th>
                                         <th>MSP Name</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
 
@@ -208,6 +209,7 @@
                                             <td>
                                                 <c:out value="${msp.getMsptypename()}"/>
                                             </td>
+                                            <td><button type="button" class="btn btn-success" style="float: left" onclick="AddMspToPlan('AddMSPToPlans',${msp.getMsptypeId()},${msp.getMspId()})">Assign To Certain Plans</button></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

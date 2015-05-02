@@ -92,6 +92,14 @@
         <servlet-class>com.tabeebkServer.admin.controller.AdminAllMICS</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AddMSPToPlans</servlet-name>
+        <servlet-class>com.tabeebkServer.controller.plan.AddMSPToPlans</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MSPAddedToPlans</servlet-name>
+        <servlet-class>com.tabeebkServer.controller.plan.MSPAddedToPlans</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UnBlockUser</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.UnBlockUser</servlet-class>
     </servlet>
@@ -204,6 +212,14 @@
         <url-pattern>/AdminAllMICS</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AddMSPToPlans</servlet-name>
+        <url-pattern>/AddMSPToPlans</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MSPAddedToPlans</servlet-name>
+        <url-pattern>/MSPAddedToPlans</url-pattern>
+     </servlet-mapping>
+        <servlet-mapping>
         <servlet-name>UnBlockUser</servlet-name>
         <url-pattern>/UnBlockUser</url-pattern>
     </servlet-mapping>

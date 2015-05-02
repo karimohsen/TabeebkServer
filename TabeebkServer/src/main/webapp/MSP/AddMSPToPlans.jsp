@@ -1,6 +1,6 @@
 <%@page import="java.util.Enumeration"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>     
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <%@page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,25 @@
         <meta name="author" content="">
 
         <title>SB Admin - Bootstrap Admin Template</title>
+        <!--
+                 Bootstrap Core CSS 
+                <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+        
+                 Custom CSS 
+                <link href="${pageContext.request.contextPath}/css/sb-admin.css" rel="stylesheet">
+        
+                 Custom Fonts 
+                <link href="${pageContext.request.contextPath}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        
+                <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+                <script src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>
+                <script src="//cdn.datatables.net/plug-ins/1.10.6/integration/jqueryui/dataTables.jqueryui.js"></script>
+                <link href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+                <link href="//cdn.datatables.net/plug-ins/1.10.6/integration/jqueryui/dataTables.jqueryui.css" rel="stylesheet"/>
+                <script src="${pageContext.request.contextPath}/js/script.js"></script>
+                <script src="${pageContext.request.contextPath}/js/plugins/morris/morris-data.js"></script>
+                <script src="${pageContext.request.contextPath}/js/plugins/morris/morris.min.js"></script>
+                <script src="${pageContext.request.contextPath}/js/plugins/morris/raphael.min.js"></script>-->
 
         <!-- Bootstrap Core CSS -->
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
@@ -31,10 +50,10 @@
         <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <!--Table-->
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+        <link href="//cdn.datatables.net/plug-ins/1.10.6/integration/jqueryui/dataTables.jqueryui.css" rel="stylesheet"/>
         <script src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
         <link href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css" rel="stylesheet"/>
         <script src="${pageContext.request.contextPath}/js/ADS_Script.js"></script>
-
     </head>
 
     <body>
@@ -146,7 +165,7 @@
                             <a href="javascript:;" data-toggle="collapse" data-target="#plansid"><i class="fa fa-fw fa-edit"></i> Plans <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="plansid" class="collapse">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/AllPlans">ALL Plans</a>
+                                    <a href="AllPlans">ALL Plans</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/MSP/AddPlan.jsp">Add Plan</a>
@@ -180,7 +199,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
-                                View Medical Service Provider rating
+                                All Plans
 
                             </h1>
                             <ol class="breadcrumb">
@@ -188,41 +207,35 @@
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/MSP/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-medkit"></i> <a href="${pageContext.request.contextPath}/MSP/Home.jsp">Other MSP</a>
+                                    <i class="fa fa-edit"></i> <a href="MyMsp">My MSP</a>
                                 </li>
                             </ol>
-                            <div class="row">
-                                <table id="example" class="display" cellspacing="0" align="center" style="width:60%">
-                                    <thead>
-                                        <tr>
-                                            <th>User Comment</th>
-                                            <th>Ratting Value</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <c:set var="total" value="0" />
-                                        <c:set var="count" value="0" />
-                                        <c:forEach var="mspRat" items="${requestScope.mspRatting}">
-                                            <tr id="${mspRat.getRatingId()}">
-                                                <td>
-                                                    <c:out value="${mspRat.getRatingComment()}"/>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${mspRat.getRatingValue()}"/>                                                
-                                                </td>
-                                                <c:set var="total" value="${total+mspRat.getRatingValue()}" />
-                                                <c:set var="count" value="${count+1}" />
-                                            </tr>
-                                        </c:forEach>
-                                        <tr><td bgcolor="red">Ratting Average</td><td <td bgcolor="blue"><c:out value="${total/count}"/></td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                     <!-- /.row -->
-
+                    <div class="row">
+                        <table width="50%" align="center">
+                            <thead>
+                                <tr>
+                                    <th>Plan Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <form name="MSPPlans" method="post" action="MSPAddedToPlans">
+                                    <input type="hidden" name="msptypeid" value="${requestScope.msptypeid}"/>
+                                    <input type="hidden" name="mspid" value="${requestScope.mspid}"/>
+                                <c:forEach var="plan" items="${requestScope.mspToPlans}">
+                                    <tr>
+                                        <td><input TYPE="checkbox" name="MSPPlans" VALUE="${plan.getPlanId()}"><c:out value="${plan.getPlanName()}"/></td>
+                                    </tr>
+                                </c:forEach>
+                                <tr>
+                                    <td><button type="submit" class="btn btn-success" style="float: left">Assign To Plans</button></td>
+                                </tr>
+                            </form>
+                            </tbody>
+                        </table>
+                    </div>   
                 </div>
                 <!-- /.container-fluid -->
 
@@ -231,8 +244,10 @@
 
         </div>
         <!-- /#wrapper -->
+
         <!-- Bootstrap Core JavaScript -->
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
     </body>
 
 </html>

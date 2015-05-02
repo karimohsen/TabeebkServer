@@ -197,9 +197,9 @@
                     <!-- /.row -->
                     <div class="row">
                         <div class="col-lg-12 breadcrumb">
-                            <button type="button" class="btn btn-danger" style="float: right" onclick="EditPlan('ShowMspFromPlan',${plan.getPlanId()})">Remove MSP</button>
+                            <button type="button" class="btn btn-danger" style="float: right" onclick="EditPlan('ShowMspFromPlan',${plan.getPlanId()})">Unassign MSP</button>
                             <!--<button type="button" class="btn btn-success" style="float: left" onclick="EditPlan('AddMspToPlan',${plan.getPlanId()})">Add MSP</button>-->
-                            <button type="button" class="btn btn-success" style="float: left" onclick="EditPlan('AddMspToPlan',${plan.getPlanId()})">Add MSP</button>
+                            <button type="button" class="btn btn-success" style="float: left" onclick="EditPlan('AddMspToPlan',${plan.getPlanId()})">Assign MSP</button>
                         </div>
                     </div>
                     <div class="row">                      

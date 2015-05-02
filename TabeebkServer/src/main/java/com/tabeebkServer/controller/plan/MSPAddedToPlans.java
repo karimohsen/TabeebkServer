@@ -5,22 +5,23 @@
  */
 package com.tabeebkServer.controller.plan;
 
-import com.tabeebkServer.dao.plan.PlanDao;
+import com.tabeebkServer.dao.planmsp.PlanMspDao;
+import com.tabeebkServer.pojo.Planmsp;
+import com.tabeebkServer.pojo.PlanmspId;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import com.tabeebkServer.pojo.Plan;
 
 /**
  *
- * @author Karim
+ * @author HMA
  */
-public class AllPlans extends HttpServlet {
+public class MSPAddedToPlans extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +35,27 @@ public class AllPlans extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //GET from session
-        HttpSession session = request.getSession(false);        
-        if (session.getAttribute("Accountid") != null) {
-            int micId = (Integer) session.getAttribute("Accountid");
-            PlanDao daoPlan = new PlanDao();
-            List<Plan> list = daoPlan.allMICPlans(micId);
-            request.setAttribute("plans", list);
-            RequestDispatcher rd = request.getRequestDispatcher("/MSP/AllPlans.jsp");
-            rd.forward(request, response);
+        PrintWriter out = response.getWriter();
+        String[] MSPPlans = request.getParameterValues("MSPPlans");
+        if (MSPPlans.length > 0 && request.getParameter("msptypeid") != null && request.getParameter("mspid") != null) {
+            int mspTypeId = Integer.parseInt(request.getParameter("msptypeid"));
+            int typeId = Integer.parseInt(request.getParameter("mspid"));
+//            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
+            List<Planmsp> planmsps = new ArrayList<>();
+            for (String MSPPlan : MSPPlans) {
+                int planId = Integer.parseInt(MSPPlan);
+                Planmsp planmsp = new Planmsp();
+                PlanmspId planmspId = new PlanmspId();
+                planmspId.setPlanId(planId);
+                planmspId.setTypeId(typeId);
+                planmspId.setMsptypeTypeId(mspTypeId);
+                planmsp.setId(planmspId);
+                planmsp.setDeleted(0);
+                planmsps.add(planmsp);
+            }
+            PlanMspDao.addMspToPlan(planmsps);
+//            System.out.println("herrr: " + planmsps.size()+ "\t" + mspTypeId + "\t" + typeId);
+            response.sendRedirect("MyMsp");
         } else {
             response.sendRedirect("Login.jsp");
         }

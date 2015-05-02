@@ -5,6 +5,8 @@
  */
 package com.tabeebkServer.admin.controller;
 
+import com.tabeebkServer.dao.mic.MicDao;
+import com.tabeebkServer.pojo.Mic;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -39,6 +41,7 @@ public class AdminAddMic extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        Mic mic = new Mic();
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (isMultipart) {
 
@@ -64,13 +67,24 @@ public class AdminAddMic extends HttpServlet {
             List<FileItem> items;
             try {
                 items = upload.parseRequest(request);
-
+                
                 Iterator<FileItem> iter = items.iterator();
                 while (iter.hasNext()) {
                     FileItem item = iter.next();
                     if (item.isFormField()) {
-                        System.out.println(item.getFieldName());
-                        System.out.println(item.getString());
+                        if (item.getFieldName().equals("micname")) {
+                            mic.setMicName(item.getString());
+                        } else if (item.getFieldName().equals("micnamear")) {
+                            mic.setMicNameAr(item.getString());
+                        } else if (item.getFieldName().equals("micdesc")) {
+                            mic.setMicDescription(item.getString());
+                        } else if (item.getFieldName().equals("micdescar")) {
+                            mic.setMicDescriptionAr(item.getString());
+                        } else if (item.getFieldName().equals("micurl")) {
+                            mic.setMicUrl(item.getString());
+                        } else if (item.getFieldName().equals("micurl")) {
+                            mic.setMicEmail(item.getString());
+                        }
                     } else {
                         String Name = item.getName();
                         if (!Name.equals("") && Name != null) {
@@ -89,7 +103,7 @@ public class AdminAddMic extends HttpServlet {
                             }
                             uploadFolder += "\\uploads";
                             String filePath = uploadFolder + File.separator + fName;
-
+                            mic.setMicImageurl(filePath);
                             File f = new File(filePath);
                             item.write(f);
                         }
@@ -100,9 +114,10 @@ public class AdminAddMic extends HttpServlet {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+            MicDao.createMIC(mic);
             response.sendRedirect("Admin/Home.jsp");
         }
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

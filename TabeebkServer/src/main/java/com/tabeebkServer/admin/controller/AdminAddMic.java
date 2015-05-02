@@ -73,13 +73,15 @@ public class AdminAddMic extends HttpServlet {
                     FileItem item = iter.next();
                     if (item.isFormField()) {
                         if (item.getFieldName().equals("micname")) {
-                            mic.setMicName(item.getString());
+                            mic.setMicName(item.getString());                            
                         } else if (item.getFieldName().equals("micnamear")) {
                             mic.setMicNameAr(item.getString());
+                            System.out.println("item.getString():Name "+item.getString("UTF-8").trim());    
                         } else if (item.getFieldName().equals("micdesc")) {
                             mic.setMicDescription(item.getString());
                         } else if (item.getFieldName().equals("micdescar")) {
-                            mic.setMicDescriptionAr(item.getString());
+                            mic.setMicDescriptionAr(new String(item.getString().getBytes(),"UTF-8"));
+                            System.out.println("item.getString():Desc "+item.getString("UTF-8").trim());    
                         } else if (item.getFieldName().equals("micurl")) {
                             mic.setMicUrl(item.getString());
                         } else if (item.getFieldName().equals("mail")) {
@@ -109,8 +111,8 @@ public class AdminAddMic extends HttpServlet {
                         }
                     }
                 }
-                MicDao.createMIC(mic);
-                response.sendRedirect("Admin/Home.jsp");
+//                MicDao.createMIC(mic);
+//                response.sendRedirect("Admin/Home.jsp");
             } catch (FileUploadException ex) {
                 ex.printStackTrace();
             } catch (Exception ex) {

@@ -31,6 +31,9 @@ function addRowHandlers(url) {
 function EditPlan(url,id) {
     document.location.href = url+"?id=" + id;
 }
+function AdminMsp(url,id,typeid) {
+    document.location.href = url+"?id=" +id+"&typeid="+typeid;
+}
 function AddMspToPlan(url,planId,mspTypeId,typeId) {
     document.location.href = url+"?planid=" + planId+"&msptypeid="+mspTypeId+"&mspid="+typeId;
 }

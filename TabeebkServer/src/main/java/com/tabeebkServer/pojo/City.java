@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 28, 2015 12:25:04 PM by Hibernate Tools 3.6.0
+// Generated May 2, 2015 1:54:41 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -26,6 +26,7 @@ public class City  implements java.io.Serializable {
      private Integer cityId;
      private String cityName;
      private String cityNameAr;
+     private Set<Area> areas = new HashSet<Area>(0);
      private Set<Branche> branches = new HashSet<Branche>(0);
 
     public City() {
@@ -36,9 +37,10 @@ public class City  implements java.io.Serializable {
         this.cityName = cityName;
         this.cityNameAr = cityNameAr;
     }
-    public City(String cityName, String cityNameAr, Set<Branche> branches) {
+    public City(String cityName, String cityNameAr, Set<Area> areas, Set<Branche> branches) {
        this.cityName = cityName;
        this.cityNameAr = cityNameAr;
+       this.areas = areas;
        this.branches = branches;
     }
    
@@ -72,6 +74,15 @@ public class City  implements java.io.Serializable {
     
     public void setCityNameAr(String cityNameAr) {
         this.cityNameAr = cityNameAr;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="city")
+    public Set<Area> getAreas() {
+        return this.areas;
+    }
+    
+    public void setAreas(Set<Area> areas) {
+        this.areas = areas;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="city")

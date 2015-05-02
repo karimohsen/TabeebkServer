@@ -240,9 +240,24 @@
                                             <c:out value="${msp.getMsptypename()}"/>
                                         </td>
                                         <td><button type="button" class="btn btn-success" onclick="">Edit</button></td>
-                                        <td><button type="button" class="btn btn-danger" onclick="">Delete</button></td>
-                                    </tr>
-                                </c:forEach>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${msp.getDeleted() == 1}">
+                                                <td>
+                                                    <button type="button" class="btn btn-warning" onclick="AdminMsp('AdminRestoreMsp',${msp.getMspId()},${msp.getMsptypeId()})">Restore</button>
+                                                </td>
+                                            </c:when>
+
+                                            <c:when test="${msp.getDeleted() == 0}">
+                                                <td>
+                                                    <button type="button" class="btn btn-danger" onclick="AdminMsp('AdminDeleteMsp',${msp.getMspId()},${msp.getMsptypeId()})">Delete</button>
+                                                </td>
+                                            </c:when>
+                                        </c:choose>
+                                                </td>
+                                
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>

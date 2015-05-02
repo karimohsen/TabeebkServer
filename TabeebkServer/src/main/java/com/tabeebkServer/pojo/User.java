@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Apr 28, 2015 12:25:04 PM by Hibernate Tools 3.6.0
+// Generated May 2, 2015 1:54:41 AM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -41,6 +41,7 @@ public class User  implements java.io.Serializable {
      private String userToken;
      private Date userDateofbirth;
      private int blocked;
+     private Set<Msprecommendations> msprecommendationses = new HashSet<Msprecommendations>(0);
      private Set<Micratting> micrattings = new HashSet<Micratting>(0);
      private Set<Ratting> rattings = new HashSet<Ratting>(0);
      private Set<Micuser> micusers = new HashSet<Micuser>(0);
@@ -54,7 +55,7 @@ public class User  implements java.io.Serializable {
         this.userEmail = userEmail;
         this.blocked = blocked;
     }
-    public User(Gender gender, Socialnetwork socialnetwork, String userName, String userNameAr, String userEmail, String userImage, String userTelephone, String userToken, Date userDateofbirth, int blocked, Set<Micratting> micrattings, Set<Ratting> rattings, Set<Micuser> micusers) {
+    public User(Gender gender, Socialnetwork socialnetwork, String userName, String userNameAr, String userEmail, String userImage, String userTelephone, String userToken, Date userDateofbirth, int blocked, Set<Msprecommendations> msprecommendationses, Set<Micratting> micrattings, Set<Ratting> rattings, Set<Micuser> micusers) {
        this.gender = gender;
        this.socialnetwork = socialnetwork;
        this.userName = userName;
@@ -65,6 +66,7 @@ public class User  implements java.io.Serializable {
        this.userToken = userToken;
        this.userDateofbirth = userDateofbirth;
        this.blocked = blocked;
+       this.msprecommendationses = msprecommendationses;
        this.micrattings = micrattings;
        this.rattings = rattings;
        this.micusers = micusers;
@@ -180,6 +182,15 @@ public class User  implements java.io.Serializable {
     
     public void setBlocked(int blocked) {
         this.blocked = blocked;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
+    public Set<Msprecommendations> getMsprecommendationses() {
+        return this.msprecommendationses;
+    }
+    
+    public void setMsprecommendationses(Set<Msprecommendations> msprecommendationses) {
+        this.msprecommendationses = msprecommendationses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="user")

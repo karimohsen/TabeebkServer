@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.tabeebkServer.admin.controller;
 
 import com.tabeebkServer.dao.UserDao;
-import com.tabeebkServer.pojo.User;
 import java.io.IOException;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +17,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author HMA
+ * @author Karim
  */
-public class AllUsers extends HttpServlet {
+public class UnBlockUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,13 +33,12 @@ public class AllUsers extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher rd = request.getRequestDispatcher("Admin/allUsers.jsp");
-        //Get this id from session
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {
-            List<User> users = UserDao.viewAllUsers();
-            request.setAttribute("allUsers", users);
-            rd.forward(request, response);
+            // get user id from request
+            int userId=Integer.parseInt(request.getParameter("id"));
+            UserDao.unBlockUser(userId);
+            response.sendRedirect("AllUsers");
         } else {
             response.sendRedirect("Login.jsp");
         }

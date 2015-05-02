@@ -14,7 +14,8 @@ public class GenericMSP {
     private String msptypename;
     private int mspId;
     private String mspname;
-
+    private int deleted;
+    
     public int getMsptypeId() {
         return msptypeId;
     }
@@ -46,6 +47,15 @@ public class GenericMSP {
     public void setMspname(String mspname) {
         this.mspname = mspname;
     }
+
+    public int getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
+    }
+    
     @Override
     public String toString(){
         return  msptypeId+" "+msptypename+" "+mspId+" "+mspname;

@@ -36,8 +36,10 @@
     <mapping class="com.tabeebkServer.pojo.Mic"/>
     <mapping class="com.tabeebkServer.pojo.Doctor"/>
     <mapping class="com.tabeebkServer.pojo.Plan"/>
+    <mapping class="com.tabeebkServer.pojo.Msprecommendations"/>
     <mapping class="com.tabeebkServer.pojo.Country"/>
     <mapping class="com.tabeebkServer.pojo.Branche"/>
+    <mapping class="com.tabeebkServer.pojo.Area"/>
     <mapping class="com.tabeebkServer.pojo.Msptype"/>
   </session-factory>
 </hibernate-configuration>

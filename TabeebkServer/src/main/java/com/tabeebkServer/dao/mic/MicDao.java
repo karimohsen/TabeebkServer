@@ -19,6 +19,31 @@ import java.util.List;
 public class MicDao {
     static SessionFactory factory = HibernateUtilFactory.getSessionFactory();
     static Session session = factory.openSession();
+    //=================Admin return all MIC=========================
+    public static List<Mic> viewAllNonDeletedMIC(){
+        session.clear();
+        return session.createQuery("from Mic").list();
+    }
+    //=============================================================
+    //===============Admin Delete MIC==============================
+    public static void DeletedMIC(int MIC_id){
+        Mic mic = (Mic)session.get(Mic.class, MIC_id);
+        mic.setDeleted(1);
+        session.beginTransaction();
+        session.update(mic);
+        session.getTransaction().commit();
+    }
+    //=============================================================
+    //===============Admin Recover MIC==============================
+    public static void RecoverMIC(int MIC_id){
+        Mic mic = (Mic)session.get(Mic.class, MIC_id);
+        mic.setDeleted(0);
+        session.beginTransaction();
+        session.update(mic);
+        session.getTransaction().commit();
+    }
+    //=============================================================
+    //================Return All not deleted MIC====================
     public static List<Mic> viewAllMIC(){
         return session.createQuery("from Mic where deleted=0").list();
     }

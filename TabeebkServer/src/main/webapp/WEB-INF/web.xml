@@ -91,6 +91,26 @@
         <servlet-name>AdminAllMICS</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.AdminAllMICS</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UnBlockUser</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.UnBlockUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteMIC</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.DeleteMIC</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RecoverMIC</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.RecoverMIC</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminRestoreMsp</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AdminRestoreMsp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDeleteMsp</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AdminDeleteMsp</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -178,6 +198,26 @@
     <servlet-mapping>
         <servlet-name>AdminAllMICS</servlet-name>
         <url-pattern>/AdminAllMICS</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UnBlockUser</servlet-name>
+        <url-pattern>/UnBlockUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteMIC</servlet-name>
+        <url-pattern>/DeleteMIC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecoverMIC</servlet-name>
+        <url-pattern>/RecoverMIC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminRestoreMsp</servlet-name>
+        <url-pattern>/AdminRestoreMsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDeleteMsp</servlet-name>
+        <url-pattern>/AdminDeleteMsp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

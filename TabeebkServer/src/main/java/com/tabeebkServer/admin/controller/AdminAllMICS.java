@@ -5,12 +5,9 @@
  */
 package com.tabeebkServer.admin.controller;
 
-import com.tabeebkServer.dao.MSPDao;
 import com.tabeebkServer.dao.mic.MicDao;
 import com.tabeebkServer.pojo.Mic;
-import com.tabeebkServer.utilty.GenericMSP;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,7 +38,7 @@ public class AdminAllMICS extends HttpServlet {
         //Get From Session
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {            
-            List<Mic> allMICs = MicDao.viewAllMIC();
+            List<Mic> allMICs = MicDao.viewAllNonDeletedMIC();
             request.setAttribute("adminAllMics", allMICs);
 
             rd.forward(request, response);

@@ -152,10 +152,10 @@
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li >
+                        <li>
                             <a href="${pageContext.request.contextPath}/Admin/Home.jsp"><i class="fa fa-fw fa-home"></i> Home</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="javascript:;" data-toggle="collapse" data-target="#Msp"><i class="fa fa-fw fa-ambulance"></i> MSP <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="Msp" class="collapse">
                                 <li>
@@ -186,7 +186,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="${pageContext.request.contextPath}/Admin/viewreports.jsp"><i class="fa fa-fw fa-area-chart"></i> View Reports</a>
                         </li>
                         <li >
@@ -208,7 +208,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
-                                View Reports
+                                Add Hospital
                                 
                             </h1>
                             <ol class="breadcrumb">
@@ -216,7 +216,7 @@
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/Admin/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-area-chart"></i> View Reports
+                                    <i class="fa fa-hospital-o"></i> Add Hospital
                                 </li>
                             </ol>
                         </div>

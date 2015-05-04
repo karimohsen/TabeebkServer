@@ -155,14 +155,23 @@
                         <li>
                             <a href="${pageContext.request.contextPath}/Admin/Home.jsp"><i class="fa fa-fw fa-home"></i> Home</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="javascript:;" data-toggle="collapse" data-target="#Msp"><i class="fa fa-fw fa-ambulance"></i> MSP <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="Msp" class="collapse">
                                 <li>
                                     <a href="${pageContext.request.contextPath}/AdminAllMsps">All MSPS</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/AddMSP.jsp">Add MSP</a>
+                                    <a href="${pageContext.request.contextPath}/Admin/addDoctor.jsp">Add Doctor</a>
+                                </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp">Add Clinic</a>
+                                </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Admin/addLab.jsp">Add Lab</a>
+                                </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Admin/addHospital.jsp">Add Hospital</a>
                                 </li>
                             </ul>
                         </li>
@@ -182,12 +191,6 @@
                         </li>
                         <li >
                             <a href="${pageContext.request.contextPath}/MspRecommendations"><i class="fa fa-fw fa-check-square-o"></i>Approve MSP</a>
-                        </li>
-                        <li >
-                            <a href="${pageContext.request.contextPath}/Admin/addDoctor.jsp"><i class="fa fa-fw fa-user-md"></i>Add Doctor</a>
-                        </li>
-                        <li class="active">
-                            <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp"><i class="fa fa-fw fa-hospital-o"></i>Add Clinic</a>
                         </li>
                         <li >
                             <a href="${pageContext.request.contextPath}/AllUsers"><i class="fa fa-fw fa-users"></i>All Users</a>

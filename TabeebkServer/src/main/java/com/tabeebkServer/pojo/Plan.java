@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 3, 2015 3:02:41 AM by Hibernate Tools 3.6.0
+// Generated May 4, 2015 9:52:10 AM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -39,12 +39,13 @@ public class Plan  implements java.io.Serializable {
      private Date planInsertDate;
      private Date planUpdatedDate;
      private Integer deleted;
+     private Set<Planupdates> planupdateses = new HashSet<Planupdates>(0);
      private Set<Planmsp> planmsps = new HashSet<Planmsp>(0);
 
     public Plan() {
     }
 
-    public Plan(Mic mic, String planName, String planNameAr, String planDescription, String planDescriptionAr, Date planInsertDate, Date planUpdatedDate, Integer deleted, Set<Planmsp> planmsps) {
+    public Plan(Mic mic, String planName, String planNameAr, String planDescription, String planDescriptionAr, Date planInsertDate, Date planUpdatedDate, Integer deleted, Set<Planupdates> planupdateses, Set<Planmsp> planmsps) {
        this.mic = mic;
        this.planName = planName;
        this.planNameAr = planNameAr;
@@ -53,6 +54,7 @@ public class Plan  implements java.io.Serializable {
        this.planInsertDate = planInsertDate;
        this.planUpdatedDate = planUpdatedDate;
        this.deleted = deleted;
+       this.planupdateses = planupdateses;
        this.planmsps = planmsps;
     }
    
@@ -156,6 +158,15 @@ public class Plan  implements java.io.Serializable {
     
     public void setDeleted(Integer deleted) {
         this.deleted = deleted;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="plan")
+    public Set<Planupdates> getPlanupdateses() {
+        return this.planupdateses;
+    }
+    
+    public void setPlanupdateses(Set<Planupdates> planupdateses) {
+        this.planupdateses = planupdateses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="plan")

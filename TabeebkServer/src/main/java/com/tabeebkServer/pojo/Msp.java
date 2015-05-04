@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 3, 2015 3:02:41 AM by Hibernate Tools 3.6.0
+// Generated May 4, 2015 9:52:10 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -31,6 +32,7 @@ public class Msp  implements java.io.Serializable {
      private Integer typeId;
      private int deleted;
      private Set<Mic> mics = new HashSet<Mic>(0);
+     private Set<Planupdates> planupdateses = new HashSet<Planupdates>(0);
 
     public Msp() {
     }
@@ -39,11 +41,12 @@ public class Msp  implements java.io.Serializable {
     public Msp(int deleted) {
         this.deleted = deleted;
     }
-    public Msp(Msptype msptype, Integer typeId, int deleted, Set<Mic> mics) {
+    public Msp(Msptype msptype, Integer typeId, int deleted, Set<Mic> mics, Set<Planupdates> planupdateses) {
        this.msptype = msptype;
        this.typeId = typeId;
        this.deleted = deleted;
        this.mics = mics;
+       this.planupdateses = planupdateses;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -98,6 +101,15 @@ public class Msp  implements java.io.Serializable {
     
     public void setMics(Set<Mic> mics) {
         this.mics = mics;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="msp")
+    public Set<Planupdates> getPlanupdateses() {
+        return this.planupdateses;
+    }
+    
+    public void setPlanupdateses(Set<Planupdates> planupdateses) {
+        this.planupdateses = planupdateses;
     }
 
 

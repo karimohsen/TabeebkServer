@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 3, 2015 3:02:41 AM by Hibernate Tools 3.6.0
+// Generated May 4, 2015 9:52:10 AM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -31,13 +31,14 @@ public class Msptype  implements java.io.Serializable {
      private Set<Ratting> rattings = new HashSet<Ratting>(0);
      private Set<Schedule> schedules = new HashSet<Schedule>(0);
      private Set<Planmsp> planmsps = new HashSet<Planmsp>(0);
+     private Set<Planupdates> planupdateses = new HashSet<Planupdates>(0);
      private Set<Msprecommendations> msprecommendationses = new HashSet<Msprecommendations>(0);
      private Set<Telephone> telephones = new HashSet<Telephone>(0);
 
     public Msptype() {
     }
 
-    public Msptype(String typeName, Set<Msp> msps, Set<Speciality> specialities, Set<Branche> branches, Set<Ratting> rattings, Set<Schedule> schedules, Set<Planmsp> planmsps, Set<Msprecommendations> msprecommendationses, Set<Telephone> telephones) {
+    public Msptype(String typeName, Set<Msp> msps, Set<Speciality> specialities, Set<Branche> branches, Set<Ratting> rattings, Set<Schedule> schedules, Set<Planmsp> planmsps, Set<Planupdates> planupdateses, Set<Msprecommendations> msprecommendationses, Set<Telephone> telephones) {
        this.typeName = typeName;
        this.msps = msps;
        this.specialities = specialities;
@@ -45,6 +46,7 @@ public class Msptype  implements java.io.Serializable {
        this.rattings = rattings;
        this.schedules = schedules;
        this.planmsps = planmsps;
+       this.planupdateses = planupdateses;
        this.msprecommendationses = msprecommendationses;
        this.telephones = telephones;
     }
@@ -123,6 +125,15 @@ public class Msptype  implements java.io.Serializable {
     
     public void setPlanmsps(Set<Planmsp> planmsps) {
         this.planmsps = planmsps;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="msp")
+    public Set<Planupdates> getPlanupdateses() {
+        return this.planupdateses;
+    }
+    
+    public void setPlanupdateses(Set<Planupdates> planupdateses) {
+        this.planupdateses = planupdateses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="msptype")

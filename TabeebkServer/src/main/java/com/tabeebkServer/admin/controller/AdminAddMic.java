@@ -5,6 +5,7 @@
  */
 package com.tabeebkServer.admin.controller;
 
+import com.tabeebkServer.dao.mic.MicDao;
 import com.tabeebkServer.pojo.Mic;
 import java.io.File;
 import java.io.IOException;
@@ -73,7 +74,7 @@ public class AdminAddMic extends HttpServlet {
                         } else if (item.getFieldName().equals("micdesc")) {
                             mic.setMicDescription(item.getString());
                         } else if (item.getFieldName().equals("micdescar")) {
-                            mic.setMicDescriptionAr(new String(item.getString().getBytes(),"UTF-8"));
+                            mic.setMicDescriptionAr(item.getString("UTF-8").trim());
                         } else if (item.getFieldName().equals("micurl")) {
                             mic.setMicUrl(item.getString());
                         } else if (item.getFieldName().equals("mail")) {
@@ -96,8 +97,8 @@ public class AdminAddMic extends HttpServlet {
                         }
                     }
                 }
-//                MicDao.createMIC(mic);
-//                response.sendRedirect("Admin/Home.jsp");
+                MicDao.createMIC(mic);
+                response.sendRedirect("Admin/Home.jsp");
             } catch (FileUploadException ex) {
                 ex.printStackTrace();
             } catch (Exception ex) {

@@ -70,7 +70,7 @@ public class Plan  implements java.io.Serializable {
         this.planId = planId;
     }
 
-    @Version
+    
     @Column(name="version")
     public Integer getVersion() {
         return this.version;

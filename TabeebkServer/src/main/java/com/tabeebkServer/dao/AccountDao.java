@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import com.tabeebkServer.pojo.Account;
+import com.tabeebkServer.pojo.Accounttype;
 
 /**
  *
@@ -34,7 +35,20 @@ public class AccountDao {
             return account;
         }
     }
-
+    
+    public static void AddAccount(String name,String pass,String disName){
+        Accounttype type =(Accounttype)session.get(Accounttype.class,1);
+        Account acc = new Account();
+        acc.setAccounttype(type);
+        acc.setDisplayName(disName);
+        acc.setPassword(pass);
+        acc.setUsername(name);
+        if(!session.getTransaction().isActive())
+            session.beginTransaction();
+        session.save(acc);
+        session.getTransaction().commit();
+    }
+    
     public void changePassword(String pass, Account acc) {
         session.beginTransaction();
         acc.setPassword(pass);

@@ -54,7 +54,7 @@ public class Planupdates  implements java.io.Serializable {
         this.updateId = updateId;
     }
 
-    @Version
+    
     @Column(name="version")
     public Integer getVersion() {
         return this.version;

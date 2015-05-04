@@ -131,6 +131,10 @@
         <servlet-name>ApproveMsp</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.ApproveMsp</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddMicAccount</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AddMicAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -258,6 +262,10 @@
     <servlet-mapping>
         <servlet-name>ApproveMsp</servlet-name>
         <url-pattern>/ApproveMsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddMicAccount</servlet-name>
+        <url-pattern>/AddMicAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

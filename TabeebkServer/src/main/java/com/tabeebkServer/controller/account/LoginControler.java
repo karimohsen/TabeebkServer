@@ -54,21 +54,21 @@ public class LoginControler extends HttpServlet {
         if (currentUser != null) {
              HttpSession session = request.getSession(true);
             //if user is admin user
-            session.setAttribute("Accountid", currentUser.getId().getAccountId());
+            session.setAttribute("Accountid", currentUser.getAccountId());
             session.setAttribute("account", currentUser);
-            session.setAttribute("type", currentUser.getId().getAccountTypeId());
+            session.setAttribute("type", currentUser.getAccounttype().getAccountTypeId());
             session.setAttribute("authenticated", "true");
 
             //if Account is MSP Account
-            if (currentUser.getId().getAccountTypeId() == 1) {
+            if (currentUser.getAccounttype().getAccountTypeId() == 1) {
                 response.sendRedirect("MSP/Home.jsp");
             }
             //if Account is MIC Account
-            if (currentUser.getId().getAccountTypeId() == 2) {
+            if (currentUser.getAccounttype().getAccountTypeId() == 2) {
                 response.sendRedirect("MSP/Home.jsp");
             }
              //if Account is MIC Account
-            if (currentUser.getId().getAccountTypeId() == 7) {
+            if (currentUser.getAccounttype().getAccountTypeId() == 7) {
                 response.sendRedirect("Admin/Home.jsp");
             }
         } //Failed login

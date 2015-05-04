@@ -220,7 +220,7 @@
                     </div>
                     <!-- /.row -->
                     <div class="row">
-                        <table id="example" class="display" cellspacing="0" align="center" style="width:60%" onclick="addRowHandlers('ViewRatings')">
+                        <table id="example" class="display" cellspacing="0" align="center" style="width:60%">
                             <thead>
                                 <tr>
                                     <th>MSP Name</th>
@@ -243,17 +243,17 @@
                                         <td>
                                             <c:choose>
                                                 <c:when test="${msp.getDeleted() == 1}">
-                                                <td>
-                                                    <button type="button" class="btn btn-warning" onclick="AdminMsp('AdminRestoreMsp',${msp.getMsptypeId()},${msp.getMspId()})">Restore</button>
-                                                </td>
-                                            </c:when>
 
-                                            <c:when test="${msp.getDeleted() == 0}">
-                                                <td>
+                                                    <button type="button" class="btn btn-warning" onclick="AdminMsp('AdminRestoreMsp',${msp.getMsptypeId()},${msp.getMspId()})">Restore</button>
+
+                                                </c:when>
+
+                                                <c:when test="${msp.getDeleted() == 0}">
+
                                                     <button type="button" class="btn btn-danger" onclick="AdminMsp('AdminDeleteMsp',${msp.getMsptypeId()},${msp.getMspId()})">Delete</button>
-                                                </td>
-                                            </c:when>
-                                        </c:choose>
+
+                                                </c:when>
+                                            </c:choose>
                                         </td>
 
                                     </tr>

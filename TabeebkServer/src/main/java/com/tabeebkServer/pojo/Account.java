@@ -1,13 +1,13 @@
 package com.tabeebkServer.pojo;
-// Generated May 4, 2015 9:52:10 AM by Hibernate Tools 3.6.0
+// Generated May 4, 2015 11:33:07 AM by Hibernate Tools 3.6.0
 
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -24,7 +24,7 @@ import javax.persistence.UniqueConstraint;
 public class Account  implements java.io.Serializable {
 
 
-     private AccountId id;
+     private Integer accountId;
      private Accounttype accounttype;
      private String username;
      private String password;
@@ -33,30 +33,27 @@ public class Account  implements java.io.Serializable {
     public Account() {
     }
 
-    public Account(AccountId id, Accounttype accounttype, String username, String password, String displayName) {
-       this.id = id;
+    public Account(Accounttype accounttype, String username, String password, String displayName) {
        this.accounttype = accounttype;
        this.username = username;
        this.password = password;
        this.displayName = displayName;
     }
    
-     @EmbeddedId
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @AttributeOverrides( {
-        @AttributeOverride(name="accountId", column=@Column(name="account_id", nullable=false) ), 
-        @AttributeOverride(name="accountTypeId", column=@Column(name="accountType_id", nullable=false) ) } )
-    public AccountId getId() {
-        return this.id;
+    @Column(name="account_id", unique=true, nullable=false)
+    public Integer getAccountId() {
+        return this.accountId;
     }
     
-    public void setId(AccountId id) {
-        this.id = id;
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="accountType_id", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="accountType_id", nullable=false)
     public Accounttype getAccounttype() {
         return this.accounttype;
     }

@@ -206,7 +206,7 @@
                         <div class="col-lg-12">
                             <h1 class="page-header">
                                 ALL MICS
-                                
+
                             </h1>
                             <ol class="breadcrumb">
                                 <li>
@@ -220,11 +220,11 @@
                     </div>
                     <!-- /.row -->
                     <div class="row">
-                        <table id="example" class="display" cellspacing="0" align="center" style="width:60%" onclick="addRowHandlers('ViewRatings')">
+                        <table id="example" class="display" cellspacing="0" align="center" style="width:60%">
                             <thead>
                                 <tr>
                                     <th>MIC Name</th>
-                                    <th>MSP Description</th>
+                                    <th>MIC Description</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -240,23 +240,22 @@
                                             <c:out value="${mic.getMicDescription()}"/>
                                         </td>
                                         <td><button type="button" class="btn btn-success" onclick="">Edit</button></td>
-                                        
+
                                         <td>
                                             <c:choose>
                                                 <c:when test="${mic.getDeleted() == 1}">
-                                                <td>
-                                                    <button type="button" class="btn btn-warning" onclick="EditPlan('RecoverMIC',${mic.getMicId()})">Restore</button>
-                                                </td>
-                                            </c:when>
 
-                                            <c:when test="${mic.getDeleted() == 0}">
-                                                <td>
+                                                    <button type="button" class="btn btn-warning" onclick="EditPlan('RecoverMIC',${mic.getMicId()})">Restore</button>
+
+                                                </c:when>
+
+                                                <c:when test="${mic.getDeleted() == 0}">
+
                                                     <button type="button" class="btn btn-danger" onclick="EditPlan('DeleteMIC',${mic.getMicId()})">Delete</button>
-                                                </td>
-                                            </c:when>
-                                        </c:choose>
+
+                                                </c:when>
+                                            </c:choose>
                                         </td>
-                                        
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -269,14 +268,14 @@
             <!-- /#page-wrapper -->
 
         </div>
-            <!-- /#page-wrapper -->
+        <!-- /#page-wrapper -->
 
-        </div>
-        <!-- /#wrapper -->
+    </div>
+    <!-- /#wrapper -->
 
-        <!-- jQuery -->
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-    </body>
+</body>
 
 </html>

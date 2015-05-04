@@ -27,15 +27,14 @@
     <mapping class="com.tabeebkServer.pojo.Doctorspeciality"/>
     <mapping class="com.tabeebkServer.pojo.Clinic"/>
     <mapping class="com.tabeebkServer.pojo.Account"/>
-    <mapping class="com.tabeebkServer.pojo.MicuserId"/>
     <mapping class="com.tabeebkServer.pojo.UpdateStatus"/>
+    <mapping class="com.tabeebkServer.pojo.MicuserId"/>
     <mapping class="com.tabeebkServer.pojo.City"/>
     <mapping class="com.tabeebkServer.pojo.User"/>
     <mapping class="com.tabeebkServer.pojo.PlanmspId"/>
     <mapping class="com.tabeebkServer.pojo.Accounttype"/>
-    <mapping class="com.tabeebkServer.pojo.AccountId"/>
-    <mapping class="com.tabeebkServer.pojo.Mic"/>
     <mapping class="com.tabeebkServer.pojo.Ratting"/>
+    <mapping class="com.tabeebkServer.pojo.Mic"/>
     <mapping class="com.tabeebkServer.pojo.Doctor"/>
     <mapping class="com.tabeebkServer.pojo.Plan"/>
     <mapping class="com.tabeebkServer.pojo.Msprecommendations"/>

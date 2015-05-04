@@ -135,6 +135,10 @@
         <servlet-name>AddMicAccount</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.AddMicAccount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminAddHospital</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AdminAddHospital</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -266,6 +270,10 @@
     <servlet-mapping>
         <servlet-name>AddMicAccount</servlet-name>
         <url-pattern>/AddMicAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddHospital</servlet-name>
+        <url-pattern>/AdminAddHospital</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

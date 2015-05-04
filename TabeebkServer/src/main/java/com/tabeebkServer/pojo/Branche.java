@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 2, 2015 11:08:35 AM by Hibernate Tools 3.6.0
+// Generated May 3, 2015 3:02:41 AM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.Column;
@@ -23,6 +23,7 @@ public class Branche  implements java.io.Serializable {
 
 
      private Integer brancheId;
+     private Area area;
      private Msptype msptype;
      private City city;
      private Mspimage mspimage;
@@ -44,7 +45,8 @@ public class Branche  implements java.io.Serializable {
     public Branche(String brancheName) {
         this.brancheName = brancheName;
     }
-    public Branche(Msptype msptype, City city, Mspimage mspimage, Country country, String brancheName, String brancheNameAr, String brancheAddress, String brancheAddressAr, String brancheLongtitude, String brancheLatatitude, Integer typeId, String brancheStreet, String brancheStreetAr) {
+    public Branche(Area area, Msptype msptype, City city, Mspimage mspimage, Country country, String brancheName, String brancheNameAr, String brancheAddress, String brancheAddressAr, String brancheLongtitude, String brancheLatatitude, Integer typeId, String brancheStreet, String brancheStreetAr) {
+       this.area = area;
        this.msptype = msptype;
        this.city = city;
        this.mspimage = mspimage;
@@ -70,6 +72,16 @@ public class Branche  implements java.io.Serializable {
     
     public void setBrancheId(Integer brancheId) {
         this.brancheId = brancheId;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="area_id")
+    public Area getArea() {
+        return this.area;
+    }
+    
+    public void setArea(Area area) {
+        this.area = area;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)

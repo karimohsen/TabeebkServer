@@ -123,6 +123,14 @@
         <servlet-name>AdminAddMic</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.AdminAddMic</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MspRecommendations</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.MspRecommendations</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApproveMsp</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.ApproveMsp</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -218,8 +226,8 @@
     <servlet-mapping>
         <servlet-name>MSPAddedToPlans</servlet-name>
         <url-pattern>/MSPAddedToPlans</url-pattern>
-     </servlet-mapping>
-        <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UnBlockUser</servlet-name>
         <url-pattern>/UnBlockUser</url-pattern>
     </servlet-mapping>
@@ -242,6 +250,14 @@
     <servlet-mapping>
         <servlet-name>AdminAddMic</servlet-name>
         <url-pattern>/AdminAddMic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MspRecommendations</servlet-name>
+        <url-pattern>/MspRecommendations</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApproveMsp</servlet-name>
+        <url-pattern>/ApproveMsp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

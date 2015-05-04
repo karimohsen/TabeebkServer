@@ -181,7 +181,7 @@
                             <a href="${pageContext.request.contextPath}/Admin/viewreports.jsp"><i class="fa fa-fw fa-area-chart"></i> View Reports</a>
                         </li>
                         <li class="active">
-                            <a href="${pageContext.request.contextPath}/Admin/approveMSP.jsp"><i class="fa fa-fw fa-check-square-o"></i>Approve MSP</a>
+                            <a href="${pageContext.request.contextPath}/MspRecommendations"><i class="fa fa-fw fa-check-square-o"></i>Approve MSP</a>
                         </li>
                         <li >
                             <a href="${pageContext.request.contextPath}/Admin/addDoctor.jsp"><i class="fa fa-fw fa-user-md"></i>Add Doctor</a>
@@ -206,7 +206,7 @@
                         <div class="col-lg-12">
                             <h1 class="page-header">
                                 Approve MSP
-                                
+
                             </h1>
                             <ol class="breadcrumb">
                                 <li>
@@ -219,7 +219,66 @@
                         </div>
                     </div>
                     <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table id="example" class="display" cellspacing="0" align="center" style="width:60%" >
+                                <thead>
+                                    <tr>
+                                        <th>Recommended By</th>
+                                        <th>MSP Type</th>
+                                        <th>MSP Name</th>
+                                        <th>Phone</th>
+                                        <th>Country</th>
+                                        <th>City</th>
+                                        <th>Area</th>
+                                        <th>Street</th>
+                                        <th>Note</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
 
+                                <tbody>
+                                    <c:forEach var="item" items="${requestScope.recommendationList}">
+                                        <tr>
+                                            <td>
+                                                <c:out value="${item.getUserName()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${item.getMspType()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${item.getMspName()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${item.getMspPhone()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${item.getMspCountry()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${item.getMspCity()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${item.getMspName()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${item.getMspArea()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${item.getMspStreet()}"/>
+                                            </td>
+                                            <td>
+                                                <c:out value="${item.getNotes()}"/>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning" onclick="EditPlan('ApproveMsp',${item.getId()})">Approve</button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -227,14 +286,14 @@
             <!-- /#page-wrapper -->
 
         </div>
-            <!-- /#page-wrapper -->
+        <!-- /#page-wrapper -->
 
-        </div>
-        <!-- /#wrapper -->
+    </div>
+    <!-- /#wrapper -->
 
-        <!-- jQuery -->
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-    </body>
+</body>
 
 </html>

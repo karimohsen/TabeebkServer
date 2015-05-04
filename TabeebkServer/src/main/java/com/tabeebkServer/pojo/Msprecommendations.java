@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 2, 2015 11:08:35 AM by Hibernate Tools 3.6.0
+// Generated May 3, 2015 3:02:41 AM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.Column;
@@ -32,18 +32,20 @@ public class Msprecommendations  implements java.io.Serializable {
      private String mspArea;
      private String mspStreetName;
      private String mspNotes;
+     private int approved;
 
     public Msprecommendations() {
     }
 
 	
-    public Msprecommendations(User user, Msptype msptype, String mspName, String mspPhone) {
+    public Msprecommendations(User user, Msptype msptype, String mspName, String mspPhone, int approved) {
         this.user = user;
         this.msptype = msptype;
         this.mspName = mspName;
         this.mspPhone = mspPhone;
+        this.approved = approved;
     }
-    public Msprecommendations(User user, Msptype msptype, String mspName, String mspPhone, String mspCountry, String mspCity, String mspArea, String mspStreetName, String mspNotes) {
+    public Msprecommendations(User user, Msptype msptype, String mspName, String mspPhone, String mspCountry, String mspCity, String mspArea, String mspStreetName, String mspNotes, int approved) {
        this.user = user;
        this.msptype = msptype;
        this.mspName = mspName;
@@ -53,6 +55,7 @@ public class Msprecommendations  implements java.io.Serializable {
        this.mspArea = mspArea;
        this.mspStreetName = mspStreetName;
        this.mspNotes = mspNotes;
+       this.approved = approved;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -155,6 +158,16 @@ public class Msprecommendations  implements java.io.Serializable {
     
     public void setMspNotes(String mspNotes) {
         this.mspNotes = mspNotes;
+    }
+
+    
+    @Column(name="approved", nullable=false)
+    public int getApproved() {
+        return this.approved;
+    }
+    
+    public void setApproved(int approved) {
+        this.approved = approved;
     }
 
 

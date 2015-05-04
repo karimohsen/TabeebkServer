@@ -1,7 +1,9 @@
 package com.tabeebkServer.pojo;
-// Generated May 2, 2015 11:08:35 AM by Hibernate Tools 3.6.0
+// Generated May 3, 2015 3:02:41 AM by Hibernate Tools 3.6.0
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +29,7 @@ public class Area  implements java.io.Serializable {
      private City city;
      private String areaNameEn;
      private String areaNameAr;
+     private Set<Branche> branches = new HashSet<Branche>(0);
 
     public Area() {
     }
@@ -34,10 +38,11 @@ public class Area  implements java.io.Serializable {
     public Area(City city) {
         this.city = city;
     }
-    public Area(City city, String areaNameEn, String areaNameAr) {
+    public Area(City city, String areaNameEn, String areaNameAr, Set<Branche> branches) {
        this.city = city;
        this.areaNameEn = areaNameEn;
        this.areaNameAr = areaNameAr;
+       this.branches = branches;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -80,6 +85,15 @@ public class Area  implements java.io.Serializable {
     
     public void setAreaNameAr(String areaNameAr) {
         this.areaNameAr = areaNameAr;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="area")
+    public Set<Branche> getBranches() {
+        return this.branches;
+    }
+    
+    public void setBranches(Set<Branche> branches) {
+        this.branches = branches;
     }
 
 

@@ -181,7 +181,7 @@
                             <a href="${pageContext.request.contextPath}/Admin/viewreports.jsp"><i class="fa fa-fw fa-area-chart"></i> View Reports</a>
                         </li>
                         <li >
-                            <a href="${pageContext.request.contextPath}/Admin/approveMSP.jsp"><i class="fa fa-fw fa-check-square-o"></i>Approve MSP</a>
+                            <a href="${pageContext.request.contextPath}/MspRecommendations"><i class="fa fa-fw fa-check-square-o"></i>Approve MSP</a>
                         </li>
                         <li class="active">
                             <a href="${pageContext.request.contextPath}/Admin/addDoctor.jsp"><i class="fa fa-fw fa-user-md"></i>Add Doctor</a>

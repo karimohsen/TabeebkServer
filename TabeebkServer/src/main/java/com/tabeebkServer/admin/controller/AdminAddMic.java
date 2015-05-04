@@ -68,7 +68,7 @@ public class AdminAddMic extends HttpServlet {
                     FileItem item = iter.next();
                     if (item.isFormField()) {
                         if (item.getFieldName().equals("micname")) {
-                            mic.setMicName(item.getString());
+                            mic.setMicName(item.getString());                            
                         } else if (item.getFieldName().equals("micnamear")) {
                             mic.setMicNameAr(item.getString("UTF-8").trim());
                         } else if (item.getFieldName().equals("micdesc")) {
@@ -85,11 +85,11 @@ public class AdminAddMic extends HttpServlet {
                         if (!Name.equals("") && Name != null) {
                             String uploadFolder = System.getProperty("user.home");
                             String fName = new File(item.getName()).getName();
-                            File file = new File(uploadFolder + "\\uploads");
+                            File file = new File(uploadFolder + "\\mic");
                             if (!file.exists()) {
                                 file.mkdir();
                             }
-                            uploadFolder += "\\uploads";
+                            uploadFolder += "\\mic";
                             String filePath = uploadFolder + File.separator + fName;
                             mic.setMicImageurl(filePath);
                             File f = new File(filePath);

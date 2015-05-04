@@ -65,7 +65,7 @@
             }
             function handleReqaj() {
                 if (req_aj.readyState == 4) {
-                    //window.location.href = "Home.jsp";
+                    window.location.href = "Home.jsp";
                 }
             }
         </script>

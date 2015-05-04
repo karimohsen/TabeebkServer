@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 4, 2015 11:33:07 AM by Hibernate Tools 3.6.0
+// Generated May 4, 2015 5:20:04 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -28,16 +28,18 @@ public class Doctorspeciality  implements java.io.Serializable {
      private String doctorSpecialityNameAr;
      private String doctorSpecialityDescription;
      private String doctorSpecialityDescriptionAr;
+     private Set<Hospitalspeciality> hospitalspecialities = new HashSet<Hospitalspeciality>(0);
      private Set<Doctor> doctors = new HashSet<Doctor>(0);
 
     public Doctorspeciality() {
     }
 
-    public Doctorspeciality(String doctorSpecialityName, String doctorSpecialityNameAr, String doctorSpecialityDescription, String doctorSpecialityDescriptionAr, Set<Doctor> doctors) {
+    public Doctorspeciality(String doctorSpecialityName, String doctorSpecialityNameAr, String doctorSpecialityDescription, String doctorSpecialityDescriptionAr, Set<Hospitalspeciality> hospitalspecialities, Set<Doctor> doctors) {
        this.doctorSpecialityName = doctorSpecialityName;
        this.doctorSpecialityNameAr = doctorSpecialityNameAr;
        this.doctorSpecialityDescription = doctorSpecialityDescription;
        this.doctorSpecialityDescriptionAr = doctorSpecialityDescriptionAr;
+       this.hospitalspecialities = hospitalspecialities;
        this.doctors = doctors;
     }
    
@@ -91,6 +93,15 @@ public class Doctorspeciality  implements java.io.Serializable {
     
     public void setDoctorSpecialityDescriptionAr(String doctorSpecialityDescriptionAr) {
         this.doctorSpecialityDescriptionAr = doctorSpecialityDescriptionAr;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="doctorspeciality")
+    public Set<Hospitalspeciality> getHospitalspecialities() {
+        return this.hospitalspecialities;
+    }
+    
+    public void setHospitalspecialities(Set<Hospitalspeciality> hospitalspecialities) {
+        this.hospitalspecialities = hospitalspecialities;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="doctorspeciality")

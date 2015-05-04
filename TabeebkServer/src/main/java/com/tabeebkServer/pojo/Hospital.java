@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 4, 2015 11:33:07 AM by Hibernate Tools 3.6.0
+// Generated May 4, 2015 5:20:04 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -31,6 +31,7 @@ public class Hospital  implements java.io.Serializable {
      private String hospitalImagepath;
      private int deleted;
      private Set<Lab> labs = new HashSet<Lab>(0);
+     private Set<Hospitalspeciality> hospitalspecialities = new HashSet<Hospitalspeciality>(0);
      private Set<Pharamacy> pharamacies = new HashSet<Pharamacy>(0);
 
     public Hospital() {
@@ -40,12 +41,13 @@ public class Hospital  implements java.io.Serializable {
     public Hospital(int deleted) {
         this.deleted = deleted;
     }
-    public Hospital(String hospitalName, String hospitalNameAr, String hospitalImagepath, int deleted, Set<Lab> labs, Set<Pharamacy> pharamacies) {
+    public Hospital(String hospitalName, String hospitalNameAr, String hospitalImagepath, int deleted, Set<Lab> labs, Set<Hospitalspeciality> hospitalspecialities, Set<Pharamacy> pharamacies) {
        this.hospitalName = hospitalName;
        this.hospitalNameAr = hospitalNameAr;
        this.hospitalImagepath = hospitalImagepath;
        this.deleted = deleted;
        this.labs = labs;
+       this.hospitalspecialities = hospitalspecialities;
        this.pharamacies = pharamacies;
     }
    
@@ -108,6 +110,15 @@ public class Hospital  implements java.io.Serializable {
     
     public void setLabs(Set<Lab> labs) {
         this.labs = labs;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="hospital")
+    public Set<Hospitalspeciality> getHospitalspecialities() {
+        return this.hospitalspecialities;
+    }
+    
+    public void setHospitalspecialities(Set<Hospitalspeciality> hospitalspecialities) {
+        this.hospitalspecialities = hospitalspecialities;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="hospital")

@@ -1,7 +1,9 @@
 package com.tabeebkServer.pojo;
-// Generated May 4, 2015 11:33:07 AM by Hibernate Tools 3.6.0
+// Generated May 4, 2015 5:20:04 PM by Hibernate Tools 3.6.0
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,6 +31,7 @@ public class Lab  implements java.io.Serializable {
      private String labNameAr;
      private String labImagepath;
      private int deleted;
+     private Set<Labspeciality> labspecialities = new HashSet<Labspeciality>(0);
 
     public Lab() {
     }
@@ -36,12 +40,13 @@ public class Lab  implements java.io.Serializable {
     public Lab(int deleted) {
         this.deleted = deleted;
     }
-    public Lab(Hospital hospital, String labName, String labNameAr, String labImagepath, int deleted) {
+    public Lab(Hospital hospital, String labName, String labNameAr, String labImagepath, int deleted, Set<Labspeciality> labspecialities) {
        this.hospital = hospital;
        this.labName = labName;
        this.labNameAr = labNameAr;
        this.labImagepath = labImagepath;
        this.deleted = deleted;
+       this.labspecialities = labspecialities;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -104,6 +109,15 @@ public class Lab  implements java.io.Serializable {
     
     public void setDeleted(int deleted) {
         this.deleted = deleted;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="lab")
+    public Set<Labspeciality> getLabspecialities() {
+        return this.labspecialities;
+    }
+    
+    public void setLabspecialities(Set<Labspeciality> labspecialities) {
+        this.labspecialities = labspecialities;
     }
 
 

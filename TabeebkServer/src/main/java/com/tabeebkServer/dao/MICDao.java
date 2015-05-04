@@ -32,6 +32,8 @@ public class MICDao {
     static Session session = fact.openSession();
 
     public static List<GenericMSP> viewMyMSPs(int micId) {
+        //refresh session
+        session.clear();
         //Generic result
         List<GenericMSP> finalResult = new ArrayList<GenericMSP>();
         //refresh session
@@ -93,6 +95,8 @@ public class MICDao {
     }
 
     public static List<GenericMSP> viewOtherMSPs(int micId) {
+        //refresh session
+        session.clear();
         //Generic result
         List<GenericMSP> finalResult = new ArrayList<GenericMSP>();
         Mic myMic = (Mic) session.get(Mic.class, micId);

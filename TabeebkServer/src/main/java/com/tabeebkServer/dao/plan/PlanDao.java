@@ -28,7 +28,7 @@ public class PlanDao {
         session.saveOrUpdate(plan);
         session.getTransaction().commit();
     }
-    
+
     public Plan getPlanDetails(int id) {
         return (Plan) session.get(Plan.class, id);
     }
@@ -38,17 +38,17 @@ public class PlanDao {
         List<Plan> result = session.createQuery("From Plan p where p.mic = ? and p.deleted = 0").setParameter(0, medicalInsurance).list();
         return result;
     }
-    public static List<Plan> allMICPlansMsp(int micId, int mspTypeId,int mspId) {
-        //session.clear();
+
+    public static List<Plan> allMICPlansMsp(int micId, int mspTypeId, int mspId) {
+        //Refresh Session
+        session.clear();
         Mic medicalInsurance = (Mic) session.get(Mic.class, micId);
-//        session.createQuery("SELECT p FROM Planmsp pm WHERE pm.id.msptypeTypeId=? AND pm.id.typeId=?");
-        //=========== get distancate resulte ======
-        List<Plan> result=session.createQuery("FROM Plan p WHERE p.deleted=0 AND p.mic=? AND p.planId not in(SELECT pm.plan.planId FROM Planmsp pm WHERE pm.id.msptypeTypeId=? AND pm.id.typeId=?)")
+        List<Plan> result = session.createQuery("FROM Plan p WHERE p.deleted=0 AND p.mic=? AND p.planId not in(SELECT pm.plan.planId FROM Planmsp pm WHERE pm.id.msptypeTypeId=? AND pm.id.typeId=?)")
                 .setParameter(0, medicalInsurance).setParameter(1, mspTypeId).setParameter(2, mspId)
                 .list();
-//        List<Plan> result = session.createQuery("From Plan p where p.deleted = 0 and p.mic = ?").setParameter(0, medicalInsurance).list();
         return result;
     }
+
     public void editPlan(Plan plan) {
         session.beginTransaction();
         session.update(plan);
@@ -71,12 +71,13 @@ public class PlanDao {
         session.saveOrUpdate(plan);
         session.getTransaction().commit();
     }
+
     public static void main(String[] args) {
         //============= test ========================
-        List<Plan> result=allMICPlansMsp(1, 1, 1);
-        System.out.println("Size: "+result.size());
-        for (Plan result1 : result) {
-            System.out.println(result1.getPlanName()+"\t"+result1.getPlanNameAr());
-        }
+//        List<Plan> result = allMICPlansMsp(1, 1, 1);
+//        System.out.println("Size: " + result.size());
+//        for (Plan result1 : result) {
+//            System.out.println(result1.getPlanName() + "\t" + result1.getPlanNameAr());
+//        }
     }
 }

@@ -209,7 +209,7 @@
                                             <td>
                                                 <c:out value="${msp.getMsptypename()}"/>
                                             </td>
-                                            <td><button type="button" class="btn btn-success" style="float: left" onclick="AddMspToPlan('AddMSPToPlans',${msp.getMsptypeId()},${msp.getMspId()})">Assign To Certain Plans</button></td>
+                                            <td><button type="button" class="btn btn-success" style="float: left" onclick="AddMspToPlan2('AddMSPToPlans',${msp.getMsptypeId()},${msp.getMspId()})">Assign To Certain Plans</button></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

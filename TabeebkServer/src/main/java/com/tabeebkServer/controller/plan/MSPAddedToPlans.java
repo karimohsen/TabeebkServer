@@ -36,8 +36,8 @@ public class MSPAddedToPlans extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String[] MSPPlans = request.getParameterValues("MSPPlans");
-        if (MSPPlans.length > 0 && request.getParameter("msptypeid") != null && request.getParameter("mspid") != null) {
+        if (request.getParameterValues("MSPPlans")!=null && request.getParameter("msptypeid") != null && request.getParameter("mspid") != null) {
+            String[] MSPPlans = request.getParameterValues("MSPPlans");
             int mspTypeId = Integer.parseInt(request.getParameter("msptypeid"));
             int typeId = Integer.parseInt(request.getParameter("mspid"));
 //            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
@@ -55,7 +55,7 @@ public class MSPAddedToPlans extends HttpServlet {
             }
             PlanMspDao.addMspToPlan(planmsps);
 //            System.out.println("herrr: " + planmsps.size()+ "\t" + mspTypeId + "\t" + typeId);
-            response.sendRedirect("MyMsp");
+            response.sendRedirect("MSP/Home.jsp");
         } else {
             response.sendRedirect("Login.jsp");
         }

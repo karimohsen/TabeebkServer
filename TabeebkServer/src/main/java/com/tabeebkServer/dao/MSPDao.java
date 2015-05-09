@@ -201,9 +201,11 @@ public class MSPDao {
     }
 
     //=====================================================
-    public static List<Ratting> viewMspRatting(int mspId) {
+    public static List<Ratting> viewMspRatting(int mspId) {        
         Msp msp = (Msp) session.get(Msp.class, mspId);
         Msptype msptype = msp.getMsptype();
+        //refresh session
+        session.clear();
         Query q = session.createQuery("from Ratting where msptype= :mspt and typeId= :tid")
                 .setParameter("mspt", msptype)
                 .setParameter("tid", msp.getMspId());

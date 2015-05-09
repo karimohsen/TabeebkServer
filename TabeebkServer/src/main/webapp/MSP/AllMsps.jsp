@@ -192,11 +192,12 @@
                                 </li>
                             </ol>
                             <div class="row">
-                                <table id="example" class="display" cellspacing="0" align="center" style="width:60%" onclick="addRowHandlers('ViewRatings')">
+                                <table id="example" class="display" cellspacing="0" align="center" style="width:60%">
                                     <thead>
                                         <tr>
                                             <th>MSP Name</th>
                                             <th>MSP Name</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
 
@@ -209,6 +210,7 @@
                                                 <td>
                                                     <c:out value="${msp.getMsptypename()}"/>
                                                 </td>
+                                                <td><button type="button" class="btn btn-success" onclick="EditPlan('ViewRatings',${msp.getMspId()})">View Ratting</button></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

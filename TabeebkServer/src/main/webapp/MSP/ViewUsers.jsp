@@ -189,23 +189,34 @@
                                 </li>
                             </ol>
                             <div class="row">
-                                <table id="example" class="display" cellspacing="0" align="center" style="width:60%" onclick="addRowHandlers('ViewRatings')">
+                                My Connected Users
+                                <table id="example" class="display" cellspacing="0" align="center" style="width:60%">
                                     <thead>
                                         <tr>
                                             <th>User Name</th>
+                                            <th>Arabic Name</th>
                                             <th>User Email</th>
+                                            <th>User Telephone</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <c:forEach var="user" items="${requestScope.users}">
-                                            <tr id="${user.getUserId()}">
+                                            <tr>
                                                 <td>
                                                     <c:out value="${user.getUserName()}"/>
                                                 </td>
                                                 <td>
+                                                    <c:out value="${user.getUserNameAr()}"/>
+                                                </td>
+                                                <td>
                                                     <c:out value="${user.getUserEmail()}"/>
                                                 </td>
+                                                <td>
+                                                    <c:out value="${user.getUserTelephone()}"/>
+                                                </td>
+                                                <td><button type="button" class="btn btn-success" onclick="EditPlan('ViewUserComments',${user.getUserId()})">View Comments</button></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

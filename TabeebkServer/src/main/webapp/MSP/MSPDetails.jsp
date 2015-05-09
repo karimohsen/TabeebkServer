@@ -199,7 +199,6 @@
                                             <th>MSP Arabic Name</th>
                                             <th>MSP Type</th>
                                             <th>Email</th>
-                                            <th></th>
                                         </tr>
                                     </thead>
 
@@ -217,9 +216,6 @@
                                                 </td>
                                                 <td>
                                                     <c:out value="${msp.getMspEmail()}"/>                                                
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-success" onclick="AddMspToPlan2('MSPDetails',${mspRat.getMsptype().getTypeId()},${mspRat.getTypeId()})">View MSP Details</button>
                                                 </td>
                                             </tr>                                        
                                     </tbody>

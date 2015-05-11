@@ -17,7 +17,9 @@
     <mapping class="com.tabeebkServer.pojo.Planmsp"/>
     <mapping class="com.tabeebkServer.pojo.Mspimage"/>
     <mapping class="com.tabeebkServer.pojo.Gender"/>
+    <mapping class="com.tabeebkServer.pojo.Reservationpayment"/>
     <mapping class="com.tabeebkServer.pojo.Socialnetwork"/>
+    <mapping class="com.tabeebkServer.pojo.DoctorClincId"/>
     <mapping class="com.tabeebkServer.pojo.Speciality"/>
     <mapping class="com.tabeebkServer.pojo.Pharamacy"/>
     <mapping class="com.tabeebkServer.pojo.Telephone"/>
@@ -30,6 +32,7 @@
     <mapping class="com.tabeebkServer.pojo.MicuserId"/>
     <mapping class="com.tabeebkServer.pojo.UpdateStatus"/>
     <mapping class="com.tabeebkServer.pojo.City"/>
+    <mapping class="com.tabeebkServer.pojo.DoctorClinc"/>
     <mapping class="com.tabeebkServer.pojo.Labspeciality"/>
     <mapping class="com.tabeebkServer.pojo.User"/>
     <mapping class="com.tabeebkServer.pojo.PlanmspId"/>
@@ -45,5 +48,6 @@
     <mapping class="com.tabeebkServer.pojo.Branche"/>
     <mapping class="com.tabeebkServer.pojo.Area"/>
     <mapping class="com.tabeebkServer.pojo.Msptype"/>
+    <mapping class="com.tabeebkServer.pojo.Reservationstatus"/>
   </session-factory>
 </hibernate-configuration>

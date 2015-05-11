@@ -139,6 +139,22 @@
         <servlet-name>AdminAddHospital</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.AdminAddHospital</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AllHospitalSpecialities</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AllHospitalSpecialities</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllLabHospitalsAndSpecialities</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AllLabHospitalsAndSpecialities</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddLab</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AdminAddLab</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddHospitalBranch</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AddHospitalBranch</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -274,6 +290,22 @@
     <servlet-mapping>
         <servlet-name>AdminAddHospital</servlet-name>
         <url-pattern>/AdminAddHospital</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllHospitalSpecialities</servlet-name>
+        <url-pattern>/AllHospitalSpecialities</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllLabHospitalsAndSpecialities</servlet-name>
+        <url-pattern>/AllLabHospitalsAndSpecialities</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddLab</servlet-name>
+        <url-pattern>/AdminAddLab</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddHospitalBranch</servlet-name>
+        <url-pattern>/AddHospitalBranch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

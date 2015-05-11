@@ -168,7 +168,7 @@
                                     <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp">Add Clinic</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addLab.jsp">Add Lab</a>
+                                    <a href="${pageContext.request.contextPath}/AllLabHospitalsAndSpecialities">Add Lab</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addHospital.jsp">Add Hospital</a>
@@ -209,7 +209,7 @@
                         <div class="col-lg-12">
                             <h1 class="page-header">
                                 Add Lab
-                                
+
                             </h1>
                             <ol class="breadcrumb">
                                 <li>
@@ -222,7 +222,58 @@
                         </div>
                     </div>
                     <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form action="${pageContext.request.contextPath}/AdminAddLab" method="post" enctype="multipart/form-data">
+                                <table>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Lab Name</label></p></td>
 
+                                        <td>
+                                            <input id="name" name="name" required="true" tabindex="1" type="text"/>                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="namear">Lab Name Arabic</label></p></td>
+
+                                        <td>
+                                            <input id="namear" name="namear"  required="true" tabindex="2" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Select a image to upload</label></p></td>
+
+                                        <td>
+                                            <input type="file" name="file" accept="image/x-png, image/gif, image/jpeg, image/jpg" tabindex="3"/>                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><p class="contact"><label for="hospitals">Hospital :</label></p></td>
+                                    </tr>
+                                    <c:forEach var="hospital" items="${requestScope.allHospitals}">
+                                        <tr>
+                                            <td colspan="2"><input TYPE="radio" name="hospitals" VALUE="${hospital.getHospitalId()}" required="true"><c:out value="${hospital.getHospitalName()}"/>/<c:out value="${hospital.getHospitalNameAr()}"/></td>
+                                        </tr>
+                                    </c:forEach>
+                                    <tr>
+                                        <td colspan="2"><p class="contact"><label for="specialities">Lab Specialities :</label></p></td>
+                                    </tr>
+                                    <c:forEach var="speciality" items="${requestScope.allLabSpecialities}">
+                                        <tr>
+                                            <td colspan="2"><input TYPE="checkbox" name="specialities" VALUE="${speciality.getId()}"><c:out value="${speciality.getSpecialityName()}"/>/<c:out value="${speciality.getSpecialityNamear()}"/></td>
+                                        </tr>
+                                    </c:forEach>
+                                    <tr>
+                                        <td style="padding: 10px;" align="right" colspan="2" >
+                                            <input class="btn btn-primary" name="submit" id="submit" tabindex="4" value="Create" type="submit"> 	 
+                                            <input class="btn btn-warning" id="cancel_button" tabindex="5" value="reset" type="reset">
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -230,14 +281,14 @@
             <!-- /#page-wrapper -->
 
         </div>
-            <!-- /#page-wrapper -->
+        <!-- /#page-wrapper -->
 
-        </div>
-        <!-- /#wrapper -->
+    </div>
+    <!-- /#wrapper -->
 
-        <!-- jQuery -->
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-    </body>
+</body>
 
 </html>

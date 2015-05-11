@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 4, 2015 5:20:04 PM by Hibernate Tools 3.6.0
+// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -11,9 +11,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -35,7 +34,7 @@ public class Doctor  implements java.io.Serializable {
      private Integer genderId;
      private String doctorImagepath;
      private int deleted;
-     private Set<Clinic> clinics = new HashSet<Clinic>(0);
+     private Set<DoctorClinc> doctorClincs = new HashSet<DoctorClinc>(0);
 
     public Doctor() {
     }
@@ -44,7 +43,7 @@ public class Doctor  implements java.io.Serializable {
     public Doctor(int deleted) {
         this.deleted = deleted;
     }
-    public Doctor(Doctorspeciality doctorspeciality, String doctorName, String doctorNameAr, String doctorDegree, String doctorDegreeAr, Integer genderId, String doctorImagepath, int deleted, Set<Clinic> clinics) {
+    public Doctor(Doctorspeciality doctorspeciality, String doctorName, String doctorNameAr, String doctorDegree, String doctorDegreeAr, Integer genderId, String doctorImagepath, int deleted, Set<DoctorClinc> doctorClincs) {
        this.doctorspeciality = doctorspeciality;
        this.doctorName = doctorName;
        this.doctorNameAr = doctorNameAr;
@@ -53,7 +52,7 @@ public class Doctor  implements java.io.Serializable {
        this.genderId = genderId;
        this.doctorImagepath = doctorImagepath;
        this.deleted = deleted;
-       this.clinics = clinics;
+       this.doctorClincs = doctorClincs;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -148,16 +147,13 @@ public class Doctor  implements java.io.Serializable {
         this.deleted = deleted;
     }
 
-@ManyToMany(fetch=FetchType.LAZY)
-    @JoinTable(name="doctor_clinc", catalog="graduationprojecttabeebakdb", joinColumns = { 
-        @JoinColumn(name="doctor_id", nullable=false, updatable=false) }, inverseJoinColumns = { 
-        @JoinColumn(name="clinc_id", nullable=false, updatable=false) })
-    public Set<Clinic> getClinics() {
-        return this.clinics;
+@OneToMany(fetch=FetchType.LAZY, mappedBy="doctor")
+    public Set<DoctorClinc> getDoctorClincs() {
+        return this.doctorClincs;
     }
     
-    public void setClinics(Set<Clinic> clinics) {
-        this.clinics = clinics;
+    public void setDoctorClincs(Set<DoctorClinc> doctorClincs) {
+        this.doctorClincs = doctorClincs;
     }
 
 

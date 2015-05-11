@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 4, 2015 5:20:04 PM by Hibernate Tools 3.6.0
+// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -27,28 +27,28 @@ public class Schedule  implements java.io.Serializable {
 
      private Integer scheduleId;
      private Msptype msptype;
-     private String scheduleDay;
-     private String scheduleDayAr;
-     private Date scheduleFrom;
-     private Date scheduleTo;
-     private Integer typeId;
+     private Integer msptypeId;
+     private Date date;
+     private Date startTime;
+     private Date endTime;
+     private Integer serveTime;
+     private Integer maxPatients;
+     private Double fees;
+     private Double deduct;
 
     public Schedule() {
     }
 
-	
-    public Schedule(String scheduleDay, Date scheduleFrom, Date scheduleTo) {
-        this.scheduleDay = scheduleDay;
-        this.scheduleFrom = scheduleFrom;
-        this.scheduleTo = scheduleTo;
-    }
-    public Schedule(Msptype msptype, String scheduleDay, String scheduleDayAr, Date scheduleFrom, Date scheduleTo, Integer typeId) {
+    public Schedule(Msptype msptype, Integer msptypeId, Date date, Date startTime, Date endTime, Integer serveTime, Integer maxPatients, Double fees, Double deduct) {
        this.msptype = msptype;
-       this.scheduleDay = scheduleDay;
-       this.scheduleDayAr = scheduleDayAr;
-       this.scheduleFrom = scheduleFrom;
-       this.scheduleTo = scheduleTo;
-       this.typeId = typeId;
+       this.msptypeId = msptypeId;
+       this.date = date;
+       this.startTime = startTime;
+       this.endTime = endTime;
+       this.serveTime = serveTime;
+       this.maxPatients = maxPatients;
+       this.fees = fees;
+       this.deduct = deduct;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -64,7 +64,7 @@ public class Schedule  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="msptype_type_id")
+    @JoinColumn(name="msptype")
     public Msptype getMsptype() {
         return this.msptype;
     }
@@ -74,53 +74,83 @@ public class Schedule  implements java.io.Serializable {
     }
 
     
-    @Column(name="schedule_day", nullable=false, length=45)
-    public String getScheduleDay() {
-        return this.scheduleDay;
+    @Column(name="msptype_id")
+    public Integer getMsptypeId() {
+        return this.msptypeId;
     }
     
-    public void setScheduleDay(String scheduleDay) {
-        this.scheduleDay = scheduleDay;
+    public void setMsptypeId(Integer msptypeId) {
+        this.msptypeId = msptypeId;
     }
 
-    
-    @Column(name="schedule_day_ar", length=45)
-    public String getScheduleDayAr() {
-        return this.scheduleDayAr;
+    @Temporal(TemporalType.DATE)
+    @Column(name="date", length=10)
+    public Date getDate() {
+        return this.date;
     }
     
-    public void setScheduleDayAr(String scheduleDayAr) {
-        this.scheduleDayAr = scheduleDayAr;
-    }
-
-    @Temporal(TemporalType.TIME)
-    @Column(name="schedule_from", nullable=false, length=8)
-    public Date getScheduleFrom() {
-        return this.scheduleFrom;
-    }
-    
-    public void setScheduleFrom(Date scheduleFrom) {
-        this.scheduleFrom = scheduleFrom;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Temporal(TemporalType.TIME)
-    @Column(name="schedule_to", nullable=false, length=8)
-    public Date getScheduleTo() {
-        return this.scheduleTo;
+    @Column(name="start_time", length=8)
+    public Date getStartTime() {
+        return this.startTime;
     }
     
-    public void setScheduleTo(Date scheduleTo) {
-        this.scheduleTo = scheduleTo;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Temporal(TemporalType.TIME)
+    @Column(name="end_time", length=8)
+    public Date getEndTime() {
+        return this.endTime;
+    }
+    
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     
-    @Column(name="type_id")
-    public Integer getTypeId() {
-        return this.typeId;
+    @Column(name="serve_time")
+    public Integer getServeTime() {
+        return this.serveTime;
     }
     
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
+    public void setServeTime(Integer serveTime) {
+        this.serveTime = serveTime;
+    }
+
+    
+    @Column(name="max_patients")
+    public Integer getMaxPatients() {
+        return this.maxPatients;
+    }
+    
+    public void setMaxPatients(Integer maxPatients) {
+        this.maxPatients = maxPatients;
+    }
+
+    
+    @Column(name="fees", precision=22, scale=0)
+    public Double getFees() {
+        return this.fees;
+    }
+    
+    public void setFees(Double fees) {
+        this.fees = fees;
+    }
+
+    
+    @Column(name="deduct", precision=22, scale=0)
+    public Double getDeduct() {
+        return this.deduct;
+    }
+    
+    public void setDeduct(Double deduct) {
+        this.deduct = deduct;
     }
 
 

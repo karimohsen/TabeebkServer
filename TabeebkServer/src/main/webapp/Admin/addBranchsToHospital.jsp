@@ -35,48 +35,8 @@
         <link href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css" rel="stylesheet"/>
         <script src="${pageContext.request.contextPath}/js/ADS_Script.js"></script>
         <script>
-            var req_aj = null;
-            function checkValues() {
-                oldpw = document.getElementById("oldpwd").value;
-                pw1 = document.getElementById("pwd1").value;
-                pw2 = document.getElementById("pwd2").value;
-                spn = document.getElementById("sp1");
-                spn2 = document.getElementById("sp2");
-                spn0 = document.getElementById("sp0");
-                if (pw1 != pw2) {
-                    spn.innerHTML = "The Two Passwords are not the same";
-                    spn2.innerHTML = "The Two Passwords are not the same";
-                    spno.textContent = "";
-                }
-                else if (oldpw != ${account.getPassword()}) {
-                    spn.textContent = "";
-                    spn.textContent = "";
-                    spn0.innerHTML = "The Old Password is not the same";
-                }
-                else if (pw1 == pw2 && oldpw == ${account.getPassword()}) {
-                    spn.textContent = "";
-                    spn2.textContent = "";
-                    spn0.textContent = "";
-                    =
-                            ajaxfunction(pw1);
-                }
-            }
-            function ajaxfunction(pass) {
-                if (window.XMLHttpRequest)
-                    req_aj = new XMLHttpRequest();
-                else if (window.ActiveXObject)
-                    req_aj = new ActiveXObject("Microsoft.XMLHTTP");
-
-                req_aj.onreadystatechange = handleReqaj;
-
-                req_aj.open("POST", "${pageContext.request.contextPath}/ChangePwdController?intervaltime=" + new Date().getTime(), true);
-                req_aj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                req_aj.send("passwd=" + pass);
-            }
-            function handleReqaj() {
-                if (req_aj.readyState == 4) {
-                    window.location.href = "Home.jsp";
-                }
+            function gotohome() {
+                window.location.href = "${pageContext.request.contextPath}/Admin/Home.jsp";
             }
         </script>
 
@@ -196,10 +156,10 @@
                 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
-                        <li class="active">
+                        <li>
                             <a href="${pageContext.request.contextPath}/Admin/Home.jsp"><i class="fa fa-fw fa-home"></i> Home</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="javascript:;" data-toggle="collapse" data-target="#Msp"><i class="fa fa-fw fa-ambulance"></i> MSP <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="Msp" class="collapse">
                                 <li>
@@ -252,7 +212,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
-                                Profile
+                                Add Hospital
 
                             </h1>
                             <ol class="breadcrumb">
@@ -260,35 +220,107 @@
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/Admin/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-user"></i> Profile
+                                    <i class="fa fa-hospital-o"></i> Add Hospital
                                 </li>
                             </ol>
                         </div>
                     </div>
                     <!-- /.row -->
                     <div class="row">
-                        <div class="col-lg-6">
-                            <h2>Change Password</h2>
-                            <div class="table-responsive">
-                                <form action="JavaScript:checkValues()">
-                                    <table class="table table-hover table-striped">
-                                        <tbody>
-                                            <tr>
-                                                <td><input type="password" placeholder="Write Your Old Password" required="true" style="width: 100%" id="oldpwd"><span id="sp0"/></td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="password" placeholder="Your New Password" required="true" style="width: 100%" id="pwd1"><span id="sp1"/></td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="password" placeholder="Confirm Your Password" required="true" style="width: 100%" id="pwd2"><span id="sp2"/></td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="submit" value="Change Password" class="btn btn-default" style="float: right"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </form>
-                            </div>
+                        <div class="col-lg-12">
+                            <form action="${pageContext.request.contextPath}/AddHospitalBranch" method="post">
+                                <table>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Branch Name</label></p></td>
+
+                                        <td>
+                                            <input id="name" name="name" required="true" tabindex="1" type="text"/>                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Branch Name Arabic</label></p></td>
+
+                                        <td>
+                                            <input id="namear" name="namear"  required="true" tabindex="2" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Branch Address</label></p></td>
+
+                                        <td>
+                                            <input id="namear" name="address"  required="true" tabindex="3" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Branch Address Arabic</label></p></td>
+
+                                        <td>
+                                            <input id="namear" name="addressar"  required="true" tabindex="4" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Longitude</label></p></td>
+
+                                        <td>
+                                            <input id="namear" name="longitude"  required="true" tabindex="5" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Latitude</label></p></td>
+
+                                        <td>
+                                            <input id="namear" name="latitude"  required="true" tabindex="6" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Country :</label></p></td>
+                                        <td>
+                                            <select name="Country">
+                                                <c:forEach var="country" items="${requestScope.allcountries}">
+                                                    <option value="${country.getCountryId()}">${country.getCountryName()}/${country.getCounteryNameAr()}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Area :</label></p></td>
+                                        <td>
+                                            <select name="Area">
+                                                <c:forEach var="area" items="${requestScope.allareas}">
+                                                    <option value="${area.getIdarea()}">${area.getAreaNameEn()}/${area.getAreaNameAr()}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Cities :</label></p></td>
+                                        <td>
+                                            <select name="Cities">
+                                                <c:forEach var="cities" items="${requestScope.allcities}">
+                                                    <option value="${cities.getCityId()}">${cities.getCityName()}/${cities.getCityNameAr()}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="2"><p class="contact"><label for="name">Specialities</label></p></td>
+                                    </tr>
+                                    <c:forEach var="speciality" items="${requestScope.allSpecialities}">
+                                        <tr>
+                                            <td colspan="2"><input TYPE="checkbox" name="specialities" VALUE="${speciality.getDoctorSpecialityId()}"><c:out value="${speciality.getDoctorSpecialityName()}"/>/<c:out value="${speciality.getDoctorSpecialityNameAr()}"/></td>
+                                        </tr>
+                                    </c:forEach>
+                                    <tr>
+                                        <td style="padding: 10px;" align="right" colspan="2" >
+                                            <input class="btn btn-primary" name="submit" id="submit" tabindex="7" value="Create" type="submit">
+                                            <input class="btn btn-danger" name="submit" id="submit" tabindex="8" value="Finish" type="button" onclick="gotohome()">                                            
+                                            <input class="btn btn-warning" id="cancel_button" tabindex="9" value="reset" type="reset">
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </form>
                         </div>
                     </div>
                 </div>

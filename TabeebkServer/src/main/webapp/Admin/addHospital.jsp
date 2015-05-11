@@ -168,7 +168,7 @@
                                     <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp">Add Clinic</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addLab.jsp">Add Lab</a>
+                                    <a href="${pageContext.request.contextPath}/AllLabHospitalsAndSpecialities">Add Lab</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addHospital.jsp">Add Hospital</a>
@@ -209,7 +209,7 @@
                         <div class="col-lg-12">
                             <h1 class="page-header">
                                 Add Hospital
-                                
+
                             </h1>
                             <ol class="breadcrumb">
                                 <li>
@@ -233,6 +233,7 @@
                                             <input id="name" name="name" required="true" tabindex="1" type="text"/>                      
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td><p class="contact"><label for="name">Hospital Name Arabic</label></p></td>
 
@@ -240,6 +241,7 @@
                                             <input id="namear" name="namear"  required="true" tabindex="2" type="text">                      
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td><p class="contact"><label for="name">Select a image to upload</label></p></td>
 
@@ -265,14 +267,14 @@
             <!-- /#page-wrapper -->
 
         </div>
-            <!-- /#page-wrapper -->
+        <!-- /#page-wrapper -->
 
-        </div>
-        <!-- /#wrapper -->
+    </div>
+    <!-- /#wrapper -->
 
-        <!-- jQuery -->
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-    </body>
+</body>
 
 </html>

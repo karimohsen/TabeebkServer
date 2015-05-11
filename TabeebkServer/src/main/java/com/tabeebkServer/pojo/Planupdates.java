@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 4, 2015 5:20:04 PM by Hibernate Tools 3.6.0
+// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.Column;
@@ -54,7 +54,7 @@ public class Planupdates  implements java.io.Serializable {
         this.updateId = updateId;
     }
 
-    @Version
+    
     @Column(name="version")
     public Integer getVersion() {
         return this.version;

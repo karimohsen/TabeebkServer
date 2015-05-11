@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 4, 2015 5:20:04 PM by Hibernate Tools 3.6.0
+// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -10,7 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,7 +28,7 @@ public class Clinic  implements java.io.Serializable {
      private String clinicNameAr;
      private String clinicImagepath;
      private int deleted;
-     private Set<Doctor> doctors = new HashSet<Doctor>(0);
+     private Set<DoctorClinc> doctorClincs = new HashSet<DoctorClinc>(0);
 
     public Clinic() {
     }
@@ -37,12 +37,12 @@ public class Clinic  implements java.io.Serializable {
     public Clinic(int deleted) {
         this.deleted = deleted;
     }
-    public Clinic(String clinicName, String clinicNameAr, String clinicImagepath, int deleted, Set<Doctor> doctors) {
+    public Clinic(String clinicName, String clinicNameAr, String clinicImagepath, int deleted, Set<DoctorClinc> doctorClincs) {
        this.clinicName = clinicName;
        this.clinicNameAr = clinicNameAr;
        this.clinicImagepath = clinicImagepath;
        this.deleted = deleted;
-       this.doctors = doctors;
+       this.doctorClincs = doctorClincs;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -97,13 +97,13 @@ public class Clinic  implements java.io.Serializable {
         this.deleted = deleted;
     }
 
-@ManyToMany(fetch=FetchType.LAZY, mappedBy="clinics")
-    public Set<Doctor> getDoctors() {
-        return this.doctors;
+@OneToMany(fetch=FetchType.LAZY, mappedBy="clinic")
+    public Set<DoctorClinc> getDoctorClincs() {
+        return this.doctorClincs;
     }
     
-    public void setDoctors(Set<Doctor> doctors) {
-        this.doctors = doctors;
+    public void setDoctorClincs(Set<DoctorClinc> doctorClincs) {
+        this.doctorClincs = doctorClincs;
     }
 
 

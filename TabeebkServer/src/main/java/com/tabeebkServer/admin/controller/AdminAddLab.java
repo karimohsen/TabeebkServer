@@ -5,12 +5,13 @@
  */
 package com.tabeebkServer.admin.controller;
 
-import com.tabeebkServer.pojo.Hospital;
+import com.tabeebkServer.dao.LabDao;
+import com.tabeebkServer.pojo.Lab;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  *
  * @author Karim
  */
-public class AdminAddHospital extends HttpServlet {
+public class AdminAddLab extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,13 +40,13 @@ public class AdminAddHospital extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        Hospital h = new Hospital();
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (isMultipart) {
-            
+            ArrayList<Integer> LabSpecialities = new ArrayList<>();
+            int hospital_id = -2;
+            Lab lab = new Lab();
             // Create a factory for disk-based file items
             DiskFileItemFactory factory = new DiskFileItemFactory();
 
@@ -68,38 +69,43 @@ public class AdminAddHospital extends HttpServlet {
                 while (iter.hasNext()) {
                     FileItem item = iter.next();
                     if (item.isFormField()) {
+                        System.out.println("==============================================");
                         if (item.getFieldName().equals("name")) {
-                            h.setHospitalName(item.getString());
+                            lab.setLabName(item.getString());
                         } else if (item.getFieldName().equals("namear")) {
-                            h.setHospitalNameAr(item.getString("UTF-8").trim());
+                            lab.setLabNameAr(item.getString("UTF-8").trim());
+                        } else if (item.getFieldName().equals("specialities")) {
+                            LabSpecialities.add(Integer.parseInt(item.getString()));
+                        } else if (item.getFieldName().equals("hospitals")) {
+                            hospital_id = Integer.parseInt(item.getString());
                         }
                     } else {
                         String Name = item.getName();
                         if (!Name.equals("") && Name != null) {
                             String uploadFolder = System.getProperty("user.home");
                             String fName = new File(item.getName()).getName();
-                            File file = new File(uploadFolder + "\\hospital");
+                            File file = new File(uploadFolder + "\\lab");
                             if (!file.exists()) {
                                 file.mkdir();
                             }
-                            uploadFolder += "\\hospital";
+                            uploadFolder += "\\lab";
                             String filePath = uploadFolder + File.separator + fName;
-                            h.setHospitalImagepath(filePath);
+                            lab.setLabImagepath(filePath);
                             File f = new File(filePath);
                             item.write(f);
                         }
                     }
                 }
-                RequestDispatcher rd = request.getRequestDispatcher("AllHospitalSpecialities");
-                this.getServletConfig().getServletContext().setAttribute("newhospital",h);
-                //request.setAttribute("newhospital",h);
-                rd.forward(request, response);
+                LabDao.addLab(lab, LabSpecialities, hospital_id);
+                response.sendRedirect("Admin/Home.jsp");
             } catch (FileUploadException ex) {
                 ex.printStackTrace();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+            
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 4, 2015 5:20:04 PM by Hibernate Tools 3.6.0
+// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -29,8 +29,8 @@ public class Msptype  implements java.io.Serializable {
      private Set<Speciality> specialities = new HashSet<Speciality>(0);
      private Set<Branche> branches = new HashSet<Branche>(0);
      private Set<Ratting> rattings = new HashSet<Ratting>(0);
-     private Set<Schedule> schedules = new HashSet<Schedule>(0);
      private Set<Planmsp> planmsps = new HashSet<Planmsp>(0);
+     private Set<Schedule> schedules = new HashSet<Schedule>(0);
      private Set<Planupdates> planupdateses = new HashSet<Planupdates>(0);
      private Set<Msprecommendations> msprecommendationses = new HashSet<Msprecommendations>(0);
      private Set<Telephone> telephones = new HashSet<Telephone>(0);
@@ -38,14 +38,14 @@ public class Msptype  implements java.io.Serializable {
     public Msptype() {
     }
 
-    public Msptype(String typeName, Set<Msp> msps, Set<Speciality> specialities, Set<Branche> branches, Set<Ratting> rattings, Set<Schedule> schedules, Set<Planmsp> planmsps, Set<Planupdates> planupdateses, Set<Msprecommendations> msprecommendationses, Set<Telephone> telephones) {
+    public Msptype(String typeName, Set<Msp> msps, Set<Speciality> specialities, Set<Branche> branches, Set<Ratting> rattings, Set<Planmsp> planmsps, Set<Schedule> schedules, Set<Planupdates> planupdateses, Set<Msprecommendations> msprecommendationses, Set<Telephone> telephones) {
        this.typeName = typeName;
        this.msps = msps;
        this.specialities = specialities;
        this.branches = branches;
        this.rattings = rattings;
-       this.schedules = schedules;
        this.planmsps = planmsps;
+       this.schedules = schedules;
        this.planupdateses = planupdateses;
        this.msprecommendationses = msprecommendationses;
        this.telephones = telephones;
@@ -110,21 +110,21 @@ public class Msptype  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="msptype")
-    public Set<Schedule> getSchedules() {
-        return this.schedules;
-    }
-    
-    public void setSchedules(Set<Schedule> schedules) {
-        this.schedules = schedules;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="msptype")
     public Set<Planmsp> getPlanmsps() {
         return this.planmsps;
     }
     
     public void setPlanmsps(Set<Planmsp> planmsps) {
         this.planmsps = planmsps;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="msptype")
+    public Set<Schedule> getSchedules() {
+        return this.schedules;
+    }
+    
+    public void setSchedules(Set<Schedule> schedules) {
+        this.schedules = schedules;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="msp")

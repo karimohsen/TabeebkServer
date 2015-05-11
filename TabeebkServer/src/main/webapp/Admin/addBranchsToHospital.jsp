@@ -172,7 +172,7 @@
                                     <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp">Add Clinic</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/AllLabHospitalsAndSpecialities">Add Lab</a>
+                                    <a href="${pageContext.request.contextPath}/Admin/addLab.jsp">Add Lab</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addHospital.jsp">Add Hospital</a>
@@ -212,7 +212,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
-                                Add Hospital
+                                Add Hospital Branch
 
                             </h1>
                             <ol class="breadcrumb">
@@ -220,7 +220,7 @@
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/Admin/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-hospital-o"></i> Add Hospital
+                                    <i class="fa fa-hospital-o"></i> Add Hospital Branch
                                 </li>
                             </ol>
                         </div>

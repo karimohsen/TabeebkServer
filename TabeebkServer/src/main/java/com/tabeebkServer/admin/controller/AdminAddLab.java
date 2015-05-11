@@ -5,13 +5,13 @@
  */
 package com.tabeebkServer.admin.controller;
 
-import com.tabeebkServer.dao.LabDao;
 import com.tabeebkServer.pojo.Lab;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -74,11 +74,7 @@ public class AdminAddLab extends HttpServlet {
                             lab.setLabName(item.getString());
                         } else if (item.getFieldName().equals("namear")) {
                             lab.setLabNameAr(item.getString("UTF-8").trim());
-                        } else if (item.getFieldName().equals("specialities")) {
-                            LabSpecialities.add(Integer.parseInt(item.getString()));
-                        } else if (item.getFieldName().equals("hospitals")) {
-                            hospital_id = Integer.parseInt(item.getString());
-                        }
+                        } 
                     } else {
                         String Name = item.getName();
                         if (!Name.equals("") && Name != null) {
@@ -96,7 +92,8 @@ public class AdminAddLab extends HttpServlet {
                         }
                     }
                 }
-                LabDao.addLab(lab, LabSpecialities, hospital_id);
+                RequestDispatcher rd = request.getRequestDispatcher("AllLabHospitalsAndSpecialities");
+                this.getServletConfig().getServletContext().setAttribute("newlab",lab);
                 response.sendRedirect("Admin/Home.jsp");
             } catch (FileUploadException ex) {
                 ex.printStackTrace();

@@ -155,6 +155,10 @@
         <servlet-name>AddHospitalBranch</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.AddHospitalBranch</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddLabBranch</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AddLabBranch</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -306,6 +310,10 @@
     <servlet-mapping>
         <servlet-name>AddHospitalBranch</servlet-name>
         <url-pattern>/AddHospitalBranch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddLabBranch</servlet-name>
+        <url-pattern>/AddLabBranch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

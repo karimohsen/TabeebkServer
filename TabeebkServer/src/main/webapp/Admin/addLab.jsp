@@ -168,7 +168,7 @@
                                     <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp">Add Clinic</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/AllLabHospitalsAndSpecialities">Add Lab</a>
+                                    <a href="${pageContext.request.contextPath}/Admin/addLab.jsp">Add Lab</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addHospital.jsp">Add Hospital</a>
@@ -224,7 +224,7 @@
                     <!-- /.row -->
                     <div class="row">
                         <div class="col-lg-12">
-                            <form action="${pageContext.request.contextPath}/AdminAddLab" method="post" enctype="multipart/form-data">
+                            <form action="${pageContext.request.contextPath}/AllLabHospitalsAndSpecialities" method="post" enctype="multipart/form-data">
                                 <table>
                                     <tr>
                                         <td><p class="contact"><label for="name">Lab Name</label></p></td>
@@ -247,22 +247,6 @@
                                             <input type="file" name="file" accept="image/x-png, image/gif, image/jpeg, image/jpg" tabindex="3"/>                                            
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="2"><p class="contact"><label for="hospitals">Hospital :</label></p></td>
-                                    </tr>
-                                    <c:forEach var="hospital" items="${requestScope.allHospitals}">
-                                        <tr>
-                                            <td colspan="2"><input TYPE="radio" name="hospitals" VALUE="${hospital.getHospitalId()}" required="true"><c:out value="${hospital.getHospitalName()}"/>/<c:out value="${hospital.getHospitalNameAr()}"/></td>
-                                        </tr>
-                                    </c:forEach>
-                                    <tr>
-                                        <td colspan="2"><p class="contact"><label for="specialities">Lab Specialities :</label></p></td>
-                                    </tr>
-                                    <c:forEach var="speciality" items="${requestScope.allLabSpecialities}">
-                                        <tr>
-                                            <td colspan="2"><input TYPE="checkbox" name="specialities" VALUE="${speciality.getId()}"><c:out value="${speciality.getSpecialityName()}"/>/<c:out value="${speciality.getSpecialityNamear()}"/></td>
-                                        </tr>
-                                    </c:forEach>
                                     <tr>
                                         <td style="padding: 10px;" align="right" colspan="2" >
                                             <input class="btn btn-primary" name="submit" id="submit" tabindex="4" value="Create" type="submit"> 	 

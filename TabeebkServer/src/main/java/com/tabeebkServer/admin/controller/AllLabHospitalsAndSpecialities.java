@@ -5,8 +5,14 @@
  */
 package com.tabeebkServer.admin.controller;
 
+import com.tabeebkServer.dao.AreaDao;
+import com.tabeebkServer.dao.CityDao;
+import com.tabeebkServer.dao.CountryDao;
 import com.tabeebkServer.dao.HospitalDao;
 import com.tabeebkServer.dao.LabDao;
+import com.tabeebkServer.pojo.Area;
+import com.tabeebkServer.pojo.City;
+import com.tabeebkServer.pojo.Country;
 import com.tabeebkServer.pojo.Hospital;
 import com.tabeebkServer.pojo.Labspecialities;
 import java.io.IOException;
@@ -36,10 +42,16 @@ public class AllLabHospitalsAndSpecialities extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher rd = request.getRequestDispatcher("Admin/addLab.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("Admin/addBranchsToLab.jsp");
         System.out.println("==in add lab===");
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {
+            ArrayList<City> city = CityDao.getAllCities();
+            request.setAttribute("allcities", city);
+            ArrayList<Area> area =AreaDao.getAllAreas();
+            request.setAttribute("allareas", area);
+            ArrayList<Country> country =CountryDao.getAllCountries();
+            request.setAttribute("allcountries", country);
             ArrayList<Labspecialities> list = new ArrayList<>();
             list = LabDao.getLabSpecialities();
             request.setAttribute("allLabSpecialities", list);

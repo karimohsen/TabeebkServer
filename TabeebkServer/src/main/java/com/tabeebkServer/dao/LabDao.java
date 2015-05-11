@@ -27,8 +27,17 @@ public class LabDao {
         ArrayList<Labspecialities> list = (ArrayList<Labspecialities>) session.createQuery("From Labspecialities").list();
         return list;
     }
-
-    public static void addLab(Lab lab, ArrayList<Integer> specialitiesList, int hospital_id){
+    
+    public static int addLab(Lab lab){
+        if (!session.getTransaction().isActive()) {
+            session.beginTransaction();
+        }
+        session.save(lab);
+        session.getTransaction().commit();
+        return lab.getLabId();
+    }
+    
+    public static void addLabToSpeciality(Lab lab, ArrayList<Integer> specialitiesList, int hospital_id){
         if (hospital_id != -2) {
             lab.setHospital((Hospital) session.get(Hospital.class, hospital_id));
         }

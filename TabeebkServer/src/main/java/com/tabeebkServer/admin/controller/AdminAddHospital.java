@@ -92,7 +92,6 @@ public class AdminAddHospital extends HttpServlet {
                 }
                 RequestDispatcher rd = request.getRequestDispatcher("AllHospitalSpecialities");
                 this.getServletConfig().getServletContext().setAttribute("newhospital",h);
-                //request.setAttribute("newhospital",h);
                 rd.forward(request, response);
             } catch (FileUploadException ex) {
                 ex.printStackTrace();

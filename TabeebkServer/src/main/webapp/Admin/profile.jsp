@@ -212,7 +212,7 @@
                                     <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp">Add Clinic</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/AllLabHospitalsAndSpecialities">Add Lab</a>
+                                    <a href="${pageContext.request.contextPath}/Admin/addLab.jsp">Add Lab</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addHospital.jsp">Add Hospital</a>

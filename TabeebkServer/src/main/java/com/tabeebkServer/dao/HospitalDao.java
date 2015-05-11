@@ -23,7 +23,7 @@ public class HospitalDao {
     static Session session = fact.openSession();
 
     public static ArrayList<Hospital> getAllHospitals(){
-        ArrayList<Hospital> list = (ArrayList<Hospital>)session.createQuery("From Hospital").list();
+        ArrayList<Hospital> list = (ArrayList<Hospital>)session.createQuery("From Hospital h where h.deleted = 0").list();
         return list;
     }
     
@@ -36,7 +36,7 @@ public class HospitalDao {
         return h.getHospitalId();
     }
     
-    public static void addHospitalBranch(int id, ArrayList<Integer> specialityList) {
+    public static void addHospitalSpeciality(int id, ArrayList<Integer> specialityList) {
         Hospital h = (Hospital)session.get(Hospital.class, id);
         if (!specialityList.isEmpty()) {
             for (int i = 0; i < specialityList.size(); i++) {

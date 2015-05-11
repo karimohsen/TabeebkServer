@@ -138,6 +138,8 @@ public class PlanMspDao {
             session.saveOrUpdate(obj);
             session.getTransaction().commit();
         }
+        session.flush();
+        session.clear();
     }
 
     //not used

@@ -18,6 +18,7 @@ import com.tabeebkServer.pojo.Lab;
 import com.tabeebkServer.pojo.Msp;
 import com.tabeebkServer.pojo.Msptype;
 import com.tabeebkServer.pojo.Ratting;
+import com.tabeebkServer.pojo.User;
 import com.tabeebkServer.utilty.GenericMSP;
 
 /**
@@ -204,11 +205,94 @@ public class MSPDao {
     public static List<Ratting> viewMspRatting(int mspId) {
         Msp msp = (Msp) session.get(Msp.class, mspId);
         Msptype msptype = msp.getMsptype();
+        //refresh session
+        session.clear();
         Query q = session.createQuery("from Ratting where msptype= :mspt and typeId= :tid")
                 .setParameter("mspt", msptype)
                 .setParameter("tid", msp.getMspId());
         List<Ratting> result = q.list();
         return result;
+    }
+
+    //=====================================================
+    public static List<Ratting> viewUserMspRatting(int userId) {
+        User user = (User) session.get(User.class, userId);
+        //refresh session
+        session.clear();
+        Query q = session.createQuery("from Ratting where user=? ")
+                .setParameter(0, user);
+        List<Ratting> result = q.list();
+        return result;
+    }
+
+    //================= get MSP's Details ======================================
+    public static GenericMSP getMSPDetails(int msptypeid, int mspid) {
+        Msptype msptype = (Msptype) session.get(Msptype.class, msptypeid);
+        //refresh session
+        session.clear();
+        //Generic result
+        GenericMSP gmsp = new GenericMSP();
+        Query q = session.createQuery("from Msp m where msptype=? and typeId=?")
+                .setParameter(0, msptype)
+                .setParameter(1, mspid);
+        List<Msp> result = q.list();
+        for (Msp m : result) {
+            Hospital h = new Hospital();
+            Clinic c = new Clinic();
+            Doctor d = new Doctor();
+            Lab l = new Lab();
+            switch (m.getMsptype().getTypeId()) {
+                case 1:
+                    h = (Hospital) session.get(Hospital.class, m.getTypeId());
+                    if (h.getDeleted() == 0) {
+                        gmsp.setMspId(m.getTypeId());
+                        gmsp.setMspname(h.getHospitalName());
+                        gmsp.setMspnamear(h.getHospitalNameAr());
+                        //Email
+                        gmsp.setMspEmail(h.getHospitalName());
+                        gmsp.setMsptypeId(m.getMsptype().getTypeId());
+                        gmsp.setMsptypename(m.getMsptype().getTypeName());
+                    }
+                    break;
+                case 2:
+                    c = (Clinic) session.get(Clinic.class, m.getTypeId());
+                    if (c.getDeleted() == 0) {
+                        gmsp.setMspId(m.getTypeId());
+                        gmsp.setMspname(c.getClinicName());
+                        gmsp.setMspnamear(h.getHospitalNameAr());
+                        //Email
+                        gmsp.setMspEmail(h.getHospitalName());
+                        gmsp.setMsptypeId(m.getMsptype().getTypeId());
+                        gmsp.setMsptypename(m.getMsptype().getTypeName());
+                    }
+                    break;
+                case 3:
+                    d = (Doctor) session.get(Doctor.class, m.getTypeId());
+                    if (d.getDeleted() == 0) {
+                        gmsp.setMspId(m.getTypeId());
+                        gmsp.setMspname(d.getDoctorName());
+                        gmsp.setMspnamear(d.getDoctorNameAr());
+                        //Email
+                        gmsp.setMspEmail(d.getDoctorName());
+                        gmsp.setMsptypeId(m.getMsptype().getTypeId());
+                        gmsp.setMsptypename(m.getMsptype().getTypeName());
+                    }
+                    break;
+                case 4:
+                    l = (Lab) session.get(Lab.class, m.getTypeId());
+                    if (l.getDeleted() == 0) {
+                        gmsp.setMspId(m.getTypeId());
+                        gmsp.setMspname(l.getLabName());
+                        gmsp.setMspnamear(l.getLabNameAr());
+                        //Email
+                        gmsp.setMspEmail(l.getLabName());
+                        gmsp.setMsptypeId(m.getMsptype().getTypeId());
+                        gmsp.setMsptypename(m.getMsptype().getTypeName());
+                    }
+                    break;
+            }
+        }
+        return gmsp;
     }
 
     public static void main(String[] args) {

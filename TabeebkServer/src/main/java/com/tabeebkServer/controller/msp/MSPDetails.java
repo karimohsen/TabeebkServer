@@ -3,25 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tabeebkServer.controller.plan;
+package com.tabeebkServer.controller.msp;
 
-import com.tabeebkServer.dao.planmsp.PlanMspDao;
-import com.tabeebkServer.pojo.Planmsp;
-import com.tabeebkServer.pojo.PlanmspId;
+import com.tabeebkServer.dao.MSPDao;
+import com.tabeebkServer.dao.plan.PlanDao;
+import com.tabeebkServer.pojo.Plan;
+import com.tabeebkServer.utilty.GenericMSP;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HMA
  */
-public class MSPAddedToPlans extends HttpServlet {
+public class MSPDetails extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,30 +37,21 @@ public class MSPAddedToPlans extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (request.getParameterValues("MSPPlans")!=null && request.getParameter("msptypeid") != null && request.getParameter("mspid") != null) {
-            String[] MSPPlans = request.getParameterValues("MSPPlans");
-            int mspTypeId = Integer.parseInt(request.getParameter("msptypeid"));
-            int typeId = Integer.parseInt(request.getParameter("mspid"));
-//            System.out.println("herrr: " + planId + "\t" + mspTypeId + "\t" + typeId);
-            List<Planmsp> planmsps = new ArrayList<>();
-            for (String MSPPlan : MSPPlans) {
-                int planId = Integer.parseInt(MSPPlan);
-                Planmsp planmsp = new Planmsp();
-                PlanmspId planmspId = new PlanmspId();
-                planmspId.setPlanId(planId);
-                planmspId.setTypeId(typeId);
-                planmspId.setMsptypeTypeId(mspTypeId);
-                planmsp.setId(planmspId);
-                planmsp.setDeleted(0);
-                planmsps.add(planmsp);
-            }
-            PlanMspDao.addMspToPlan(planmsps);
-//            System.out.println("herrr: " + planmsps.size()+ "\t" + mspTypeId + "\t" + typeId);
-            response.sendRedirect("MSP/Home.jsp");
+       HttpSession session = request.getSession(false);        
+        if (session.getAttribute("Accountid") != null) {
+            // get from session
+            int micId = (Integer) session.getAttribute("Accountid");
+            //get from request
+            int msptypeid=Integer.parseInt(request.getParameter("msptypeid"));
+            int mspid=Integer.parseInt(request.getParameter("mspid"));
+            GenericMSP mspDetails = MSPDao.getMSPDetails(msptypeid, mspid);
+            request.setAttribute("mspDetails", mspDetails);
+            RequestDispatcher rd = request.getRequestDispatcher("/MSP/MSPDetails.jsp");
+            rd.forward(request, response);
         } else {
             response.sendRedirect("Login.jsp");
         }
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

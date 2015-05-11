@@ -14,6 +14,8 @@ public class GenericMSP {
     private String msptypename;
     private int mspId;
     private String mspname;
+    private String mspnamear;
+    private String mspEmail;
     private int deleted;
     
     public int getMsptypeId() {
@@ -48,6 +50,22 @@ public class GenericMSP {
         this.mspname = mspname;
     }
 
+    public String getMspnamear() {
+        return mspnamear;
+    }
+
+    public void setMspnamear(String mspnamear) {
+        this.mspnamear = mspnamear;
+    }
+
+    public String getMspEmail() {
+        return mspEmail;
+    }
+
+    public void setMspEmail(String mspEmail) {
+        this.mspEmail = mspEmail;
+    }
+    
     public int getDeleted() {
         return deleted;
     }

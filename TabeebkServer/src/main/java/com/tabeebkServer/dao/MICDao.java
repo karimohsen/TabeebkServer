@@ -32,6 +32,8 @@ public class MICDao {
     static Session session = fact.openSession();
 
     public static List<GenericMSP> viewMyMSPs(int micId) {
+        //refresh session
+        session.clear();
         //Generic result
         List<GenericMSP> finalResult = new ArrayList<GenericMSP>();
         //refresh session
@@ -93,6 +95,8 @@ public class MICDao {
     }
 
     public static List<GenericMSP> viewOtherMSPs(int micId) {
+        //refresh session
+        session.clear();
         //Generic result
         List<GenericMSP> finalResult = new ArrayList<GenericMSP>();
         Mic myMic = (Mic) session.get(Mic.class, micId);
@@ -153,12 +157,15 @@ public class MICDao {
 
     public static List<User> viewMyUsers(int micId) {
         Mic mic = (Mic) session.get(Mic.class, micId);
+        //fresh session
+        session.clear();
         Query q = session.createQuery("from Micuser where mic = :micUser")
                 .setParameter("micUser", mic);
         List<Micuser> micusers = q.list();
         List<User> result = new ArrayList<User>();
         for (Micuser micuser : micusers) {
-            result.add(micuser.getUser());
+            if(micuser.getUser().getBlocked()==0)
+                result.add(micuser.getUser());
         }
         return result;
     }

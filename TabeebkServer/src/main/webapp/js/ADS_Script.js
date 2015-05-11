@@ -37,7 +37,7 @@ function AdminMsp(url,id,typeid) {
 function AddMspToPlan(url,planId,mspTypeId,typeId) {
     document.location.href = url+"?planid=" + planId+"&msptypeid="+mspTypeId+"&mspid="+typeId;
 }
-function AddMspToPlan(url,mspTypeId,typeId) {
+function AddMspToPlan2(url,mspTypeId,typeId) {
     document.location.href = url+"?msptypeid="+mspTypeId+"&mspid="+typeId;
 }
 //function RemovePlan(url,planid,mspid) {

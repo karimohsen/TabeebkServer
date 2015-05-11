@@ -1,6 +1,6 @@
 <%@page import="java.util.Enumeration"%>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>     
 <%@page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +34,7 @@
         <script src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
         <link href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css" rel="stylesheet"/>
         <script src="${pageContext.request.contextPath}/js/ADS_Script.js"></script>
+
     </head>
 
     <body>
@@ -162,7 +163,7 @@
                                     <a href="${pageContext.request.contextPath}/AllMsps">All Medical Service Providers</a>
                                 </li>
                                 <li>
-                                    <a href="#">My Medical Service Providers</a>
+                                    <a href="${pageContext.request.contextPath}/MyMsp">My Medical Service Providers</a>
                                 </li>
                             </ul>
                         </li>
@@ -179,7 +180,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
-                                My Msps
+                                View Medical Service Provider's Details
 
                             </h1>
                             <ol class="breadcrumb">
@@ -187,36 +188,39 @@
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/MSP/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-medkit"></i> My Msps
+                                    <i class="fa fa-medkit"></i> <a href="${pageContext.request.contextPath}/MSP/Home.jsp">Other MSP</a>
                                 </li>
                             </ol>
-                            <div class="row">Double click to view Ratting
+                            <div class="row">
                                 <table id="example" class="display" cellspacing="0" align="center" style="width:60%">
-                                <thead>
-                                    <tr>
-                                        <th>MSP Name</th>
-                                        <th>MSP Name</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <c:forEach var="msp" items="${requestScope.myMSPs}">
-                                        <tr id="${msp.getMspId()}">
-                                            <td>
-                                                <c:out value="${msp.getMspname()}"/>
-                                            </td>
-                                            <td>
-                                                <c:out value="${msp.getMsptypename()}"/>
-                                            </td>
-                                            <td><button type="button" class="btn btn-success" onclick="EditPlan('ViewRatings',${msp.getMspId()})">View Ratting</button></td>
-                                            <td><button type="button" class="btn btn-success" style="float: left" onclick="AddMspToPlan2('AddMSPToPlans',${msp.getMsptypeId()},${msp.getMspId()})">Assign To Certain Plans</button></td>
+                                    <thead>
+                                        <tr>
+                                            <th>MSP Name</th>
+                                            <th>MSP Arabic Name</th>
+                                            <th>MSP Type</th>
+                                            <th>Email</th>
                                         </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                                </div>
+                                    </thead>
+
+                                    <tbody>
+                                        <c:set var="msp" value="${requestScope.mspDetails}"></c:set>
+                                            <tr>
+                                                <td>
+                                                    <c:out value="${msp.getMspname()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${msp.getMspnamear()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${msp.getMsptypename()}"/>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${msp.getMspEmail()}"/>                                                
+                                                </td>
+                                            </tr>                                        
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- /.row -->
@@ -226,9 +230,11 @@
 
             </div>
             <!-- /#page-wrapper -->
-            <!-- Bootstrap Core JavaScript -->
-            <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
         </div>
+        <!-- /#wrapper -->
+        <!-- Bootstrap Core JavaScript -->
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     </body>
 
 </html>

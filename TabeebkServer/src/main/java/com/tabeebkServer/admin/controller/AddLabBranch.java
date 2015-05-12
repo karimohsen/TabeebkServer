@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.tabeebkServer.admin.controller;
 
 import com.tabeebkServer.dao.BranchDao;
 import com.tabeebkServer.dao.LabDao;
 import com.tabeebkServer.pojo.Lab;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,7 +34,7 @@ public class AddLabBranch extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String branchName = request.getParameter("name");
@@ -48,19 +46,20 @@ public class AddLabBranch extends HttpServlet {
         int country = Integer.parseInt(request.getParameter("Country"));
         int area = Integer.parseInt(request.getParameter("Area"));
         int city = Integer.parseInt(request.getParameter("Cities"));
-        int hospitalId=-2;
-        if(request.getParameter("hospitals")!=null)
-         hospitalId = Integer.parseInt(request.getParameter("hospitals"));
+        int hospitalId = -2;
+        if (request.getParameter("hospitals") != null) {
+            hospitalId = Integer.parseInt(request.getParameter("hospitals"));
+        }
         String[] specialities = request.getParameterValues("specialities");
-        ArrayList<Integer>allSpecialities= new ArrayList<>();
-        Lab l = (Lab)this.getServletConfig().getServletContext().getAttribute("newlab");
+        ArrayList<Integer> allSpecialities = new ArrayList<>();
+        Lab l = (Lab) this.getServletConfig().getServletContext().getAttribute("newlab");
         int labId = LabDao.addLab(l);
-        System.out.println("hospital => "+hospitalId);
-        for(int i = 0 ; i < specialities.length ; i++){
+        System.out.println("hospital => " + hospitalId);
+        for (int i = 0; i < specialities.length; i++) {
             allSpecialities.add(Integer.parseInt(specialities[i]));
         }
         LabDao.addLabToSpeciality(l, allSpecialities, hospitalId);
-        BranchDao.addBranch(area, address, addressAr, latitude, longitude, branchName, branchNameAr,4,labId, country, city);
+        BranchDao.addBranch(area, address, addressAr, latitude, longitude, branchName, branchNameAr, 4, labId, country, city);
         RequestDispatcher rd = request.getRequestDispatcher("AllLabHospitalsAndSpecialities");
         rd.forward(request, response);
     }

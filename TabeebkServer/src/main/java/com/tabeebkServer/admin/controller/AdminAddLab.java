@@ -44,8 +44,7 @@ public class AdminAddLab extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (isMultipart) {
-            ArrayList<Integer> LabSpecialities = new ArrayList<>();
-            int hospital_id = -2;
+            
             Lab lab = new Lab();
             // Create a factory for disk-based file items
             DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -94,7 +93,7 @@ public class AdminAddLab extends HttpServlet {
                 }
                 RequestDispatcher rd = request.getRequestDispatcher("AllLabHospitalsAndSpecialities");
                 this.getServletConfig().getServletContext().setAttribute("newlab",lab);
-                response.sendRedirect("Admin/Home.jsp");
+                rd.forward(request, response);
             } catch (FileUploadException ex) {
                 ex.printStackTrace();
             } catch (Exception ex) {

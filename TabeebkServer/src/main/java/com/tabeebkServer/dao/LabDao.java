@@ -29,6 +29,7 @@ public class LabDao {
     }
     
     public static int addLab(Lab lab){
+        session.clear();
         if (!session.getTransaction().isActive()) {
             session.beginTransaction();
         }

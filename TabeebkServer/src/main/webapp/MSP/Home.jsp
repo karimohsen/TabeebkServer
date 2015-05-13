@@ -17,7 +17,6 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-
         <!-- Custom CSS -->
         <link href="${pageContext.request.contextPath}/css/sb-admin.css" rel="stylesheet">
 

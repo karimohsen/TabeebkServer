@@ -17,6 +17,7 @@ import com.tabeebkServer.pojo.Hospital;
 import com.tabeebkServer.pojo.Lab;
 import com.tabeebkServer.pojo.Msp;
 import com.tabeebkServer.pojo.Msptype;
+import com.tabeebkServer.pojo.Pharamacy;
 import com.tabeebkServer.pojo.Ratting;
 import com.tabeebkServer.pojo.User;
 import com.tabeebkServer.utilty.GenericMSP;
@@ -31,6 +32,20 @@ public class MSPDao {
     static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
     static Session session = fact.openSession();
 
+    //=====================Admin Add msp====================================
+    public static void addMsp(int msptype, int typeid) {
+        Msp msp = new Msp();
+        msp.setDeleted(0);
+        msp.setMsptype((Msptype) session.get(Msptype.class, msptype));
+        msp.setTypeId(typeid);
+        if (!session.getTransaction().isActive()) {
+            session.beginTransaction();
+        }
+        session.save(msp);
+        session.getTransaction().commit();
+
+    }
+
     //=====================Admin get all MSPS==============================
     public static List<GenericMSP> viewAllMSPs() {
         session.clear();
@@ -42,6 +57,7 @@ public class MSPDao {
             Clinic c = new Clinic();
             Doctor d = new Doctor();
             Lab l = new Lab();
+            Pharamacy p = new Pharamacy();
             GenericMSP gmsp = new GenericMSP();
             switch (m.getMsptype().getTypeId()) {
                 case 1:
@@ -78,6 +94,15 @@ public class MSPDao {
                     gmsp.setMsptypeId(m.getMsptype().getTypeId());
                     gmsp.setMsptypename(m.getMsptype().getTypeName());
                     gmsp.setDeleted(l.getDeleted());
+                    finalResult.add(gmsp);
+                    break;
+                case 5:
+                    p = (Pharamacy) session.get(Pharamacy.class, m.getTypeId());
+                    gmsp.setMspId(m.getTypeId());
+                    gmsp.setMspname(p.getPharamacyName());
+                    gmsp.setMsptypeId(m.getMsptype().getTypeId());
+                    gmsp.setMsptypename(m.getMsptype().getTypeName());
+                    gmsp.setDeleted(p.getDeleted());
                     finalResult.add(gmsp);
                     break;
             }
@@ -164,6 +189,10 @@ public class MSPDao {
                 Lab l = (Lab) session.get(Lab.class, typeid);
                 l.setDeleted(1);
                 break;
+            case 5:
+                Pharamacy p = (Pharamacy) session.get(Pharamacy.class, typeid);
+                p.setDeleted(1);
+                break;
         }
         if (!session.getTransaction().isActive()) {
             session.beginTransaction();
@@ -192,6 +221,10 @@ public class MSPDao {
             case 4:
                 Lab l = (Lab) session.get(Lab.class, typeid);
                 l.setDeleted(0);
+                break;
+            case 5:
+                Pharamacy p = (Pharamacy) session.get(Pharamacy.class, typeid);
+                p.setDeleted(0);
                 break;
         }
         if (!session.getTransaction().isActive()) {
@@ -241,6 +274,7 @@ public class MSPDao {
             Clinic c = new Clinic();
             Doctor d = new Doctor();
             Lab l = new Lab();
+            Pharamacy p = new Pharamacy();
             switch (m.getMsptype().getTypeId()) {
                 case 1:
                     h = (Hospital) session.get(Hospital.class, m.getTypeId());
@@ -286,6 +320,18 @@ public class MSPDao {
                         gmsp.setMspnamear(l.getLabNameAr());
                         //Email
                         gmsp.setMspEmail(l.getLabName());
+                        gmsp.setMsptypeId(m.getMsptype().getTypeId());
+                        gmsp.setMsptypename(m.getMsptype().getTypeName());
+                    }
+                    break;
+                case 5:
+                    p = (Pharamacy) session.get(Pharamacy.class, m.getTypeId());
+                    if (p.getDeleted() == 0) {
+                        gmsp.setMspId(m.getTypeId());
+                        gmsp.setMspname(p.getPharamacyName());
+                        gmsp.setMspnamear(p.getPharamacyNameAr());
+                        //Email
+                        gmsp.setMspEmail(p.getPharamacyName());
                         gmsp.setMsptypeId(m.getMsptype().getTypeId());
                         gmsp.setMsptypename(m.getMsptype().getTypeName());
                     }

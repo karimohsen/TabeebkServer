@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.tabeebkServer.admin.controller;
 
 import com.tabeebkServer.dao.BranchDao;
-import com.tabeebkServer.dao.HospitalDao;
 import com.tabeebkServer.dao.MSPDao;
-import com.tabeebkServer.pojo.Hospital;
+import com.tabeebkServer.dao.PharmacyDao;
+import com.tabeebkServer.pojo.Pharamacy;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Karim
  */
-public class AddHospitalBranch extends HttpServlet {
+public class AddPharmacyBranch extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,17 +45,15 @@ public class AddHospitalBranch extends HttpServlet {
         int country = Integer.parseInt(request.getParameter("Country"));
         int area = Integer.parseInt(request.getParameter("Area"));
         int city = Integer.parseInt(request.getParameter("Cities"));
-        String[] specialities = request.getParameterValues("specialities");
-        ArrayList<Integer>allSpecialities= new ArrayList<>();
-        Hospital h = (Hospital)this.getServletConfig().getServletContext().getAttribute("newhospital");
-        int hid = HospitalDao.addHospital(h);
-        MSPDao.addMsp(1, hid);
-        for(int i = 0 ; i < specialities.length ; i++){
-            allSpecialities.add(Integer.parseInt(specialities[i]));
+        int hospitalId = -2;
+        if (request.getParameter("hospitals") != null) {
+            hospitalId = Integer.parseInt(request.getParameter("hospitals"));
         }
-        HospitalDao.addHospitalSpeciality(hid,allSpecialities);
-        BranchDao.addBranch(area, address, addressAr, latitude, longitude, branchName, branchNameAr, 1, hid, country, city);
-        RequestDispatcher rd = request.getRequestDispatcher("AllHospitalSpecialities");
+        Pharamacy p = (Pharamacy) this.getServletConfig().getServletContext().getAttribute("newpharmacy");
+        int pharmacyId = PharmacyDao.addPharmacy(p,hospitalId);
+        MSPDao.addMsp(5, pharmacyId);
+        BranchDao.addBranch(area, address, addressAr, latitude, longitude, branchName, branchNameAr, 5, pharmacyId, country, city);
+        RequestDispatcher rd = request.getRequestDispatcher("PharmacyBranch");
         rd.forward(request, response);
     }
 

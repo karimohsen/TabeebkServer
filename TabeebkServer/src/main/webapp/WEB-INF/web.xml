@@ -175,6 +175,18 @@
         <servlet-name>UpdateMicDetails</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.UpdateMicDetails</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminAddPharmacy</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AdminAddPharmacy</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PharmacyBranch</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.PharmacyBranch</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddPharmacyBranch</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AddPharmacyBranch</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -346,6 +358,18 @@
     <servlet-mapping>
         <servlet-name>UpdateMicDetails</servlet-name>
         <url-pattern>/UpdateMicDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddPharmacy</servlet-name>
+        <url-pattern>/AdminAddPharmacy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PharmacyBranch</servlet-name>
+        <url-pattern>/PharmacyBranch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPharmacyBranch</servlet-name>
+        <url-pattern>/AddPharmacyBranch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>-1</session-timeout>

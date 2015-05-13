@@ -207,6 +207,9 @@
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addHospital.jsp">Add Hospital</a>
                                 </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Admin/addPharmacy.jsp">Add Pharmacy</a>
+                                </li>
                             </ul>
                         </li>
                         <li>

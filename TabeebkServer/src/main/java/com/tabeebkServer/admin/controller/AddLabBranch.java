@@ -7,6 +7,7 @@ package com.tabeebkServer.admin.controller;
 
 import com.tabeebkServer.dao.BranchDao;
 import com.tabeebkServer.dao.LabDao;
+import com.tabeebkServer.dao.MSPDao;
 import com.tabeebkServer.pojo.Lab;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class AddLabBranch extends HttpServlet {
         ArrayList<Integer> allSpecialities = new ArrayList<>();
         Lab l = (Lab) this.getServletConfig().getServletContext().getAttribute("newlab");
         int labId = LabDao.addLab(l);
+        MSPDao.addMsp(4, labId);
         System.out.println("hospital => " + hospitalId);
         for (int i = 0; i < specialities.length; i++) {
             allSpecialities.add(Integer.parseInt(specialities[i]));

@@ -173,6 +173,9 @@
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addHospital.jsp">Add Hospital</a>
                                 </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Admin/addPharmacy.jsp">Add Pharmacy</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -208,7 +211,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
-                                Add MSP
+                                Add Pharmacy
                                 
                             </h1>
                             <ol class="breadcrumb">
@@ -216,13 +219,48 @@
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/Admin/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-ambulance"></i> Add MSP
+                                    <i class="fa fa-hospital-o"></i> Add Pharmacy
                                 </li>
                             </ol>
                         </div>
                     </div>
                     <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form action="${pageContext.request.contextPath}/AdminAddPharmacy" method="post" enctype="multipart/form-data">
+                                <table>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Pharmacy Name</label></p></td>
 
+                                        <td>
+                                            <input id="name" name="name" required="true" tabindex="1" type="text"/>                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="namear">Pharmacy Name Arabic</label></p></td>
+
+                                        <td>
+                                            <input id="namear" name="namear"  required="true" tabindex="2" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Select a image to upload</label></p></td>
+
+                                        <td>
+                                            <input type="file" name="file" accept="image/x-png, image/gif, image/jpeg, image/jpg" tabindex="3"/>                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px;" align="right" colspan="2" >
+                                            <input class="btn btn-primary" name="submit" id="submit" tabindex="4" value="Create" type="submit"> 	 
+                                            <input class="btn btn-warning" id="cancel_button" tabindex="5" value="reset" type="reset">
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 

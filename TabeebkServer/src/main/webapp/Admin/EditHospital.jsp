@@ -155,7 +155,7 @@
                         <li>
                             <a href="${pageContext.request.contextPath}/Admin/Home.jsp"><i class="fa fa-fw fa-home"></i> Home</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="javascript:;" data-toggle="collapse" data-target="#Msp"><i class="fa fa-fw fa-ambulance"></i> MSP <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="Msp" class="collapse">
                                 <li>
@@ -195,7 +195,7 @@
                         <li >
                             <a href="${pageContext.request.contextPath}/MspRecommendations"><i class="fa fa-fw fa-check-square-o"></i>Approve MSP</a>
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="${pageContext.request.contextPath}/AllUsers"><i class="fa fa-fw fa-users"></i>All Users</a>
                         </li>
                     </ul>
@@ -211,60 +211,21 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
-                                ALL Users
-
+                                Add MSP
+                                
                             </h1>
                             <ol class="breadcrumb">
                                 <li>
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/Admin/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-users"></i> ALL Users
+                                    <i class="fa fa-ambulance"></i> Add MSP
                                 </li>
                             </ol>
                         </div>
                     </div>
                     <!-- /.row -->
-                    <div class="row">
-                        <table id="example" class="display" cellspacing="0" align="center" style="width:60%">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Name Arabic</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
 
-                            <tbody>
-                                <c:forEach var="user" items="${requestScope.allUsers}">
-                                    <tr>
-                                        <td>
-                                            <c:out value="${user.getUserName()}"/>
-                                        </td>
-                                        <td>
-                                            <c:out value="${user.getUserNameAr()}"/>
-                                        </td>
-                                        <td>
-                                            <c:choose>
-                                                <c:when test="${user.getBlocked() == 1}">
-
-                                                    <button type="button" class="btn btn-warning" onclick="EditPlan('UnBlockUser',${user.getUserId()})">Un Block</button>
-
-                                                </c:when>
-
-                                                <c:when test="${user.getBlocked() == 0}">
-
-                                                    <button type="button" class="btn btn-danger" onclick="EditPlan('BlockUser',${user.getUserId()})">Block</button>
-
-                                                </c:when>
-                                            </c:choose>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.row -->
                 </div>
                 <!-- /.container-fluid -->
 
@@ -272,14 +233,14 @@
             <!-- /#page-wrapper -->
 
         </div>
-        <!-- /#page-wrapper -->
+            <!-- /#page-wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
+        </div>
+        <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+        <!-- jQuery -->
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-</body>
+    </body>
 
 </html>

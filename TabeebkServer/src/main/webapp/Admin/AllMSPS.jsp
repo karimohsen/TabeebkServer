@@ -34,7 +34,27 @@
         <script src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script>
         <link href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css" rel="stylesheet"/>
         <script src="${pageContext.request.contextPath}/js/ADS_Script.js"></script>
-
+        <script>
+            function checkMsp(mspTypeId,mspId){
+                alert(mspTypeId);
+                alert(mspId);
+                if(mspTypeId==1){
+                    
+                }
+                else if(mspTypeId==2){
+                    
+                }
+                else if(mspTypeId==3){
+                    
+                }
+                else if(mspTypeId==4){
+                    
+                }
+                else if(mspTypeId==5){
+                    
+                }
+            }
+        </script>
 
     </head>
 
@@ -173,6 +193,9 @@
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addHospital.jsp">Add Hospital</a>
                                 </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Admin/addPharmacy.jsp">Add Pharmacy</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -242,7 +265,7 @@
                                         <td>
                                             <c:out value="${msp.getMsptypename()}"/>
                                         </td>
-                                        <td><button type="button" class="btn btn-success" onclick="">Edit</button></td>
+                                        <td><button type="button" class="btn btn-success" onclick="checkMsp(${msp.getMsptypeId()},${msp.getMspId()})">Edit</button></td>
                                         <td>
                                             <c:choose>
                                                 <c:when test="${msp.getDeleted() == 1}">

@@ -6,9 +6,13 @@
 
 package com.tabeebkServer.admin.controller;
 
-import com.tabeebkServer.dao.BranchDao;
+import com.tabeebkServer.dao.AreaDao;
+import com.tabeebkServer.dao.CityDao;
+import com.tabeebkServer.dao.CountryDao;
 import com.tabeebkServer.dao.HospitalDao;
-import com.tabeebkServer.dao.MSPDao;
+import com.tabeebkServer.pojo.Area;
+import com.tabeebkServer.pojo.City;
+import com.tabeebkServer.pojo.Country;
 import com.tabeebkServer.pojo.Hospital;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,12 +21,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Karim
  */
-public class AddHospitalBranch extends HttpServlet {
+public class PharmacyBranch extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,29 +41,23 @@ public class AddHospitalBranch extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        String branchName = request.getParameter("name");
-        String branchNameAr = request.getParameter("namear");
-        String address = request.getParameter("address");
-        String addressAr = request.getParameter("addressar");
-        String longitude = request.getParameter("longitude");
-        String latitude = request.getParameter("latitude");
-        int country = Integer.parseInt(request.getParameter("Country"));
-        int area = Integer.parseInt(request.getParameter("Area"));
-        int city = Integer.parseInt(request.getParameter("Cities"));
-        String[] specialities = request.getParameterValues("specialities");
-        ArrayList<Integer>allSpecialities= new ArrayList<>();
-        Hospital h = (Hospital)this.getServletConfig().getServletContext().getAttribute("newhospital");
-        int hid = HospitalDao.addHospital(h);
-        MSPDao.addMsp(1, hid);
-        for(int i = 0 ; i < specialities.length ; i++){
-            allSpecialities.add(Integer.parseInt(specialities[i]));
+        response.setContentType("text/html;charset=UTF-8");
+        RequestDispatcher rd = request.getRequestDispatcher("Admin/addBranchsToPharmacy.jsp");
+        HttpSession session = request.getSession(false);
+        if (session.getAttribute("Accountid") != null) {
+            ArrayList<City> city = CityDao.getAllCities();
+            request.setAttribute("allcities", city);
+            ArrayList<Area> area =AreaDao.getAllAreas();
+            request.setAttribute("allareas", area);
+            ArrayList<Country> country =CountryDao.getAllCountries();
+            request.setAttribute("allcountries", country);
+            ArrayList<Hospital> hospitals = new ArrayList<>();
+            hospitals = HospitalDao.getAllHospitals();
+            request.setAttribute("allHospitals", hospitals);
+            rd.forward(request, response);
+        } else {
+            response.sendRedirect("Login.jsp");
         }
-        HospitalDao.addHospitalSpeciality(hid,allSpecialities);
-        BranchDao.addBranch(area, address, addressAr, latitude, longitude, branchName, branchNameAr, 1, hid, country, city);
-        RequestDispatcher rd = request.getRequestDispatcher("AllHospitalSpecialities");
-        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

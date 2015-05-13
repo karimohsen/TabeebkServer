@@ -169,7 +169,23 @@ public class MICDao {
         }
         return result;
     }
-
+    public static void updateMic(int id,String name,String namear,String desc,String descar,String url,String mail){
+        Mic mic = (Mic)session.get(Mic.class, id);
+        mic.setMicDescription(desc);
+        mic.setMicDescriptionAr(descar);
+        mic.setMicEmail(mail);
+        mic.setMicName(name);
+        mic.setMicNameAr(namear);
+        mic.setMicUrl(url);
+        if (!session.getTransaction().isActive()) {
+            session.beginTransaction();
+        }
+        session.update(mic);
+        session.getTransaction().commit();
+    }
+    public static Mic getMic(int id){
+        return (Mic)session.get(Mic.class, id);
+    }
     public static void main(String[] args) {
         //================== viewMSPs ===============================
 //        System.out.println(viewOtherMSPs(1).size());

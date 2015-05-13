@@ -167,6 +167,14 @@
         <servlet-name>ViewUserComments</servlet-name>
         <servlet-class>com.tabeebkServer.controller.msp.ViewUserComments</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminMICDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AdminMICDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateMicDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.UpdateMicDetails</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -330,6 +338,14 @@
     <servlet-mapping>
         <servlet-name>ViewUserComments</servlet-name>
         <url-pattern>/ViewUserComments</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminMICDetails</servlet-name>
+        <url-pattern>/AdminMICDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateMicDetails</servlet-name>
+        <url-pattern>/UpdateMicDetails</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>-1</session-timeout>

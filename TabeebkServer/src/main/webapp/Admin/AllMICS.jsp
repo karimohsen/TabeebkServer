@@ -242,7 +242,7 @@
                                         <td>
                                             <c:out value="${mic.getMicDescription()}"/>
                                         </td>
-                                        <td><button type="button" class="btn btn-success" onclick="">Edit</button></td>
+                                        <td><button type="button" class="btn btn-success" onclick="EditPlan('AdminMICDetails',${mic.getMicId()})">Edit</button></td>
 
                                         <td>
                                             <c:choose>

@@ -22,7 +22,6 @@ public class MicDao {
     
     //==============Admin Create MIC===============================
     public static void createMIC(Mic mic){
-        System.out.println("====> "+mic.getMicDescription());
         if(!session.getTransaction().isActive())
         session.beginTransaction();
         session.save(mic);
@@ -56,6 +55,7 @@ public class MicDao {
     //=============================================================
     //================Return All not deleted MIC====================
     public static List<Mic> viewAllMIC(){
+        session.clear();
         return session.createQuery("from Mic where deleted=0").list();
     }
     public Mic getMicDetails(int id){

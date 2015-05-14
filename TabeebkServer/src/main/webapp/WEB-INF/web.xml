@@ -160,10 +160,6 @@
         <servlet-class>com.tabeebkServer.admin.controller.AddLabBranch</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>MSPDetails</servlet-name>
-        <servlet-class>com.tabeebkServer.controller.msp.MSPDetails</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ViewUserComments</servlet-name>
         <servlet-class>com.tabeebkServer.controller.msp.ViewUserComments</servlet-class>
     </servlet>
@@ -186,6 +182,10 @@
     <servlet>
         <servlet-name>AddPharmacyBranch</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.AddPharmacyBranch</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MSPDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.controller.msp.MSPDetails</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
@@ -370,6 +370,14 @@
     <servlet-mapping>
         <servlet-name>AddPharmacyBranch</servlet-name>
         <url-pattern>/AddPharmacyBranch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MSPDetails</servlet-name>
+        <url-pattern>/MSPDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewUserComments</servlet-name>
+        <url-pattern>/ViewUserComments</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>-1</session-timeout>

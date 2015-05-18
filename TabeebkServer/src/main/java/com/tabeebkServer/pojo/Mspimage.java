@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
+// Generated May 14, 2015 3:47:46 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -52,7 +52,7 @@ public class Mspimage  implements java.io.Serializable {
     }
 
     
-    @Column(name="mspImage_imageurl", nullable=false, length=45)
+    @Column(name="mspImage_imageurl", nullable=false, length=100)
     public String getMspImageImageurl() {
         return this.mspImageImageurl;
     }

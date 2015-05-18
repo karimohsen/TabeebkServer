@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
+// Generated May 14, 2015 3:47:46 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -24,22 +24,25 @@ public class Planupdates  implements java.io.Serializable {
 
 
      private Integer updateId;
-     private Integer version;
-     private UpdateStatus updateStatus;
+     private int version;
      private Msp msp;
      private Msptype msptype;
      private Plan plan;
-     private Integer mspTypeId;
+     private UpdateStatus updateStatus;
 
     public Planupdates() {
     }
 
-    public Planupdates(UpdateStatus updateStatus, Msp msp, Msptype msptype, Plan plan, Integer mspTypeId) {
-       this.updateStatus = updateStatus;
+	
+    public Planupdates(Plan plan, UpdateStatus updateStatus) {
+        this.plan = plan;
+        this.updateStatus = updateStatus;
+    }
+    public Planupdates(Msp msp, Msptype msptype, Plan plan, UpdateStatus updateStatus) {
        this.msp = msp;
        this.msptype = msptype;
        this.plan = plan;
-       this.mspTypeId = mspTypeId;
+       this.updateStatus = updateStatus;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -54,24 +57,14 @@ public class Planupdates  implements java.io.Serializable {
         this.updateId = updateId;
     }
 
-    
-    @Column(name="version")
-    public Integer getVersion() {
+    @Version
+    @Column(name="version", nullable=false)
+    public int getVersion() {
         return this.version;
     }
     
-    public void setVersion(Integer version) {
+    public void setVersion(int version) {
         this.version = version;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="status")
-    public UpdateStatus getUpdateStatus() {
-        return this.updateStatus;
-    }
-    
-    public void setUpdateStatus(UpdateStatus updateStatus) {
-        this.updateStatus = updateStatus;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
@@ -85,7 +78,7 @@ public class Planupdates  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="msp_id", insertable=false, updatable=false)
+    @JoinColumn(name="msp_type_id")
     public Msptype getMsptype() {
         return this.msptype;
     }
@@ -95,7 +88,7 @@ public class Planupdates  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="plan_id")
+    @JoinColumn(name="plan_id", nullable=false)
     public Plan getPlan() {
         return this.plan;
     }
@@ -104,14 +97,14 @@ public class Planupdates  implements java.io.Serializable {
         this.plan = plan;
     }
 
-    
-    @Column(name="msp_type_id")
-    public Integer getMspTypeId() {
-        return this.mspTypeId;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="status", nullable=false)
+    public UpdateStatus getUpdateStatus() {
+        return this.updateStatus;
     }
     
-    public void setMspTypeId(Integer mspTypeId) {
-        this.mspTypeId = mspTypeId;
+    public void setUpdateStatus(UpdateStatus updateStatus) {
+        this.updateStatus = updateStatus;
     }
 
 

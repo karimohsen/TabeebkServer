@@ -10,6 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import com.tabeebkServer.pojo.Mic;
 import com.tabeebkServer.pojo.Plan;
+import com.tabeebkServer.pojo.Planupdates;
+import com.tabeebkServer.pojo.UpdateStatus;
 import com.tabeebkServer.session.factory.HibernateUtilFactory;
 
 /**
@@ -26,6 +28,22 @@ public class PlanDao {
         session.beginTransaction();
         plan.setDeleted(1);
         session.saveOrUpdate(plan);
+        session.getTransaction().commit();
+        //save Transaction -> get last version of plan
+        Integer version=(Integer)session.createQuery("SELECT MAX(version) FROM Planupdates WHERE plan=?")
+                                     .setParameter(0, plan).uniqueResult();
+        if (version==null)
+            version=0;
+        
+        Planupdates pUpdate=new Planupdates();
+        pUpdate.setPlan(plan);
+        //save Transaction -> get Status
+        UpdateStatus uStatus=(UpdateStatus) session.createQuery("FROM UpdateStatus WHERE status='changeINFO'").uniqueResult();
+        pUpdate.setUpdateStatus(uStatus);
+        pUpdate.setVersion(++version);
+        //save Transaction -> Insert new Record in PlanUpdate
+        session.beginTransaction();
+        session.saveOrUpdate(pUpdate);
         session.getTransaction().commit();
     }
 
@@ -49,16 +67,26 @@ public class PlanDao {
         return result;
     }
 
-    public void editPlan(Plan plan) {
-        session.beginTransaction();
-        session.update(plan);
-        session.getTransaction().commit();
-    }
-
     public void addPlan(Plan plan) {
         try {
             session.beginTransaction();
             session.save(plan);
+            session.getTransaction().commit();
+            //save Transaction -> get last version of plan
+            Integer version=(Integer)session.createQuery("SELECT MAX(version) FROM Planupdates WHERE plan=?")
+                                         .setParameter(0, plan).uniqueResult();
+            if (version==null)
+                version=0;
+
+            Planupdates pUpdate=new Planupdates();
+            pUpdate.setPlan(plan);
+            //save Transaction -> get Status
+            UpdateStatus uStatus=(UpdateStatus) session.createQuery("FROM UpdateStatus WHERE status='changeINFO'").uniqueResult();
+            pUpdate.setUpdateStatus(uStatus);
+            pUpdate.setVersion(++version);
+            //save Transaction -> Insert new Record in PlanUpdate
+            session.beginTransaction();
+            session.saveOrUpdate(pUpdate);
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             session.getTransaction().rollback();
@@ -69,6 +97,22 @@ public class PlanDao {
     public void updatePlan(Plan plan) {
         session.beginTransaction();
         session.saveOrUpdate(plan);
+        session.getTransaction().commit();
+        //save Transaction -> get last version of plan
+        Integer version=(Integer)session.createQuery("SELECT MAX(version) FROM Planupdates WHERE plan=?")
+                                     .setParameter(0, plan).uniqueResult();
+        if (version==null)
+            version=0;
+        
+        Planupdates pUpdate=new Planupdates();
+        pUpdate.setPlan(plan);
+        //save Transaction -> get Status
+        UpdateStatus uStatus=(UpdateStatus) session.createQuery("FROM UpdateStatus WHERE status='changeINFO'").uniqueResult();
+        pUpdate.setUpdateStatus(uStatus);
+        pUpdate.setVersion(++version);
+        //save Transaction -> Insert new Record in PlanUpdate
+        session.beginTransaction();
+        session.saveOrUpdate(pUpdate);
         session.getTransaction().commit();
     }
 

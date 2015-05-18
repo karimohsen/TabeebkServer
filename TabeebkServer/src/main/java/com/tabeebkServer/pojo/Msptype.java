@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
+// Generated May 14, 2015 3:47:46 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -26,27 +26,27 @@ public class Msptype  implements java.io.Serializable {
      private Integer typeId;
      private String typeName;
      private Set<Msp> msps = new HashSet<Msp>(0);
+     private Set<Planupdates> planupdateses = new HashSet<Planupdates>(0);
      private Set<Speciality> specialities = new HashSet<Speciality>(0);
      private Set<Branche> branches = new HashSet<Branche>(0);
      private Set<Ratting> rattings = new HashSet<Ratting>(0);
      private Set<Planmsp> planmsps = new HashSet<Planmsp>(0);
      private Set<Schedule> schedules = new HashSet<Schedule>(0);
-     private Set<Planupdates> planupdateses = new HashSet<Planupdates>(0);
      private Set<Msprecommendations> msprecommendationses = new HashSet<Msprecommendations>(0);
      private Set<Telephone> telephones = new HashSet<Telephone>(0);
 
     public Msptype() {
     }
 
-    public Msptype(String typeName, Set<Msp> msps, Set<Speciality> specialities, Set<Branche> branches, Set<Ratting> rattings, Set<Planmsp> planmsps, Set<Schedule> schedules, Set<Planupdates> planupdateses, Set<Msprecommendations> msprecommendationses, Set<Telephone> telephones) {
+    public Msptype(String typeName, Set<Msp> msps, Set<Planupdates> planupdateses, Set<Speciality> specialities, Set<Branche> branches, Set<Ratting> rattings, Set<Planmsp> planmsps, Set<Schedule> schedules, Set<Msprecommendations> msprecommendationses, Set<Telephone> telephones) {
        this.typeName = typeName;
        this.msps = msps;
+       this.planupdateses = planupdateses;
        this.specialities = specialities;
        this.branches = branches;
        this.rattings = rattings;
        this.planmsps = planmsps;
        this.schedules = schedules;
-       this.planupdateses = planupdateses;
        this.msprecommendationses = msprecommendationses;
        this.telephones = telephones;
     }
@@ -80,6 +80,15 @@ public class Msptype  implements java.io.Serializable {
     
     public void setMsps(Set<Msp> msps) {
         this.msps = msps;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="msptype")
+    public Set<Planupdates> getPlanupdateses() {
+        return this.planupdateses;
+    }
+    
+    public void setPlanupdateses(Set<Planupdates> planupdateses) {
+        this.planupdateses = planupdateses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="msptype")
@@ -125,15 +134,6 @@ public class Msptype  implements java.io.Serializable {
     
     public void setSchedules(Set<Schedule> schedules) {
         this.schedules = schedules;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="msp")
-    public Set<Planupdates> getPlanupdateses() {
-        return this.planupdateses;
-    }
-    
-    public void setPlanupdateses(Set<Planupdates> planupdateses) {
-        this.planupdateses = planupdateses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="msptype")

@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
+// Generated May 14, 2015 3:47:46 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -88,7 +88,7 @@ public class Pharamacy  implements java.io.Serializable {
     }
 
     
-    @Column(name="pharamacy_imagepath", length=45)
+    @Column(name="pharamacy_imagepath", length=100)
     public String getPharamacyImagepath() {
         return this.pharamacyImagepath;
     }

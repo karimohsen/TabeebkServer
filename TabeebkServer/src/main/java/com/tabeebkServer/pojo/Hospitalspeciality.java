@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
+// Generated May 14, 2015 3:47:46 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -23,16 +23,16 @@ public class Hospitalspeciality  implements java.io.Serializable {
 
 
      private Integer id;
-     private Hospital hospital;
      private Doctorspeciality doctorspeciality;
+     private Hospital hospital;
      private Integer deleted;
 
     public Hospitalspeciality() {
     }
 
-    public Hospitalspeciality(Hospital hospital, Doctorspeciality doctorspeciality, Integer deleted) {
-       this.hospital = hospital;
+    public Hospitalspeciality(Doctorspeciality doctorspeciality, Hospital hospital, Integer deleted) {
        this.doctorspeciality = doctorspeciality;
+       this.hospital = hospital;
        this.deleted = deleted;
     }
    
@@ -49,16 +49,6 @@ public class Hospitalspeciality  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="hospital_id")
-    public Hospital getHospital() {
-        return this.hospital;
-    }
-    
-    public void setHospital(Hospital hospital) {
-        this.hospital = hospital;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="speciality_id")
     public Doctorspeciality getDoctorspeciality() {
         return this.doctorspeciality;
@@ -66,6 +56,16 @@ public class Hospitalspeciality  implements java.io.Serializable {
     
     public void setDoctorspeciality(Doctorspeciality doctorspeciality) {
         this.doctorspeciality = doctorspeciality;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="hospital_id")
+    public Hospital getHospital() {
+        return this.hospital;
+    }
+    
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
     }
 
     

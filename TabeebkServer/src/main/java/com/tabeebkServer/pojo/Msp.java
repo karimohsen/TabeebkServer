@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
+// Generated May 14, 2015 3:47:46 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -31,8 +31,8 @@ public class Msp  implements java.io.Serializable {
      private Msptype msptype;
      private Integer typeId;
      private int deleted;
-     private Set<Mic> mics = new HashSet<Mic>(0);
      private Set<Planupdates> planupdateses = new HashSet<Planupdates>(0);
+     private Set<Mic> mics = new HashSet<Mic>(0);
 
     public Msp() {
     }
@@ -41,12 +41,12 @@ public class Msp  implements java.io.Serializable {
     public Msp(int deleted) {
         this.deleted = deleted;
     }
-    public Msp(Msptype msptype, Integer typeId, int deleted, Set<Mic> mics, Set<Planupdates> planupdateses) {
+    public Msp(Msptype msptype, Integer typeId, int deleted, Set<Planupdates> planupdateses, Set<Mic> mics) {
        this.msptype = msptype;
        this.typeId = typeId;
        this.deleted = deleted;
-       this.mics = mics;
        this.planupdateses = planupdateses;
+       this.mics = mics;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -91,6 +91,15 @@ public class Msp  implements java.io.Serializable {
         this.deleted = deleted;
     }
 
+@OneToMany(fetch=FetchType.LAZY, mappedBy="msp")
+    public Set<Planupdates> getPlanupdateses() {
+        return this.planupdateses;
+    }
+    
+    public void setPlanupdateses(Set<Planupdates> planupdateses) {
+        this.planupdateses = planupdateses;
+    }
+
 @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="micmsp", catalog="graduationprojecttabeebakdb", joinColumns = { 
         @JoinColumn(name="msp_id", nullable=false, updatable=false) }, inverseJoinColumns = { 
@@ -101,15 +110,6 @@ public class Msp  implements java.io.Serializable {
     
     public void setMics(Set<Mic> mics) {
         this.mics = mics;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="msp")
-    public Set<Planupdates> getPlanupdateses() {
-        return this.planupdateses;
-    }
-    
-    public void setPlanupdateses(Set<Planupdates> planupdateses) {
-        this.planupdateses = planupdateses;
     }
 
 

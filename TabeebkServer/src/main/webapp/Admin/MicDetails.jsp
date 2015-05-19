@@ -162,10 +162,10 @@
                                     <a href="${pageContext.request.contextPath}/AdminAllMsps">All MSPS</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addDoctor.jsp">Add Doctor</a>
+                                    <a href="${pageContext.request.contextPath}/AdminDoctorDetails">Add Doctor</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp">Add Clinic</a>
+                                    <a href="${pageContext.request.contextPath}/ClinicDetails">Add Clinic</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addLab.jsp">Add Lab</a>
@@ -208,7 +208,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
-                                ALL MICS
+                                Edit MICS
 
                             </h1>
                             <ol class="breadcrumb">
@@ -216,7 +216,7 @@
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/Admin/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-university"></i> ALL MICS
+                                    <i class="fa fa-university"></i> Edit MICS
                                 </li>
                             </ol>
                         </div>

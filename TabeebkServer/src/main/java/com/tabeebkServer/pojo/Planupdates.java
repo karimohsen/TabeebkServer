@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 14, 2015 3:47:46 PM by Hibernate Tools 4.3.1
+// Generated May 15, 2015 3:04:27 PM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.Column;
@@ -24,8 +24,8 @@ public class Planupdates  implements java.io.Serializable {
 
 
      private Integer updateId;
-     private int version;
-     private Msp msp;
+     private Integer version;
+     private UpdateStatus updateStatus;
      private Msptype msptype;
      private Plan plan;
      private UpdateStatus updateStatus;
@@ -34,12 +34,6 @@ public class Planupdates  implements java.io.Serializable {
     }
 
 	
-    public Planupdates(Plan plan, UpdateStatus updateStatus) {
-        this.plan = plan;
-        this.updateStatus = updateStatus;
-    }
-    public Planupdates(Msp msp, Msptype msptype, Plan plan, UpdateStatus updateStatus) {
-       this.msp = msp;
        this.msptype = msptype;
        this.plan = plan;
        this.updateStatus = updateStatus;
@@ -58,8 +52,12 @@ public class Planupdates  implements java.io.Serializable {
     }
 
     @Version
-    @Column(name="version", nullable=false)
-    public int getVersion() {
+    public Planupdates(UpdateStatus updateStatus, Plan plan) {
+        this.updateStatus = updateStatus;
+        this.plan = plan;
+    }
+    public Planupdates(UpdateStatus updateStatus, Msptype msptype, Plan plan, Integer mspTypeId) {
+       this.updateStatus = updateStatus;
         return this.version;
     }
     
@@ -69,16 +67,8 @@ public class Planupdates  implements java.io.Serializable {
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="msp_id")
-    public Msp getMsp() {
-        return this.msp;
-    }
-    
-    public void setMsp(Msp msp) {
-        this.msp = msp;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="msp_type_id")
+    @Column(name="version")
+    public Integer getVersion() {
     public Msptype getMsptype() {
         return this.msptype;
     }
@@ -113,3 +103,13 @@ public class Planupdates  implements java.io.Serializable {
 }
 
 
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="status", nullable=false)
+    public UpdateStatus getUpdateStatus() {
+        return this.updateStatus;
+    }
+    
+    public void setUpdateStatus(UpdateStatus updateStatus) {
+        this.updateStatus = updateStatus;

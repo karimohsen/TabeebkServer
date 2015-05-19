@@ -162,10 +162,10 @@
                                     <a href="${pageContext.request.contextPath}/AdminAllMsps">All MSPS</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addDoctor.jsp">Add Doctor</a>
+                                    <a href="${pageContext.request.contextPath}/AdminDoctorDetails">Add Doctor</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp">Add Clinic</a>
+                                    <a href="${pageContext.request.contextPath}/ClinicDetails">Add Clinic</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addLab.jsp">Add Lab</a>
@@ -225,7 +225,94 @@
                         </div>
                     </div>
                     <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form action="${pageContext.request.contextPath}/AdminAddDoctor" method="post" enctype="multipart/form-data">
+                                <table>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Doctor Name</label></p></td>
 
+                                        <td>
+                                            <input id="name" name="name" required="true" tabindex="1" type="text"/>                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="namear">Doctor Name Arabic</label></p></td>
+
+                                        <td>
+                                            <input id="namear" name="namear"  required="true" tabindex="2" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Doctor Degree</label></p></td>
+
+                                        <td>
+                                            <input id="doctordegree" name="doctordegree"  required="true" tabindex="3" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Doctor Degree Arabic</label></p></td>
+
+                                        <td>
+                                            <input id="doctordegreear" name="doctordegreear"  required="true" tabindex="4" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Telephone number 1</label></p></td>
+
+                                        <td>
+                                            <input id="tele1" name="tele1" tabindex="5" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Telephone number 2</label></p></td>
+
+                                        <td>
+                                            <input id="tele2" name="tele2"  tabindex="6" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><p class="contact"><label for="name">Doctor Speciality :</label></p></td>
+                                    </tr>
+                                    <c:forEach var="speciality" items="${requestScope.allSpecialities}">
+                                        <tr>
+                                            <td colspan="2"><input TYPE="radio" name="specialities" VALUE="${speciality.getDoctorSpecialityId()}"><c:out value="${speciality.getDoctorSpecialityName()}"/>/<c:out value="${speciality.getDoctorSpecialityNameAr()}"/></td>
+                                        </tr>
+                                    </c:forEach>
+                                    <tr>
+                                        <td colspan="2"><p class="contact"><label for="gender">Gender :</label></p></td>
+                                    </tr>
+                                    <c:forEach var="gender" items="${requestScope.allGenders}">
+                                        <tr>
+                                            <td colspan="2"><input TYPE="radio" name="gender" VALUE="${gender.getGenderId()}"><c:out value="${gender.getGenderName()}"/>/<c:out value="${gender.getGenderNameAr()}"/></td>
+                                        </tr>
+                                    </c:forEach>
+                                    <tr>
+                                        <td colspan="2"><p class="contact"><label for="clinics">Clinics :</label></p></td>
+                                    </tr>
+                                    <c:forEach var="clinics" items="${requestScope.allClinics}">
+                                        <tr>
+                                            <td colspan="2"><input TYPE="checkbox" name="clinics" VALUE="${clinics.getClinicId()}" ><c:out value="${clinics.getClinicName()}"/>/<c:out value="${clinics.getClinicNameAr()}"/></td>
+                                        </tr>
+                                    </c:forEach>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Select a image to upload</label></p></td>
+
+                                        <td>
+                                            <input type="file" name="file" accept="image/x-png, image/gif, image/jpeg, image/jpg" tabindex="7"/>                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px;" align="right" colspan="2" >
+                                            <input class="btn btn-primary" name="submit" id="submit" tabindex="8" value="Create" type="submit"> 	 
+                                            <input class="btn btn-warning" id="cancel_button" tabindex="9" value="reset" type="reset">
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 

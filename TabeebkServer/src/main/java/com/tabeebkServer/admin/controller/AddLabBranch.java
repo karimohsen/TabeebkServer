@@ -7,7 +7,9 @@ package com.tabeebkServer.admin.controller;
 
 import com.tabeebkServer.dao.BranchDao;
 import com.tabeebkServer.dao.LabDao;
+import com.tabeebkServer.dao.LabSpecialityDao;
 import com.tabeebkServer.dao.MSPDao;
+import com.tabeebkServer.dao.TelephoneDao;
 import com.tabeebkServer.pojo.Lab;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,6 +49,8 @@ public class AddLabBranch extends HttpServlet {
         int country = Integer.parseInt(request.getParameter("Country"));
         int area = Integer.parseInt(request.getParameter("Area"));
         int city = Integer.parseInt(request.getParameter("Cities"));
+        String tele1 = request.getParameter("tele1");
+        String tele2 = request.getParameter("tele2");
         int hospitalId = -2;
         if (request.getParameter("hospitals") != null) {
             hospitalId = Integer.parseInt(request.getParameter("hospitals"));
@@ -54,14 +58,19 @@ public class AddLabBranch extends HttpServlet {
         String[] specialities = request.getParameterValues("specialities");
         ArrayList<Integer> allSpecialities = new ArrayList<>();
         Lab l = (Lab) this.getServletConfig().getServletContext().getAttribute("newlab");
-        int labId = LabDao.addLab(l);
-        MSPDao.addMsp(4, labId);
-        System.out.println("hospital => " + hospitalId);
+        Lab lab = LabDao.addLab(l);
+        if (tele1 != null) {
+            TelephoneDao.createTelephoneNumber(4, lab.getLabId(), tele1);
+        }
+        if (tele2 != null) {
+            TelephoneDao.createTelephoneNumber(4, lab.getLabId(), tele2);
+        }
+        MSPDao.addMsp(4, lab.getLabId());
         for (int i = 0; i < specialities.length; i++) {
             allSpecialities.add(Integer.parseInt(specialities[i]));
         }
-        LabDao.addLabToSpeciality(l, allSpecialities, hospitalId);
-        BranchDao.addBranch(area, address, addressAr, latitude, longitude, branchName, branchNameAr, 4, labId, country, city);
+        LabSpecialityDao.addLabToSpeciality(lab, allSpecialities, hospitalId);
+        BranchDao.addBranch(area, address, addressAr, latitude, longitude, branchName, branchNameAr, 4, lab.getLabId(), country, city);
         RequestDispatcher rd = request.getRequestDispatcher("AllLabHospitalsAndSpecialities");
         rd.forward(request, response);
     }

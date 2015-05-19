@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 14, 2015 3:47:46 PM by Hibernate Tools 4.3.1
+// Generated May 15, 2015 3:04:27 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -27,11 +27,11 @@ public class Doctor  implements java.io.Serializable {
 
      private Integer doctorId;
      private Doctorspeciality doctorspeciality;
+     private Gender gender;
      private String doctorName;
      private String doctorNameAr;
      private String doctorDegree;
      private String doctorDegreeAr;
-     private Integer genderId;
      private String doctorImagepath;
      private int deleted;
      private Set<DoctorClinc> doctorClincs = new HashSet<DoctorClinc>(0);
@@ -43,13 +43,13 @@ public class Doctor  implements java.io.Serializable {
     public Doctor(int deleted) {
         this.deleted = deleted;
     }
-    public Doctor(Doctorspeciality doctorspeciality, String doctorName, String doctorNameAr, String doctorDegree, String doctorDegreeAr, Integer genderId, String doctorImagepath, int deleted, Set<DoctorClinc> doctorClincs) {
+    public Doctor(Doctorspeciality doctorspeciality, Gender gender, String doctorName, String doctorNameAr, String doctorDegree, String doctorDegreeAr, String doctorImagepath, int deleted, Set<DoctorClinc> doctorClincs) {
        this.doctorspeciality = doctorspeciality;
+       this.gender = gender;
        this.doctorName = doctorName;
        this.doctorNameAr = doctorNameAr;
        this.doctorDegree = doctorDegree;
        this.doctorDegreeAr = doctorDegreeAr;
-       this.genderId = genderId;
        this.doctorImagepath = doctorImagepath;
        this.deleted = deleted;
        this.doctorClincs = doctorClincs;
@@ -75,6 +75,16 @@ public class Doctor  implements java.io.Serializable {
     
     public void setDoctorspeciality(Doctorspeciality doctorspeciality) {
         this.doctorspeciality = doctorspeciality;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="gender_id")
+    public Gender getGender() {
+        return this.gender;
+    }
+    
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     
@@ -115,16 +125,6 @@ public class Doctor  implements java.io.Serializable {
     
     public void setDoctorDegreeAr(String doctorDegreeAr) {
         this.doctorDegreeAr = doctorDegreeAr;
-    }
-
-    
-    @Column(name="gender_id")
-    public Integer getGenderId() {
-        return this.genderId;
-    }
-    
-    public void setGenderId(Integer genderId) {
-        this.genderId = genderId;
     }
 
     

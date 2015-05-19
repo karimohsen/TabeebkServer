@@ -162,10 +162,10 @@
                                     <a href="${pageContext.request.contextPath}/AdminAllMsps">All MSPS</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addDoctor.jsp">Add Doctor</a>
+                                    <a href="${pageContext.request.contextPath}/AdminDoctorDetails">Add Doctor</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp">Add Clinic</a>
+                                    <a href="${pageContext.request.contextPath}/ClinicDetails">Add Clinic</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addLab.jsp">Add Lab</a>

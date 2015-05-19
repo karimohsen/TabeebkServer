@@ -162,10 +162,10 @@
                                     <a href="${pageContext.request.contextPath}/AdminAllMsps">All MSPS</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addDoctor.jsp">Add Doctor</a>
+                                    <a href="${pageContext.request.contextPath}/AdminDoctorDetails">Add Doctor</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp">Add Clinic</a>
+                                    <a href="${pageContext.request.contextPath}/ClinicDetails">Add Clinic</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addLab.jsp">Add Lab</a>
@@ -225,7 +225,114 @@
                         </div>
                     </div>
                     <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form action="${pageContext.request.contextPath}/AdminAddClinic" method="post" enctype="multipart/form-data">
+                                <table>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Clinic Name</label></p></td>
 
+                                        <td>
+                                            <input id="name" name="name" required="true" tabindex="1" type="text"/>                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="namear">Clinic Name Arabic</label></p></td>
+
+                                        <td>
+                                            <input id="namear" name="namear"  required="true" tabindex="2" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Clinic Address</label></p></td>
+
+                                        <td>
+                                            <input id="clinicadd" name="clinicadd"  required="true" tabindex="3" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Clinic Address Arabic</label></p></td>
+
+                                        <td>
+                                            <input id="clinicaddar" name="clinicaddar"  required="true" tabindex="4" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Longitude</label></p></td>
+
+                                        <td>
+                                            <input id="longtiude" name="longitude"  required="true" tabindex="5" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Latitude</label></p></td>
+
+                                        <td>
+                                            <input id="latitude" name="latitude"  required="true" tabindex="6" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Telephone number 1</label></p></td>
+
+                                        <td>
+                                            <input id="tele1" name="tele1" tabindex="7" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Telephone number 2</label></p></td>
+
+                                        <td>
+                                            <input id="tele2" name="tele2"  tabindex="8" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Country :</label></p></td>
+                                        <td>
+                                            <select name="Country">
+                                                <c:forEach var="country" items="${requestScope.allcountries}">
+                                                    <option value="${country.getCountryId()}">${country.getCountryName()}/${country.getCounteryNameAr()}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Area :</label></p></td>
+                                        <td>
+                                            <select name="Area">
+                                                <c:forEach var="area" items="${requestScope.allareas}">
+                                                    <option value="${area.getIdarea()}">${area.getAreaNameEn()}/${area.getAreaNameAr()}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Cities :</label></p></td>
+                                        <td>
+                                            <select name="Cities">
+                                                <c:forEach var="cities" items="${requestScope.allcities}">
+                                                    <option value="${cities.getCityId()}">${cities.getCityName()}/${cities.getCityNameAr()}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Select a image to upload</label></p></td>
+
+                                        <td>
+                                            <input type="file" name="file" accept="image/x-png, image/gif, image/jpeg, image/jpg" tabindex="3"/>                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 10px;" align="right" colspan="2" >
+                                            <input class="btn btn-primary" name="submit" id="submit" tabindex="9" value="Create" type="submit"> 	 
+                                            <input class="btn btn-warning" id="cancel_button" tabindex="10" value="reset" type="reset">
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 

@@ -195,6 +195,54 @@
         <servlet-name>AdminAddClinic</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.AdminAddClinic</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminDoctorDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AdminDoctorDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminAddDoctor</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.AdminAddDoctor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditDoctorDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.EditDoctorDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateDoctorDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.UpdateDoctorDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditClinicDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.EditClinicDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateClinicDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.UpdateClinicDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditPharmacyDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.EditPharmacyDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePharmacyDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.UpdatePharmacyDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditHospitalDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.EditHospitalDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateHospitalDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.UpdateHospitalDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditLabDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.EditLabDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateLabDetails</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.UpdateLabDetails</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -386,6 +434,54 @@
     <servlet-mapping>
         <servlet-name>AdminAddClinic</servlet-name>
         <url-pattern>/AdminAddClinic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDoctorDetails</servlet-name>
+        <url-pattern>/AdminDoctorDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddDoctor</servlet-name>
+        <url-pattern>/AdminAddDoctor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditDoctorDetails</servlet-name>
+        <url-pattern>/EditDoctorDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateDoctorDetails</servlet-name>
+        <url-pattern>/UpdateDoctorDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditClinicDetails</servlet-name>
+        <url-pattern>/EditClinicDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateClinicDetails</servlet-name>
+        <url-pattern>/UpdateClinicDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditPharmacyDetails</servlet-name>
+        <url-pattern>/EditPharmacyDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePharmacyDetails</servlet-name>
+        <url-pattern>/UpdatePharmacyDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditHospitalDetails</servlet-name>
+        <url-pattern>/EditHospitalDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateHospitalDetails</servlet-name>
+        <url-pattern>/UpdateHospitalDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditLabDetails</servlet-name>
+        <url-pattern>/EditLabDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateLabDetails</servlet-name>
+        <url-pattern>/UpdateLabDetails</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>-1</session-timeout>

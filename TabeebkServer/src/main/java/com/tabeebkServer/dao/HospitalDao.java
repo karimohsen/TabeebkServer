@@ -27,6 +27,22 @@ public class HospitalDao {
         return list;
     }
     
+    public static Hospital getHospitalDetails(int id){
+        session.clear();
+        return (Hospital)session.get(Hospital.class, id);
+    }
+    
+    public static void updateHospital(int id , String name , String nameAr){
+        Hospital hospital = (Hospital)session.get(Hospital.class, id);
+        hospital.setHospitalName(name);
+        hospital.setHospitalNameAr(nameAr);
+        if (!session.getTransaction().isActive()) {
+            session.beginTransaction();
+        }
+        session.save(hospital);
+        session.getTransaction().commit();
+    }
+    
     public static int addHospital(Hospital h){
         if (!session.getTransaction().isActive()) {
             session.beginTransaction();
@@ -51,6 +67,10 @@ public class HospitalDao {
                 session.getTransaction().commit();
             }
         }
+    }
+    public static void deleteHospitalSpeciality(int id){
+        session.clear();
+        session.createQuery("Delete From Hospitalspeciality hs where hs.hospital = :id").setParameter("id", (Hospital)session.get(Hospital.class, id)).executeUpdate();
     }
 
 }

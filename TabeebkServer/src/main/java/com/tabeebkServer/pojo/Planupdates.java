@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
+// Generated May 15, 2015 3:04:27 PM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.Column;
@@ -26,7 +26,6 @@ public class Planupdates  implements java.io.Serializable {
      private Integer updateId;
      private Integer version;
      private UpdateStatus updateStatus;
-     private Msp msp;
      private Msptype msptype;
      private Plan plan;
      private Integer mspTypeId;
@@ -34,9 +33,13 @@ public class Planupdates  implements java.io.Serializable {
     public Planupdates() {
     }
 
-    public Planupdates(UpdateStatus updateStatus, Msp msp, Msptype msptype, Plan plan, Integer mspTypeId) {
+	
+    public Planupdates(UpdateStatus updateStatus, Plan plan) {
+        this.updateStatus = updateStatus;
+        this.plan = plan;
+    }
+    public Planupdates(UpdateStatus updateStatus, Msptype msptype, Plan plan, Integer mspTypeId) {
        this.updateStatus = updateStatus;
-       this.msp = msp;
        this.msptype = msptype;
        this.plan = plan;
        this.mspTypeId = mspTypeId;
@@ -54,7 +57,7 @@ public class Planupdates  implements java.io.Serializable {
         this.updateId = updateId;
     }
 
-    
+    @Version
     @Column(name="version")
     public Integer getVersion() {
         return this.version;
@@ -65,7 +68,7 @@ public class Planupdates  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="status")
+    @JoinColumn(name="status", nullable=false)
     public UpdateStatus getUpdateStatus() {
         return this.updateStatus;
     }
@@ -76,16 +79,6 @@ public class Planupdates  implements java.io.Serializable {
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="msp_id")
-    public Msp getMsp() {
-        return this.msp;
-    }
-    
-    public void setMsp(Msp msp) {
-        this.msp = msp;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="msp_id", insertable=false, updatable=false)
     public Msptype getMsptype() {
         return this.msptype;
     }
@@ -95,7 +88,7 @@ public class Planupdates  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="plan_id")
+    @JoinColumn(name="plan_id", nullable=false)
     public Plan getPlan() {
         return this.plan;
     }

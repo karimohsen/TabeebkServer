@@ -62,7 +62,7 @@ public class PlanDao {
             session.getTransaction().commit();
         } catch (RuntimeException e) {
             session.getTransaction().rollback();
-            throw e;
+            e.printStackTrace();
         }
     }
 

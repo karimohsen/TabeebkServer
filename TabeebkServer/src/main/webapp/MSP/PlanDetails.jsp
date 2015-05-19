@@ -237,14 +237,6 @@
                                 </tr>
 
                                 <tr>
-                                    <td><p class="contact"><label for="name">Version</label></p></td>
-
-                                    <td>
-                                        <input id="version" name="version" required="" tabindex="1" type="text" value="<c:out value='${plan.getVersion()}'/>">                      
-                                    </td>
-                                </tr>
-
-                                <tr>
                                     <td style="padding: 10px;" align="right" colspan="2" >
                                         <input class="btn btn-primary" name="submit" id="submit" tabindex="11" value="Update" type="submit"> 	 
                                         <input class="btn btn-warning" id="cancel_button" tabindex="13" value="reset" type="reset">

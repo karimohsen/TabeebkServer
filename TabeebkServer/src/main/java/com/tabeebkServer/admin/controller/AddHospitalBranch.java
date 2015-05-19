@@ -9,6 +9,7 @@ package com.tabeebkServer.admin.controller;
 import com.tabeebkServer.dao.BranchDao;
 import com.tabeebkServer.dao.HospitalDao;
 import com.tabeebkServer.dao.MSPDao;
+import com.tabeebkServer.dao.TelephoneDao;
 import com.tabeebkServer.pojo.Hospital;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,9 +49,17 @@ public class AddHospitalBranch extends HttpServlet {
         int area = Integer.parseInt(request.getParameter("Area"));
         int city = Integer.parseInt(request.getParameter("Cities"));
         String[] specialities = request.getParameterValues("specialities");
+        String tele1 = request.getParameter("tele1");
+        String tele2 = request.getParameter("tele2");
         ArrayList<Integer>allSpecialities= new ArrayList<>();
         Hospital h = (Hospital)this.getServletConfig().getServletContext().getAttribute("newhospital");
         int hid = HospitalDao.addHospital(h);
+        if(tele1!=null){
+            TelephoneDao.createTelephoneNumber(1, hid, tele1);
+        }
+        if(tele2!=null){
+            TelephoneDao.createTelephoneNumber(1, hid, tele2);
+        }
         MSPDao.addMsp(1, hid);
         for(int i = 0 ; i < specialities.length ; i++){
             allSpecialities.add(Integer.parseInt(specialities[i]));

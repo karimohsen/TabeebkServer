@@ -36,9 +36,6 @@ public class AddMicAccount extends HttpServlet {
             String password = request.getParameter("passwd");
             String name = request.getParameter("name");
             String disName = request.getParameter("disname");
-            System.out.println(disName);
-            System.out.println(name);
-            System.out.println(password);
             AccountDao.AddAccount(name,password,disName);
         } else {
             response.sendRedirect("Login.jsp");

@@ -40,7 +40,7 @@ public class UpdatePlan extends HttpServlet {
         String plandesc = request.getParameter("plandesc");
         String plandescar = request.getParameter("plandescar");
         System.out.println("=>Arabic: " + plannamear + "\t" + plandescar);
-        int version = Integer.parseInt(request.getParameter("version"));//        
+        
 //        Plan currentPlan=new Plan(id,planname, plannamear, plandesc, plandescar, version);
         PlanDao planDao = new PlanDao();
         Plan currentPlan = planDao.getPlanDetails(id);
@@ -48,7 +48,7 @@ public class UpdatePlan extends HttpServlet {
         currentPlan.setPlanNameAr(plannamear);
         currentPlan.setPlanDescription(plandesc);
         currentPlan.setPlanDescriptionAr(plandescar);
-        currentPlan.setVersion(version);
+        
         planDao.updatePlan(currentPlan);
         response.sendRedirect("AllPlans");
     }

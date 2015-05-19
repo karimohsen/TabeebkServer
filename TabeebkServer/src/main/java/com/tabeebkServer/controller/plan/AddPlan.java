@@ -54,7 +54,6 @@ public class AddPlan extends HttpServlet {
             plan.setPlanName(planeName);
             plan.setPlanNameAr(planeNameAr);
             plan.setPlanUpdatedDate(new Date());
-            plan.setVersion(1);
             plan.setDeleted(0);
             PlanDao dao = new PlanDao();
             MicDao micDo = new MicDao();

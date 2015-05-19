@@ -67,7 +67,6 @@ public class AdminAddLab extends HttpServlet {
                 while (iter.hasNext()) {
                     FileItem item = iter.next();
                     if (item.isFormField()) {
-                        System.out.println("==============================================");
                         if (item.getFieldName().equals("name")) {
                             lab.setLabName(item.getString());
                         } else if (item.getFieldName().equals("namear")) {

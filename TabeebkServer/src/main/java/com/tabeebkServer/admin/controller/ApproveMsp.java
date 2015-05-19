@@ -32,8 +32,6 @@ public class ApproveMsp extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
-        System.out.println("Servlet");
-        System.out.println("--------");
         if (session.getAttribute("Accountid") != null) {
             RecommendedMspDao.ApproveMsp(Integer.parseInt(request.getParameter("id")));
             response.sendRedirect("MspRecommendations");

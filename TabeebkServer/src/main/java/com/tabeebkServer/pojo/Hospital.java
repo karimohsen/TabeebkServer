@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 10, 2015 10:16:11 PM by Hibernate Tools 3.6.0
+// Generated May 15, 2015 3:04:27 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -84,7 +84,7 @@ public class Hospital  implements java.io.Serializable {
     }
 
     
-    @Column(name="hospital_imagepath", length=45)
+    @Column(name="hospital_imagepath", length=100)
     public String getHospitalImagepath() {
         return this.hospitalImagepath;
     }

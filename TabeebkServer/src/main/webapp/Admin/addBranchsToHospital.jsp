@@ -166,10 +166,10 @@
                                     <a href="${pageContext.request.contextPath}/AdminAllMsps">All MSPS</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addDoctor.jsp">Add Doctor</a>
+                                    <a href="${pageContext.request.contextPath}/AdminDoctorDetails">Add Doctor</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp">Add Clinic</a>
+                                    <a href="${pageContext.request.contextPath}/ClinicDetails">Add Clinic</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addLab.jsp">Add Lab</a>
@@ -276,6 +276,20 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td><p class="contact"><label for="name">Telephone number 1</label></p></td>
+
+                                        <td>
+                                            <input id="tele1" name="tele1" tabindex="7" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><p class="contact"><label for="name">Telephone number 2</label></p></td>
+
+                                        <td>
+                                            <input id="tele2" name="tele2"  tabindex="8" type="text">                      
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td><p class="contact"><label for="name">Country :</label></p></td>
                                         <td>
                                             <select name="Country">
@@ -316,9 +330,9 @@
                                     </c:forEach>
                                     <tr>
                                         <td style="padding: 10px;" align="right" colspan="2" >
-                                            <input class="btn btn-primary" name="submit" id="submit" tabindex="7" value="Create" type="submit">
-                                            <input class="btn btn-danger" name="submit" id="submit" tabindex="8" value="Finish" type="button" onclick="gotohome()">                                            
-                                            <input class="btn btn-warning" id="cancel_button" tabindex="9" value="reset" type="reset">
+                                            <input class="btn btn-primary" name="submit" id="submit" tabindex="9" value="Create" type="submit">
+                                            <input class="btn btn-danger" name="submit" id="submit" tabindex="10" value="Finish" type="button" onclick="gotohome()">                                            
+                                            <input class="btn btn-warning" id="cancel_button" tabindex="11" value="reset" type="reset">
                                         </td>
                                     </tr>
 

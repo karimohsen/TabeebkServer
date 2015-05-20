@@ -1,8 +1,10 @@
 package com.tabeebkServer.pojo;
-// Generated May 15, 2015 3:04:27 PM by Hibernate Tools 3.6.0
+// Generated May 20, 2015 2:56:36 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,11 +38,12 @@ public class Schedule  implements java.io.Serializable {
      private Integer maxPatients;
      private Double fees;
      private Double deduct;
+     private Set<Reservation> reservations = new HashSet<Reservation>(0);
 
     public Schedule() {
     }
 
-    public Schedule(Msptype msptype, Integer msptypeId, Date date, Date startTime, Date endTime, Integer serveTime, Integer maxPatients, Double fees, Double deduct) {
+    public Schedule(Msptype msptype, Integer msptypeId, Date date, Date startTime, Date endTime, Integer serveTime, Integer maxPatients, Double fees, Double deduct, Set<Reservation> reservations) {
        this.msptype = msptype;
        this.msptypeId = msptypeId;
        this.date = date;
@@ -49,6 +53,7 @@ public class Schedule  implements java.io.Serializable {
        this.maxPatients = maxPatients;
        this.fees = fees;
        this.deduct = deduct;
+       this.reservations = reservations;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -151,6 +156,15 @@ public class Schedule  implements java.io.Serializable {
     
     public void setDeduct(Double deduct) {
         this.deduct = deduct;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="schedule")
+    public Set<Reservation> getReservations() {
+        return this.reservations;
+    }
+    
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
 

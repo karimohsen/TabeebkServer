@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 15, 2015 3:04:27 PM by Hibernate Tools 3.6.0
+// Generated May 20, 2015 2:56:36 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -30,6 +31,7 @@ public class Msp  implements java.io.Serializable {
      private Msptype msptype;
      private Integer typeId;
      private int deleted;
+     private Set<Planupdates> planupdateses = new HashSet<Planupdates>(0);
      private Set<Mic> mics = new HashSet<Mic>(0);
 
     public Msp() {
@@ -39,11 +41,11 @@ public class Msp  implements java.io.Serializable {
     public Msp(int deleted) {
         this.deleted = deleted;
     }
-    public Msp(Msptype msptype, Integer typeId, int deleted, Set<Mic> mics) {
+    public Msp(Msptype msptype, Integer typeId, int deleted, Set<Planupdates> planupdateses, Set<Mic> mics) {
        this.msptype = msptype;
        this.typeId = typeId;
        this.deleted = deleted;
-
+       this.planupdateses = planupdateses;
        this.mics = mics;
     }
    

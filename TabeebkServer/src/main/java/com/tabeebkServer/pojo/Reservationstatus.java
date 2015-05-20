@@ -1,12 +1,16 @@
 package com.tabeebkServer.pojo;
-// Generated May 15, 2015 3:04:27 PM by Hibernate Tools 3.6.0
+// Generated May 20, 2015 2:56:36 PM by Hibernate Tools 3.6.0
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,13 +26,15 @@ public class Reservationstatus  implements java.io.Serializable {
      private Integer id;
      private String statusEng;
      private String statusAr;
+     private Set<Reservation> reservations = new HashSet<Reservation>(0);
 
     public Reservationstatus() {
     }
 
-    public Reservationstatus(String statusEng, String statusAr) {
+    public Reservationstatus(String statusEng, String statusAr, Set<Reservation> reservations) {
        this.statusEng = statusEng;
        this.statusAr = statusAr;
+       this.reservations = reservations;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -61,6 +67,15 @@ public class Reservationstatus  implements java.io.Serializable {
     
     public void setStatusAr(String statusAr) {
         this.statusAr = statusAr;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="reservationstatus")
+    public Set<Reservation> getReservations() {
+        return this.reservations;
+    }
+    
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
 

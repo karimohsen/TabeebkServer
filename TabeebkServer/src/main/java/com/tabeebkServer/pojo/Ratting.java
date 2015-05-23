@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 20, 2015 2:56:36 PM by Hibernate Tools 3.6.0
+// Generated May 23, 2015 9:23:29 AM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;

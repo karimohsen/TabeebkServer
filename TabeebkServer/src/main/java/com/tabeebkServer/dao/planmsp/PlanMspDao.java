@@ -109,6 +109,7 @@ public class PlanMspDao {
         return finalResult1;
     }
 // not useddddddddd
+
     public void deleteMspFromPlan(List<Planmsp> list) {
         for (int i = 0; i < list.size(); i++) {
             session.beginTransaction();
@@ -127,18 +128,19 @@ public class PlanMspDao {
                 .executeUpdate();
         session.getTransaction().commit();
         //save Transaction -> get last version of plan
-        Plan plan=(Plan)session.get(Plan.class, planId);
-        Msp msp=(Msp)session.get(Msp.class, typeId);
-        Msptype msptype=(Msptype)session.get(Msptype.class, mspTypeId);
-        Integer version=(Integer)session.createQuery("SELECT MAX(version) FROM Planupdates WHERE plan=?")
-                                     .setParameter(0, plan).uniqueResult();
-        if (version==null)
-            version=0;
-        
-        Planupdates pUpdate=new Planupdates();
+        Plan plan = (Plan) session.get(Plan.class, planId);
+        Msp msp = (Msp) session.get(Msp.class, typeId);
+        Msptype msptype = (Msptype) session.get(Msptype.class, mspTypeId);
+        Integer version = (Integer) session.createQuery("SELECT MAX(version) FROM Planupdates WHERE plan=?")
+                .setParameter(0, plan).uniqueResult();
+        if (version == null) {
+            version = 0;
+        }
+
+        Planupdates pUpdate = new Planupdates();
         pUpdate.setPlan(plan);
         //save Transaction -> get Status
-        UpdateStatus uStatus=(UpdateStatus) session.createQuery("FROM UpdateStatus WHERE status='DeleteMSP'").uniqueResult();
+        UpdateStatus uStatus = (UpdateStatus) session.createQuery("FROM UpdateStatus WHERE status='DeleteMSP'").uniqueResult();
         pUpdate.setUpdateStatus(uStatus);
         pUpdate.setVersion(++version);
         pUpdate.setMsptype(msptype);
@@ -146,6 +148,11 @@ public class PlanMspDao {
         //save Transaction -> Insert new Record in PlanUpdate
         session.beginTransaction();
         session.saveOrUpdate(pUpdate);
+        session.getTransaction().commit();
+        //increase Plan Version
+        plan.setVersion(plan.getVersion() + 1);
+        session.beginTransaction();
+        session.update(plan);
         session.getTransaction().commit();
     }
 
@@ -154,18 +161,19 @@ public class PlanMspDao {
         session.saveOrUpdate(obj);
         session.getTransaction().commit();
         //save Transaction -> get last version of plan
-        Plan plan=(Plan)session.get(Plan.class, obj.getId().getPlanId());
-        Msp msp=(Msp)session.get(Msp.class, obj.getId().getTypeId());
-        Msptype msptype=(Msptype)session.get(Msptype.class, obj.getId().getMsptypeTypeId());
-        Integer version=(Integer)session.createQuery("SELECT MAX(version) FROM Planupdates WHERE plan=?")
-                                     .setParameter(0, plan).uniqueResult();
-        if (version==null)
-            version=0;
-        
-        Planupdates pUpdate=new Planupdates();
+        Plan plan = (Plan) session.get(Plan.class, obj.getId().getPlanId());
+        Msp msp = (Msp) session.get(Msp.class, obj.getId().getTypeId());
+        Msptype msptype = (Msptype) session.get(Msptype.class, obj.getId().getMsptypeTypeId());
+        Integer version = (Integer) session.createQuery("SELECT MAX(version) FROM Planupdates WHERE plan=?")
+                .setParameter(0, plan).uniqueResult();
+        if (version == null) {
+            version = 0;
+        }
+
+        Planupdates pUpdate = new Planupdates();
         pUpdate.setPlan(plan);
         //save Transaction -> get Status
-        UpdateStatus uStatus=(UpdateStatus) session.createQuery("FROM UpdateStatus WHERE status='DeleteMSP'").uniqueResult();
+        UpdateStatus uStatus = (UpdateStatus) session.createQuery("FROM UpdateStatus WHERE status='DeleteMSP'").uniqueResult();
         pUpdate.setUpdateStatus(uStatus);
         pUpdate.setVersion(++version);
         pUpdate.setMsptype(msptype);
@@ -173,6 +181,11 @@ public class PlanMspDao {
         //save Transaction -> Insert new Record in PlanUpdate
         session.beginTransaction();
         session.saveOrUpdate(pUpdate);
+        session.getTransaction().commit();
+        //increase Plan Version
+        plan.setVersion(plan.getVersion() + 1);
+        session.beginTransaction();
+        session.update(plan);
         session.getTransaction().commit();
     }
 
@@ -182,18 +195,19 @@ public class PlanMspDao {
             session.saveOrUpdate(obj);
             session.getTransaction().commit();
             //save Transaction -> get last version of plan
-            Plan plan=(Plan)session.get(Plan.class, obj.getId().getPlanId());
-            Msp msp=(Msp)session.get(Msp.class, obj.getId().getTypeId());
-            Msptype msptype=(Msptype)session.get(Msptype.class, obj.getId().getMsptypeTypeId());
-            Integer version=(Integer)session.createQuery("SELECT MAX(version) FROM Planupdates WHERE plan=?")
-                                         .setParameter(0, plan).uniqueResult();
-            if (version==null)
-                version=0;
+            Plan plan = (Plan) session.get(Plan.class, obj.getId().getPlanId());
+            Msp msp = (Msp) session.get(Msp.class, obj.getId().getTypeId());
+            Msptype msptype = (Msptype) session.get(Msptype.class, obj.getId().getMsptypeTypeId());
+            Integer version = (Integer) session.createQuery("SELECT MAX(version) FROM Planupdates WHERE plan=?")
+                    .setParameter(0, plan).uniqueResult();
+            if (version == null) {
+                version = 0;
+            }
 
-            Planupdates pUpdate=new Planupdates();
+            Planupdates pUpdate = new Planupdates();
             pUpdate.setPlan(plan);
             //save Transaction -> get Status
-            UpdateStatus uStatus=(UpdateStatus) session.createQuery("FROM UpdateStatus WHERE status='DeleteMSP'").uniqueResult();
+            UpdateStatus uStatus = (UpdateStatus) session.createQuery("FROM UpdateStatus WHERE status='DeleteMSP'").uniqueResult();
             pUpdate.setUpdateStatus(uStatus);
             pUpdate.setVersion(++version);
             pUpdate.setMsptype(msptype);
@@ -202,13 +216,17 @@ public class PlanMspDao {
             session.beginTransaction();
             session.saveOrUpdate(pUpdate);
             session.getTransaction().commit();
+            //increase Plan Version
+            plan.setVersion(plan.getVersion() + 1);
+            session.beginTransaction();
+            session.update(plan);
+            session.getTransaction().commit();
         }
         session.flush();
         session.clear();
     }
 
     //not used
-
     public void addMspToPlann(int mspId, int mspTypeId, int planid) {
         PlanmspId planMspId = new PlanmspId(planid, mspTypeId, mspId);
         Plan p = (Plan) session.get(Plan.class, planid);

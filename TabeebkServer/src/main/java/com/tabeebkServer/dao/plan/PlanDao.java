@@ -45,6 +45,11 @@ public class PlanDao {
         session.beginTransaction();
         session.saveOrUpdate(pUpdate);
         session.getTransaction().commit();
+        //increase Plan Version
+        plan.setVersion(plan.getVersion()+1);
+        session.beginTransaction();
+        session.update(plan);
+        session.getTransaction().commit();
     }
 
     public Plan getPlanDetails(int id) {
@@ -113,6 +118,11 @@ public class PlanDao {
         //save Transaction -> Insert new Record in PlanUpdate
         session.beginTransaction();
         session.saveOrUpdate(pUpdate);
+        session.getTransaction().commit();
+        //increase Plan Version
+        plan.setVersion(plan.getVersion()+1);
+        session.beginTransaction();
+        session.update(plan);
         session.getTransaction().commit();
     }
 

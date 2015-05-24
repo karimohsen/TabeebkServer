@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 23, 2015 9:23:29 AM by Hibernate Tools 3.6.0
+// Generated May 24, 2015 2:45:18 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,10 +26,10 @@ public class Reservation  implements java.io.Serializable {
 
 
      private Integer reservationId;
-     private Reservationstatus reservationstatus;
      private Reservationpayment reservationpayment;
-     private User user;
+     private Reservationstatus reservationstatus;
      private Schedule schedule;
+     private User user;
      private Date reservationTime;
      private Integer positionSlot;
 
@@ -37,16 +37,16 @@ public class Reservation  implements java.io.Serializable {
     }
 
 	
-    public Reservation(User user, Schedule schedule, Date reservationTime) {
-        this.user = user;
+    public Reservation(Schedule schedule, User user, Date reservationTime) {
         this.schedule = schedule;
+        this.user = user;
         this.reservationTime = reservationTime;
     }
-    public Reservation(Reservationstatus reservationstatus, Reservationpayment reservationpayment, User user, Schedule schedule, Date reservationTime, Integer positionSlot) {
-       this.reservationstatus = reservationstatus;
+    public Reservation(Reservationpayment reservationpayment, Reservationstatus reservationstatus, Schedule schedule, User user, Date reservationTime, Integer positionSlot) {
        this.reservationpayment = reservationpayment;
-       this.user = user;
+       this.reservationstatus = reservationstatus;
        this.schedule = schedule;
+       this.user = user;
        this.reservationTime = reservationTime;
        this.positionSlot = positionSlot;
     }
@@ -64,16 +64,6 @@ public class Reservation  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="reservation_status")
-    public Reservationstatus getReservationstatus() {
-        return this.reservationstatus;
-    }
-    
-    public void setReservationstatus(Reservationstatus reservationstatus) {
-        this.reservationstatus = reservationstatus;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="payment_type")
     public Reservationpayment getReservationpayment() {
         return this.reservationpayment;
@@ -84,13 +74,13 @@ public class Reservation  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_id", nullable=false)
-    public User getUser() {
-        return this.user;
+    @JoinColumn(name="reservation_status")
+    public Reservationstatus getReservationstatus() {
+        return this.reservationstatus;
     }
     
-    public void setUser(User user) {
-        this.user = user;
+    public void setReservationstatus(Reservationstatus reservationstatus) {
+        this.reservationstatus = reservationstatus;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
@@ -101,6 +91,16 @@ public class Reservation  implements java.io.Serializable {
     
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="user_id", nullable=false)
+    public User getUser() {
+        return this.user;
+    }
+    
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Temporal(TemporalType.TIME)

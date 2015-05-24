@@ -116,6 +116,7 @@ D:\GitInterface\TabeebkServer\src\main\java\com\tabeebkServer\pojo\DoctorClinc.j
 D:\GitInterface\TabeebkServer\src\main\java\com\tabeebkServer\controller\plan\AddPlan.java
 D:\GitInterface\TabeebkServer\src\main\java\com\tabeebkServer\controller\msp\MSPDetails.java
 D:\GitInterface\TabeebkServer\src\main\java\com\tabeebkServer\controller\msp\ViewComments.java
+D:\GitInterface\TabeebkServer\src\main\java\com\tabeebkServer\pojo\Reservation.java
 D:\GitInterface\TabeebkServer\src\main\java\com\tabeebkServer\admin\controller\BlockUser.java
 D:\GitInterface\TabeebkServer\src\main\java\com\tabeebkServer\pojo\Schedule.java
 D:\GitInterface\TabeebkServer\src\main\java\com\tabeebkServer\admin\controller\AdminAllMICS.java

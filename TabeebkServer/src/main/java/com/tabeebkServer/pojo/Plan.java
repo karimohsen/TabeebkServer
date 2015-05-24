@@ -1,5 +1,9 @@
 package com.tabeebkServer.pojo;
+<<<<<<< HEAD
 // Generated May 24, 2015 9:40:13 AM by Hibernate Tools 4.3.1
+=======
+// Generated May 23, 2015 9:23:29 AM by Hibernate Tools 3.6.0
+>>>>>>> 6689aef6dda3c5207775e14ccd6ef12c7e2f185a
 
 
 import java.util.Date;
@@ -30,7 +34,11 @@ public class Plan  implements java.io.Serializable {
 
 
      private Integer planId;
+<<<<<<< HEAD
      private Integer version;
+=======
+     private int version;
+>>>>>>> 6689aef6dda3c5207775e14ccd6ef12c7e2f185a
      private Mic mic;
      private String planName;
      private String planNameAr;
@@ -39,18 +47,25 @@ public class Plan  implements java.io.Serializable {
      private Date planInsertDate;
      private Date planUpdatedDate;
      private Integer deleted;
+<<<<<<< HEAD
      private String plancol;
+=======
+>>>>>>> 6689aef6dda3c5207775e14ccd6ef12c7e2f185a
      private Set<Planupdates> planupdateses = new HashSet<Planupdates>(0);
      private Set<Planmsp> planmsps = new HashSet<Planmsp>(0);
 
     public Plan() {
     }
 
+<<<<<<< HEAD
 	
     public Plan(String plancol) {
         this.plancol = plancol;
     }
     public Plan(Mic mic, String planName, String planNameAr, String planDescription, String planDescriptionAr, Date planInsertDate, Date planUpdatedDate, Integer deleted, String plancol, Set<Planupdates> planupdateses, Set<Planmsp> planmsps) {
+=======
+    public Plan(Mic mic, String planName, String planNameAr, String planDescription, String planDescriptionAr, Date planInsertDate, Date planUpdatedDate, Integer deleted, Set<Planupdates> planupdateses, Set<Planmsp> planmsps) {
+>>>>>>> 6689aef6dda3c5207775e14ccd6ef12c7e2f185a
        this.mic = mic;
        this.planName = planName;
        this.planNameAr = planNameAr;
@@ -59,7 +74,10 @@ public class Plan  implements java.io.Serializable {
        this.planInsertDate = planInsertDate;
        this.planUpdatedDate = planUpdatedDate;
        this.deleted = deleted;
+<<<<<<< HEAD
        this.plancol = plancol;
+=======
+>>>>>>> 6689aef6dda3c5207775e14ccd6ef12c7e2f185a
        this.planupdateses = planupdateses;
        this.planmsps = planmsps;
     }
@@ -76,6 +94,7 @@ public class Plan  implements java.io.Serializable {
         this.planId = planId;
     }
 
+<<<<<<< HEAD
     @Version
     @Column(name="version")
     public Integer getVersion() {
@@ -83,6 +102,15 @@ public class Plan  implements java.io.Serializable {
     }
     
     public void setVersion(Integer version) {
+=======
+    
+    @Column(name="version", nullable=false)
+    public int getVersion() {
+        return this.version;
+    }
+    
+    public void setVersion(int version) {
+>>>>>>> 6689aef6dda3c5207775e14ccd6ef12c7e2f185a
         this.version = version;
     }
 
@@ -166,6 +194,7 @@ public class Plan  implements java.io.Serializable {
         this.deleted = deleted;
     }
 
+<<<<<<< HEAD
     
     @Column(name="plancol", nullable=false, length=45)
     public String getPlancol() {
@@ -176,6 +205,8 @@ public class Plan  implements java.io.Serializable {
         this.plancol = plancol;
     }
 
+=======
+>>>>>>> 6689aef6dda3c5207775e14ccd6ef12c7e2f185a
 @OneToMany(fetch=FetchType.LAZY, mappedBy="plan")
     public Set<Planupdates> getPlanupdateses() {
         return this.planupdateses;

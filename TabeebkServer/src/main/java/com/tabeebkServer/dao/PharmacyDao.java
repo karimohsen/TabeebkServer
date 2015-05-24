@@ -5,7 +5,6 @@
  */
 package com.tabeebkServer.dao;
 
-import static com.tabeebkServer.dao.LabDao.session;
 import com.tabeebkServer.pojo.Hospital;
 import com.tabeebkServer.pojo.Pharamacy;
 import org.hibernate.Session;
@@ -32,5 +31,25 @@ public class PharmacyDao {
         session.save(p);
         session.getTransaction().commit();
         return p.getPharamacyId();
+    }
+    
+    public static void updatePharmacy(int id,int hospitalId,String name,String nameAr){
+        Pharamacy p = (Pharamacy)session.get(Pharamacy.class, id);
+        if (hospitalId != -2) {
+            p.setHospital((Hospital) session.get(Hospital.class, hospitalId));
+        }
+        p.setPharamacyName(name);
+        p.setPharamacyNameAr(nameAr);
+        session.clear();
+        if (!session.getTransaction().isActive()) {
+            session.beginTransaction();
+        }
+        session.update(p);
+        session.getTransaction().commit();
+    }
+    
+    public static Pharamacy getPharmacyDetails(int id){
+        session.clear();
+        return (Pharamacy)session.get(Pharamacy.class, id);
     }
 }

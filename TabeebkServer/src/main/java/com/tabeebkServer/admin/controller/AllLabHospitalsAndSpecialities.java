@@ -9,7 +9,7 @@ import com.tabeebkServer.dao.AreaDao;
 import com.tabeebkServer.dao.CityDao;
 import com.tabeebkServer.dao.CountryDao;
 import com.tabeebkServer.dao.HospitalDao;
-import com.tabeebkServer.dao.LabDao;
+import com.tabeebkServer.dao.LabSpecialityDao;
 import com.tabeebkServer.pojo.Area;
 import com.tabeebkServer.pojo.City;
 import com.tabeebkServer.pojo.Country;
@@ -43,7 +43,6 @@ public class AllLabHospitalsAndSpecialities extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher rd = request.getRequestDispatcher("Admin/addBranchsToLab.jsp");
-        System.out.println("==in add lab===");
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {
             ArrayList<City> city = CityDao.getAllCities();
@@ -53,7 +52,7 @@ public class AllLabHospitalsAndSpecialities extends HttpServlet {
             ArrayList<Country> country =CountryDao.getAllCountries();
             request.setAttribute("allcountries", country);
             ArrayList<Labspecialities> list = new ArrayList<>();
-            list = LabDao.getLabSpecialities();
+            list = LabSpecialityDao.getLabSpecialities();
             request.setAttribute("allLabSpecialities", list);
             ArrayList<Hospital> hospitals = new ArrayList<>();
             hospitals = HospitalDao.getAllHospitals();

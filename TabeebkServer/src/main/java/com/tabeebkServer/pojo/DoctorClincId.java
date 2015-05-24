@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 7:54:12 AM by Hibernate Tools 4.3.1
+// Generated May 24, 2015 9:40:13 AM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;

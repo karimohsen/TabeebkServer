@@ -8,6 +8,7 @@ package com.tabeebkServer.admin.controller;
 import com.tabeebkServer.dao.BranchDao;
 import com.tabeebkServer.dao.MSPDao;
 import com.tabeebkServer.dao.PharmacyDao;
+import com.tabeebkServer.dao.TelephoneDao;
 import com.tabeebkServer.pojo.Pharamacy;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -42,6 +43,8 @@ public class AddPharmacyBranch extends HttpServlet {
         String addressAr = request.getParameter("addressar");
         String longitude = request.getParameter("longitude");
         String latitude = request.getParameter("latitude");
+        String tele1 = request.getParameter("tele1");
+        String tele2 = request.getParameter("tele2");
         int country = Integer.parseInt(request.getParameter("Country"));
         int area = Integer.parseInt(request.getParameter("Area"));
         int city = Integer.parseInt(request.getParameter("Cities"));
@@ -52,6 +55,12 @@ public class AddPharmacyBranch extends HttpServlet {
         Pharamacy p = (Pharamacy) this.getServletConfig().getServletContext().getAttribute("newpharmacy");
         int pharmacyId = PharmacyDao.addPharmacy(p,hospitalId);
         MSPDao.addMsp(5, pharmacyId);
+        if(tele1!=null){
+            TelephoneDao.createTelephoneNumber(5, pharmacyId, tele1);
+        }
+        if(tele2!=null){
+            TelephoneDao.createTelephoneNumber(5, pharmacyId, tele2);
+        }
         BranchDao.addBranch(area, address, addressAr, latitude, longitude, branchName, branchNameAr, 5, pharmacyId, country, city);
         RequestDispatcher rd = request.getRequestDispatcher("PharmacyBranch");
         rd.forward(request, response);

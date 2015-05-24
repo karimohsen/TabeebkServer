@@ -35,23 +35,21 @@
         <link href="//cdn.datatables.net/1.10.5/css/jquery.dataTables.css" rel="stylesheet"/>
         <script src="${pageContext.request.contextPath}/js/ADS_Script.js"></script>
         <script>
-            function checkMsp(mspTypeId,mspId){
-                alert(mspTypeId);
-                alert(mspId);
-                if(mspTypeId==1){
-                    
+            function checkMsp(mspTypeId, mspId) {
+                if (mspTypeId == 1) {
+                    EditPlan('EditHospitalDetails', mspId);
                 }
-                else if(mspTypeId==2){
-                    
+                else if (mspTypeId == 2) {
+                    EditPlan('EditClinicDetails', mspId);
                 }
-                else if(mspTypeId==3){
-                    
+                else if (mspTypeId == 3) {
+                    EditPlan('EditDoctorDetails', mspId);
                 }
-                else if(mspTypeId==4){
-                    
+                else if (mspTypeId == 4) {
+                    EditPlan('EditLabDetails', mspId);
                 }
-                else if(mspTypeId==5){
-                    
+                else if (mspTypeId == 5) {
+                    EditPlan('EditPharmacyDetails', mspId);
                 }
             }
         </script>
@@ -182,10 +180,10 @@
                                     <a href="${pageContext.request.contextPath}/AdminAllMsps">All MSPS</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addDoctor.jsp">Add Doctor</a>
+                                    <a href="${pageContext.request.contextPath}/AdminDoctorDetails">Add Doctor</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Admin/addClinic.jsp">Add Clinic</a>
+                                    <a href="${pageContext.request.contextPath}/ClinicDetails">Add Clinic</a>
                                 </li>
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addLab.jsp">Add Lab</a>

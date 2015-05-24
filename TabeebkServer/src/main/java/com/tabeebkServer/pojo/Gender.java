@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 7:54:12 AM by Hibernate Tools 4.3.1
+// Generated May 24, 2015 9:40:13 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -26,14 +26,16 @@ public class Gender  implements java.io.Serializable {
      private Integer genderId;
      private String genderName;
      private String genderNameAr;
+     private Set<Doctor> doctors = new HashSet<Doctor>(0);
      private Set<User> users = new HashSet<User>(0);
 
     public Gender() {
     }
 
-    public Gender(String genderName, String genderNameAr, Set<User> users) {
+    public Gender(String genderName, String genderNameAr, Set<Doctor> doctors, Set<User> users) {
        this.genderName = genderName;
        this.genderNameAr = genderNameAr;
+       this.doctors = doctors;
        this.users = users;
     }
    
@@ -67,6 +69,15 @@ public class Gender  implements java.io.Serializable {
     
     public void setGenderNameAr(String genderNameAr) {
         this.genderNameAr = genderNameAr;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="gender")
+    public Set<Doctor> getDoctors() {
+        return this.doctors;
+    }
+    
+    public void setDoctors(Set<Doctor> doctors) {
+        this.doctors = doctors;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="gender")

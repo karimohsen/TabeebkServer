@@ -6,6 +6,7 @@
 package com.tabeebkServer.admin.controller;
 
 import com.tabeebkServer.parseExcel.Constants;
+import com.tabeebkServer.parseExcel.ParseExcelFile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -100,6 +101,7 @@ public class uploadExcelFile extends HttpServlet {
                 //File uploaded successfully
                 if (res == 1) {
                     request.setAttribute("message", "File Uploaded Successfully");
+                    new ParseExcelFile();
                 } else {
                     request.setAttribute("message", "Please choose a correct file, it should be an excel file named MspData");
                 }

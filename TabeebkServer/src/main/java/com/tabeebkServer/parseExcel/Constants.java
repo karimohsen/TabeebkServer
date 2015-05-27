@@ -14,7 +14,7 @@ public abstract class Constants {
    public static final String XLS="xls";
    public static final String FILE_NAMEX="MspData.xlsx";
    public static final String FILE_NAME="MspData.xls";
-   public static final String FILE_PATH="pulkUpload/MspData.xlsx";
+   public static final String FILE_PATH="pulkUpload/uploadedexcelFile/MspData.xlsx";
    public static final String DOCTOR_IMAGE_DIRECTORY="\\Images\\doctor\\";
    public static final String CLINIC_IMAGE_DIRECTORY="\\Images\\clinic\\";
    public static final String HOSPITAL_IMAGE_DIRECTORY="\\Images\\hospital\\";

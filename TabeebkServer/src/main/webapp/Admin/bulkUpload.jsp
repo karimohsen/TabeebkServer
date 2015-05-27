@@ -177,6 +177,9 @@
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/addPharmacy.jsp">Add Pharmacy</a>
                                 </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Admin/bulkUpload.jsp">Bulk Upload</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -212,7 +215,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
-                                pulk Upload
+                                Bulk Upload
 
                             </h1>
                             <ol class="breadcrumb">
@@ -220,7 +223,7 @@
                                     <i class="fa fa-home"></i>  <a href="${pageContext.request.contextPath}/Admin/Home.jsp">Home</a>
                                 </li>
                                 <li class="active">
-                                    <i class="fa fa-ambulance"></i> Pulk Upload
+                                    <i class="fa fa-file-excel-o"></i> Bulk Upload
                                 </li>
                             </ol>
                         </div>
@@ -230,12 +233,14 @@
                          <div>
             <h3> Download excel file Structure </h3>
             <form action="${pageContext.request.contextPath}/DownloadExcelStructure" method="get">
-                <input type="submit" value="Download" /> 
+                <input type="submit" class="btn btn-primary" value="Download" /> 
             </form>
             <h3> Choose File to Upload in Server </h3>
             <form action="${pageContext.request.contextPath}/upload" method="post" enctype="multipart/form-data">
-                <input type="file" name="file" />
-                <input type="submit" value="upload" />
+                <input type="file" name="file" class="btn btn-default" >
+
+                <input type="submit" class="btn btn-primary" value="upload" >
+                
             </form> 
         </div>
         <div id="result">

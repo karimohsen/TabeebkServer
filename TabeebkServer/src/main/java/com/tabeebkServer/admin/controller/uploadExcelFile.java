@@ -101,7 +101,7 @@ public class uploadExcelFile extends HttpServlet {
                 if (res == 1) {
                     request.setAttribute("message", "File Uploaded Successfully");
                 } else {
-                    request.setAttribute("message", "Please choose a correct file, it should be an excel file named MspData <br/>");
+                    request.setAttribute("message", "Please choose a correct file, it should be an excel file named MspData");
                 }
             } catch (Exception ex) {
                 request.setAttribute("message", "File Upload Failed due to " + ex);

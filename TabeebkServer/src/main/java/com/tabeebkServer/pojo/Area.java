@@ -34,6 +34,12 @@ public class Area  implements java.io.Serializable {
     public Area() {
     }
 
+    public Area(City city, String areaNameEn, String areaNameAr) {
+        this.city = city;
+        this.areaNameEn = areaNameEn;
+        this.areaNameAr = areaNameAr;
+    }
+
 	
     public Area(City city) {
         this.city = city;

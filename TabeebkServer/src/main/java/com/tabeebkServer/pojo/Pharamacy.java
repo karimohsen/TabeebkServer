@@ -32,6 +32,13 @@ public class Pharamacy  implements java.io.Serializable {
     public Pharamacy() {
     }
 
+    public Pharamacy(String pharamacyName, String pharamacyNameAr, String pharamacyImagepath, int deleted) {
+        this.pharamacyName = pharamacyName;
+        this.pharamacyNameAr = pharamacyNameAr;
+        this.pharamacyImagepath = pharamacyImagepath;
+        this.deleted = deleted;
+    }
+
 	
     public Pharamacy(String pharamacyName, int deleted) {
         this.pharamacyName = pharamacyName;

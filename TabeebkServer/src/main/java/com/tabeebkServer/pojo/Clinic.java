@@ -33,6 +33,13 @@ public class Clinic  implements java.io.Serializable {
     public Clinic() {
     }
 
+    public Clinic(String clinicName, String clinicNameAr, String clinicImagepath, int deleted) {
+        this.clinicName = clinicName;
+        this.clinicNameAr = clinicNameAr;
+        this.clinicImagepath = clinicImagepath;
+        this.deleted = deleted;
+    }
+
 	
     public Clinic(int deleted) {
         this.deleted = deleted;

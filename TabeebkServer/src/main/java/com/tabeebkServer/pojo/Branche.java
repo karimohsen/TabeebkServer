@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name="branche"
     ,catalog="graduationprojecttabeebakdb"
 )
-public class Branche  implements java.io.Serializable {
+public class Branche  implements java.io.Serializable,Comparable<Branche> {
 
 
      private Integer brancheId;
@@ -41,6 +41,17 @@ public class Branche  implements java.io.Serializable {
     public Branche() {
     }
 
+
+    public Branche( City city,Area area, Msptype msptype, String brancheName, String brancheNameAr, String brancheAddress, String brancheAddressAr, Integer typeId) {
+        this.area = area;
+        this.city = city;
+        this.msptype = msptype;
+        this.brancheName = brancheName;
+        this.brancheNameAr = brancheNameAr;
+        this.brancheAddress = brancheAddress;
+        this.brancheAddressAr = brancheAddressAr;
+        this.typeId = typeId;
+    }
 	
     public Branche(String brancheName) {
         this.brancheName = brancheName;
@@ -213,7 +224,10 @@ public class Branche  implements java.io.Serializable {
     public void setBrancheStreetAr(String brancheStreetAr) {
         this.brancheStreetAr = brancheStreetAr;
     }
-
+@Override
+    public int compareTo(Branche o) {
+        return brancheAddress.compareTo(o.brancheAddress);
+    }
 
 
 

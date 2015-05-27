@@ -36,6 +36,21 @@ public class Lab  implements java.io.Serializable {
     public Lab() {
     }
 
+    public Lab(Hospital hospital, String labName, String labNameAr, String labImagepath, int deleted) {
+        this.hospital = hospital;
+        this.labName = labName;
+        this.labNameAr = labNameAr;
+        this.labImagepath = labImagepath;
+        this.deleted = deleted;
+    }
+
+    public Lab(String labName, String labNameAr, String labImagepath, int deleted) {
+        this.labName = labName;
+        this.labNameAr = labNameAr;
+        this.labImagepath = labImagepath;
+        this.deleted = deleted;
+    }
+
 	
     public Lab(int deleted) {
         this.deleted = deleted;

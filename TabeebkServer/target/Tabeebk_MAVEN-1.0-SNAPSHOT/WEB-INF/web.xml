@@ -4,6 +4,15 @@
         <welcome-file>Login.jsp</welcome-file>
     </welcome-file-list>
     <servlet>
+        <servlet-name>uploadExcelFile</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.uploadExcelFile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DownloadExcelStructure</servlet-name>
+        <servlet-class>com.tabeebkServer.admin.controller.DownloadExcelStructure</servlet-class>
+    </servlet>
+    
+    <servlet>
         <servlet-name>ViewUsers</servlet-name>
         <servlet-class>com.tabeebkServer.controller.msp.ViewUsers</servlet-class>
     </servlet>
@@ -243,6 +252,15 @@
         <servlet-name>UpdateLabDetails</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.UpdateLabDetails</servlet-class>
     </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>uploadExcelFile</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadExcelStructure</servlet-name>
+        <url-pattern>/DownloadExcelStructure</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AllPlans</servlet-name>
         <url-pattern>/AllPlans</url-pattern>
@@ -483,6 +501,7 @@
         <servlet-name>UpdateLabDetails</servlet-name>
         <url-pattern>/UpdateLabDetails</url-pattern>
     </servlet-mapping>
+    
     <session-config>
         <session-timeout>-1</session-timeout>
     </session-config>

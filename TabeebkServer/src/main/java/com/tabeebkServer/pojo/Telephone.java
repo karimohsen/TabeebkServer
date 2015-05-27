@@ -21,7 +21,7 @@ import javax.persistence.UniqueConstraint;
     ,catalog="graduationprojecttabeebakdb"
     , uniqueConstraints = @UniqueConstraint(columnNames="Telephone_number") 
 )
-public class Telephone  implements java.io.Serializable {
+public class Telephone  implements java.io.Serializable,Comparable<Telephone> {
 
 
      private Integer telephoneId;
@@ -81,7 +81,10 @@ public class Telephone  implements java.io.Serializable {
     }
 
 
-
+@Override
+    public int compareTo(Telephone o) {
+        return telephoneNumber.compareTo(o.getTelephoneNumber());
+    }
 
 }
 

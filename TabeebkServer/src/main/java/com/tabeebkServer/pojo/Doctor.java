@@ -39,6 +39,15 @@ public class Doctor  implements java.io.Serializable {
     public Doctor() {
     }
 
+    public Doctor(String doctorName, String doctorNameAr, String doctorDegree, String doctorDegreeAr, Gender gender,int deleted) {
+        this.gender = gender;
+        this.doctorName = doctorName;
+        this.doctorNameAr = doctorNameAr;
+        this.doctorDegree = doctorDegree;
+        this.doctorDegreeAr = doctorDegreeAr;
+        this.deleted = deleted;
+    }
+
 	
     public Doctor(int deleted) {
         this.deleted = deleted;

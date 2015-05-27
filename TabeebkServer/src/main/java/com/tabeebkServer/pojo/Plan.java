@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 2:45:18 PM by Hibernate Tools 4.3.1
+// Generated May 23, 2015 9:23:29 AM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -30,7 +30,7 @@ public class Plan  implements java.io.Serializable {
 
 
      private Integer planId;
-     private Integer version;
+     private int version;
      private Mic mic;
      private String planName;
      private String planNameAr;
@@ -39,18 +39,13 @@ public class Plan  implements java.io.Serializable {
      private Date planInsertDate;
      private Date planUpdatedDate;
      private Integer deleted;
-     private String plancol;
      private Set<Planupdates> planupdateses = new HashSet<Planupdates>(0);
      private Set<Planmsp> planmsps = new HashSet<Planmsp>(0);
 
     public Plan() {
     }
 
-	
-    public Plan(String plancol) {
-        this.plancol = plancol;
-    }
-    public Plan(Mic mic, String planName, String planNameAr, String planDescription, String planDescriptionAr, Date planInsertDate, Date planUpdatedDate, Integer deleted, String plancol, Set<Planupdates> planupdateses, Set<Planmsp> planmsps) {
+    public Plan(Mic mic, String planName, String planNameAr, String planDescription, String planDescriptionAr, Date planInsertDate, Date planUpdatedDate, Integer deleted, Set<Planupdates> planupdateses, Set<Planmsp> planmsps) {
        this.mic = mic;
        this.planName = planName;
        this.planNameAr = planNameAr;
@@ -59,7 +54,6 @@ public class Plan  implements java.io.Serializable {
        this.planInsertDate = planInsertDate;
        this.planUpdatedDate = planUpdatedDate;
        this.deleted = deleted;
-       this.plancol = plancol;
        this.planupdateses = planupdateses;
        this.planmsps = planmsps;
     }
@@ -76,13 +70,13 @@ public class Plan  implements java.io.Serializable {
         this.planId = planId;
     }
 
-    @Version
-    @Column(name="version")
-    public Integer getVersion() {
+    
+    @Column(name="version", nullable=false)
+    public int getVersion() {
         return this.version;
     }
     
-    public void setVersion(Integer version) {
+    public void setVersion(int version) {
         this.version = version;
     }
 
@@ -164,16 +158,6 @@ public class Plan  implements java.io.Serializable {
     
     public void setDeleted(Integer deleted) {
         this.deleted = deleted;
-    }
-
-    
-    @Column(name="plancol", nullable=false, length=45)
-    public String getPlancol() {
-        return this.plancol;
-    }
-    
-    public void setPlancol(String plancol) {
-        this.plancol = plancol;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="plan")

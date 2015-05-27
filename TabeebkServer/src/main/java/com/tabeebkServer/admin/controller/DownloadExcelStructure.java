@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLDecoder;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,13 @@ public class DownloadExcelStructure extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("    in servelt --------------------");
-        String filePath =getServletContext().getRealPath("/")+Constants.DOWNLOAD_DIRECTORY;
+        String path = this.getClass().getClassLoader().getResource("").getPath();
+
+String fullPath = URLDecoder.decode(path, "UTF-8");
+String pathArr[] = fullPath.split("/target/Tabeebk_MAVEN-1.0-SNAPSHOT/WEB-INF/classes/");
+System.out.println(fullPath);
+System.out.println(pathArr[0]);
+        String filePath =pathArr[0]+Constants.DOWNLOAD_DIRECTORY;
         System.out.println(filePath);
         File downloadFile = new File(filePath);
         FileInputStream inStream = new FileInputStream(downloadFile);

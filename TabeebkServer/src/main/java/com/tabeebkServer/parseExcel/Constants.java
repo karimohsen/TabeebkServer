@@ -20,7 +20,7 @@ public abstract class Constants {
    public static final String HOSPITAL_IMAGE_DIRECTORY="\\Images\\hospital\\";
    public static final String LAB_IMAGE_DIRECTORY="\\Images\\lab\\";
    public static final String PHARMACY_IMAGE_DIRECTORY="\\Images\\pharmacy\\";
-   public static final String DOWNLOAD_DIRECTORY= "\\pulkUpload\\downloadexcelFile\\MspData.xlsx";
+   public static final String DOWNLOAD_DIRECTORY= "src\\main\\resources\\pulkUpload\\downloadexcelFile\\MspData.xlsx";
    public static final String UPLOAD_DIRECTORY = "\\pulkUpload\\uploadedexcelFile";
    public static final int MALE_ID=1;
    public static final int FEMALE_ID=2;

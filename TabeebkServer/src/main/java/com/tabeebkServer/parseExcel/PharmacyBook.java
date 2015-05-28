@@ -33,6 +33,7 @@ public class PharmacyBook {
     private City city = null;
     private BranchDao addressDao = null;
     private Sheet pharmcySheet = null;
+    private Msp msp=null;
 
     public PharmacyBook(Workbook pharmacyBook) {
 
@@ -70,6 +71,8 @@ public class PharmacyBook {
             }
             int i = savePharmacy(pharmacy);
             if (i == 1) {
+                msp=new Msp(mspDao.getMspType(Constants.PHARMACY),pharmacy.getPharamacyId(),0);
+                mspDao.saveMsp(msp);
                 savePharmacyTelephone(createPharmacyTelelphone(row, pharmacy, pharmacySheet));
                 savePharmacyBranches(createPharmacyBranch(row, pharmacy, pharmacySheet));
             }

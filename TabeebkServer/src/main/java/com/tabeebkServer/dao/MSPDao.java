@@ -41,7 +41,6 @@ public class MSPDao {
     private int result = 0;
 
     //=====================Admin Add msp====================================
-
     public static void addMsp(int msptype, int typeid) {
         Msp msp = new Msp();
         msp.setDeleted(0);
@@ -354,44 +353,48 @@ public class MSPDao {
     //-------- excel file methods ---------------------
     //==================================================
     public Gender getGender(int id) {
+        Gender gendr = null;
+        if (!session.getTransaction().isActive()) {
+            session.beginTransaction();
+            gendr = (Gender) session.createQuery("from Gender g where g.genderId = :genId ").setInteger("genId", id).uniqueResult();
 
-        Gender gendr = (Gender) session.createQuery("from Gender g where g.genderId = :genId ").setInteger("genId", id).uniqueResult();
+        }
         return gendr;
     }
 
     public Msptype getMspType(int type) {
-
-        Msptype mspType = (Msptype) session.createQuery("from Msptype msT where msT.typeId = :typeID").setInteger("typeID", type).uniqueResult();
+        Msptype mspType = null;
+        mspType = (Msptype) session.createQuery("from Msptype msT where msT.typeId = :typeID").setInteger("typeID", type).uniqueResult();
         return mspType;
     }
 
     public Lab getLabByID(int id) {
 
+       
         Lab lab = (Lab) session.createQuery("from Lab l where l.labId = :id ").setInteger("id", id).uniqueResult();
         return lab;
     }
 
     public Pharamacy getPharamacyByID(int id) {
-
+     
         Pharamacy pharamcy = (Pharamacy) session.createQuery("from Pharamacy ph where ph.pharamacyId = :id ").setInteger("id", id).uniqueResult();
         return pharamcy;
     }
 
     public Hospital getHospitalByID(int id) {
-
+    
         Hospital hospital = (Hospital) session.createQuery("from Hospital h where h.hospitalId = :id ").setInteger("id", id).uniqueResult();
         return hospital;
     }
 
     public Hospital getHospitalByName(String hosName) {
-
+       
         Hospital hospital = (Hospital) session.createQuery("from Hospital h where h.hospitalName = :name ").setString("name", hosName.toLowerCase()).uniqueResult();
         return hospital;
     }
 
     public Clinic getClinicByName(String cName) {
-
-        session.clear();
+      
         Clinic clinc = (Clinic) session.createQuery("from Clinic c where c.clinicName=:clinName").setString("clinName", cName.toLowerCase()).uniqueResult();
         session.evict(clinc);
         session.flush();
@@ -399,27 +402,30 @@ public class MSPDao {
     }
 
     public Doctor getDoctorByID(int id) {
-
+        
         Doctor doctor = (Doctor) session.createQuery("from Doctor d where d.doctorId = :id ").setInteger("id", id).uniqueResult();
         return doctor;
+
     }
 
     public Doctorspeciality getDoctorSpeciality(String name) {
-
-        Doctorspeciality docSpe = (Doctorspeciality) session.createQuery("from Doctorspeciality ds where ds.doctorSpecialityName=:docSpec").setString("docSpec", name.toLowerCase()).uniqueResult();
-        session.evict(docSpe);
+        Doctorspeciality docSpe = null;
+    
+            docSpe = (Doctorspeciality) session.createQuery("from Doctorspeciality ds where ds.doctorSpecialityName=:docSpec").setString("docSpec", name.toLowerCase()).uniqueResult();
+            session.evict(docSpe);
+        
         return docSpe;
     }
 
     public Labspecialities getLabSpeciality(String name) {
-
+       
         Labspecialities labSpec = (Labspecialities) session.createQuery("from Labspecialities l where l.specialityName = :lSpec").setString("lSpec", name.toLowerCase()).uniqueResult();
         session.evict(labSpec);
         return labSpec;
     }
 
     public boolean isDoctorExist(String name) {
-
+      
         Doctor doctor = (Doctor) session.createQuery("from Doctor d where d.doctorName = :docName").setString("docName", name.toLowerCase()).uniqueResult();
         if (doctor != null) {
             return true;
@@ -429,7 +435,7 @@ public class MSPDao {
     }
 
     public boolean isHospitalExist(String name) {
-
+       
         Hospital hospital = (Hospital) session.createQuery(" from Hospital h where h.hospitalName = :hosName").setString("hosName", name.toLowerCase()).uniqueResult();
         if (hospital != null) {
             return true;
@@ -439,7 +445,7 @@ public class MSPDao {
     }
 
     public boolean isClinicExist(String name) {
-
+       
         Clinic c = (Clinic) session.createQuery(" from Clinic c where c.clinicName = :clinName").setString("clinName", name.toLowerCase()).uniqueResult();
         if (c != null) {
             return true;
@@ -449,7 +455,7 @@ public class MSPDao {
     }
 
     public boolean isPharamacyExist(String name) {
-
+        
         Pharamacy pharamcy = (Pharamacy) session.createQuery("from Pharamacy ph where ph.pharamacyName = :pharmcName").setString("pharmcName", name.toLowerCase()).uniqueResult();
         if (pharamcy != null) {
             return true;
@@ -459,7 +465,7 @@ public class MSPDao {
     }
 
     public boolean isLabExist(String name) {
-
+        
         Lab lab = (Lab) session.createQuery("from Lab l where l.labName = :labname ").setString("labname", name.toLowerCase()).uniqueResult();
         if (lab != null) {
             return true;
@@ -468,10 +474,27 @@ public class MSPDao {
         }
     }
 
+    public int saveMsp(Msp msp) {
+        if (msp != null) {
+            if (!session.getTransaction().isActive()) {
+                session.getTransaction().begin();
+            }
+            session.persist(msp);
+            session.getTransaction().commit();
+            session.evict(msp);
+            result = 1;
+        } else {
+            result = 0;
+        }
+        return result;
+    }
+
     public int insertDoctorClinics(TreeSet<Clinic> clinics) {
         if (clinics != null) {
             for (Clinic clinic : clinics) {
-                session.getTransaction().begin();
+                if (!session.getTransaction().isActive()) {
+                    session.getTransaction().begin();
+                }
                 session.saveOrUpdate(clinic);
                 session.getTransaction().commit();
                 session.evict(clinic);
@@ -488,8 +511,9 @@ public class MSPDao {
     public int insertDoctorClinic(Clinic c) {
 
         if (c != null) {
-            session.clear();
-            session.getTransaction().begin();
+            if (!session.getTransaction().isActive()) {
+                session.getTransaction().begin();
+            }
             session.saveOrUpdate(c);
             session.getTransaction().commit();
             session.evict(c);
@@ -505,8 +529,9 @@ public class MSPDao {
 
         if (doctors != null) {
             for (Doctor d : doctors) {
-                session.clear();
-                session.getTransaction().begin();
+                if (!session.getTransaction().isActive()) {
+                    session.getTransaction().begin();
+                }
                 session.saveOrUpdate(d);
                 session.getTransaction().commit();
                 session.evict(d);
@@ -521,8 +546,9 @@ public class MSPDao {
     }
 
     public int saveDoctor(Doctor doctor) {
-
-        session.getTransaction().begin();
+        if (!session.getTransaction().isActive()) {
+            session.beginTransaction();
+        }
         if (doctor != null) {
             session.clear();
             session.saveOrUpdate(doctor);
@@ -532,14 +558,14 @@ public class MSPDao {
         } else {
             result = 0;
         }
-        session.close();
 
         return result;
     }
 
     public int saveDoctorClinic(DoctorClinc dc) {
-
-        session.getTransaction().begin();
+        if (!session.getTransaction().isActive()) {
+            session.getTransaction().begin();
+        }
         if (dc != null) {
             session.persist(dc);
             session.getTransaction().commit();
@@ -552,8 +578,9 @@ public class MSPDao {
     }
 
     public int saveDoctorSpeciality(Doctorspeciality ds) {
-
-        session.getTransaction().begin();
+        if (!session.getTransaction().isActive()) {
+            session.getTransaction().begin();
+        }
         if (ds != null) {
             session.persist(ds);
             session.getTransaction().commit();
@@ -568,8 +595,10 @@ public class MSPDao {
     public int saveHospitalSpeciality(Hospitalspeciality specs) {
 
         if (specs != null) {
-            session.getTransaction().begin();
-            session.persist(specs);
+            if (!session.getTransaction().isActive()) {
+                session.getTransaction().begin();
+            }
+            session.saveOrUpdate(specs);
             session.getTransaction().commit();
             session.evict(specs);
             result = 1;
@@ -583,7 +612,9 @@ public class MSPDao {
     public int saveLabSpeciality(Labspeciality specs) {
 
         if (specs != null) {
-            session.getTransaction().begin();
+            if (!session.getTransaction().isActive()) {
+                session.getTransaction().begin();
+            }
             session.persist(specs);
             session.getTransaction().commit();
             session.evict(specs);
@@ -595,24 +626,33 @@ public class MSPDao {
         return result;
     }
 
-    public int insertHospital(Hospital hospital) {
-
-        session.getTransaction().begin();
+    public Hospital insertHospital(Hospital hospital) {
+       Hospital h=null;
+        if (!session.getTransaction().isActive()) {
+            session.getTransaction().begin();
+        }
         if (hospital != null) {
+            if(!isHospitalExist(hospital.getHospitalName().toLowerCase())){
             session.saveOrUpdate(hospital);
             session.getTransaction().commit();
             session.evict(hospital);
-            result = 1;
+            h=hospital;
+            }else{
+              h = (Hospital) session.createQuery(" from Hospital h where h.hospitalName = :hosName").setString("hosName", hospital.getHospitalName().toLowerCase());
+           
+            }
+                
         } else {
-            result = 0;
+            h=null;
         }
 
-        return result;
+       return h;
     }
 
     public int insertPharmacy(Pharamacy ph) {
-
-        session.getTransaction().begin();
+        if (!session.getTransaction().isActive()) {
+            session.getTransaction().begin();
+        }
         if (ph != null) {
             session.saveOrUpdate(ph);
             session.getTransaction().commit();
@@ -625,8 +665,9 @@ public class MSPDao {
     }
 
     public int insertLab(Lab lab) {
-
-        session.getTransaction().begin();
+        if (!session.getTransaction().isActive()) {
+            session.getTransaction().begin();
+        }
         if (lab != null) {
             session.saveOrUpdate(lab);
             session.getTransaction().commit();

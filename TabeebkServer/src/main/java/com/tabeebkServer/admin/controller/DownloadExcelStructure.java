@@ -38,11 +38,8 @@ public class DownloadExcelStructure extends HttpServlet {
         String path = this.getClass().getClassLoader().getResource("").getPath();
 
 String fullPath = URLDecoder.decode(path, "UTF-8");
-String pathArr[] = fullPath.split("/target/Tabeebk_MAVEN-1.0-SNAPSHOT/WEB-INF/classes/");
-System.out.println(fullPath);
-System.out.println(pathArr[0]);
+String pathArr[] = fullPath.split("/WEB-INF/classes/");
         String filePath =pathArr[0]+Constants.DOWNLOAD_DIRECTORY;
-        System.out.println(filePath);
         File downloadFile = new File(filePath);
         FileInputStream inStream = new FileInputStream(downloadFile);
          

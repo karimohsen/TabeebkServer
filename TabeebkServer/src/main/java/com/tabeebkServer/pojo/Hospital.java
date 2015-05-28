@@ -4,6 +4,7 @@ package com.tabeebkServer.pojo;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +21,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="hospital"
     ,catalog="graduationprojecttabeebakdb"
-    , uniqueConstraints = @UniqueConstraint(columnNames="hospital_name") 
+    , uniqueConstraints = @UniqueConstraint(columnNames="hospital_name")
 )
 public class Hospital  implements java.io.Serializable {
 
@@ -119,7 +120,7 @@ public class Hospital  implements java.io.Serializable {
         this.labs = labs;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="hospital")
+@OneToMany(fetch=FetchType.LAZY, mappedBy="hospital",cascade=CascadeType.ALL)
     public Set<Hospitalspeciality> getHospitalspecialities() {
         return this.hospitalspecialities;
     }

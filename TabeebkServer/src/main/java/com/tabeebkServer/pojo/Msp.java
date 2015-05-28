@@ -37,6 +37,12 @@ public class Msp  implements java.io.Serializable {
     public Msp() {
     }
 
+    public Msp(Msptype msptype, Integer typeId, int deleted) {
+        this.msptype = msptype;
+        this.typeId = typeId;
+        this.deleted = deleted;
+    }
+
 	
     public Msp(int deleted) {
         this.deleted = deleted;

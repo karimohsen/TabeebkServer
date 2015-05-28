@@ -39,6 +39,7 @@ public class DoctorBook {
     private BranchDao addressDao = null;
     private Set<Clinic> docClinics = null;
     private ArrayList<Doctor> doctorList = null;
+    private Msp msp=null;
 
     public DoctorBook(Workbook doctorBook) {
         mspDao = new MSPDao();
@@ -74,8 +75,11 @@ public class DoctorBook {
 
             if (clinicNamesEn != null && clinicNamesAr != null && clinicImagePath != null) {
                 c = new Clinic(clinicNamesEn, clinicNamesAr, clinicImagePath,0);
+                
                 int i = saveDoctorClinic(c);
                 if (i == 1) {
+                    msp=new Msp(mspDao.getMspType(Constants.CLINIC),c.getClinicId(),0);
+                    mspDao.saveMsp(msp);
                     TreeSet<Telephone> telephones = createClinicTelelphone(clinicRow, c, doctorSheet);
                     saveTelephone(telephones);
                     TreeSet<Branche> brnch = createClinicBranch(clinicRow, c, doctorSheet);
@@ -197,6 +201,8 @@ public class DoctorBook {
             mDoctor.setDoctorImagepath(doctorImagePath);
             int saved = mspDao.saveDoctor(mDoctor);
             if (saved == 1) {
+                msp=new Msp(mspDao.getMspType(Constants.DOCTOR),mDoctor.getDoctorId(),0);
+                mspDao.saveMsp(msp);
                 saveTelephone(createDoctorTelelphone(row, mDoctor, ds));
             }
             docs.add(mDoctor);

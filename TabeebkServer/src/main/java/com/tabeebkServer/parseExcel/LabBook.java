@@ -34,6 +34,7 @@ public class LabBook {
     private City city = null;
     private BranchDao addressDao = null;
     private Sheet labSheet = null;
+    private Msp msp=null;
 
     public LabBook(Workbook labBook) {
 
@@ -72,6 +73,8 @@ public class LabBook {
 
             int i = saveLab(lab);
             if (i == 1) {
+                msp=new Msp(mspDao.getMspType(Constants.LAB),lab.getLabId(),0);
+                mspDao.saveMsp(msp);
                 savelabTelephone(createlabTelelphone(row, lab, labSheet));
                 savelabBranches(createlabBranch(row, lab, labSheet));
                 createLabSpeciality(row, lab, labSheet);

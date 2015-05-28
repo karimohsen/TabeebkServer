@@ -67,6 +67,7 @@ public class TelephoneDao {
         
         if (telephones != null) {
             for (Telephone tel : telephones) {
+                if(!session.getTransaction().isActive())
                 session.getTransaction().begin();
                 try{session.saveOrUpdate(tel);
                 session.getTransaction().commit();
@@ -87,7 +88,7 @@ public class TelephoneDao {
 
         
         if (telephones != null) {
-            
+            if(!session.getTransaction().isActive())
                 session.getTransaction().begin();
                 session.saveOrUpdate(telephones);
                 session.getTransaction().commit();

@@ -22,7 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class ParseExcelFile {
 
-    private String ext = FilenameUtils.getExtension(Constants.FILE_PATH);
+    
     private String fileName = FilenameUtils.getName(Constants.FILE_PATH);
     private FileInputStream excelFile = null;
     private Workbook workbook = null;
@@ -31,9 +31,11 @@ public class ParseExcelFile {
     private PharmacyBook pharmacySheetObj = null;
     private LabBook labSheetObj = null;
 
-    public ParseExcelFile() {
+    public ParseExcelFile(File file) {
         try {
-            this.excelFile = new FileInputStream(new File(Constants.FILE_PATH));
+            System.out.println("in parsing classes");
+            this.excelFile = new FileInputStream(file);
+            String ext = FilenameUtils.getExtension(file.getName());
             // for XLSX Files
             if (ext.equalsIgnoreCase(Constants.XLSX)) { 
                 workbook = new XSSFWorkbook(excelFile);
@@ -58,6 +60,7 @@ public class ParseExcelFile {
     }
 
     public static void main(String[] args) {
-        new ParseExcelFile();
+   //  File f=new File("C:\\Users\\azza\\Documents\\NetBeansProjects\\GP\\Server\\TabeebkServer\\src\\main\\java\\com\\tabeebkServer\\parseExcel\\MspData.xlsx");
+      //  new ParseExcelFile(f);
     }
 }

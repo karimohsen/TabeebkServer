@@ -245,6 +245,7 @@
         </div>
         <div id="result">
             <h3>${requestScope["message"]}</h3>
+            <h3>${requestScope["message1"]}</h3>
         </div> 
                     </div>
                 </div>

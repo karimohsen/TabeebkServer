@@ -33,8 +33,9 @@ public class HospitalBook {
     private Msptype mspType = null;
     private City city = null;
     private BranchDao addressDao = null;
-    private Sheet hosSheet=null;
-    
+    private Sheet hosSheet = null;
+    private Msp msp = null;
+
     public HospitalBook(Workbook hospitalSheet) {
 
         mspDao = new MSPDao();
@@ -43,7 +44,7 @@ public class HospitalBook {
         if (hospitalSheet instanceof XSSFWorkbook) {
             hosSheet = (XSSFSheet) hospitalSheet.getSheet(Constants.HOSPITAL_SHEET);
         } else if (hospitalSheet instanceof HSSFWorkbook) {
-             hosSheet = (HSSFSheet) hospitalSheet.getSheet(Constants.HOSPITAL_SHEET);
+            hosSheet = (HSSFSheet) hospitalSheet.getSheet(Constants.HOSPITAL_SHEET);
         }
         Iterator<Row> rowIterator = hosSheet.iterator();
         Row row = null;
@@ -61,27 +62,28 @@ public class HospitalBook {
         if (row.getCell(0) != null) {
             String hospitalNameEn = row.getCell(0).getStringCellValue().toLowerCase();
             String hospitalNameAr = row.getCell(1).getStringCellValue();
-            String hospitalImagePath = Constants.HOSPITAL_IMAGE_DIRECTORY+new Date().toString()+"-/-"+row.getCell(2).getStringCellValue();
-            hospital = new Hospital(hospitalNameEn.toLowerCase(), hospitalNameAr, hospitalImagePath,0);
-           
-             int i = mspDao.insertHospital(hospital);
-                if (i == 1) {
+            String hospitalImagePath = Constants.HOSPITAL_IMAGE_DIRECTORY + new Date().toString() + "-/-" + row.getCell(2).getStringCellValue();
+            hospital = new Hospital(hospitalNameEn.toLowerCase(), hospitalNameAr, hospitalImagePath, 0);
+
+           //  mspDao.insertHospital(hospital);
+            if (mspDao.insertHospital(hospital)!=null) {
+                msp = new Msp(mspDao.getMspType(Constants.HOSPITAL), hospital.getHospitalId(), 0);
+                mspDao.saveMsp(msp);
                 TreeSet<Telephone> telephones = createHospitalTelelphone(row, hospital, wb);
                 saveHospitalTelephone(telephones);
                 TreeSet<Branche> brnch = createHospitalBranch(row, hospital, wb);
                 saveHospitalBranches(brnch);
-               createHospitalSpeciality(row, hospital, wb);
+                createHospitalSpeciality(row, hospital, wb);
             }
         }
     }
 
     private void createHospitalSpeciality(Row hosRow, Hospital h, Workbook ds) {
-        Sheet hospitalspecialitySheet=null;
-        if(ds instanceof XSSFWorkbook){
-        hospitalspecialitySheet = (XSSFSheet) ds.getSheet(Constants.HOSPITAL_SPECIALITY_SHEET);
-        }else 
-        {
-        hospitalspecialitySheet=(HSSFSheet)ds.getSheet(Constants.HOSPITAL_SPECIALITY_SHEET);
+        Sheet hospitalspecialitySheet = null;
+        if (ds instanceof XSSFWorkbook) {
+            hospitalspecialitySheet = (XSSFSheet) ds.getSheet(Constants.HOSPITAL_SPECIALITY_SHEET);
+        } else {
+            hospitalspecialitySheet = (HSSFSheet) ds.getSheet(Constants.HOSPITAL_SPECIALITY_SHEET);
         }
         Iterator<Row> rowIterator = hospitalspecialitySheet.iterator();
         Row hosSpecRow = null;
@@ -90,13 +92,13 @@ public class HospitalBook {
             if (hosSpecRow.getRowNum() == 0) {
                 continue;
             }
-            String hospitalName=hosSpecRow.getCell(0).getStringCellValue();
+            String hospitalName = hosSpecRow.getCell(0).getStringCellValue();
 //double hospitalRowNum = hosSpecRow.getCell(0).getNumericCellValue();
             String hospitalSepeciality = hosSpecRow.getCell(1).getStringCellValue();
-if(hospital.getHospitalName().trim().equals(hospitalName.trim().toLowerCase())){            
+            if (hospital.getHospitalName().trim().equals(hospitalName.trim().toLowerCase())) {
 //if (hosRow.getRowNum() + 1 == hospitalRowNum) {
                 specialityName = mspDao.getDoctorSpeciality(hospitalSepeciality.toLowerCase());
-                Hospitalspeciality hospitalSpeciality = new Hospitalspeciality(specialityName, hospital,0);
+                Hospitalspeciality hospitalSpeciality = new Hospitalspeciality(specialityName, hospital, 0);
                 mspDao.saveHospitalSpeciality(hospitalSpeciality);
             }
         }
@@ -104,11 +106,11 @@ if(hospital.getHospitalName().trim().equals(hospitalName.trim().toLowerCase())){
 
     private TreeSet<Telephone> createHospitalTelelphone(Row hosRow, Hospital h, Workbook ds) {
         TreeSet<Telephone> telphons = new TreeSet<Telephone>();
-        Sheet hospitalTel=null;
-        if(ds instanceof XSSFWorkbook){
-        hospitalTel = (XSSFSheet) ds.getSheet(Constants.HOSPITAL_TEL_SHEET);
-        }else {
-        hospitalTel=(HSSFSheet) ds.getSheet(Constants.HOSPITAL_TEL_SHEET);
+        Sheet hospitalTel = null;
+        if (ds instanceof XSSFWorkbook) {
+            hospitalTel = (XSSFSheet) ds.getSheet(Constants.HOSPITAL_TEL_SHEET);
+        } else {
+            hospitalTel = (HSSFSheet) ds.getSheet(Constants.HOSPITAL_TEL_SHEET);
         }
         Iterator<Row> rowIterator = hospitalTel.iterator();
         Row hospitalTelRow = null;
@@ -117,13 +119,13 @@ if(hospital.getHospitalName().trim().equals(hospitalName.trim().toLowerCase())){
             if (hospitalTelRow.getRowNum() == 0) {
                 continue;
             }
-            String hospitalName=hospitalTelRow.getCell(0).getStringCellValue();
-            
+            String hospitalName = hospitalTelRow.getCell(0).getStringCellValue();
+
             //double hospitalRowNum = hospitalTelRow.getCell(0).getNumericCellValue();
             String telephs = hospitalTelRow.getCell(1).getStringCellValue();
-            
-            if(h.getHospitalName().trim().equals(hospitalName.trim().toLowerCase())){
-            //if (hosRow.getRowNum() + 1 == hospitalRowNum) {
+
+            if (h.getHospitalName().trim().equals(hospitalName.trim().toLowerCase())) {
+                //if (hosRow.getRowNum() + 1 == hospitalRowNum) {
                 hospitalTelephone = new Telephone(mspType, h.getHospitalId(), telephs);
                 telphons.add(hospitalTelephone);
             }
@@ -132,11 +134,11 @@ if(hospital.getHospitalName().trim().equals(hospitalName.trim().toLowerCase())){
     }
 
     private TreeSet<Branche> createHospitalBranch(Row hospitalRow, Hospital h, Workbook wb) {
-        Sheet hosAdress=null;
-        if(wb instanceof XSSFWorkbook){
-        hosAdress = (XSSFSheet) wb.getSheet(Constants.HOSPITAL_ADDRESS_SHEET);
-        }else {
-        hosAdress=(HSSFSheet)wb.getSheet(Constants.HOSPITAL_ADDRESS_SHEET);
+        Sheet hosAdress = null;
+        if (wb instanceof XSSFWorkbook) {
+            hosAdress = (XSSFSheet) wb.getSheet(Constants.HOSPITAL_ADDRESS_SHEET);
+        } else {
+            hosAdress = (HSSFSheet) wb.getSheet(Constants.HOSPITAL_ADDRESS_SHEET);
         }
         TreeSet<Branche> branchs = new TreeSet<Branche>();
         Iterator<Row> rowIterator = hosAdress.iterator();
@@ -148,23 +150,23 @@ if(hospital.getHospitalName().trim().equals(hospitalName.trim().toLowerCase())){
             if (hosAddRow.getRowNum() == 0) {
                 continue;
             }
-             if (hosAddRow.getCell(0) != null) {
-            String hospitalName=hosAddRow.getCell(0).getStringCellValue();
-            //double hospitalRowNum = hosAddRow.getCell(0).getNumericCellValue();            
-            if(h.getHospitalName().trim().equals(hospitalName.trim().toLowerCase())){
-            //if (hospitalRow.getRowNum() + 1 == hospitalRowNum) {
-                String cityNameEn = hosAddRow.getCell(1).getStringCellValue();
-                city = addressDao.getCity(cityNameEn);
-                String areaNamesEn = hosAddRow.getCell(2).getStringCellValue();
-                String areaNamesAr = hosAddRow.getCell(3).getStringCellValue();
-                String fullAddressEn = hosAddRow.getCell(4).getStringCellValue();
-                String fullAddressAr = hosAddRow.getCell(5).getStringCellValue();
-                area = new Area(city, areaNamesEn, areaNamesAr);
-               area= addressDao.insertArea(area);
-                b = new Branche(city,area ,mspType, areaNamesEn, areaNamesAr, fullAddressEn, fullAddressAr, h.getHospitalId());
-                branchs.add(b);
+            if (hosAddRow.getCell(0) != null) {
+                String hospitalName = hosAddRow.getCell(0).getStringCellValue();
+                //double hospitalRowNum = hosAddRow.getCell(0).getNumericCellValue();            
+                if (h.getHospitalName().trim().equals(hospitalName.trim().toLowerCase())) {
+                    //if (hospitalRow.getRowNum() + 1 == hospitalRowNum) {
+                    String cityNameEn = hosAddRow.getCell(1).getStringCellValue();
+                    city = addressDao.getCity(cityNameEn);
+                    String areaNamesEn = hosAddRow.getCell(2).getStringCellValue();
+                    String areaNamesAr = hosAddRow.getCell(3).getStringCellValue();
+                    String fullAddressEn = hosAddRow.getCell(4).getStringCellValue();
+                    String fullAddressAr = hosAddRow.getCell(5).getStringCellValue();
+                    area = new Area(city, areaNamesEn, areaNamesAr);
+                    area = addressDao.insertArea(area);
+                    b = new Branche(city, area, mspType, areaNamesEn, areaNamesAr, fullAddressEn, fullAddressAr, h.getHospitalId());
+                    branchs.add(b);
+                }
             }
-        }
         }
         return branchs;
     }

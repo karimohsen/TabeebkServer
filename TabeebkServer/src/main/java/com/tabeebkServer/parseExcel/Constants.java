@@ -14,14 +14,14 @@ public abstract class Constants {
    public static final String XLS="xls";
    public static final String FILE_NAMEX="MspData.xlsx";
    public static final String FILE_NAME="MspData.xls";
-   public static final String FILE_PATH="pulkUpload/uploadedexcelFile/MspData.xlsx";
+   public static final String FILE_PATH="/bulkUpload/uploadedexcelFile/MspData.xlsx";
    public static final String DOCTOR_IMAGE_DIRECTORY="\\Images\\doctor\\";
    public static final String CLINIC_IMAGE_DIRECTORY="\\Images\\clinic\\";
    public static final String HOSPITAL_IMAGE_DIRECTORY="\\Images\\hospital\\";
    public static final String LAB_IMAGE_DIRECTORY="\\Images\\lab\\";
    public static final String PHARMACY_IMAGE_DIRECTORY="\\Images\\pharmacy\\";
-   public static final String DOWNLOAD_DIRECTORY= "src\\main\\resources\\pulkUpload\\downloadexcelFile\\MspData.xlsx";
-   public static final String UPLOAD_DIRECTORY = "\\pulkUpload\\uploadedexcelFile";
+   public static final String DOWNLOAD_DIRECTORY= "\\bulkUpload\\downloadexcelFile\\MspData.xlsx";
+   public static final String UPLOAD_DIRECTORY = "/src/main/webapp/bulkUpload/uploadedexcelFile";
    public static final int MALE_ID=1;
    public static final int FEMALE_ID=2;
    public static final String MALE="male";

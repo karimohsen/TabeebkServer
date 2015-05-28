@@ -74,13 +74,15 @@ public class BranchDao {
     //==================================================
     
       public Country getCountry(String countryName) {
-        
+        if(!session.getTransaction().isActive())
+          session.beginTransaction();
         Country country = (Country) session.createQuery("from Country c where c.countryName = :contryName").setString("contryName", countryName.toLowerCase()).uniqueResult();
         return country;
     }
 
     public City getCity(String cityName) {
-        
+        if(!session.getTransaction().isActive())
+        session.beginTransaction();
         City city = (City) session.createQuery("from City c where c.cityName = :cityName").setString("cityName", cityName.toLowerCase()).uniqueResult();
         return city;
     }
@@ -90,6 +92,7 @@ public class BranchDao {
         if (areas != null) {
             for (Area area : areas) {
                 if (!isAreaExist(area.getAreaNameEn().toLowerCase())) {
+                    if(!session.getTransaction().isActive())
                     session.getTransaction().begin();
                     session.persist(area);
                     session.getTransaction().commit();
@@ -103,7 +106,8 @@ public class BranchDao {
         return result;
     }
  public boolean isAreaExist(String name) {
-        
+     if(!session.getTransaction().isActive())   
+     session.beginTransaction();
         Area area = (Area) session.createQuery("from Area a where a.areaNameEn = :areaName").setString("areaName", name.toLowerCase()).uniqueResult();
         if (area != null) {
             return true;
@@ -118,7 +122,7 @@ public class BranchDao {
         if (area != null) {
            
             if (!isAreaExist(area.getAreaNameEn().toLowerCase())) {
-               
+               if(!session.getTransaction().isActive())
                 session.getTransaction().begin();
                 session.persist(area);
                 session.getTransaction().commit();
@@ -140,6 +144,7 @@ public class BranchDao {
         
         if (branches != null) {
             for (Branche b : branches) {
+                if(!session.getTransaction().isActive())
                 session.getTransaction().begin();
                 session.persist(b);
                 session.getTransaction().commit();
@@ -155,7 +160,7 @@ public class BranchDao {
     public int insertClinicBranches(Branche branches) {
         
         if (branches != null) {
-            
+            if(!session.getTransaction().isActive())
                 session.getTransaction().begin();
                 session.persist(branches);
                 session.getTransaction().commit();

@@ -638,7 +638,7 @@ public class MSPDao {
             session.evict(hospital);
             h=hospital;
             }else{
-              h = (Hospital) session.createQuery(" from Hospital h where h.hospitalName = :hosName").setString("hosName", hospital.getHospitalName().toLowerCase());
+              h = (Hospital) session.createQuery("from Hospital h where h.hospitalName = :hosName").setString("hosName", hospital.getHospitalName().toLowerCase()).uniqueResult();
            
             }
                 

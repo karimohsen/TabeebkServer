@@ -59,8 +59,9 @@ public class uploadExcelFile extends HttpServlet {
        String realPath = getServletContext().getRealPath(DESTINATION_DIR_PATH);
         destinationDir = new File(realPath);
         if(!destinationDir.isDirectory()) {
-            destinationDir.mkdirs();
-           // throw new ServletException(DESTINATION_DIR_PATH+" is not a directory");
+           // destinationDir.mkdirs();
+            System.out.println("Dirctory created");
+            throw new ServletException(DESTINATION_DIR_PATH+" is not a directory");
         }
  
     }

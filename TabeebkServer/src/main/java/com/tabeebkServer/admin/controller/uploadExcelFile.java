@@ -60,7 +60,7 @@ public class uploadExcelFile extends HttpServlet {
         destinationDir = new File(realPath);
         if(!destinationDir.isDirectory()) {
             destinationDir.mkdirs();
-            throw new ServletException(DESTINATION_DIR_PATH+" is not a directory");
+           // throw new ServletException(DESTINATION_DIR_PATH+" is not a directory");
         }
  
     }

@@ -357,7 +357,6 @@ public class MSPDao {
         if (!session.getTransaction().isActive()) {
             session.beginTransaction();
             gendr = (Gender) session.createQuery("from Gender g where g.genderId = :genId ").setInteger("genId", id).uniqueResult();
-
         }
         return gendr;
     }
@@ -369,32 +368,26 @@ public class MSPDao {
     }
 
     public Lab getLabByID(int id) {
-
-       
         Lab lab = (Lab) session.createQuery("from Lab l where l.labId = :id ").setInteger("id", id).uniqueResult();
         return lab;
     }
 
     public Pharamacy getPharamacyByID(int id) {
-     
         Pharamacy pharamcy = (Pharamacy) session.createQuery("from Pharamacy ph where ph.pharamacyId = :id ").setInteger("id", id).uniqueResult();
         return pharamcy;
     }
 
     public Hospital getHospitalByID(int id) {
-    
         Hospital hospital = (Hospital) session.createQuery("from Hospital h where h.hospitalId = :id ").setInteger("id", id).uniqueResult();
         return hospital;
     }
 
     public Hospital getHospitalByName(String hosName) {
-       
         Hospital hospital = (Hospital) session.createQuery("from Hospital h where h.hospitalName = :name ").setString("name", hosName.toLowerCase()).uniqueResult();
         return hospital;
     }
 
     public Clinic getClinicByName(String cName) {
-      
         Clinic clinc = (Clinic) session.createQuery("from Clinic c where c.clinicName=:clinName").setString("clinName", cName.toLowerCase()).uniqueResult();
         session.evict(clinc);
         session.flush();
@@ -402,7 +395,6 @@ public class MSPDao {
     }
 
     public Doctor getDoctorByID(int id) {
-        
         Doctor doctor = (Doctor) session.createQuery("from Doctor d where d.doctorId = :id ").setInteger("id", id).uniqueResult();
         return doctor;
 
@@ -410,15 +402,12 @@ public class MSPDao {
 
     public Doctorspeciality getDoctorSpeciality(String name) {
         Doctorspeciality docSpe = null;
-    
             docSpe = (Doctorspeciality) session.createQuery("from Doctorspeciality ds where ds.doctorSpecialityName=:docSpec").setString("docSpec", name.toLowerCase()).uniqueResult();
             session.evict(docSpe);
-        
         return docSpe;
     }
 
     public Labspecialities getLabSpeciality(String name) {
-       
         Labspecialities labSpec = (Labspecialities) session.createQuery("from Labspecialities l where l.specialityName = :lSpec").setString("lSpec", name.toLowerCase()).uniqueResult();
         session.evict(labSpec);
         return labSpec;

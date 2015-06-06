@@ -252,7 +252,22 @@
         <servlet-name>UpdateLabDetails</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.UpdateLabDetails</servlet-class>
     </servlet>
-    
+    <filter>
+        <filter-name>f2</filter-name>
+        <filter-class>com.tabeebkServer.filter.MspFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>f2</filter-name>
+        <url-pattern>/MSP/*</url-pattern>
+    </filter-mapping>
+     <filter>
+        <filter-name>f1</filter-name>
+        <filter-class>com.tabeebkServer.filter.AdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>f1</filter-name>
+        <url-pattern>/Admin/*</url-pattern>
+    </filter-mapping>
     <servlet-mapping>
         <servlet-name>uploadExcelFile</servlet-name>
         <url-pattern>/upload</url-pattern>

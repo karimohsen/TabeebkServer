@@ -62,12 +62,11 @@ public class PharmacyBook {
         if (row.getCell(0) != null) {
             String pharmacyNameEn = row.getCell(0).getStringCellValue().toLowerCase();
             String pharmacyNameAr = row.getCell(1).getStringCellValue();
-            String pharmacyImagePath = Constants.PHARMACY_IMAGE_DIRECTORY + new Date().toString()+"-/-" + row.getCell(2).getStringCellValue();
             String pharmacyHospital = row.getCell(3).getStringCellValue();
-            if (pharmacyNameEn != null && pharmacyNameAr != null && pharmacyImagePath != null && pharmacyHospital != null) {
-                pharmacy = new Pharamacy(mspDao.getHospitalByName(pharmacyHospital.toLowerCase()), pharmacyNameEn, pharmacyNameAr, pharmacyImagePath,0);
+            if (pharmacyNameEn != null && pharmacyNameAr != null &&  pharmacyHospital != null) {
+                pharmacy = new Pharamacy(mspDao.getHospitalByName(pharmacyHospital.toLowerCase()), pharmacyNameEn, pharmacyNameAr,0);
             } else if (pharmacyHospital == null) {
-                pharmacy = new Pharamacy(pharmacyNameEn, pharmacyNameAr, pharmacyImagePath,0);
+                pharmacy = new Pharamacy(pharmacyNameEn, pharmacyNameAr,0);
             }
             int i = savePharmacy(pharmacy);
             if (i == 1) {

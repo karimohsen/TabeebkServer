@@ -32,7 +32,6 @@ public abstract class Constants {
    public static final int LAB=4;
    public static final int PHARMACY=5;
    public static final String DOCTOR_SHEET="Doctor";
-   public static final String DOCTOR_TEL_SHEET="DoctorTel";
    public static final String CLINIC_SHEET="Clinic";
    public static final String CLINIC_TEL_SHEET="clinicTel";
    public static final String CLINIC_ADRESS_SHEET="clinicAddress";

@@ -11,14 +11,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.net.URLDecoder;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.json.JsonObject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -190,7 +187,6 @@ public class uploadExcelFile extends HttpServlet {
                 Workbook workbook = new XSSFWorkbook(excelFile);
                 Sheet sheet1 = (XSSFSheet) workbook.getSheet(Constants.DOCTOR_SHEET);
                 System.out.println(sheet1.getSheetName()+"-----------");
-                Sheet sheet2 = (XSSFSheet) workbook.getSheet(Constants.DOCTOR_TEL_SHEET);
                 Sheet sheet3 = (XSSFSheet) workbook.getSheet(Constants.CLINIC_SHEET);
                 Sheet sheet4 = (XSSFSheet) workbook.getSheet(Constants.CLINIC_TEL_SHEET);
                 Sheet sheet5 = (XSSFSheet) workbook.getSheet(Constants.CLINIC_ADRESS_SHEET);
@@ -200,7 +196,7 @@ public class uploadExcelFile extends HttpServlet {
                 Sheet sheet9 = (XSSFSheet) workbook.getSheet(Constants.HOSPITAL_TEL_SHEET);
                 Sheet sheet10 = (XSSFSheet) workbook.getSheet(Constants.PHARMACY_SHEET);
                 Sheet sheet11 = (XSSFSheet) workbook.getSheet(Constants.PHARMACY_TEL_SHEET);
-                if (sheet1 != null && sheet2 != null && sheet3 != null && sheet4 != null && sheet5 != null && sheet6 != null && sheet7 != null && sheet8 != null && sheet9 != null && sheet10 != null && sheet11 != null) {
+                if (sheet1 != null && sheet3 != null && sheet4 != null && sheet5 != null && sheet6 != null && sheet7 != null && sheet8 != null && sheet9 != null && sheet10 != null && sheet11 != null) {
                     new ParseExcelFile(filePath);
                 } else {
                     res = 0;
@@ -221,7 +217,6 @@ public class uploadExcelFile extends HttpServlet {
             FileInputStream excelFile = new FileInputStream(filePath);
     Workbook workbook = new HSSFWorkbook(excelFile);
                 Sheet sheet1 = (HSSFSheet) workbook.getSheet(Constants.DOCTOR_SHEET);
-                Sheet sheet2 = (HSSFSheet) workbook.getSheet(Constants.DOCTOR_TEL_SHEET);
                 Sheet sheet3 = (HSSFSheet) workbook.getSheet(Constants.CLINIC_SHEET);
                 Sheet sheet4 = (HSSFSheet) workbook.getSheet(Constants.CLINIC_TEL_SHEET);
                 Sheet sheet5 = (HSSFSheet) workbook.getSheet(Constants.CLINIC_ADRESS_SHEET);
@@ -232,7 +227,7 @@ public class uploadExcelFile extends HttpServlet {
                 Sheet sheet10 = (HSSFSheet) workbook.getSheet(Constants.PHARMACY_SHEET);
                 Sheet sheet11 = (HSSFSheet) workbook.getSheet(Constants.PHARMACY_TEL_SHEET);
      
-         if (sheet1 != null && sheet2 != null && sheet3 != null && sheet4 != null && sheet5 != null && sheet6 != null && sheet7 != null && sheet8 != null && sheet9 != null && sheet10 != null && sheet11 != null) {
+         if (sheet1 != null && sheet3 != null && sheet4 != null && sheet5 != null && sheet6 != null && sheet7 != null && sheet8 != null && sheet9 != null && sheet10 != null && sheet11 != null) {
                     res = 1;
                     new ParseExcelFile(filePath);
                 } else {

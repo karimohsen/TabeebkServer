@@ -38,10 +38,9 @@ public class Hospital  implements java.io.Serializable {
     public Hospital() {
     }
 
-    public Hospital(String hospitalName, String hospitalNameAr, String hospitalImagepath, int deleted) {
+    public Hospital(String hospitalName, String hospitalNameAr, int deleted) {
         this.hospitalName = hospitalName;
         this.hospitalNameAr = hospitalNameAr;
-        this.hospitalImagepath = hospitalImagepath;
         this.deleted = deleted;
     }
 

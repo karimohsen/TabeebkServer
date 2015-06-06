@@ -62,8 +62,7 @@ public class HospitalBook {
         if (row.getCell(0) != null) {
             String hospitalNameEn = row.getCell(0).getStringCellValue().toLowerCase();
             String hospitalNameAr = row.getCell(1).getStringCellValue();
-            String hospitalImagePath = Constants.HOSPITAL_IMAGE_DIRECTORY + new Date().toString() + "-/-" + row.getCell(2).getStringCellValue();
-            hospital = new Hospital(hospitalNameEn.toLowerCase(), hospitalNameAr, hospitalImagePath, 0);
+            hospital = new Hospital(hospitalNameEn.toLowerCase(), hospitalNameAr, 0);
 
            //  mspDao.insertHospital(hospital);
             if (mspDao.insertHospital(hospital)!=null) {

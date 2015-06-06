@@ -195,48 +195,17 @@ public class DoctorBook {
             } else if (doctorGender.trim().equalsIgnoreCase(Constants.FEMALE)) {
                 gender = Constants.FEMALE_ID;
             }
-            String doctorImagePath = Constants.DOCTOR_IMAGE_DIRECTORY + new Date().toString() + "-/-" + row.getCell(6).getStringCellValue();
             mDoctor = new Doctor(doctorNameEn, doctorNameAr, doctorDegreeEn, doctorDegreeAr, mspDao.getGender(gender),0);
             mDoctor.setDoctorspeciality(createDoctorSpeciality(row));
-            mDoctor.setDoctorImagepath(doctorImagePath);
             int saved = mspDao.saveDoctor(mDoctor);
             if (saved == 1) {
                 msp=new Msp(mspDao.getMspType(Constants.DOCTOR),mDoctor.getDoctorId(),0);
                 mspDao.saveMsp(msp);
-                saveTelephone(createDoctorTelelphone(row, mDoctor, ds));
             }
             docs.add(mDoctor);
         }
         return docs;
     }
-
-    private TreeSet<Telephone> createDoctorTelelphone(Row docRow, Doctor d, Workbook ds) {
-        TreeSet<Telephone> telphons = new TreeSet<Telephone>();
-        Sheet docTel = null;
-        if (ds instanceof XSSFWorkbook) {
-            docTel = (XSSFSheet) ds.getSheet(Constants.DOCTOR_TEL_SHEET);
-        } else {
-            docTel = (HSSFSheet) ds.getSheet(Constants.DOCTOR_TEL_SHEET);
-        }
-        Iterator<Row> rowIterator = docTel.iterator();
-        Row docTelRow = null;
-        while (rowIterator.hasNext()) {
-            docTelRow = rowIterator.next();
-            if (docTelRow.getRowNum() == 0) {
-                continue;
-            }
-            String docName=docTelRow.getCell(0).getStringCellValue().toLowerCase();
-            //double docRowNum = docTelRow.getCell(0).getNumericCellValue();
-            String telephs = docTelRow.getCell(1).getStringCellValue();
-            if(d.getDoctorName().trim().equals(docName.trim())){
-            //if (docRow.getRowNum() + 1 == docRowNum) {
-                doctorTelephone = new Telephone(mspDao.getMspType(Constants.DOCTOR), d.getDoctorId(), telephs);
-                telphons.add(doctorTelephone);
-            }
-        }
-        return telphons;
-    }
-
     private int saveDoctorClinic(Clinic docC) {
         return mspDao.insertDoctorClinic(docC);
     }

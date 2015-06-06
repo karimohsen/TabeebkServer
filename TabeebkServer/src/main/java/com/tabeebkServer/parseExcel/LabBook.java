@@ -63,12 +63,11 @@ public class LabBook {
         if (row.getCell(0) != null) {
             String labNameEn = row.getCell(0).getStringCellValue().toLowerCase();
             String labNameAr = row.getCell(1).getStringCellValue();
-            String labImagePath = Constants.LAB_IMAGE_DIRECTORY + new Date().toString()+"-/-" + row.getCell(2).getStringCellValue();
             String labHospital = row.getCell(3).getStringCellValue();
-            if (labNameEn != null && labNameAr != null && labImagePath != null && labHospital != null) {
-                lab = new Lab(mspDao.getHospitalByName(labHospital.toLowerCase()), labNameEn, labNameAr, labImagePath,0);
+            if (labNameEn != null && labNameAr != null  && labHospital != null) {
+                lab = new Lab(mspDao.getHospitalByName(labHospital.toLowerCase()), labNameEn, labNameAr,0);
             } else if (labHospital == null) {
-                lab = new Lab(labNameEn, labNameAr, labImagePath,0);
+                lab = new Lab(labNameEn, labNameAr,0);
             }
 
             int i = saveLab(lab);

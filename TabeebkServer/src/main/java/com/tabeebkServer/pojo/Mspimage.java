@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 2:45:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -24,17 +24,17 @@ public class Mspimage  implements java.io.Serializable {
 
 
      private Integer mspImageId;
-     private String mspImageImageurl;
+     private byte[] mspImageImageurl;
      private Set<Branche> branches = new HashSet<Branche>(0);
 
     public Mspimage() {
     }
 
 	
-    public Mspimage(String mspImageImageurl) {
+    public Mspimage(byte[] mspImageImageurl) {
         this.mspImageImageurl = mspImageImageurl;
     }
-    public Mspimage(String mspImageImageurl, Set<Branche> branches) {
+    public Mspimage(byte[] mspImageImageurl, Set<Branche> branches) {
        this.mspImageImageurl = mspImageImageurl;
        this.branches = branches;
     }
@@ -52,12 +52,12 @@ public class Mspimage  implements java.io.Serializable {
     }
 
     
-    @Column(name="mspImage_imageurl", nullable=false, length=100)
-    public String getMspImageImageurl() {
+    @Column(name="mspImage_imageurl", nullable=false)
+    public byte[] getMspImageImageurl() {
         return this.mspImageImageurl;
     }
     
-    public void setMspImageImageurl(String mspImageImageurl) {
+    public void setMspImageImageurl(byte[] mspImageImageurl) {
         this.mspImageImageurl = mspImageImageurl;
     }
 

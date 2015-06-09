@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 2:45:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -32,27 +32,18 @@ public class Doctor  implements java.io.Serializable {
      private String doctorNameAr;
      private String doctorDegree;
      private String doctorDegreeAr;
-     private String doctorImagepath;
+     private byte[] doctorImagepath;
      private int deleted;
      private Set<DoctorClinc> doctorClincs = new HashSet<DoctorClinc>(0);
 
     public Doctor() {
     }
 
-    public Doctor(String doctorName, String doctorNameAr, String doctorDegree, String doctorDegreeAr, Gender gender,int deleted) {
-        this.gender = gender;
-        this.doctorName = doctorName;
-        this.doctorNameAr = doctorNameAr;
-        this.doctorDegree = doctorDegree;
-        this.doctorDegreeAr = doctorDegreeAr;
-        this.deleted = deleted;
-    }
-
 	
     public Doctor(int deleted) {
         this.deleted = deleted;
     }
-    public Doctor(Doctorspeciality doctorspeciality, Gender gender, String doctorName, String doctorNameAr, String doctorDegree, String doctorDegreeAr, String doctorImagepath, int deleted, Set<DoctorClinc> doctorClincs) {
+    public Doctor(Doctorspeciality doctorspeciality, Gender gender, String doctorName, String doctorNameAr, String doctorDegree, String doctorDegreeAr, byte[] doctorImagepath, int deleted, Set<DoctorClinc> doctorClincs) {
        this.doctorspeciality = doctorspeciality;
        this.gender = gender;
        this.doctorName = doctorName;
@@ -64,6 +55,15 @@ public class Doctor  implements java.io.Serializable {
        this.doctorClincs = doctorClincs;
     }
    
+    public Doctor(String doctorName, String doctorNameAr, String doctorDegree, String doctorDegreeAr,Gender gender, int deleted) {
+       
+       this.gender = gender;
+       this.doctorName = doctorName;
+       this.doctorNameAr = doctorNameAr;
+       this.doctorDegree = doctorDegree;
+       this.doctorDegreeAr = doctorDegreeAr;
+       this.deleted = deleted;
+       }
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
@@ -137,12 +137,12 @@ public class Doctor  implements java.io.Serializable {
     }
 
     
-    @Column(name="doctor_imagepath", length=100)
-    public String getDoctorImagepath() {
+    @Column(name="doctor_imagepath")
+    public byte[] getDoctorImagepath() {
         return this.doctorImagepath;
     }
     
-    public void setDoctorImagepath(String doctorImagepath) {
+    public void setDoctorImagepath(byte[] doctorImagepath) {
         this.doctorImagepath = doctorImagepath;
     }
 

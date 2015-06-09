@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 2:45:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.Column;
@@ -23,8 +23,8 @@ public class Msprecommendations  implements java.io.Serializable {
 
 
      private Integer mspRecommendationsId;
-     private Msptype msptype;
      private User user;
+     private Msptype msptype;
      private String mspName;
      private String mspPhone;
      private String mspCountry;
@@ -38,16 +38,16 @@ public class Msprecommendations  implements java.io.Serializable {
     }
 
 	
-    public Msprecommendations(Msptype msptype, User user, String mspName, String mspPhone, int approved) {
-        this.msptype = msptype;
+    public Msprecommendations(User user, Msptype msptype, String mspName, String mspPhone, int approved) {
         this.user = user;
+        this.msptype = msptype;
         this.mspName = mspName;
         this.mspPhone = mspPhone;
         this.approved = approved;
     }
-    public Msprecommendations(Msptype msptype, User user, String mspName, String mspPhone, String mspCountry, String mspCity, String mspArea, String mspStreetName, String mspNotes, int approved) {
-       this.msptype = msptype;
+    public Msprecommendations(User user, Msptype msptype, String mspName, String mspPhone, String mspCountry, String mspCity, String mspArea, String mspStreetName, String mspNotes, int approved) {
        this.user = user;
+       this.msptype = msptype;
        this.mspName = mspName;
        this.mspPhone = mspPhone;
        this.mspCountry = mspCountry;
@@ -71,16 +71,6 @@ public class Msprecommendations  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="msptype_type_id", nullable=false)
-    public Msptype getMsptype() {
-        return this.msptype;
-    }
-    
-    public void setMsptype(Msptype msptype) {
-        this.msptype = msptype;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id", nullable=false)
     public User getUser() {
         return this.user;
@@ -88,6 +78,16 @@ public class Msprecommendations  implements java.io.Serializable {
     
     public void setUser(User user) {
         this.user = user;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="msptype_type_id", nullable=false)
+    public Msptype getMsptype() {
+        return this.msptype;
+    }
+    
+    public void setMsptype(Msptype msptype) {
+        this.msptype = msptype;
     }
 
     

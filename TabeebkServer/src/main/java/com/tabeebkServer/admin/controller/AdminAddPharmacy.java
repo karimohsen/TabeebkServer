@@ -74,17 +74,18 @@ public class AdminAddPharmacy extends HttpServlet {
                     } else {
                         String Name = item.getName();
                         if (!Name.equals("") && Name != null) {
-                            String uploadFolder = System.getProperty("user.home");
-                            String fName = new File(item.getName()).getName();
-                            File file = new File(uploadFolder + "\\pharmacy");
-                            if (!file.exists()) {
-                                file.mkdir();
-                            }
-                            uploadFolder += "\\pharmacy";
-                            String filePath = uploadFolder + File.separator + fName;
-                            p.setPharamacyImagepath(filePath);
-                            File f = new File(filePath);
-                            item.write(f);
+//                            String uploadFolder = System.getProperty("user.home");
+//                            String fName = new File(item.getName()).getName();
+//                            File file = new File(uploadFolder + "\\pharmacy");
+//                            if (!file.exists()) {
+//                                file.mkdir();
+//                            }
+//                            uploadFolder += "\\pharmacy";
+//                            String filePath = uploadFolder + File.separator + fName;
+//                            p.setPharamacyImagepath(filePath);
+                              p.setPharamacyImagepath(item.get());
+//                            File f = new File(filePath);
+//                            item.write(f);
                         }
                     }
                 }

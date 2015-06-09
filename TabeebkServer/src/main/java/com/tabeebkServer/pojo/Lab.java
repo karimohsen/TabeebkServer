@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 2:45:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -29,32 +29,18 @@ public class Lab  implements java.io.Serializable {
      private Hospital hospital;
      private String labName;
      private String labNameAr;
-     private String labImagepath;
+     private byte[] labImagepath;
      private int deleted;
      private Set<Labspeciality> labspecialities = new HashSet<Labspeciality>(0);
 
     public Lab() {
     }
 
-    public Lab(Hospital hospital, String labName, String labNameAr, int deleted) {
-        this.hospital = hospital;
-        this.labName = labName;
-        this.labNameAr = labNameAr;
-        this.deleted = deleted;
-    }
-
-    public Lab(String labName, String labNameAr, int deleted) {
-        this.labName = labName;
-        this.labNameAr = labNameAr;
-        this.labImagepath = labImagepath;
-        this.deleted = deleted;
-    }
-
 	
     public Lab(int deleted) {
         this.deleted = deleted;
     }
-    public Lab(Hospital hospital, String labName, String labNameAr, String labImagepath, int deleted, Set<Labspeciality> labspecialities) {
+    public Lab(Hospital hospital, String labName, String labNameAr, byte[] labImagepath, int deleted, Set<Labspeciality> labspecialities) {
        this.hospital = hospital;
        this.labName = labName;
        this.labNameAr = labNameAr;
@@ -63,6 +49,19 @@ public class Lab  implements java.io.Serializable {
        this.labspecialities = labspecialities;
     }
    
+    public Lab(Hospital hospital, String labName, String labNameAr, int deleted) {
+       this.hospital = hospital;
+       this.labName = labName;
+       this.labNameAr = labNameAr;
+       this.deleted = deleted;
+    }
+    public Lab(String labName, String labNameAr, int deleted) {
+       this.hospital = hospital;
+       this.labName = labName;
+       this.labNameAr = labNameAr;
+       this.deleted = deleted;
+    }
+    
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
@@ -106,12 +105,12 @@ public class Lab  implements java.io.Serializable {
     }
 
     
-    @Column(name="lab_imagepath", length=100)
-    public String getLabImagepath() {
+    @Column(name="lab_imagepath")
+    public byte[] getLabImagepath() {
         return this.labImagepath;
     }
     
-    public void setLabImagepath(String labImagepath) {
+    public void setLabImagepath(byte[] labImagepath) {
         this.labImagepath = labImagepath;
     }
 

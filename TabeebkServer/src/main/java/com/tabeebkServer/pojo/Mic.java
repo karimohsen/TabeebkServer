@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 2:45:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -31,7 +31,7 @@ public class Mic  implements java.io.Serializable {
      private String micDescriptionAr;
      private String micUrl;
      private String micEmail;
-     private String micImageurl;
+     private byte[] micImageurl;
      private int deleted;
      private Set<Micuser> micusers = new HashSet<Micuser>(0);
      private Set<Plan> plans = new HashSet<Plan>(0);
@@ -45,7 +45,7 @@ public class Mic  implements java.io.Serializable {
     public Mic(int deleted) {
         this.deleted = deleted;
     }
-    public Mic(String micName, String micNameAr, String micDescription, String micDescriptionAr, String micUrl, String micEmail, String micImageurl, int deleted, Set<Micuser> micusers, Set<Plan> plans, Set<Msp> msps, Set<Micratting> micrattings) {
+    public Mic(String micName, String micNameAr, String micDescription, String micDescriptionAr, String micUrl, String micEmail, byte[] micImageurl, int deleted, Set<Micuser> micusers, Set<Plan> plans, Set<Msp> msps, Set<Micratting> micrattings) {
        this.micName = micName;
        this.micNameAr = micNameAr;
        this.micDescription = micDescription;
@@ -133,12 +133,12 @@ public class Mic  implements java.io.Serializable {
     }
 
     
-    @Column(name="mic_imageurl", length=100)
-    public String getMicImageurl() {
+    @Column(name="mic_imageurl")
+    public byte[] getMicImageurl() {
         return this.micImageurl;
     }
     
-    public void setMicImageurl(String micImageurl) {
+    public void setMicImageurl(byte[] micImageurl) {
         this.micImageurl = micImageurl;
     }
 

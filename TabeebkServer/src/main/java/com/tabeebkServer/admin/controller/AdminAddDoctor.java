@@ -53,7 +53,8 @@ public class AdminAddDoctor extends HttpServlet {
         int drSpeciality = -2;
         int gender = -2;
         int doctorId;
-        String path="";
+        //String path="";
+        byte[] path = null;
         ArrayList<Integer> listClinics = new ArrayList<>();
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (isMultipart) {
@@ -102,18 +103,20 @@ public class AdminAddDoctor extends HttpServlet {
                     } else {
                         String Name = item.getName();
                         if (!Name.equals("") && Name != null) {
-                            String uploadFolder = System.getProperty("user.home");
-                            String fName = new File(item.getName()).getName();
-                            File file = new File(uploadFolder + "\\doctor");
-                            if (!file.exists()) {
-                                file.mkdir();
-                            }
-                            uploadFolder += "\\doctor";
-                            String filePath = uploadFolder + File.separator + fName;
-                            //mic.setMicImageurl(filePath);
-                            path=filePath;
-                            File f = new File(filePath);
-                            item.write(f);
+//                            String uploadFolder = System.getProperty("user.home");
+//                            String fName = new File(item.getName()).getName();
+//                            File file = new File(uploadFolder + "\\doctor");
+//                            if (!file.exists()) {
+//                                file.mkdir();
+//                            }
+//                            uploadFolder += "\\doctor";
+//                            String filePath = uploadFolder + File.separator + fName;
+//                            //mic.setMicImageurl(filePath);
+//                            path=filePath;
+//                            File f = new File(filePath);
+//                            item.write(f);
+                            path = item.get();
+                            
                         }
                     }
                 }

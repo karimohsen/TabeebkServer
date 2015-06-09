@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 2:45:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -26,25 +26,18 @@ public class Clinic  implements java.io.Serializable {
      private Integer clinicId;
      private String clinicName;
      private String clinicNameAr;
-     private String clinicImagepath;
+     private byte[] clinicImagepath;
      private int deleted;
      private Set<DoctorClinc> doctorClincs = new HashSet<DoctorClinc>(0);
 
     public Clinic() {
     }
 
-    public Clinic(String clinicName, String clinicNameAr, String clinicImagepath, int deleted) {
-        this.clinicName = clinicName;
-        this.clinicNameAr = clinicNameAr;
-        this.clinicImagepath = clinicImagepath;
-        this.deleted = deleted;
-    }
-
 	
     public Clinic(int deleted) {
         this.deleted = deleted;
     }
-    public Clinic(String clinicName, String clinicNameAr, String clinicImagepath, int deleted, Set<DoctorClinc> doctorClincs) {
+    public Clinic(String clinicName, String clinicNameAr, byte[] clinicImagepath, int deleted, Set<DoctorClinc> doctorClincs) {
        this.clinicName = clinicName;
        this.clinicNameAr = clinicNameAr;
        this.clinicImagepath = clinicImagepath;
@@ -52,6 +45,12 @@ public class Clinic  implements java.io.Serializable {
        this.doctorClincs = doctorClincs;
     }
    
+    public Clinic(String clinicName, String clinicNameAr,int deleted) {
+       this.clinicName = clinicName;
+       this.clinicNameAr = clinicNameAr;
+       this.deleted = deleted;
+    }
+    
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
@@ -85,12 +84,12 @@ public class Clinic  implements java.io.Serializable {
     }
 
     
-    @Column(name="clinic_imagepath", length=100)
-    public String getClinicImagepath() {
+    @Column(name="clinic_imagepath")
+    public byte[] getClinicImagepath() {
         return this.clinicImagepath;
     }
     
-    public void setClinicImagepath(String clinicImagepath) {
+    public void setClinicImagepath(byte[] clinicImagepath) {
         this.clinicImagepath = clinicImagepath;
     }
 

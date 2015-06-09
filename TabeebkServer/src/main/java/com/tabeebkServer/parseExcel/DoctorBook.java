@@ -27,7 +27,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author azza
  */
 public class DoctorBook {
-
+    //Azza
     private Doctor mDoctor = null;
     private Doctorspeciality mDoctorSpeciality = null;
     private Telephone doctorTelephone = null;
@@ -74,7 +74,7 @@ public class DoctorBook {
             String clinicImagePath = Constants.CLINIC_IMAGE_DIRECTORY + new Date().toString() + "-/-" + clinicRow.getCell(3).getStringCellValue();
 
             if (clinicNamesEn != null && clinicNamesAr != null && clinicImagePath != null) {
-                c = new Clinic(clinicNamesEn, clinicNamesAr, clinicImagePath,0);
+                c = new Clinic(clinicNamesEn, clinicNamesAr,0);
                 
                 int i = saveDoctorClinic(c);
                 if (i == 1) {

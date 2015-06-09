@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 2:45:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -36,7 +36,7 @@ public class User  implements java.io.Serializable {
      private String userName;
      private String userNameAr;
      private String userEmail;
-     private String userImage;
+     private byte[] userImage;
      private String userTelephone;
      private String userToken;
      private Date userDateofbirth;
@@ -56,7 +56,7 @@ public class User  implements java.io.Serializable {
         this.userEmail = userEmail;
         this.blocked = blocked;
     }
-    public User(Gender gender, Socialnetwork socialnetwork, String userName, String userNameAr, String userEmail, String userImage, String userTelephone, String userToken, Date userDateofbirth, int blocked, Set<Msprecommendations> msprecommendationses, Set<Micratting> micrattings, Set<Ratting> rattings, Set<Reservation> reservations, Set<Micuser> micusers) {
+    public User(Gender gender, Socialnetwork socialnetwork, String userName, String userNameAr, String userEmail, byte[] userImage, String userTelephone, String userToken, Date userDateofbirth, int blocked, Set<Msprecommendations> msprecommendationses, Set<Micratting> micrattings, Set<Ratting> rattings, Set<Reservation> reservations, Set<Micuser> micusers) {
        this.gender = gender;
        this.socialnetwork = socialnetwork;
        this.userName = userName;
@@ -137,12 +137,12 @@ public class User  implements java.io.Serializable {
     }
 
     
-    @Column(name="user_image", length=45)
-    public String getUserImage() {
+    @Column(name="user_image")
+    public byte[] getUserImage() {
         return this.userImage;
     }
     
-    public void setUserImage(String userImage) {
+    public void setUserImage(byte[] userImage) {
         this.userImage = userImage;
     }
 
@@ -157,7 +157,7 @@ public class User  implements java.io.Serializable {
     }
 
     
-    @Column(name="user_token", unique=true, length=100)
+    @Column(name="user_token", unique=true)
     public String getUserToken() {
         return this.userToken;
     }

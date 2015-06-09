@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 2:45:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -37,12 +37,6 @@ public class Msp  implements java.io.Serializable {
     public Msp() {
     }
 
-    public Msp(Msptype msptype, Integer typeId, int deleted) {
-        this.msptype = msptype;
-        this.typeId = typeId;
-        this.deleted = deleted;
-    }
-
 	
     public Msp(int deleted) {
         this.deleted = deleted;
@@ -55,6 +49,12 @@ public class Msp  implements java.io.Serializable {
        this.mics = mics;
     }
    
+    public Msp(Msptype msptype, Integer typeId, int delete) {
+       this.msptype = msptype;
+       this.typeId = typeId;
+       this.deleted = deleted;
+    }
+    
      @Id @GeneratedValue(strategy=IDENTITY)
 
     

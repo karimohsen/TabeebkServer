@@ -1,10 +1,9 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 2:45:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +20,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="hospital"
     ,catalog="graduationprojecttabeebakdb"
-    , uniqueConstraints = @UniqueConstraint(columnNames="hospital_name")
+    , uniqueConstraints = @UniqueConstraint(columnNames="hospital_name") 
 )
 public class Hospital  implements java.io.Serializable {
 
@@ -29,7 +28,7 @@ public class Hospital  implements java.io.Serializable {
      private Integer hospitalId;
      private String hospitalName;
      private String hospitalNameAr;
-     private String hospitalImagepath;
+     private byte[] hospitalImagepath;
      private int deleted;
      private Set<Lab> labs = new HashSet<Lab>(0);
      private Set<Hospitalspeciality> hospitalspecialities = new HashSet<Hospitalspeciality>(0);
@@ -38,17 +37,11 @@ public class Hospital  implements java.io.Serializable {
     public Hospital() {
     }
 
-    public Hospital(String hospitalName, String hospitalNameAr, int deleted) {
-        this.hospitalName = hospitalName;
-        this.hospitalNameAr = hospitalNameAr;
-        this.deleted = deleted;
-    }
-
 	
     public Hospital(int deleted) {
         this.deleted = deleted;
     }
-    public Hospital(String hospitalName, String hospitalNameAr, String hospitalImagepath, int deleted, Set<Lab> labs, Set<Hospitalspeciality> hospitalspecialities, Set<Pharamacy> pharamacies) {
+    public Hospital(String hospitalName, String hospitalNameAr, byte[] hospitalImagepath, int deleted, Set<Lab> labs, Set<Hospitalspeciality> hospitalspecialities, Set<Pharamacy> pharamacies) {
        this.hospitalName = hospitalName;
        this.hospitalNameAr = hospitalNameAr;
        this.hospitalImagepath = hospitalImagepath;
@@ -58,6 +51,11 @@ public class Hospital  implements java.io.Serializable {
        this.pharamacies = pharamacies;
     }
    
+    public Hospital(String hospitalName, String hospitalNameAr, int deleted) {
+       this.hospitalName = hospitalName;
+       this.hospitalNameAr = hospitalNameAr;
+       this.deleted = deleted;
+    }
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
@@ -91,12 +89,12 @@ public class Hospital  implements java.io.Serializable {
     }
 
     
-    @Column(name="hospital_imagepath", length=100)
-    public String getHospitalImagepath() {
+    @Column(name="hospital_imagepath")
+    public byte[] getHospitalImagepath() {
         return this.hospitalImagepath;
     }
     
-    public void setHospitalImagepath(String hospitalImagepath) {
+    public void setHospitalImagepath(byte[] hospitalImagepath) {
         this.hospitalImagepath = hospitalImagepath;
     }
 
@@ -119,7 +117,7 @@ public class Hospital  implements java.io.Serializable {
         this.labs = labs;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="hospital",cascade=CascadeType.ALL)
+@OneToMany(fetch=FetchType.LAZY, mappedBy="hospital")
     public Set<Hospitalspeciality> getHospitalspecialities() {
         return this.hospitalspecialities;
     }

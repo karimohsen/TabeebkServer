@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated May 24, 2015 2:45:18 PM by Hibernate Tools 4.3.1
+// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.Column;
@@ -19,15 +19,15 @@ import javax.persistence.Table;
 @Table(name="branche"
     ,catalog="graduationprojecttabeebakdb"
 )
-public class Branche  implements java.io.Serializable,Comparable<Branche> {
+public class Branche  implements java.io.Serializable , Comparable<Branche> {
 
 
      private Integer brancheId;
      private Area area;
-     private City city;
-     private Country country;
-     private Mspimage mspimage;
      private Msptype msptype;
+     private City city;
+     private Mspimage mspimage;
+     private Country country;
      private String brancheName;
      private String brancheNameAr;
      private String brancheAddress;
@@ -41,27 +41,16 @@ public class Branche  implements java.io.Serializable,Comparable<Branche> {
     public Branche() {
     }
 
-
-    public Branche( City city,Area area, Msptype msptype, String brancheName, String brancheNameAr, String brancheAddress, String brancheAddressAr, Integer typeId) {
-        this.area = area;
-        this.city = city;
-        this.msptype = msptype;
-        this.brancheName = brancheName;
-        this.brancheNameAr = brancheNameAr;
-        this.brancheAddress = brancheAddress;
-        this.brancheAddressAr = brancheAddressAr;
-        this.typeId = typeId;
-    }
 	
     public Branche(String brancheName) {
         this.brancheName = brancheName;
     }
-    public Branche(Area area, City city, Country country, Mspimage mspimage, Msptype msptype, String brancheName, String brancheNameAr, String brancheAddress, String brancheAddressAr, String brancheLongtitude, String brancheLatatitude, Integer typeId, String brancheStreet, String brancheStreetAr) {
+    public Branche(Area area, Msptype msptype, City city, Mspimage mspimage, Country country, String brancheName, String brancheNameAr, String brancheAddress, String brancheAddressAr, String brancheLongtitude, String brancheLatatitude, Integer typeId, String brancheStreet, String brancheStreetAr) {
        this.area = area;
-       this.city = city;
-       this.country = country;
-       this.mspimage = mspimage;
        this.msptype = msptype;
+       this.city = city;
+       this.mspimage = mspimage;
+       this.country = country;
        this.brancheName = brancheName;
        this.brancheNameAr = brancheNameAr;
        this.brancheAddress = brancheAddress;
@@ -73,6 +62,17 @@ public class Branche  implements java.io.Serializable,Comparable<Branche> {
        this.brancheStreetAr = brancheStreetAr;
     }
    
+    public Branche(City city, Area area, Msptype msptype ,String brancheName, String brancheNameAr, String brancheAddress, String brancheAddressAr, Integer typeId) {
+       this.area = area;
+       this.msptype = msptype;
+       this.city = city;
+       this.brancheName = brancheName;
+       this.brancheNameAr = brancheNameAr;
+       this.brancheAddress = brancheAddress;
+       this.brancheAddressAr = brancheAddressAr;
+       this.typeId = typeId;
+    }
+    
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
@@ -96,6 +96,16 @@ public class Branche  implements java.io.Serializable,Comparable<Branche> {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="msptype_type_id")
+    public Msptype getMsptype() {
+        return this.msptype;
+    }
+    
+    public void setMsptype(Msptype msptype) {
+        this.msptype = msptype;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="city_id")
     public City getCity() {
         return this.city;
@@ -103,16 +113,6 @@ public class Branche  implements java.io.Serializable,Comparable<Branche> {
     
     public void setCity(City city) {
         this.city = city;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="country_id")
-    public Country getCountry() {
-        return this.country;
-    }
-    
-    public void setCountry(Country country) {
-        this.country = country;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
@@ -126,13 +126,13 @@ public class Branche  implements java.io.Serializable,Comparable<Branche> {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="msptype_type_id")
-    public Msptype getMsptype() {
-        return this.msptype;
+    @JoinColumn(name="country_id")
+    public Country getCountry() {
+        return this.country;
     }
     
-    public void setMsptype(Msptype msptype) {
-        this.msptype = msptype;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     
@@ -224,11 +224,11 @@ public class Branche  implements java.io.Serializable,Comparable<Branche> {
     public void setBrancheStreetAr(String brancheStreetAr) {
         this.brancheStreetAr = brancheStreetAr;
     }
-@Override
+
+    @Override
     public int compareTo(Branche o) {
         return brancheAddress.compareTo(o.brancheAddress);
     }
-
 
 
 }

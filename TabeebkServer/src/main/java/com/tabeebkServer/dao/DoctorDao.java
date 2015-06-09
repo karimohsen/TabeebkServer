@@ -21,7 +21,7 @@ public class DoctorDao {
     static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
     static Session session = fact.openSession();
 
-    public static int addDoctor(String name, String nameAr, String degree, String degreeAr, int drSpeciality, String imgPath,int gender) {
+    public static int addDoctor(String name, String nameAr, String degree, String degreeAr, int drSpeciality, byte[] imgPath,int gender) {
         Doctor dr = new Doctor();
         dr.setDeleted(0);
         dr.setDoctorName(name);

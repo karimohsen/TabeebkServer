@@ -50,6 +50,7 @@ public class AccountDao {
     }
     
     public void changePassword(String pass, Account acc) {
+        if(!session.getTransaction().isActive())
         session.beginTransaction();
         acc.setPassword(pass);
         session.update(acc);

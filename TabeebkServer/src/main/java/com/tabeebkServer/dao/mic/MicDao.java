@@ -39,6 +39,7 @@ public class MicDao {
     public static void DeletedMIC(int MIC_id){
         Mic mic = (Mic)session.get(Mic.class, MIC_id);
         mic.setDeleted(1);
+        if(!session.getTransaction().isActive())
         session.beginTransaction();
         session.update(mic);
         session.getTransaction().commit();
@@ -48,6 +49,7 @@ public class MicDao {
     public static void RecoverMIC(int MIC_id){
         Mic mic = (Mic)session.get(Mic.class, MIC_id);
         mic.setDeleted(0);
+        if(!session.getTransaction().isActive())
         session.beginTransaction();
         session.update(mic);
         session.getTransaction().commit();
@@ -64,6 +66,7 @@ public class MicDao {
     
     public static boolean addMIC(Mic newMic){
         try {
+            if(!session.getTransaction().isActive())
             session.beginTransaction();
             session.save(newMic);
             session.getTransaction().commit();

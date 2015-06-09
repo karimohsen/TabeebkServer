@@ -75,17 +75,18 @@ public class AdminAddLab extends HttpServlet {
                     } else {
                         String Name = item.getName();
                         if (!Name.equals("") && Name != null) {
-                            String uploadFolder = System.getProperty("user.home");
-                            String fName = new File(item.getName()).getName();
-                            File file = new File(uploadFolder + "\\lab");
-                            if (!file.exists()) {
-                                file.mkdir();
-                            }
-                            uploadFolder += "\\lab";
-                            String filePath = uploadFolder + File.separator + fName;
-                            lab.setLabImagepath(filePath);
-                            File f = new File(filePath);
-                            item.write(f);
+//                            String uploadFolder = System.getProperty("user.home");
+//                            String fName = new File(item.getName()).getName();
+//                            File file = new File(uploadFolder + "\\lab");
+//                            if (!file.exists()) {
+//                                file.mkdir();
+//                            }
+//                            uploadFolder += "\\lab";
+//                            String filePath = uploadFolder + File.separator + fName;
+//                            lab.setLabImagepath(filePath);
+                              lab.setLabImagepath(item.get());
+//                            File f = new File(filePath);
+//                            item.write(f);
                         }
                     }
                 }

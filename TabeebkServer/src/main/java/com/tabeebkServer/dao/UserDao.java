@@ -5,6 +5,7 @@
  */
 package com.tabeebkServer.dao;
 
+import static com.tabeebkServer.dao.AccountDao.session;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -43,6 +44,7 @@ public class UserDao {
     public static void unBlockUser(int userId) {
         User u = (User) session.get(User.class, userId);
         u.setBlocked(0);
+        if(!session.getTransaction().isActive())
         session.beginTransaction();
         session.saveOrUpdate(u);
         session.getTransaction().commit();
@@ -52,6 +54,7 @@ public class UserDao {
     public static void blockUser(int userId) {
         User u = (User) session.get(User.class, userId);
         u.setBlocked(1);
+        if(!session.getTransaction().isActive())
         session.beginTransaction();
         session.saveOrUpdate(u);
         session.getTransaction().commit();

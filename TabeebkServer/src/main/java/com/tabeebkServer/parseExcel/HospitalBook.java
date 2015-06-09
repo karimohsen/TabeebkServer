@@ -9,7 +9,6 @@ import com.tabeebkServer.dao.BranchDao;
 import com.tabeebkServer.dao.MSPDao;
 import com.tabeebkServer.dao.TelephoneDao;
 import com.tabeebkServer.pojo.*;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.TreeSet;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -72,12 +71,12 @@ public class HospitalBook {
                 saveHospitalTelephone(telephones);
                 TreeSet<Branche> brnch = createHospitalBranch(row, hospital, wb);
                 saveHospitalBranches(brnch);
-                createHospitalSpeciality(row, hospital, wb);
+                createHospitalSpeciality( hospital, wb);
             }
         }
     }
 
-    private void createHospitalSpeciality(Row hosRow, Hospital h, Workbook ds) {
+    private void createHospitalSpeciality( Hospital h, Workbook ds) {
         Sheet hospitalspecialitySheet = null;
         if (ds instanceof XSSFWorkbook) {
             hospitalspecialitySheet = (XSSFSheet) ds.getSheet(Constants.HOSPITAL_SPECIALITY_SHEET);

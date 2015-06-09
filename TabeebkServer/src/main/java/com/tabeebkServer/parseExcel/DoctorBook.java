@@ -11,7 +11,6 @@ import com.tabeebkServer.dao.TelephoneDao;
 import com.tabeebkServer.pojo.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -71,9 +70,8 @@ public class DoctorBook {
         if (clinicRow.getCell(0) != null) {
             String clinicNamesEn = clinicRow.getCell(1).getStringCellValue();
             String clinicNamesAr = clinicRow.getCell(2).getStringCellValue();
-            String clinicImagePath = Constants.CLINIC_IMAGE_DIRECTORY + new Date().toString() + "-/-" + clinicRow.getCell(3).getStringCellValue();
 
-            if (clinicNamesEn != null && clinicNamesAr != null && clinicImagePath != null) {
+            if (clinicNamesEn != null && clinicNamesAr != null ) {
                 c = new Clinic(clinicNamesEn, clinicNamesAr,0);
                 
                 int i = saveDoctorClinic(c);

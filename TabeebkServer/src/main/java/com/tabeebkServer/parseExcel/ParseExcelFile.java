@@ -56,6 +56,8 @@ public class ParseExcelFile {
             Logger.getLogger(ParseExcelFile.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(ParseExcelFile.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(Exception e){
+        e.printStackTrace();
         }
     }
 

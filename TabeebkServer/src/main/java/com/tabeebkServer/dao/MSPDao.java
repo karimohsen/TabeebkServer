@@ -637,7 +637,8 @@ public class MSPDao {
 
        return h;
     }
-
+    
+    
     public int insertPharmacy(Pharamacy ph) {
         if (!session.getTransaction().isActive()) {
             session.getTransaction().begin();

@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
+// Generated Jun 14, 2015 12:47:34 PM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.Column;
@@ -26,6 +26,8 @@ public class Account  implements java.io.Serializable {
 
      private Integer accountId;
      private Accounttype accounttype;
+     private Doctor doctor;
+     private Mic mic;
      private String username;
      private String password;
      private String displayName;
@@ -33,8 +35,17 @@ public class Account  implements java.io.Serializable {
     public Account() {
     }
 
+	
     public Account(Accounttype accounttype, String username, String password, String displayName) {
+        this.accounttype = accounttype;
+        this.username = username;
+        this.password = password;
+        this.displayName = displayName;
+    }
+    public Account(Accounttype accounttype, Doctor doctor, Mic mic, String username, String password, String displayName) {
        this.accounttype = accounttype;
+       this.doctor = doctor;
+       this.mic = mic;
        this.username = username;
        this.password = password;
        this.displayName = displayName;
@@ -60,6 +71,26 @@ public class Account  implements java.io.Serializable {
     
     public void setAccounttype(Accounttype accounttype) {
         this.accounttype = accounttype;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="doctor_id")
+    public Doctor getDoctor() {
+        return this.doctor;
+    }
+    
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="mic_id")
+    public Mic getMic() {
+        return this.mic;
+    }
+    
+    public void setMic(Mic mic) {
+        this.mic = mic;
     }
 
     

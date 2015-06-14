@@ -42,7 +42,7 @@
                     <tr>
                         <td>
                             <p>
-                                <input type="text" name="username" id="username" placeholder="hany24435" required>
+                                <input type="text" name="username" id="username" placeholder="User Name" required>
                             </p>
                         </td>
                         <td><div id="status"></div></td>

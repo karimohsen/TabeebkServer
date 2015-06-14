@@ -402,8 +402,8 @@ public class MSPDao {
 
     public Doctorspeciality getDoctorSpeciality(String name) {
         Doctorspeciality docSpe = null;
-            docSpe = (Doctorspeciality) session.createQuery("from Doctorspeciality ds where ds.doctorSpecialityName=:docSpec").setString("docSpec", name.toLowerCase()).uniqueResult();
-            session.evict(docSpe);
+            docSpe = (Doctorspeciality) session.createQuery("from Doctorspeciality ds where ds.doctorSpecialityName=:docSpec").setString("docSpec", name).uniqueResult();
+       
         return docSpe;
     }
 

@@ -5,13 +5,14 @@
  */
 package com.tabeebkServer.dao;
 
+import com.tabeebkServer.pojo.Account;
+import com.tabeebkServer.pojo.Accounttype;
+import com.tabeebkServer.pojo.Mic;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import com.tabeebkServer.pojo.Account;
-import com.tabeebkServer.pojo.Accounttype;
 
 /**
  *
@@ -36,13 +37,18 @@ public class AccountDao {
         }
     }
     
-    public static void AddAccount(String name,String pass,String disName){
+    public static void AddAccount(String name,String pass,String disName,int micId){
         Accounttype type =(Accounttype)session.get(Accounttype.class,1);
         Account acc = new Account();
+        System.out.println("mic id => "+micId);
+        session.clear();
+        Mic mic =(Mic)session.get(Mic.class, micId);
+        System.out.println("----------------mic"+mic);
         acc.setAccounttype(type);
         acc.setDisplayName(disName);
         acc.setPassword(pass);
         acc.setUsername(name);
+        acc.setMic(mic);
         if(!session.getTransaction().isActive())
             session.beginTransaction();
         session.save(acc);

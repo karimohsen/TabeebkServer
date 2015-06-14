@@ -6,6 +6,7 @@
 package com.tabeebkServer.controller.msp;
 
 import com.tabeebkServer.dao.MICDao;
+import com.tabeebkServer.pojo.Account;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -38,7 +39,8 @@ public class AllMsps extends HttpServlet {
         //Get From Session
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {
-            int micId = (Integer) session.getAttribute("Accountid");
+            Account acc = (Account) session.getAttribute("account");
+            int micId = acc.getMic().getMicId();
             List<GenericMSP> allMSPs = MICDao.viewOtherMSPs(micId);
             request.setAttribute("allMSPs", allMSPs);
 

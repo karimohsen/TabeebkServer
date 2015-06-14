@@ -5,6 +5,7 @@
  */
 package com.tabeebkServer.parseExcel;
 //Azza
+
 import com.tabeebkServer.dao.BranchDao;
 import com.tabeebkServer.dao.MSPDao;
 import com.tabeebkServer.dao.TelephoneDao;
@@ -32,7 +33,7 @@ public class PharmacyBook {
     private City city = null;
     private BranchDao addressDao = null;
     private Sheet pharmcySheet = null;
-    private Msp msp=null;
+    private Msp msp = null;
 
     public PharmacyBook(Workbook pharmacyBook) {
 
@@ -62,14 +63,14 @@ public class PharmacyBook {
             String pharmacyNameEn = row.getCell(0).getStringCellValue().toLowerCase();
             String pharmacyNameAr = row.getCell(1).getStringCellValue();
             String pharmacyHospital = row.getCell(3).getStringCellValue();
-            if (pharmacyNameEn != null && pharmacyNameAr != null &&  pharmacyHospital != null) {
-                pharmacy = new Pharamacy(mspDao.getHospitalByName(pharmacyHospital.toLowerCase()), pharmacyNameEn, pharmacyNameAr,0);
+            if (pharmacyNameEn != null && pharmacyNameAr != null && pharmacyHospital != null) {
+                pharmacy = new Pharamacy(mspDao.getHospitalByName(pharmacyHospital.toLowerCase()), pharmacyNameEn, pharmacyNameAr, 0);
             } else if (pharmacyHospital == null) {
-                pharmacy = new Pharamacy(pharmacyNameEn, pharmacyNameAr,0);
+                pharmacy = new Pharamacy(pharmacyNameEn, pharmacyNameAr, 0);
             }
             int i = savePharmacy(pharmacy);
             if (i == 1) {
-                msp=new Msp(mspDao.getMspType(Constants.PHARMACY),pharmacy.getPharamacyId(),0);
+                msp = new Msp(mspDao.getMspType(Constants.PHARMACY), pharmacy.getPharamacyId(), 0);
                 mspDao.saveMsp(msp);
                 savePharmacyTelephone(createPharmacyTelelphone(row, pharmacy, pharmacySheet));
                 savePharmacyBranches(createPharmacyBranch(row, pharmacy, pharmacySheet));
@@ -92,13 +93,16 @@ public class PharmacyBook {
             if (pharmacyTelRow.getRowNum() == 0) {
                 continue;
             }
-            String pharmName=pharmacyTelRow.getCell(0).getStringCellValue();
-            //double pharmacyRowNum = pharmacyTelRow.getCell(0).getNumericCellValue();
-            String telephs = pharmacyTelRow.getCell(1).getStringCellValue();
-            if(ph.getPharamacyName().trim().equals(pharmName.trim().toLowerCase())){
-            //if (pharmacyRow.getRowNum() + 1 == pharmacyRowNum) {
-                pharmacyTelephone = new Telephone(mspType, ph.getPharamacyId(), telephs);
-                telphons.add(pharmacyTelephone);
+            if (pharmacyTelRow.getCell(0) != null && pharmacyTelRow.getCell(1) != null) {
+
+                String pharmName = pharmacyTelRow.getCell(0).getStringCellValue();
+                //double pharmacyRowNum = pharmacyTelRow.getCell(0).getNumericCellValue();
+                String telephs = pharmacyTelRow.getCell(1).getStringCellValue();
+                if (ph.getPharamacyName().equalsIgnoreCase(pharmName)) {
+                    //if (pharmacyRow.getRowNum() + 1 == pharmacyRowNum) {
+                    pharmacyTelephone = new Telephone(mspType, ph.getPharamacyId(), telephs);
+                    telphons.add(pharmacyTelephone);
+                }
             }
         }
         return telphons;
@@ -122,20 +126,19 @@ public class PharmacyBook {
                 continue;
             }
             if (phAddRow.getCell(0) != null) {
-                String phamrName=phAddRow.getCell(0).getStringCellValue();
+                String phamrName = phAddRow.getCell(0).getStringCellValue();
                 //double phRowNum = phAddRow.getCell(0).getNumericCellValue();
-                if(ph.getPharamacyName().trim().equals(phamrName.trim().toLowerCase())){
-                //if (pharmcyRow.getRowNum() + 1 == phRowNum) {
+                if (ph.getPharamacyName().equalsIgnoreCase(phamrName)) {
+                    //if (pharmcyRow.getRowNum() + 1 == phRowNum) {
                     String cityNameEn = phAddRow.getCell(1).getStringCellValue();
                     city = addressDao.getCity(cityNameEn);
-                   
                     String areaNamesEn = phAddRow.getCell(2).getStringCellValue();
                     String areaNamesAr = phAddRow.getCell(3).getStringCellValue();
                     String fullAddressEn = phAddRow.getCell(4).getStringCellValue();
                     String fullAddressAr = phAddRow.getCell(5).getStringCellValue();
                     area = new Area(city, areaNamesEn, areaNamesAr);
-                    area=addressDao.insertArea(area);
-                    b = new Branche(city,area ,mspType, areaNamesEn, areaNamesAr, fullAddressEn, fullAddressAr, ph.getPharamacyId());
+                    area = addressDao.insertArea(area);
+                    b = new Branche(city, area, mspType, areaNamesEn, areaNamesAr, fullAddressEn, fullAddressAr, ph.getPharamacyId(), 0);
                     branchs.add(b);
                 }
             }

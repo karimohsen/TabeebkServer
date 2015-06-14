@@ -161,7 +161,7 @@ public class HospitalBook {
                     String fullAddressAr = hosAddRow.getCell(5).getStringCellValue();
                     area = new Area(city, areaNamesEn, areaNamesAr);
                     area = addressDao.insertArea(area);
-                    b = new Branche(city, area, mspType, areaNamesEn, areaNamesAr, fullAddressEn, fullAddressAr, h.getHospitalId());
+                    b = new Branche(city, area, mspType, areaNamesEn, areaNamesAr, fullAddressEn, fullAddressAr, h.getHospitalId(),0);
                     branchs.add(b);
                 }
             }

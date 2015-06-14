@@ -98,6 +98,9 @@
                                 <li>
                                     <a href="${pageContext.request.contextPath}/Admin/bulkUpload.jsp">Bulk Upload</a>
                                 </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Admin/bulkDownload.jsp">Bulk Download</a>
+                                </li>
                             </ul>
                         </li>
                         <li>

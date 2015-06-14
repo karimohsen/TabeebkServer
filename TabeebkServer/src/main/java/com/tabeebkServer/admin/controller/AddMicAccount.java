@@ -6,6 +6,8 @@
 package com.tabeebkServer.admin.controller;
 
 import com.tabeebkServer.dao.AccountDao;
+import com.tabeebkServer.dao.mic.MicDao;
+import com.tabeebkServer.pojo.Mic;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +38,11 @@ public class AddMicAccount extends HttpServlet {
             String password = request.getParameter("passwd");
             String name = request.getParameter("name");
             String disName = request.getParameter("disname");
-            AccountDao.AddAccount(name,password,disName);
+            Mic mic = new Mic();
+            mic.setMicName(name);
+            mic.setDeleted(0);
+            int id = MicDao.createMIC(mic);
+            AccountDao.AddAccount(name,password,disName,id);
         } else {
             response.sendRedirect("Login.jsp");
         }

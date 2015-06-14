@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
+// Generated Jun 14, 2015 12:47:34 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -34,6 +34,7 @@ public class Mic  implements java.io.Serializable {
      private byte[] micImageurl;
      private int deleted;
      private Set<Micuser> micusers = new HashSet<Micuser>(0);
+     private Set<Account> accounts = new HashSet<Account>(0);
      private Set<Plan> plans = new HashSet<Plan>(0);
      private Set<Msp> msps = new HashSet<Msp>(0);
      private Set<Micratting> micrattings = new HashSet<Micratting>(0);
@@ -45,7 +46,7 @@ public class Mic  implements java.io.Serializable {
     public Mic(int deleted) {
         this.deleted = deleted;
     }
-    public Mic(String micName, String micNameAr, String micDescription, String micDescriptionAr, String micUrl, String micEmail, byte[] micImageurl, int deleted, Set<Micuser> micusers, Set<Plan> plans, Set<Msp> msps, Set<Micratting> micrattings) {
+    public Mic(String micName, String micNameAr, String micDescription, String micDescriptionAr, String micUrl, String micEmail, byte[] micImageurl, int deleted, Set<Micuser> micusers, Set<Account> accounts, Set<Plan> plans, Set<Msp> msps, Set<Micratting> micrattings) {
        this.micName = micName;
        this.micNameAr = micNameAr;
        this.micDescription = micDescription;
@@ -55,6 +56,7 @@ public class Mic  implements java.io.Serializable {
        this.micImageurl = micImageurl;
        this.deleted = deleted;
        this.micusers = micusers;
+       this.accounts = accounts;
        this.plans = plans;
        this.msps = msps;
        this.micrattings = micrattings;
@@ -159,6 +161,15 @@ public class Mic  implements java.io.Serializable {
     
     public void setMicusers(Set<Micuser> micusers) {
         this.micusers = micusers;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="mic")
+    public Set<Account> getAccounts() {
+        return this.accounts;
+    }
+    
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="mic")

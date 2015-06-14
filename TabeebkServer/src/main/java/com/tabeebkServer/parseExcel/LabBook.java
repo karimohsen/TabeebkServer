@@ -5,6 +5,7 @@
  */
 package com.tabeebkServer.parseExcel;
 //Azza
+
 import com.tabeebkServer.dao.BranchDao;
 import com.tabeebkServer.dao.MSPDao;
 import com.tabeebkServer.dao.TelephoneDao;
@@ -33,7 +34,7 @@ public class LabBook {
     private City city = null;
     private BranchDao addressDao = null;
     private Sheet labSheet = null;
-    private Msp msp=null;
+    private Msp msp = null;
 
     public LabBook(Workbook labBook) {
 
@@ -63,15 +64,15 @@ public class LabBook {
             String labNameEn = row.getCell(0).getStringCellValue().toLowerCase();
             String labNameAr = row.getCell(1).getStringCellValue();
             String labHospital = row.getCell(3).getStringCellValue();
-            if (labNameEn != null && labNameAr != null  && labHospital != null) {
-                lab = new Lab(mspDao.getHospitalByName(labHospital.toLowerCase()), labNameEn, labNameAr,0);
+            if (labNameEn != null && labNameAr != null && labHospital != null) {
+                lab = new Lab(mspDao.getHospitalByName(labHospital.toLowerCase()), labNameEn, labNameAr, 0);
             } else if (labHospital == null) {
-                lab = new Lab(labNameEn, labNameAr,0);
+                lab = new Lab(labNameEn, labNameAr, 0);
             }
 
             int i = saveLab(lab);
             if (i == 1) {
-                msp=new Msp(mspDao.getMspType(Constants.LAB),lab.getLabId(),0);
+                msp = new Msp(mspDao.getMspType(Constants.LAB), lab.getLabId(), 0);
                 mspDao.saveMsp(msp);
                 savelabTelephone(createlabTelelphone(row, lab, labSheet));
                 savelabBranches(createlabBranch(row, lab, labSheet));
@@ -95,14 +96,14 @@ public class LabBook {
             if (labSpecRow.getRowNum() == 0) {
                 continue;
             }
-            String labName=labSpecRow.getCell(0).getStringCellValue();
+            String labName = labSpecRow.getCell(0).getStringCellValue();
             //double labRowNum = labSpecRow.getCell(0).getNumericCellValue();
-            
+
             String labSepeciality = labSpecRow.getCell(1).getStringCellValue();
-            if(l.getLabName().trim().equals(labName.trim().toLowerCase())){
-            //if (labRow.getRowNum() + 1 == labRowNum) {
+            if (l.getLabName().trim().equals(labName.trim().toLowerCase())) {
+                //if (labRow.getRowNum() + 1 == labRowNum) {
                 specialityName = mspDao.getLabSpeciality(labSepeciality.toLowerCase());
-                Labspeciality labSpeciality = new Labspeciality(l, specialityName,0);
+                Labspeciality labSpeciality = new Labspeciality(l, specialityName, 0);
                 mspDao.saveLabSpeciality(labSpeciality);
             }
         }
@@ -124,13 +125,15 @@ public class LabBook {
             if (labTelRow.getRowNum() == 0) {
                 continue;
             }
-            String labName=labTelRow.getCell(0).getStringCellValue();
-            //double labRowNum = labTelRow.getCell(0).getNumericCellValue();
-            String telephs = labTelRow.getCell(1).getStringCellValue();
-            if(l.getLabName().trim().equals(labName.trim().toLowerCase())){
-            //if (labRow.getRowNum() + 1 == labRowNum) {
-                labTelephone = new Telephone(mspType, l.getLabId(), telephs);
-                telphons.add(labTelephone);
+            if (labTelRow.getCell(0) != null && labTelRow.getCell(1)!=null) {
+                String labName = labTelRow.getCell(0).getStringCellValue();
+                //double labRowNum = labTelRow.getCell(0).getNumericCellValue();
+                String telephs = labTelRow.getCell(1).getStringCellValue();
+                if (l.getLabName().trim().equals(labName.trim().toLowerCase())) {
+                    //if (labRow.getRowNum() + 1 == labRowNum) {
+                    labTelephone = new Telephone(mspType, l.getLabId(), telephs);
+                    telphons.add(labTelephone);
+                }
             }
         }
         return telphons;
@@ -154,11 +157,11 @@ public class LabBook {
                 continue;
             }
             if (labAddRow.getCell(0) != null) {
-                String labName=labAddRow.getCell(0).getStringCellValue();
-            
+                String labName = labAddRow.getCell(0).getStringCellValue();
+
                 //double labRowNum = labAddRow.getCell(0).getNumericCellValue();
-                if(l.getLabName().trim().equals(labName.trim().toLowerCase())){
-                //if (labRow.getRowNum() + 1 == labRowNum) {
+                if (l.getLabName().trim().equals(labName.trim().toLowerCase())) {
+                    //if (labRow.getRowNum() + 1 == labRowNum) {
                     String cityNameEn = labAddRow.getCell(1).getStringCellValue();
                     city = addressDao.getCity(cityNameEn);
                     String areaNamesEn = labAddRow.getCell(2).getStringCellValue();
@@ -166,8 +169,8 @@ public class LabBook {
                     String fullAddressEn = labAddRow.getCell(4).getStringCellValue();
                     String fullAddressAr = labAddRow.getCell(5).getStringCellValue();
                     area = new Area(city, areaNamesEn, areaNamesAr);
-                   area= addressDao.insertArea(area);
-                    b = new Branche(city,area ,mspType, areaNamesEn, areaNamesAr, fullAddressEn, fullAddressAr, l.getLabId());
+                    area = addressDao.insertArea(area);
+                    b = new Branche(city, area, mspType, areaNamesEn, areaNamesAr, fullAddressEn, fullAddressAr, l.getLabId(), 0);
                     branchs.add(b);
                 }
             }

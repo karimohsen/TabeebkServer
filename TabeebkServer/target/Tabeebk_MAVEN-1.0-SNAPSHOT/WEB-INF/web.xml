@@ -11,7 +11,6 @@
         <servlet-name>DownloadExcelStructure</servlet-name>
         <servlet-class>com.tabeebkServer.admin.controller.DownloadExcelStructure</servlet-class>
     </servlet>
-    
     <servlet>
         <servlet-name>ViewUsers</servlet-name>
         <servlet-class>com.tabeebkServer.controller.msp.ViewUsers</servlet-class>
@@ -253,6 +252,14 @@
         <servlet-class>com.tabeebkServer.admin.controller.UpdateLabDetails</servlet-class>
     </servlet>
     <filter>
+        <filter-name>f3</filter-name>
+        <filter-class>com.tabeebkServer.filter.DoctorFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>f3</filter-name>
+        <url-pattern>/Doctor/*</url-pattern>
+    </filter-mapping>
+    <filter>
         <filter-name>f2</filter-name>
         <filter-class>com.tabeebkServer.filter.MspFilter</filter-class>
     </filter>
@@ -260,7 +267,7 @@
         <filter-name>f2</filter-name>
         <url-pattern>/MSP/*</url-pattern>
     </filter-mapping>
-     <filter>
+    <filter>
         <filter-name>f1</filter-name>
         <filter-class>com.tabeebkServer.filter.AdminFilter</filter-class>
     </filter>
@@ -268,6 +275,10 @@
         <filter-name>f1</filter-name>
         <url-pattern>/Admin/*</url-pattern>
     </filter-mapping>
+    <servlet>
+        <servlet-name>DoctorAddSchedule</servlet-name>
+        <servlet-class>com.tabeebkServer.Doctor.DoctorAddSchedule</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>uploadExcelFile</servlet-name>
         <url-pattern>/upload</url-pattern>
@@ -516,7 +527,10 @@
         <servlet-name>UpdateLabDetails</servlet-name>
         <url-pattern>/UpdateLabDetails</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>DoctorAddSchedule</servlet-name>
+        <url-pattern>/DoctorAddSchedule</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>-1</session-timeout>
     </session-config>

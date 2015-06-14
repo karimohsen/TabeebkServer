@@ -63,11 +63,11 @@ public class LoginControler extends HttpServlet {
             if (currentUser.getAccounttype().getAccountTypeId() == 1) {
                 response.sendRedirect("MSP/Home.jsp");
             }
-            //if Account is MIC Account
+            //if Account is Doctor Account
             if (currentUser.getAccounttype().getAccountTypeId() == 2) {
-                response.sendRedirect("MSP/Home.jsp");
+                response.sendRedirect("Doctor/Home.jsp");
             }
-             //if Account is MIC Account
+             //if Account is Admin Account
             if (currentUser.getAccounttype().getAccountTypeId() == 7) {
                 response.sendRedirect("Admin/Home.jsp");
             }

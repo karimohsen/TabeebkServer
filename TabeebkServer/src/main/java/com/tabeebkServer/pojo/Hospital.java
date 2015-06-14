@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Jun 8, 2015 8:12:48 PM by Hibernate Tools 3.6.0
+// Generated Jun 14, 2015 12:47:34 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -50,12 +50,13 @@ public class Hospital  implements java.io.Serializable {
        this.hospitalspecialities = hospitalspecialities;
        this.pharamacies = pharamacies;
     }
-   
+    
     public Hospital(String hospitalName, String hospitalNameAr, int deleted) {
        this.hospitalName = hospitalName;
        this.hospitalNameAr = hospitalNameAr;
        this.deleted = deleted;
     }
+   
      @Id @GeneratedValue(strategy=IDENTITY)
 
     

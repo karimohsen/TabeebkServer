@@ -35,7 +35,7 @@ public class MspFilter implements Filter {
             HttpSession session = re.getSession(false);
             Account typeId = (Account) session.getAttribute("account");
             if (typeId != null) {
-                if (typeId.getAccounttype().getAccountTypeId() == 1 || typeId.getAccounttype().getAccountTypeId() == 2) {
+                if (typeId.getAccounttype().getAccountTypeId() == 1) {
                     chain.doFilter(req, resp);//sends request to next resource
                 } else {
                     ((HttpServletResponse) resp).setStatus(HttpServletResponse.SC_NOT_FOUND);

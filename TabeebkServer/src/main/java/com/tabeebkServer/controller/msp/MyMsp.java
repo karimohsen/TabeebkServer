@@ -6,6 +6,8 @@
 package com.tabeebkServer.controller.msp;
 
 import com.tabeebkServer.dao.MICDao;
+import com.tabeebkServer.pojo.Account;
+import com.tabeebkServer.utilty.GenericMSP;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -14,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.tabeebkServer.utilty.GenericMSP;
 
 /**
  *
@@ -38,7 +39,8 @@ public class MyMsp extends HttpServlet {
         //GET from session
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {
-            int micId = (Integer) session.getAttribute("Accountid");
+            Account acc = (Account) session.getAttribute("account");
+            int micId = acc.getMic().getMicId();
             List<GenericMSP> myMSPs = MICDao.viewMyMSPs(micId);
             request.setAttribute("myMSPs", myMSPs);
             rd.forward(request, response);

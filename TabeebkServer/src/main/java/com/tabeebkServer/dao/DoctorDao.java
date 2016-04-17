@@ -8,6 +8,7 @@ package com.tabeebkServer.dao;
 import com.tabeebkServer.pojo.Doctor;
 import com.tabeebkServer.pojo.Doctorspeciality;
 import com.tabeebkServer.pojo.Gender;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -18,7 +19,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class DoctorDao {
 
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
 
     public static int addDoctor(String name, String nameAr, String degree, String degreeAr, int drSpeciality, byte[] imgPath,int gender) {

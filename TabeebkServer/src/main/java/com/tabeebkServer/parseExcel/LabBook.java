@@ -60,13 +60,15 @@ public class LabBook {
 
     private void createlab(Row row, Workbook labSheet) {
 
-        if (row.getCell(0) != null) {
+        if (row.getCell(0) != null&&row.getCell(1)!=null) {
             String labNameEn = row.getCell(0).getStringCellValue().toLowerCase();
             String labNameAr = row.getCell(1).getStringCellValue();
-            String labHospital = row.getCell(3).getStringCellValue();
+            String labHospital="";
+            if(row.getCell(2)!=null){
+            labHospital = row.getCell(2).getStringCellValue();}
             if (labNameEn != null && labNameAr != null && labHospital != null) {
                 lab = new Lab(mspDao.getHospitalByName(labHospital.toLowerCase()), labNameEn, labNameAr, 0);
-            } else if (labHospital == null) {
+            } else if (labHospital == null||labHospital.equals("")) {
                 lab = new Lab(labNameEn, labNameAr, 0);
             }
 

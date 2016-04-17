@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Jun 14, 2015 12:47:34 PM by Hibernate Tools 3.6.0
+// Generated Jun 15, 2015 12:46:00 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -27,7 +27,6 @@ public class Msptype  implements java.io.Serializable {
      private String typeName;
      private Set<Msp> msps = new HashSet<Msp>(0);
      private Set<Planupdates> planupdateses = new HashSet<Planupdates>(0);
-     private Set<Speciality> specialities = new HashSet<Speciality>(0);
      private Set<Branche> branches = new HashSet<Branche>(0);
      private Set<Ratting> rattings = new HashSet<Ratting>(0);
      private Set<Planmsp> planmsps = new HashSet<Planmsp>(0);
@@ -38,11 +37,10 @@ public class Msptype  implements java.io.Serializable {
     public Msptype() {
     }
 
-    public Msptype(String typeName, Set<Msp> msps, Set<Planupdates> planupdateses, Set<Speciality> specialities, Set<Branche> branches, Set<Ratting> rattings, Set<Planmsp> planmsps, Set<Schedule> schedules, Set<Msprecommendations> msprecommendationses, Set<Telephone> telephones) {
+    public Msptype(String typeName, Set<Msp> msps, Set<Planupdates> planupdateses, Set<Branche> branches, Set<Ratting> rattings, Set<Planmsp> planmsps, Set<Schedule> schedules, Set<Msprecommendations> msprecommendationses, Set<Telephone> telephones) {
        this.typeName = typeName;
        this.msps = msps;
        this.planupdateses = planupdateses;
-       this.specialities = specialities;
        this.branches = branches;
        this.rattings = rattings;
        this.planmsps = planmsps;
@@ -89,15 +87,6 @@ public class Msptype  implements java.io.Serializable {
     
     public void setPlanupdateses(Set<Planupdates> planupdateses) {
         this.planupdateses = planupdateses;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="msptype")
-    public Set<Speciality> getSpecialities() {
-        return this.specialities;
-    }
-    
-    public void setSpecialities(Set<Speciality> specialities) {
-        this.specialities = specialities;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="msptype")

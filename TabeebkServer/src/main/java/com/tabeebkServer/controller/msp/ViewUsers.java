@@ -6,6 +6,7 @@
 package com.tabeebkServer.controller.msp;
 
 import com.tabeebkServer.dao.MICDao;
+import com.tabeebkServer.pojo.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -40,7 +41,8 @@ public class ViewUsers extends HttpServlet {
         //Get this id from session
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {
-            int micId = (Integer) session.getAttribute("Accountid");
+            Account acc = (Account) session.getAttribute("account");
+            int micId = acc.getMic().getMicId();
             List<User> users = MICDao.viewMyUsers(micId);
             request.setAttribute("users", users);
             rd.forward(request, response);

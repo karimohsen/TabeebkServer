@@ -279,6 +279,22 @@
         <servlet-name>DoctorAddSchedule</servlet-name>
         <servlet-class>com.tabeebkServer.Doctor.DoctorAddSchedule</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddMSPtoMIC</servlet-name>
+        <servlet-class>com.tabeebkServer.controller.msp.AddMSPtoMIC</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetReservations</servlet-name>
+        <servlet-class>com.tabeebkServer.Doctor.GetReservations</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AcceptReservation</servlet-name>
+        <servlet-class>com.tabeebkServer.Doctor.AcceptReservation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RejectReservation</servlet-name>
+        <servlet-class>com.tabeebkServer.Doctor.RejectReservation</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>uploadExcelFile</servlet-name>
         <url-pattern>/upload</url-pattern>
@@ -530,6 +546,22 @@
     <servlet-mapping>
         <servlet-name>DoctorAddSchedule</servlet-name>
         <url-pattern>/DoctorAddSchedule</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddMSPtoMIC</servlet-name>
+        <url-pattern>/AddMSPtoMIC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetReservations</servlet-name>
+        <url-pattern>/GetReservations</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcceptReservation</servlet-name>
+        <url-pattern>/AcceptReservation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RejectReservation</servlet-name>
+        <url-pattern>/RejectReservation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>-1</session-timeout>

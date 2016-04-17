@@ -8,6 +8,7 @@ package com.tabeebkServer.dao;
 import com.tabeebkServer.pojo.Account;
 import com.tabeebkServer.pojo.Accounttype;
 import com.tabeebkServer.pojo.Mic;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -21,7 +22,7 @@ import org.hibernate.cfg.Configuration;
 public class AccountDao {
 
     //===== session per dao
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
 
     public Account checkLogin(Account account) {
@@ -37,12 +38,10 @@ public class AccountDao {
         }
     }
     
-    public static void AddAccount(String name,String pass,String disName,int micId){
+    public static void AddAccount(String name,String pass,String disName,Mic mic){
         Accounttype type =(Accounttype)session.get(Accounttype.class,1);
         Account acc = new Account();
-        System.out.println("mic id => "+micId);
         session.clear();
-        Mic mic =(Mic)session.get(Mic.class, micId);
         System.out.println("----------------mic"+mic);
         acc.setAccounttype(type);
         acc.setDisplayName(disName);

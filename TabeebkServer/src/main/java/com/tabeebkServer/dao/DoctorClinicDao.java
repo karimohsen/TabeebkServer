@@ -9,6 +9,7 @@ import com.tabeebkServer.pojo.Clinic;
 import com.tabeebkServer.pojo.Doctor;
 import com.tabeebkServer.pojo.DoctorClinc;
 import com.tabeebkServer.pojo.DoctorClincId;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,7 +21,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class DoctorClinicDao {
 
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
 
     public static void addDoctorClinic(int drId, ArrayList<Integer> clinicList) {

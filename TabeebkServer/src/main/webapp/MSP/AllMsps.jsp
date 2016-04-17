@@ -51,7 +51,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="${pageContext.request.contextPath}/MSP/Home.jsp">Tabeebk</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/MSP/Home.jsp">Tabebak</a>
                 </div>
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
@@ -141,6 +141,7 @@
                                             <th>MSP Name</th>
                                             <th>MSP Name</th>
                                             <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
 
@@ -153,7 +154,8 @@
                                                 <td>
                                                     <c:out value="${msp.getMsptypename()}"/>
                                                 </td>
-                                                <td><button type="button" class="btn btn-success" onclick="EditPlan('ViewRatings',${msp.getMspId()})">View Ratting</button></td>
+                                                <td><button type="button" class="btn btn-success" onclick="AdminMsp('ViewRatings',${msp.getMspId()},${msp.getMsptypeId()})">View Ratting</button></td>
+                                                <td><button type="button" class="btn btn-success" onclick="AdminMsp('AddMSPtoMIC',${msp.getMspId()},${msp.getMsptypeId()})">Add To ${account.getDisplayName()}'s Family</button></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

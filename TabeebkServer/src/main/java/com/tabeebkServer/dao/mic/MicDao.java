@@ -21,12 +21,12 @@ public class MicDao {
     static Session session = factory.openSession();
     
     //==============Admin Create MIC===============================
-    public static int createMIC(Mic mic){
+    public static Mic createMIC(Mic mic){
         if(!session.getTransaction().isActive())
         session.beginTransaction();
         session.save(mic);
         session.getTransaction().commit();
-        return mic.getMicId();
+        return mic;
     }
     //=============================================================
     //=================Admin return all MIC=========================

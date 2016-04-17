@@ -50,7 +50,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="${pageContext.request.contextPath}/MSP/Home.jsp">Tabeebk</a>
+                    <a class="navbar-brand" href="${pageContext.request.contextPath}/MSP/Home.jsp">Tabebak</a>
                 </div>
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
@@ -153,7 +153,7 @@
                                             <td>
                                                 <c:out value="${msp.getMsptypename()}"/>
                                             </td>
-                                            <td><button type="button" class="btn btn-success" onclick="EditPlan('ViewRatings',${msp.getMspId()})">View Ratting</button></td>
+                                            <td><button type="button" class="btn btn-success" onclick="AdminMsp('ViewRatings',${msp.getMspId()},${msp.getMsptypeId()})">View Ratting</button></td>
                                             <td><button type="button" class="btn btn-success" style="float: left" onclick="AddMspToPlan2('AddMSPToPlans',${msp.getMsptypeId()},${msp.getMspId()})">Assign To Certain Plans</button></td>
                                         </tr>
                                     </c:forEach>

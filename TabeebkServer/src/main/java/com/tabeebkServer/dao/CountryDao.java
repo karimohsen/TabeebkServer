@@ -6,6 +6,7 @@
 package com.tabeebkServer.dao;
 
 import com.tabeebkServer.pojo.Country;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,7 +18,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class CountryDao {
 
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
 
     public static ArrayList<Country> getAllCountries() {

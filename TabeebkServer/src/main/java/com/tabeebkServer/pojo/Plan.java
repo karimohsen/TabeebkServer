@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Jun 14, 2015 12:47:34 PM by Hibernate Tools 3.6.0
+// Generated Jun 15, 2015 12:46:00 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -70,7 +70,7 @@ public class Plan  implements java.io.Serializable {
         this.planId = planId;
     }
 
-    
+    @Version
     @Column(name="version", nullable=false)
     public int getVersion() {
         return this.version;

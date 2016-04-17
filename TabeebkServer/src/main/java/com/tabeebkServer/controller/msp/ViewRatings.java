@@ -36,7 +36,8 @@ public class ViewRatings extends HttpServlet {
          RequestDispatcher rd = request.getRequestDispatcher("MSP/ViewRatings.jsp");
         //Get Id From Request
         int mspId=Integer.parseInt(request.getParameter("id"));
-        List<Ratting> mspRatting=MSPDao.viewMspRatting(mspId);
+        int typeId=Integer.parseInt(request.getParameter("typeid"));
+        List<Ratting> mspRatting=MSPDao.viewMspRatting(mspId,typeId);
         request.setAttribute("mspRatting", mspRatting);
         rd.forward(request, response);
     }

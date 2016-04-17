@@ -5,14 +5,17 @@ com\tabeebkServer\utilty\MyLabSpecialities.class
 com\tabeebkServer\pojo\Clinic.class
 com\tabeebkServer\pojo\Lab.class
 com\tabeebkServer\parseExcel\HospitalBook.class
+com\tabeebkServer\dao\MspTypeDao.class
 com\tabeebkServer\admin\controller\PharmacyBranch.class
 com\tabeebkServer\controller\plan\AddMSPToPlans.class
+com\tabeebkServer\controller\msp\AddMSPtoMIC.class
 com\tabeebkServer\controller\account\LoginControler.class
 com\tabeebkServer\admin\controller\AdminAllMsps.class
 com\tabeebkServer\pojo\User.class
 com\tabeebkServer\admin\controller\EditClinicDetails.class
 com\tabeebkServer\admin\controller\AdminDeleteMsp.class
 com\tabeebkServer\dao\ScheduleDao.class
+com\tabeebkServer\Doctor\GetReservations.class
 com\tabeebkServer\admin\controller\AllHospitalSpecialities.class
 com\tabeebkServer\admin\controller\AdminRestoreMsp.class
 com\tabeebkServer\dao\MICDao.class
@@ -40,6 +43,7 @@ com\tabeebkServer\controller\plan\ShowMspFromPlan.class
 com\tabeebkServer\pojo\Hospital.class
 com\tabeebkServer\controller\plan\AllPlans.class
 com\tabeebkServer\pojo\Mspimage.class
+com\tabeebkServer\dao\ReservationDao.class
 com\tabeebkServer\parseExcel\DoctorBook.class
 com\tabeebkServer\pojo\Socialnetwork.class
 com\tabeebkServer\dao\HospitalSpecialityDao.class
@@ -121,7 +125,6 @@ com\tabeebkServer\pojo\Gender.class
 com\tabeebkServer\dao\UserDao.class
 com\tabeebkServer\controller\plan\MSPAddedToPlan.class
 com\tabeebkServer\admin\controller\uploadExcelFile.class
-com\tabeebkServer\pojo\Speciality.class
 com\tabeebkServer\dao\AccountDao.class
 com\tabeebkServer\admin\controller\AdminAddHospital.class
 com\tabeebkServer\admin\controller\ApproveMsp.class

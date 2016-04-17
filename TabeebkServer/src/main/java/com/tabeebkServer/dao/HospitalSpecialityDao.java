@@ -8,6 +8,7 @@ package com.tabeebkServer.dao;
 import com.tabeebkServer.pojo.Doctorspeciality;
 import com.tabeebkServer.pojo.Hospital;
 import com.tabeebkServer.pojo.Hospitalspeciality;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,7 +20,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class HospitalSpecialityDao {
 
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
 
     public static ArrayList<Doctorspeciality> getHospitalspecialities() {

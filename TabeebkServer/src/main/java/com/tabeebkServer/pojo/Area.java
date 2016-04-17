@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Jun 14, 2015 12:47:34 PM by Hibernate Tools 3.6.0
+// Generated Jun 15, 2015 12:46:00 PM by Hibernate Tools 3.6.0
 
 import java.util.HashSet;
 import java.util.Set;
@@ -35,17 +35,17 @@ public class Area implements java.io.Serializable {
         this.city = city;
     }
 
+    public Area(City city, String areaNameEn, String areaNameAr) {
+        this.city = city;
+        this.areaNameEn = areaNameEn;
+        this.areaNameAr = areaNameAr;
+    }
+
     public Area(City city, String areaNameEn, String areaNameAr, Set<Branche> branches) {
         this.city = city;
         this.areaNameEn = areaNameEn;
         this.areaNameAr = areaNameAr;
         this.branches = branches;
-    }
-
-    public Area(City city, String areaNameEn, String areaNameAr) {
-        this.city = city;
-        this.areaNameEn = areaNameEn;
-        this.areaNameAr = areaNameAr;
     }
 
     @Id

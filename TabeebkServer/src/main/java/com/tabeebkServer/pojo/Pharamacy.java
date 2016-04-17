@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Jun 14, 2015 12:47:34 PM by Hibernate Tools 3.6.0
+// Generated Jun 15, 2015 12:46:00 PM by Hibernate Tools 3.6.0
 
 
 import javax.persistence.Column;
@@ -44,16 +44,13 @@ public class Pharamacy  implements java.io.Serializable {
        this.pharamacyImagepath = pharamacyImagepath;
        this.deleted = deleted;
     }
-    
     public Pharamacy(Hospital hospital, String pharamacyName, String pharamacyNameAr, int deleted) {
        this.hospital = hospital;
        this.pharamacyName = pharamacyName;
        this.pharamacyNameAr = pharamacyNameAr;
        this.deleted = deleted;
     }
-    
     public Pharamacy(String pharamacyName, String pharamacyNameAr, int deleted) {
-       this.hospital = hospital;
        this.pharamacyName = pharamacyName;
        this.pharamacyNameAr = pharamacyNameAr;
        this.deleted = deleted;

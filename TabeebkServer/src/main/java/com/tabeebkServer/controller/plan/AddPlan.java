@@ -8,6 +8,9 @@ package com.tabeebkServer.controller.plan;
 
 import com.tabeebkServer.dao.mic.MicDao;
 import com.tabeebkServer.dao.plan.PlanDao;
+import com.tabeebkServer.pojo.Account;
+import com.tabeebkServer.pojo.Mic;
+import com.tabeebkServer.pojo.Plan;
 import java.io.IOException;
 import java.util.Date;
 import javax.servlet.RequestDispatcher;
@@ -16,8 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.tabeebkServer.pojo.Mic;
-import com.tabeebkServer.pojo.Plan;
 
 /**
  *
@@ -47,7 +48,7 @@ public class AddPlan extends HttpServlet {
         //GET from session
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {
-            int micId = (Integer) session.getAttribute("Accountid");
+            Account account = (Account) session.getAttribute("account");
             Plan plan = new Plan();
             plan.setPlanDescription(planDesc);
             plan.setPlanDescriptionAr(planDescAr);
@@ -55,10 +56,11 @@ public class AddPlan extends HttpServlet {
             plan.setPlanName(planeName);
             plan.setPlanNameAr(planeNameAr);
             plan.setPlanUpdatedDate(new Date());
+            plan.setMic(account.getMic());
             plan.setDeleted(0);
             PlanDao dao = new PlanDao();
             MicDao micDo = new MicDao();
-            Mic mic = micDo.getMicDetails(micId);
+            Mic mic = micDo.getMicDetails(account.getMic().getMicId());
             plan.setMic(mic);
             dao.addPlan(plan);
             RequestDispatcher rd = request.getRequestDispatcher("/MSP/AddPlan.jsp");

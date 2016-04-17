@@ -7,6 +7,7 @@ package com.tabeebkServer.dao;
 
 import com.tabeebkServer.pojo.Msptype;
 import com.tabeebkServer.pojo.Telephone;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import java.util.ArrayList;
 import java.util.TreeSet;
 import org.hibernate.Session;
@@ -19,7 +20,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class TelephoneDao {
 
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
     private int result = 0;
     public static void createTelephoneNumber(int mspType, int mspTypeId, String teleNumber) {

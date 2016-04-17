@@ -6,6 +6,7 @@
 package com.tabeebkServer.controller.plan;
 
 import com.tabeebkServer.dao.planmsp.PlanMspDao;
+import com.tabeebkServer.pojo.Account;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -38,7 +39,8 @@ public class AddMspToPlan extends HttpServlet {
         //GET from session
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {
-            int micId = (Integer) session.getAttribute("Accountid");
+            Account acc = (Account) session.getAttribute("account");
+            int micId = acc.getMic().getMicId();
             int planId = Integer.parseInt(request.getParameter("id"));
             List<GenericMSP> mspsNotInPlan = PlanMspDao.allMspsNotInMyPlan(micId, planId);
 //            for (int i = 0; i < mspsNotInPlan.size(); i++) {

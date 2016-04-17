@@ -21,12 +21,15 @@ import com.tabeebkServer.pojo.Hospitalspeciality;
 import com.tabeebkServer.pojo.Lab;
 import com.tabeebkServer.pojo.Labspecialities;
 import com.tabeebkServer.pojo.Labspeciality;
+import com.tabeebkServer.pojo.Mic;
 import com.tabeebkServer.pojo.Msp;
 import com.tabeebkServer.pojo.Msptype;
 import com.tabeebkServer.pojo.Pharamacy;
 import com.tabeebkServer.pojo.Ratting;
 import com.tabeebkServer.pojo.User;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import com.tabeebkServer.utilty.GenericMSP;
+import java.util.Set;
 import java.util.TreeSet;
 
 /**
@@ -36,7 +39,7 @@ import java.util.TreeSet;
 public class MSPDao {
 
     //===== session per dao
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
     private int result = 0;
 
@@ -243,8 +246,8 @@ public class MSPDao {
     }
 
     //=====================================================
-    public static List<Ratting> viewMspRatting(int mspId) {
-        Msp msp = (Msp) session.get(Msp.class, mspId);
+    public static List<Ratting> viewMspRatting(int mspId, int typeid) {
+        Msp msp = (Msp) session.createQuery("From Msp m where msptype= :mspt and typeId= :tid").setParameter("mspt", (Msptype) session.get(Msptype.class, typeid)).setParameter("tid", mspId).uniqueResult();
         Msptype msptype = msp.getMsptype();
         //refresh session
         session.clear();
@@ -402,8 +405,8 @@ public class MSPDao {
 
     public Doctorspeciality getDoctorSpeciality(String name) {
         Doctorspeciality docSpe = null;
-            docSpe = (Doctorspeciality) session.createQuery("from Doctorspeciality ds where ds.doctorSpecialityName=:docSpec").setString("docSpec", name).uniqueResult();
-       
+        docSpe = (Doctorspeciality) session.createQuery("from Doctorspeciality ds where ds.doctorSpecialityName=:docSpec").setString("docSpec", name).uniqueResult();
+
         return docSpe;
     }
 
@@ -414,7 +417,7 @@ public class MSPDao {
     }
 
     public boolean isDoctorExist(String name) {
-      
+
         Doctor doctor = (Doctor) session.createQuery("from Doctor d where d.doctorName = :docName").setString("docName", name.toLowerCase()).uniqueResult();
         if (doctor != null) {
             return true;
@@ -424,7 +427,7 @@ public class MSPDao {
     }
 
     public boolean isHospitalExist(String name) {
-       
+
         Hospital hospital = (Hospital) session.createQuery(" from Hospital h where h.hospitalName = :hosName").setString("hosName", name.toLowerCase()).uniqueResult();
         if (hospital != null) {
             return true;
@@ -434,7 +437,7 @@ public class MSPDao {
     }
 
     public boolean isClinicExist(String name) {
-       
+
         Clinic c = (Clinic) session.createQuery(" from Clinic c where c.clinicName = :clinName").setString("clinName", name.toLowerCase()).uniqueResult();
         if (c != null) {
             return true;
@@ -444,7 +447,7 @@ public class MSPDao {
     }
 
     public boolean isPharamacyExist(String name) {
-        
+
         Pharamacy pharamcy = (Pharamacy) session.createQuery("from Pharamacy ph where ph.pharamacyName = :pharmcName").setString("pharmcName", name.toLowerCase()).uniqueResult();
         if (pharamcy != null) {
             return true;
@@ -454,7 +457,7 @@ public class MSPDao {
     }
 
     public boolean isLabExist(String name) {
-        
+
         Lab lab = (Lab) session.createQuery("from Lab l where l.labName = :labname ").setString("labname", name.toLowerCase()).uniqueResult();
         if (lab != null) {
             return true;
@@ -616,29 +619,28 @@ public class MSPDao {
     }
 
     public Hospital insertHospital(Hospital hospital) {
-       Hospital h=null;
+        Hospital h = null;
         if (!session.getTransaction().isActive()) {
             session.getTransaction().begin();
         }
         if (hospital != null) {
-            if(!isHospitalExist(hospital.getHospitalName().toLowerCase())){
-            session.saveOrUpdate(hospital);
-            session.getTransaction().commit();
-            session.evict(hospital);
-            h=hospital;
-            }else{
-              h = (Hospital) session.createQuery("from Hospital h where h.hospitalName = :hosName").setString("hosName", hospital.getHospitalName().toLowerCase()).uniqueResult();
-           
+            if (!isHospitalExist(hospital.getHospitalName().toLowerCase())) {
+                session.saveOrUpdate(hospital);
+                session.getTransaction().commit();
+                session.evict(hospital);
+                h = hospital;
+            } else {
+                h = (Hospital) session.createQuery("from Hospital h where h.hospitalName = :hosName").setString("hosName", hospital.getHospitalName().toLowerCase()).uniqueResult();
+
             }
-                
+
         } else {
-            h=null;
+            h = null;
         }
 
-       return h;
+        return h;
     }
-    
-    
+
     public int insertPharmacy(Pharamacy ph) {
         if (!session.getTransaction().isActive()) {
             session.getTransaction().begin();
@@ -669,12 +671,26 @@ public class MSPDao {
         return result;
     }
 
+    //================== Add MSP to MIC ===============================
+    public static void addMSPtoMIC(int mspId, int typeId, int micId) {
+        Msp msp = (Msp) session.createQuery("From Msp m where msptype= :mspt and typeId= :tid").setParameter("mspt", (Msptype) session.get(Msptype.class, typeId)).setParameter("tid", mspId).uniqueResult();
+        Mic mic = (Mic) session.get(Mic.class, micId);
+        mic.getMsps().add(msp);
+        msp.getMics().add(mic);
+        if (!session.getTransaction().isActive()) {
+            session.beginTransaction();
+        }
+        session.save(mic);
+        session.getTransaction().commit();
+        
+    }
+
     public static void main(String[] args) {
         //================== viewMSPs ===============================
 //        System.out.println(viewMSPs().size());
 
         //================== viewMspRatting ===============================
-//        System.out.println(viewMspRatting(1).size());
+        System.out.println(viewMspRatting(91, 3).size());
         //      RecoverMSP(3,1);
     }
 }

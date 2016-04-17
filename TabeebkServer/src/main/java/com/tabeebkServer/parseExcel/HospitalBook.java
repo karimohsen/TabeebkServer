@@ -5,6 +5,7 @@
  */
 package com.tabeebkServer.parseExcel;
 //Azza
+
 import com.tabeebkServer.dao.BranchDao;
 import com.tabeebkServer.dao.MSPDao;
 import com.tabeebkServer.dao.TelephoneDao;
@@ -63,20 +64,20 @@ public class HospitalBook {
             String hospitalNameAr = row.getCell(1).getStringCellValue();
             hospital = new Hospital(hospitalNameEn.toLowerCase(), hospitalNameAr, 0);
 
-           //  mspDao.insertHospital(hospital);
-            if (mspDao.insertHospital(hospital)!=null) {
+            //  mspDao.insertHospital(hospital);
+            if (mspDao.insertHospital(hospital) != null) {
                 msp = new Msp(mspDao.getMspType(Constants.HOSPITAL), hospital.getHospitalId(), 0);
                 mspDao.saveMsp(msp);
                 TreeSet<Telephone> telephones = createHospitalTelelphone(row, hospital, wb);
                 saveHospitalTelephone(telephones);
                 TreeSet<Branche> brnch = createHospitalBranch(row, hospital, wb);
                 saveHospitalBranches(brnch);
-                createHospitalSpeciality( hospital, wb);
+                createHospitalSpeciality(hospital, wb);
             }
         }
     }
 
-    private void createHospitalSpeciality( Hospital h, Workbook ds) {
+    private void createHospitalSpeciality(Hospital h, Workbook ds) {
         Sheet hospitalspecialitySheet = null;
         if (ds instanceof XSSFWorkbook) {
             hospitalspecialitySheet = (XSSFSheet) ds.getSheet(Constants.HOSPITAL_SPECIALITY_SHEET);
@@ -117,15 +118,17 @@ public class HospitalBook {
             if (hospitalTelRow.getRowNum() == 0) {
                 continue;
             }
-            String hospitalName = hospitalTelRow.getCell(0).getStringCellValue();
+            if (hospitalTelRow.getCell(0) != null && hospitalTelRow.getCell(1) != null) {
+                String hospitalName = hospitalTelRow.getCell(0).getStringCellValue();
 
-            //double hospitalRowNum = hospitalTelRow.getCell(0).getNumericCellValue();
-            String telephs = hospitalTelRow.getCell(1).getStringCellValue();
+                //double hospitalRowNum = hospitalTelRow.getCell(0).getNumericCellValue();
+                String telephs = hospitalTelRow.getCell(1).getStringCellValue();
 
-            if (h.getHospitalName().trim().equals(hospitalName.trim().toLowerCase())) {
-                //if (hosRow.getRowNum() + 1 == hospitalRowNum) {
-                hospitalTelephone = new Telephone(mspType, h.getHospitalId(), telephs);
-                telphons.add(hospitalTelephone);
+                if (h.getHospitalName().equalsIgnoreCase(hospitalName)) {
+                    //if (hosRow.getRowNum() + 1 == hospitalRowNum) {
+                    hospitalTelephone = new Telephone(mspType, h.getHospitalId(), telephs);
+                    telphons.add(hospitalTelephone);
+                }
             }
         }
         return telphons;
@@ -161,7 +164,7 @@ public class HospitalBook {
                     String fullAddressAr = hosAddRow.getCell(5).getStringCellValue();
                     area = new Area(city, areaNamesEn, areaNamesAr);
                     area = addressDao.insertArea(area);
-                    b = new Branche(city, area, mspType, areaNamesEn, areaNamesAr, fullAddressEn, fullAddressAr, h.getHospitalId(),0);
+                    b = new Branche(city, area, mspType, areaNamesEn, areaNamesAr, fullAddressEn, fullAddressAr, h.getHospitalId(), 0);
                     branchs.add(b);
                 }
             }

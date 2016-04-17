@@ -41,8 +41,8 @@ public class AddMicAccount extends HttpServlet {
             Mic mic = new Mic();
             mic.setMicName(name);
             mic.setDeleted(0);
-            int id = MicDao.createMIC(mic);
-            AccountDao.AddAccount(name,password,disName,id);
+            Mic myMic = MicDao.createMIC(mic);
+            AccountDao.AddAccount(name,password,disName,myMic);
         } else {
             response.sendRedirect("Login.jsp");
         }

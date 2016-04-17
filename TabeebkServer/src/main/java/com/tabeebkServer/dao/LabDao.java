@@ -7,6 +7,7 @@ package com.tabeebkServer.dao;
 
 import com.tabeebkServer.pojo.Hospital;
 import com.tabeebkServer.pojo.Lab;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -17,7 +18,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class LabDao {
 
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
 
     public static Lab updateLab(Lab lab) {

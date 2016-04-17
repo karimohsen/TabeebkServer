@@ -36,8 +36,12 @@ public class UpdatePharmacyDetails extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        Integer teleId1 =Integer.parseInt(request.getParameter("teleid1"));
-        Integer teleId2 =Integer.parseInt(request.getParameter("teleid2"));
+        Integer teleId1=null;
+        Integer teleId2=null;
+        if (request.getParameter("teleid1") != null && !request.getParameter("teleid1").equals(""))
+        teleId1 =Integer.parseInt(request.getParameter("teleid1"));
+        if (request.getParameter("teleid2") != null && !request.getParameter("teleid2").equals("")) 
+        teleId2 =Integer.parseInt(request.getParameter("teleid2"));
         int pharmacyId = Integer.parseInt(request.getParameter("pharmacyid"));
         int branchId = Integer.parseInt(request.getParameter("branchid"));
         String name=request.getParameter("name");

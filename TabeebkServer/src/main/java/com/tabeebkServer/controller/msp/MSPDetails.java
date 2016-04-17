@@ -7,6 +7,7 @@ package com.tabeebkServer.controller.msp;
 
 import com.tabeebkServer.dao.MSPDao;
 import com.tabeebkServer.dao.plan.PlanDao;
+import com.tabeebkServer.pojo.Account;
 import com.tabeebkServer.pojo.Plan;
 import com.tabeebkServer.utilty.GenericMSP;
 import java.io.IOException;
@@ -40,7 +41,8 @@ public class MSPDetails extends HttpServlet {
        HttpSession session = request.getSession(false);        
         if (session.getAttribute("Accountid") != null) {
             // get from session
-            int micId = (Integer) session.getAttribute("Accountid");
+            Account acc = (Account) session.getAttribute("account");
+            int micId = acc.getMic().getMicId();
             //get from request
             int msptypeid=Integer.parseInt(request.getParameter("msptypeid"));
             int mspid=Integer.parseInt(request.getParameter("mspid"));

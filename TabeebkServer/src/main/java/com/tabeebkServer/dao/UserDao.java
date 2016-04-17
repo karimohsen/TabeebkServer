@@ -14,6 +14,7 @@ import org.hibernate.cfg.Configuration;
 import com.tabeebkServer.pojo.Mic;
 import com.tabeebkServer.pojo.Micratting;
 import com.tabeebkServer.pojo.User;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
 
 /**
  *
@@ -22,7 +23,7 @@ import com.tabeebkServer.pojo.User;
 public class UserDao {
 
     //===== session per dao
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
 
     public static List<User> viewUsers() {

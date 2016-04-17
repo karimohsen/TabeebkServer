@@ -1,5 +1,5 @@
 package com.tabeebkServer.pojo;
-// Generated Jun 14, 2015 12:47:34 PM by Hibernate Tools 3.6.0
+// Generated Jun 15, 2015 12:46:00 PM by Hibernate Tools 3.6.0
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,17 +43,6 @@ public class Branche implements java.io.Serializable, Comparable<Branche> {
         this.brancheName = brancheName;
     }
 
-    public Branche(City city, Area area, Msptype msptype, String brancheName, String brancheNameAr, String brancheAddress, String brancheAddressAr, Integer typeId) {
-        this.area = area;
-        this.msptype = msptype;
-        this.city = city;
-        this.brancheName = brancheName;
-        this.brancheNameAr = brancheNameAr;
-        this.brancheAddress = brancheAddress;
-        this.brancheAddressAr = brancheAddressAr;
-        this.typeId = typeId;
-    }
-//    Branche(city, area, mspType, areaNamesEn, areaNamesAr, fullAddressEn, fullAddressAr, c.getClinicId(), 0);
     public Branche(City city, Area area, Msptype msptype, String brancheName, String brancheNameAr, String brancheAddress, String brancheAddressAr, Integer typeId, Integer deleted) {
         this.area = area;
         this.msptype = msptype;

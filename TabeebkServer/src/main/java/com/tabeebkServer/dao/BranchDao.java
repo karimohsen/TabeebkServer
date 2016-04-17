@@ -10,6 +10,8 @@ import com.tabeebkServer.pojo.Branche;
 import com.tabeebkServer.pojo.City;
 import com.tabeebkServer.pojo.Country;
 import com.tabeebkServer.pojo.Msptype;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
+import java.util.ArrayList;
 import java.util.TreeSet;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,7 +23,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class BranchDao {
 
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
     private int result=0;
     public static void addBranch(int areaId, String address, String adressAr, String latitude, String longitude, String branchName, String branchNameAr, int mspType, int TypeId, int country, int city) {
@@ -66,7 +68,11 @@ public class BranchDao {
     }
 
     public static Branche getBranch(int type, int typeId) {
-        return (Branche) session.createQuery("From Branche b where b.msptype = :mtype and b.typeId = :id").setParameter("mtype", (Msptype)session.get(Msptype.class, type)).setParameter("id", typeId).uniqueResult();
+        ArrayList<Branche> list = (ArrayList<Branche>) session.createQuery("From Branche b where b.msptype = :mtype and b.typeId = :id").setParameter("mtype", (Msptype)session.get(Msptype.class, type)).setParameter("id", typeId).list();
+        if(list.size() > 0)
+            return list.get(0);
+        else
+            return null;
     }
     
     //==================================================

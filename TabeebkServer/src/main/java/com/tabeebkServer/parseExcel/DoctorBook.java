@@ -68,7 +68,7 @@ public class DoctorBook {
 
     private void createClinics(Row clinicRow, Workbook doctorSheet) {
         Clinic c = null;
-        if (clinicRow.getCell(0) != null) {
+        if (clinicRow.getCell(0) != null&&clinicRow.getCell(1)!=null&&clinicRow.getCell(2)!=null) {
             String clinicNamesEn = clinicRow.getCell(1).getStringCellValue();
             String clinicNamesAr = clinicRow.getCell(2).getStringCellValue();
 

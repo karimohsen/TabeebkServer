@@ -19,6 +19,7 @@ import com.tabeebkServer.pojo.Mic;
 import com.tabeebkServer.pojo.Micuser;
 import com.tabeebkServer.pojo.Msp;
 import com.tabeebkServer.pojo.User;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import com.tabeebkServer.utilty.GenericMSP;
 
 /**
@@ -28,7 +29,7 @@ import com.tabeebkServer.utilty.GenericMSP;
 public class MICDao {
 
     //===== session per dao
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
 
     public static List<GenericMSP> viewMyMSPs(int micId) {

@@ -59,26 +59,29 @@ public class PharmacyBook {
     }
 
     private void createPharmacy(Row row, Workbook pharmacySheet) {
-        if (row.getCell(0) != null) {
-            String pharmacyNameEn = row.getCell(0).getStringCellValue().toLowerCase();
+        if (row.getCell(0) != null && row.getCell(1) != null) {
+            String pharmacyNameEn = row.getCell(0).getStringCellValue();
             String pharmacyNameAr = row.getCell(1).getStringCellValue();
-            String pharmacyHospital = row.getCell(3).getStringCellValue();
+            String pharmacyHospital="";
+            if (row.getCell(2) != null) {
+                pharmacyHospital = row.getCell(2).getStringCellValue();
+            }
             if (pharmacyNameEn != null && pharmacyNameAr != null && pharmacyHospital != null) {
-                pharmacy = new Pharamacy(mspDao.getHospitalByName(pharmacyHospital.toLowerCase()), pharmacyNameEn, pharmacyNameAr, 0);
-            } else if (pharmacyHospital == null) {
+                pharmacy = new Pharamacy(mspDao.getHospitalByName(pharmacyHospital), pharmacyNameEn, pharmacyNameAr, 0);
+            } else if (pharmacyHospital == null || pharmacyHospital.equals("")) {
                 pharmacy = new Pharamacy(pharmacyNameEn, pharmacyNameAr, 0);
             }
             int i = savePharmacy(pharmacy);
             if (i == 1) {
                 msp = new Msp(mspDao.getMspType(Constants.PHARMACY), pharmacy.getPharamacyId(), 0);
                 mspDao.saveMsp(msp);
-                savePharmacyTelephone(createPharmacyTelelphone(row, pharmacy, pharmacySheet));
-                savePharmacyBranches(createPharmacyBranch(row, pharmacy, pharmacySheet));
+                savePharmacyTelephone(createPharmacyTelelphone(pharmacy, pharmacySheet));
+                savePharmacyBranches(createPharmacyBranch(pharmacy, pharmacySheet));
             }
         }
     }
 
-    private TreeSet<Telephone> createPharmacyTelelphone(Row pharmacyRow, Pharamacy ph, Workbook ds) {
+    private TreeSet<Telephone> createPharmacyTelelphone(Pharamacy ph, Workbook ds) {
         TreeSet<Telephone> telphons = new TreeSet<Telephone>();
         Sheet pharmacyTel = null;
         if (ds instanceof XSSFWorkbook) {
@@ -108,7 +111,7 @@ public class PharmacyBook {
         return telphons;
     }
 
-    private TreeSet<Branche> createPharmacyBranch(Row pharmcyRow, Pharamacy ph, Workbook wb) {
+    private TreeSet<Branche> createPharmacyBranch(Pharamacy ph, Workbook wb) {
         Sheet phAdress = null;
         if (wb instanceof XSSFWorkbook) {
             phAdress = (XSSFSheet) wb.getSheet(Constants.PHARMACY_ADDRESS_SHEET);

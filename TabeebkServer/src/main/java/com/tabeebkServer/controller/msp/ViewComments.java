@@ -6,6 +6,7 @@
 package com.tabeebkServer.controller.msp;
 
 import com.tabeebkServer.dao.UserDao;
+import com.tabeebkServer.pojo.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -40,14 +41,14 @@ public class ViewComments extends HttpServlet {
         // Get this id from session
         HttpSession session = request.getSession(false);
         if (session.getAttribute("Accountid") != null) {
-        int micId = (Integer) session.getAttribute("Accountid");
+            Account acc = (Account) session.getAttribute("account");
+            int micId = acc.getMic().getMicId();
             //get from request
             int userId = Integer.parseInt(request.getParameter("id"));
             List<Micratting> userRats = UserDao.viewMicRatting(userId, micId);
             request.setAttribute("userRats", userRats);
             rd.forward(request, response);
-        }
-        else{
+        } else {
             response.sendRedirect("Login.jsp");
         }
     }

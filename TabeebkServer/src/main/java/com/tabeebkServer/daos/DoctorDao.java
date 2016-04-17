@@ -20,6 +20,7 @@ import com.tabeebkServer.pojo.Hospital;
 import com.tabeebkServer.pojo.Hospitalspeciality;
 import com.tabeebkServer.pojo.Lab;
 import com.tabeebkServer.pojo.Telephone;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import java.util.Set;
 
 /**
@@ -28,7 +29,7 @@ import java.util.Set;
  */
 public class DoctorDao {
  String [] queries={""," select  d.hospitalName , d.hospitalId from Hospital d"," select  d.clinicName , d.clinicId from Clinic d"};
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
     List<String[]> clinicResult;
 

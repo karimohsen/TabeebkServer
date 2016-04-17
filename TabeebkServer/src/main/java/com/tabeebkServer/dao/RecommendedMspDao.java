@@ -6,6 +6,7 @@
 package com.tabeebkServer.dao;
 
 import com.tabeebkServer.pojo.Msprecommendations;
+import com.tabeebkServer.session.factory.HibernateUtilFactory;
 import com.tabeebkServer.utilty.RecommendedMSP;
 import java.util.ArrayList;
 import org.hibernate.Session;
@@ -18,7 +19,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class RecommendedMspDao {
 
-    static SessionFactory fact = new Configuration().configure("config\\hibernate.cfg.xml").buildSessionFactory();
+    static SessionFactory fact = HibernateUtilFactory.getSessionFactory();
     static Session session = fact.openSession();
 
     public static ArrayList<RecommendedMSP> viewRecommendations() {

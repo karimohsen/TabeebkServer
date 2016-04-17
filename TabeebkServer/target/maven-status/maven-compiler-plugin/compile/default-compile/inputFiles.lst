@@ -14,6 +14,7 @@ C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\co
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\admin\controller\AdminAddPharmacy.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\pojo\Doctorspeciality.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\pojo\MicuserId.java
+C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\dao\MspTypeDao.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\dao\HospitalSpecialityDao.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\controller\account\ChangePwdController.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\pojo\Labspeciality.java
@@ -49,12 +50,12 @@ C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\co
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\pojo\DoctorClincId.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\dao\mic\MicDao.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\dao\GenderDao.java
-C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\pojo\Speciality.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\admin\controller\DownloadExcelStructure.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\admin\controller\AdminDoctorDetails.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\controller\plan\UpdatePlan.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\controller\plan\GetPlanDetails.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\filter\MspFilter.java
+C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\Doctor\GetReservations.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\admin\controller\AdminRestoreMsp.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\admin\controller\EditHospitalDetails.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\dao\AccountDao.java
@@ -70,6 +71,7 @@ C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\co
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\controller\plan\EditPlan.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\controller\msp\ViewRatings.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\dao\UserDao.java
+C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\controller\msp\AddMSPtoMIC.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\pojo\Branche.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\utilty\MyLabSpecialities.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\pojo\Reservationstatus.java
@@ -142,3 +144,4 @@ C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\co
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\admin\controller\AdminAddLab.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\controller\plan\AddMSPToPlans.java
 C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\admin\controller\AdminMICDetails.java
+C:\Users\Karim\Documents\GraduationProject\Server\TabeebkServer\src\main\java\com\tabeebkServer\dao\ReservationDao.java
